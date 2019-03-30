@@ -1,0 +1,410 @@
+#!MC 1400
+# Created by Tecplot 360 build 14.0.2.35002
+$!GLOBALCOLORMAP  1
+  CONTOURCOLORMAP = USERDEF
+$!COLORMAPCONTROL 1 RESETTOFACTORY
+$!GLOBALCOLORMAP  1
+  USERDEFINED
+    {
+    NUMCONTROLPOINTS = 25
+    CONTROLPOINT 1
+     {
+     COLORMAPFRACTION = 0.0
+     LEADRGB
+       {
+       R = 68.0
+       G = 1.0
+       B = 84.0
+       }
+     TRAILRGB
+       {
+       R = 68.0
+       G = 1.0
+       B = 84.0
+       }
+     }
+ CONTROLPOINT 2
+     {
+     COLORMAPFRACTION = 0.0416666666667
+     LEADRGB
+       {
+       R = 71.0
+       G = 16.0
+       B = 99.0
+       }
+     TRAILRGB
+       {
+       R = 71.0
+       G = 16.0
+       B = 99.0
+       }
+     }
+  CONTROLPOINT 3
+     {
+     COLORMAPFRACTION = 0.0833333333333
+     LEADRGB
+       {
+       R = 72.0
+       G = 31.0
+       B = 112.0
+       }
+     TRAILRGB
+       {
+       R = 72.0
+       G = 31.0
+       B = 112.0
+       }
+     }
+ CONTROLPOINT 4
+     {
+     COLORMAPFRACTION = 0.125
+     LEADRGB
+       {
+       R = 71.0
+       G = 45.0
+       B = 123.0
+       }
+     TRAILRGB
+       {
+       R = 71.0
+       G = 45.0
+       B = 123.0
+       }
+     }
+ CONTROLPOINT 5
+     {
+     COLORMAPFRACTION = 0.166666666667
+     LEADRGB
+       {
+       R = 68.0
+       G = 57.0
+       B = 131.0
+       }
+     TRAILRGB
+       {
+       R = 68.0
+       G = 57.0
+       B = 131.0
+       }
+     }
+ CONTROLPOINT 6
+     {
+     COLORMAPFRACTION = 0.208333333333
+     LEADRGB
+       {
+       R = 64.0
+       G = 70.0
+       B = 136.0
+       }
+     TRAILRGB
+       {
+       R = 64.0
+       G = 70.0
+       B = 136.0
+       }
+     }
+ CONTROLPOINT 7
+     {
+     COLORMAPFRACTION = 0.25
+     LEADRGB
+       {
+       R = 59.0
+       G = 82.0
+       B = 139.0
+       }
+     TRAILRGB
+       {
+       R = 59.0
+       G = 82.0
+       B = 139.0
+       }
+     }
+ CONTROLPOINT 8
+     {
+     COLORMAPFRACTION = 0.291666666667
+     LEADRGB
+       {
+       R = 54.0
+       G = 93.0
+       B = 141.0
+       }
+     TRAILRGB
+       {
+       R = 54.0
+       G = 93.0
+       B = 141.0
+       }
+     }
+ CONTROLPOINT 9
+     {
+     COLORMAPFRACTION = 0.333333333333
+     LEADRGB
+       {
+       R = 49.0
+       G = 104.0
+       B = 142.0
+       }
+     TRAILRGB
+       {
+       R = 49.0
+       G = 104.0
+       B = 142.0
+       }
+     }
+ CONTROLPOINT 10
+     {
+     COLORMAPFRACTION = 0.375
+     LEADRGB
+       {
+       R = 44.0
+       G = 114.0
+       B = 142.0
+       }
+     TRAILRGB
+       {
+       R = 44.0
+       G = 114.0
+       B = 142.0
+       }
+     }
+ CONTROLPOINT 11
+     {
+     COLORMAPFRACTION = 0.416666666667
+     LEADRGB
+       {
+       R = 40.0
+       G = 124.0
+       B = 142.0
+       }
+     TRAILRGB
+       {
+       R = 40.0
+       G = 124.0
+       B = 142.0
+       }
+     }
+ CONTROLPOINT 12
+     {
+     COLORMAPFRACTION = 0.458333333333
+     LEADRGB
+       {
+       R = 36.0
+       G = 134.0
+       B = 142.0
+       }
+     TRAILRGB
+       {
+       R = 36.0
+       G = 134.0
+       B = 142.0
+       }
+     }
+ CONTROLPOINT 13
+     {
+     COLORMAPFRACTION = 0.5
+     LEADRGB
+       {
+       R = 33.0
+       G = 145.0
+       B = 140.0
+       }
+     TRAILRGB
+       {
+       R = 33.0
+       G = 145.0
+       B = 140.0
+       }
+     }
+ CONTROLPOINT 14
+     {
+     COLORMAPFRACTION = 0.541666666667
+     LEADRGB
+       {
+       R = 31.0
+       G = 154.0
+       B = 138.0
+       }
+     TRAILRGB
+       {
+       R = 31.0
+       G = 154.0
+       B = 138.0
+       }
+     }
+ CONTROLPOINT 15
+     {
+     COLORMAPFRACTION = 0.583333333333
+     LEADRGB
+       {
+       R = 32.0
+       G = 164.0
+       B = 134.0
+       }
+     TRAILRGB
+       {
+       R = 32.0
+       G = 164.0
+       B = 134.0
+       }
+     }
+ CONTROLPOINT 16
+     {
+     COLORMAPFRACTION = 0.625
+     LEADRGB
+       {
+       R = 40.0
+       G = 174.0
+       B = 128.0
+       }
+     TRAILRGB
+       {
+       R = 40.0
+       G = 174.0
+       B = 128.0
+       }
+     }
+ CONTROLPOINT 17
+     {
+     COLORMAPFRACTION = 0.666666666667
+     LEADRGB
+       {
+       R = 53.0
+       G = 183.0
+       B = 121.0
+       }
+     TRAILRGB
+       {
+       R = 53.0
+       G = 183.0
+       B = 121.0
+       }
+     }
+ CONTROLPOINT 18
+     {
+     COLORMAPFRACTION = 0.708333333333
+     LEADRGB
+       {
+       R = 72.0
+       G = 193.0
+       B = 110.0
+       }
+     TRAILRGB
+       {
+       R = 72.0
+       G = 193.0
+       B = 110.0
+       }
+     }
+ CONTROLPOINT 19
+     {
+     COLORMAPFRACTION = 0.75
+     LEADRGB
+       {
+       R = 94.0
+       G = 201.0
+       B = 98.0
+       }
+     TRAILRGB
+       {
+       R = 94.0
+       G = 201.0
+       B = 98.0
+       }
+     }
+ CONTROLPOINT 20
+     {
+     COLORMAPFRACTION = 0.791666666667
+     LEADRGB
+       {
+       R = 117.0
+       G = 208.0
+       B = 84.0
+       }
+     TRAILRGB
+       {
+       R = 117.0
+       G = 208.0
+       B = 84.0
+       }
+     }
+ CONTROLPOINT 21
+     {
+     COLORMAPFRACTION = 0.833333333333
+     LEADRGB
+       {
+       R = 144.0
+       G = 215.0
+       B = 67.0
+       }
+     TRAILRGB
+       {
+       R = 144.0
+       G = 215.0
+       B = 67.0
+       }
+     }
+ CONTROLPOINT 22
+     {
+     COLORMAPFRACTION = 0.875
+     LEADRGB
+       {
+       R = 173.0
+       G = 220.0
+       B = 48.0
+       }
+     TRAILRGB
+       {
+       R = 173.0
+       G = 220.0
+       B = 48.0
+       }
+     }
+ CONTROLPOINT 23
+     {
+     COLORMAPFRACTION = 0.916666666667
+     LEADRGB
+       {
+       R = 200.0
+       G = 224.0
+       B = 32.0
+       }
+     TRAILRGB
+       {
+       R = 200.0
+       G = 224.0
+       B = 32.0
+       }
+     }
+ CONTROLPOINT 24
+     {
+     COLORMAPFRACTION = 0.958333333333
+     LEADRGB
+       {
+       R = 229.0
+       G = 228.0
+       B = 25.0
+       }
+     TRAILRGB
+       {
+       R = 229.0
+       G = 228.0
+       B = 25.0
+       }
+     }
+ CONTROLPOINT 25
+     {
+     COLORMAPFRACTION = 1.0
+     LEADRGB
+       {
+       R = 253.0
+       G = 231.0
+       B = 37.0
+       }
+     TRAILRGB
+       {
+       R = 253.0
+       G = 231.0
+       B = 37.0
+       }
+     }
+}
