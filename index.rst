@@ -23,6 +23,9 @@ The following modules now have documentation online:
    packages/pylayout/doc/index
 .. packages/dafoam/doc/index
 
+- `OpenAeroStruct <https://mdolab.github.io/OpenAeroStruct/>`_
+- `OpenConcept <https://openconcept.readthedocs.io/en/latest/>`_
+
 Installation instructions
 =========================
 
