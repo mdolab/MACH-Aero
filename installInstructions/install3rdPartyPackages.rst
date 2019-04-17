@@ -162,6 +162,10 @@ Here are a few complete examples of configuring PETSc:
 
     $ ./configure --with-shared-libraries --download-superlu_dist --download-parmetis=yes --download-metis=yes --with-fortran-interfaces=1 --with-debugging=no --with-scalar-type=real --PETSC_ARCH=real-opt
 
+5. Workstation debug build, downloading fblaslapack, real scalar type with MPI installed locally (see OpenMPI `user wide install`_ section)::
+
+   $ ./configure --with-shared-libraries --download-superlu_dist --download-parmetis=yes --download-metis=yes --with-fortran-interfaces=1 --with-debugging=yes --with-scalar-type=real --download-fblaslapack --PETSC_ARCH=real-debug-gfortran-3.7.7 --with-mpi-dir=/home/<your-user-name>/packages/openmpi-1.10.7/opt-gfortran
+
 .. NOTE::
    Note that the ``PETSC_ARCH`` option is any user specified
    string. Typically you should use something that is representative of
@@ -209,27 +213,62 @@ starting production runs.
 -------------------------------------
 
 .. NOTE::
-   If openmpi was installed with PETSc there is no need to compile openmpi separately. However, if one will be using PETSc 3.6 and real and complex data you must compile it separately and not install it with PETSc.
+   If openmpi was installed with PETSc there is no need to compile openmpi separately. However, if one will be using PETSc real and complex data you must compile it separately and not install it with PETSc.
 
-`Download <http://www.open-mpi.org/software/ompi/v1.8/downloads/openmpi-1.8.5.tar.gz>`__ the source and untar::
+`Download <https://download.open-mpi.org/release/open-mpi/v1.10/openmpi-1.10.7.tar.gz>`__ the source, put in your packages directory and untar::
 
-   $ tar -xzf openmpi-1.8.5.tar.gz
+   $ tar -xzf openmpi-1.10.7.tar.gz
 
-If not already in place add the following to your .bashrc::
+System wide install
+*******************
+If not already in place add the following to your .bashrc
+
+.. code-block:: bash
 
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
    export PATH=/usr/local/bin:$PATH
 
-To compile and install openmpi you need to open a new terminal with root privileges and export the FC environmental variable to indicate which Fortran compiler. To configure and make and you will need to do the following::
+To compile and install system wide openmpi you need to open a new terminal with root privileges and export the FC environmental variable to indicate which Fortran compiler. To configure and make and you will need to do the following
+
+.. code-block:: bash
 
    sudo gnome-terminal
    source /home/<your_user_name>/.bashrc     # to get the the environment variables you need
    export FC=ifort                           # or FC=gfortran depending on your system
-   cd /home/<your_user_name>/packages/openmpi-1.8.5
+   cd /home/<your_user_name>/packages/openmpi-1.10.7
    ./configure
    make
    make install
    exit
+
+User wide install
+*****************
+Installing for user only (recommended) allows for a easier and better control similar to different PETSc configuration and install. In practice multiple configurations are however not needed and in most cases this is only done once for the user. The user may want to upgrade MPI and can thus compile a new version easily in a similar manner and then change only the ``MPI_INSTALL_DIR`` environment variable in order to change MPI versions or builds.
+
+Add the following to your .bashrc
+
+.. code-block:: bash
+   
+   export MPI_INSTALL_DIR=$HOME/packages/openmpi-1.10.7/opt-gfortran
+   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$MPI_INSTALL_DIR/lib
+   export PATH=$MPI_INSTALL_DIR/bin:$PATH
+
+Once you have saved the .bashrc then in a new command line window (or source the .bashrc file to update the variables) we can configure and install MPI. The important variable that has to be set is ``MPI_INSTALL_DIR``. To verify that it is set to the correct location do ``echo $MPI_INSTALL_DIR``. To configure and install do
+
+.. code-block:: bash
+   
+   export FC=gfortran                       # or FC=ifort or other, depending on compiler used on system
+   ./configure --prefix=$MPI_INSTALL_DIR
+   make all install
+
+To verify that paths are as expected run
+
+.. code-block:: bash
+
+   which mpicc
+   echo $MPI_INSTALL_DIR/bin/mpicc
+
+The above should print out the same path for both.
 
 
 
