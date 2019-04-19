@@ -821,7 +821,7 @@ for a partial list of common options.
 	#PBS -l select=2:ncpus=20:model=ivy
 	#PBS -l walltime=0:01:00
 	#PBS -j oe
-	#PBS -W group_list=a1556
+	#PBS -W group_list=YOUR_PROJECT_GID
 	#PBS -m bae
 	#PBS -q devel
 
