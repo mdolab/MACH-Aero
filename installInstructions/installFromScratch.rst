@@ -63,7 +63,6 @@ The packages needed:
 #. `ADflow <https://github.com/mdolab/adflow/>`_
 #. `pyOptSparse <https://github.com/mdolab/pyoptsparse>`_
 #. `pyHyp <https://github.com/mdolab/pyhyp>`_
-#. `repostate <https://github.com/mdolab/repostate/>`_
 #. `multipoint <https://github.com/mdolab/multipoint/>`_ (for doing multipoint optimization)
 
 Standard MDO Lab Build Procedure
