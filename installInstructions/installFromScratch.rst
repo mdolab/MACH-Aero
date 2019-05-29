@@ -1,6 +1,7 @@
 .. Instructions on how to set up a computer from scratch and be able to 
    run the aero_runs/aero_opt/as_runs/as_opt
    Author: Eirikur Jonsson (eirikurj@umich.edu)
+   Modifed: C.A.(Sandy) Mader (cmader@umich.edu)
     
 
 .. _installFromScratch:
@@ -21,18 +22,18 @@ Ubuntu 12.04 or newer. Ubuntu 14.04 is assumed to be used here.
 Installation steps
 ------------------
 The following list what steps are needed. The instructions are divided 
-in to two parts
+in to four parts
 
-- Installing `3rd party packages`_
-- `MDOLab packages`_
+- `3rd party packages`_
+- `MDO Lab packages`_
+- `Standard MDO Lab Build Procedure`_
+- `Environment Setup`_
 
 Since MDO Lab packages depend heavily on 3rd party tools 
-and packages it is generally good to start with that. Finally an 
-example ``.bashrc`` file is shown.
+and packages it is generally good to start by compiling and testing them. 
+Finally, an example ``.bashrc`` file is shown.
 
 - `Example .bashrc`_
-
-
 
 3rd party packages
 ******************
@@ -50,27 +51,7 @@ MDO Lab packages
 To install the MDO Lab packages clone each repository from `GitHub <https://github.com/mdolab>`_ and 
 follow the installation instructions for each. Some packages are pure 
 Python packages so no compilation or setup is needed. For the packages 
-that do require compilation, copy one of the configuration files 
-(e.g., ``config.LINUX_GFORTRAN.mk``) from the package's ``config/defaults`` 
-directory to the package's ``config`` directory and rename it ``config.mk``. 
-Then use the command ``make`` (in the package's root directory) to compile. 
-If you are a beginner user installing the packages on a linux desktop, you 
-you should use the ``config.LINUX_GFORTRAN`` versions of the configuration 
-files. The ``config.LINUX_INTEL`` versions are usually used on clusters.
-The installation of the TACS package is a little more involved, so follow 
-the instructions in its `README.md` file.
-
-We recommend that you clone the repos to a ``repos`` folder under your home 
-folder ``/home/<your username>/repos``
-
-In order for the MDO framework to find python modules properly its 
-necessary to set the ``PYTHONPATH`` environmental variable in your 
-``.bashrc`` file
-
-.. code-block:: bash
-
-	#filename .bashrc
-	export PYTHONPATH=$PYTHONPATH:$HOME/repos/
+that do require compilation, you can follow the standard MDO Lab build procedure below.
 
 The packages needed:
 
@@ -84,10 +65,56 @@ The packages needed:
 #. `pyHyp <https://github.com/mdolab/pyhyp>`_
 #. `repostate <https://github.com/mdolab/repostate/>`_
 #. `multipoint <https://github.com/mdolab/multipoint/>`_ (for doing multipoint optimization)
-#. TACS (for structural/aerostructural)
-#. Tripan (for aero/aerostructural using panel methods)
 
-To install SNOPT within pyOptSparse, clone the repository ``mdolabexternal``, then copy the contents of ``mdolabexternal/SNOPT`` to ``pyoptsparse/pyoptsparse/pySNOPT/source`` before compiling pyoptsparse.
+Standard MDO Lab Build Procedure
+********************************
+
+To start, find a configuration file close to your current setup in::
+
+    $ config/defaults
+
+and copy it to ''config/config.mk''. For example::
+
+    $ cp config/defaults/config.LINUX_GFORTRAN.mk config/config.mk
+
+If you are a beginner user installing the packages on a linux desktop, 
+you should use the ``config.LINUX_GFORTRAN.mk`` versions of the configuration 
+files. The ``config.LINUX_INTEL.mk`` versions are usually used on clusters.
+ADflow has been successfully compiled on LINUX with either
+ifort or gfortran.
+
+Once you have copied the config file, compile the module by running::
+
+    $ make
+
+in the package's root directory.
+If everything was successful, the following lines will be printed to
+the screen (near the end)::
+
+   Testing if module <module_name> can be imported...
+   Module <module_name> was successfully imported.
+
+If you don't see this, it will be necessary to configure the build
+manually. To configure manually, open ``config/config.mk`` and modify options as necessary.
+
+The installation of the TACS package is a little more involved, so follow 
+the instructions in its `README.md` file.
+
+Environment Setup
+*****************
+
+We recommend that you clone the repos to a ``repos`` folder under your home 
+folder ``/home/<your username>/repos``
+
+In order for the MDO framework to find python modules properly its 
+necessary to set the ``PYTHONPATH`` environmental variable in your 
+``.bashrc`` file
+
+.. code-block:: bash
+
+	#filename .bashrc
+	export PYTHONPATH=$PYTHONPATH:$HOME/repos/
+
 
 
 Example .bashrc
@@ -101,10 +128,6 @@ that is close to the example shown here below
 
 	# MDO Lab related variables
 	export PYTHONPATH=$PYTHONPATH:$HOME/repos/
-
-	# Paths for external packages
-	export PATH=$PATH:$HOME/repos/tacs/extern/f5totec
-	export PATH=$PATH:$HOME/repos/cgnsutilities/bin
 
 	# PETSc ARCH and DIR
 	export PETSC_DIR=$HOME/packages/petsc-3.7.7
