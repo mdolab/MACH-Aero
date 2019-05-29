@@ -6,12 +6,12 @@
 .. _installFromScratch:
 
 
-Installing MDOLab framework from scratch
+Installing MDO Lab framework from scratch
 ========================================
 
 
 This tutorial is intended to be a step-by-step guide on how to set up 
-the software needed to run MDO problems using the MDOLab framework 
+the software needed to run MDO problems using the MDO Lab framework 
 such as the mdo_tutorial repo. It does not describe how to set up each 
 software package rather just the steps needed.
 This tutorial assumes that you have a working Linux distribution such as
@@ -26,7 +26,7 @@ in to two parts
 - Installing `3rd party packages`_
 - `MDOLab packages`_
 
-Since MDOLab packages depend heavily on 3rd party tools 
+Since MDO Lab packages depend heavily on 3rd party tools 
 and packages it is generally good to start with that. Finally an 
 example ``.bashrc`` file is shown.
 
@@ -45,11 +45,11 @@ To install follow the link for each package.
 #. :ref:`install_petsc4py`
 #. :ref:`install_cgns`
 
-MDOLab packages
+MDO Lab packages
 ***************
-To install the MDOLab packages clone each repository from `GitHub <https://github.com/mdolab>`_ and 
+To install the MDO Lab packages clone each repository from `GitHub <https://github.com/mdolab>`_ and 
 follow the installation instructions for each. Some packages are pure 
-python packages so no compilation or setup is needed. For the packages 
+Python packages so no compilation or setup is needed. For the packages 
 that do require compilation, copy one of the configuration files 
 (e.g., ``config.LINUX_GFORTRAN.mk``) from the package's ``config/defaults`` 
 directory to the package's ``config`` directory and rename it ``config.mk``. 
