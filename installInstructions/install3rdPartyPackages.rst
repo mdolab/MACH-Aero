@@ -1,6 +1,6 @@
 .. Installation instruction on how to set up external packages need to
-   run the MDOlab code.
-   Author: Eirikur Jonsson (eirikurj@umich.edu)
+   run the Models code.
+   Author: Eirikur Jonas (eirikurj@umich.edu)
    Modified by Ross S. Chaudhry (rchaud@umich.edu) in July 2019
     - Reordered to have all C/Fortran sources first, then python
     - Written examples now install locally, mostly without sudo apt-get
@@ -15,10 +15,8 @@
 ==================
 
 
-Before you try to compile **any** of the MDOlab codes, it is **HIGHLY
-RECOMMENDED** that you install the following packages below. We recommend
-creating a directory to store these external dependencies, such as
-``~/packages``.
+Before compiling **any** of the MDOlab codes, it is **HIGHLY
+RECOMMENDED** that you install the following packages below.
 
 
 .. _install_prereq:
@@ -31,14 +29,15 @@ If they're not available already, common prerequisites can be installed directly
 
 The packages are required by many of the packages installed later.
 On a cluster, check the output of ``module avail`` to see what has already been installed.
+They can also be installed locally, but they are common enough that a system install is acceptable.
 
 
 C and Fortran Based Packages
----------------------------
+----------------------------
 These packages have minimal dependencies and should be installed first, in the order listed here.
 These source code for these packages are often downloaded and installed to ``$HOME/packages/$PACKAGE_NAME``,
 which will be adopted as convention for the instructions here.
-The environment is adapted for each package by modifying your ``$HOME/.bashrc`` or equivalent.
+The environment is adapted for each package by modifying ``$HOME/.bashrc`` or equivalent.
 
 
 `OpenMPI <http://www.open-mpi.org/>`_
@@ -312,7 +311,7 @@ Python Packages
    support for python2 will be dropped before python2 EOL (January 2020).
 
 In this guide, python packages are installed using ``pip``.
-Other methods, such as from source or using ``conda``, will also work (see below RSCFIX for details).
+Other methods, such as from source or using ``conda``, will also work.
 Local installations (with ``--user``) are also recommended but not required.
 If pip is not available, install it using:
 
@@ -323,7 +322,7 @@ If pip is not available, install it using:
    python get-pip.py --user
 
 When installing the same package multiple times with different dependencies,
-   for example ``petsc4py`` with different petsc builds, the pip cache can become incorrect.
+for example ``petsc4py`` with different petsc builds, the pip cache can become incorrect.
 Therefore, we recommend the ``--no-cache`` flag when installing python packages with pip.
 
 .. _install_num_sci_py:
@@ -363,7 +362,7 @@ It is installed with::
 
 `mpi4py <http://mpi4py.scipy.org/>`_
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-..IMPORTANT::
+.. IMPORTANT::
    The version(s) of mpi4py tested to work with MDOlab tools is 3.0.2.
 
    mpi4py depends on OpenMPI.
@@ -379,7 +378,7 @@ It is installed with::
 
 `petsc4py <https://bitbucket.org/petsc/petsc4py/downloads>`_
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-..IMPORTANT::
+.. IMPORTANT::
    The MAJOR.MINOR version of petsc4py **MUST** match the MAJOR.MINOR version of petsc,
    for example petsc 3.7.7 will only work with petsc4py 3.7.X.
    In practice, this means you must request a specific version of petsc4py.
@@ -398,32 +397,58 @@ It is installed with::
 
 .. WARNING:: 
    You must compile a unique petsc4py install for each petsc architecture.
-   To make sure the correct petsc4py is installed, ininstall and then reinstall
+   To make sure the correct petsc4py is installed, uninstall and then reinstall
    (using the command above) with the environment configured for the required petsc version.
    The ``--no-cache`` option is necessary to prevent reuse of previous, invalid code.
 
 Working Stacks
 --------------
 This section includes the stacks successfully used by MDOlab members.
-This is a work in progress.
+This section is a work in progress.
 
-.. To write a table, here: http://docutils.sourceforge.net/docs/user/rst/quickref.html
-   Using Grid table so we can do multicolumn in header
-   Also good info here: http://docutils.sourceforge.net/docs/ref/rst/directives.html
-   Can't seem to make the table wider
-.. First entry (18.04) This is RSC's configuration on xeon desktop, used to build this guide. Added to the table July 2019
+.. First entry (18.04) This is Ross S. Chaudhry's configuration on Xeon desktop, used to build this guide. Added to the table July 2019
    Second entry (16.04) is Eirikur's configuration. Added to the table July 2019
 
 
-.. table:: Working Impelemenations
+.. list-table::
+   :widths: 14 12 8 9 9 7 9 9 7 9 9
+   :header-rows: 1
 
-   +--------------------+--------------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
-   |  OS                |  Compiler    |  cmake    |  OpenMPI  |  PETSc    |  CGNS     |  python   |  numpy    |  scipy    |  mpi4py   |  petsc4py |
-   +====================+==============+===========+===========+===========+===========+===========+===========+===========+===========+===========+
-   |  Ubuntu 18.04      |  GCC 7.3.0   |  3.14.5   |  1.10.7   |  3.7.7    |  3.2.1    |  2.7.15+  |  1.16.4   |  1.2.2    |  3.0.2    |  3.7.0    |
-   +--------------------+--------------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
-   |  Ubuntu 16.04      |  GCC 5.4.0   |  3.5.1    |  1.10.7   |  3.7.7    |  3.2.1    |  2.7.12   |  1.11.0   |  1.1.0    |  1.3.1    |  3.7.0    |
-   +--------------------+--------------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+   *  - OS
+      - Compiler
+      - cmake
+      - OpenMPI
+      - PETSc
+      - CGNS
+      - python
+      - numpy
+      - scipy
+      - mpi4py
+      - petsc4py
+
+   *  - Ubuntu 18.04
+      - GCC 7.3.0
+      - 3.14.5
+      - 1.10.7
+      - 3.7.7
+      - 3.2.1
+      - 2.7.15+
+      - 1.16.4
+      - 1.2.2
+      - 3.0.2
+      - 3.7.0
+
+   *  - Ubuntu 16.04
+      - GCC 5.4.0
+      - 3.5.1
+      - 1.10.7
+      - 3.7.7
+      - 3.2.1
+      - 2.7.12
+      - 1.11.0
+      - 1.1.0
+      - 1.3.1
+      - 3.7.0
 
 Other Methods and Notes
 -----------------------
@@ -434,7 +459,7 @@ Generally, there is no need for this functionality and it increases the build co
 However, it has been done in the past with ``hdf5 1.8.21``.
 
 The build examples described here are all installed *locally* (eg. ``$HOME/...``)
-   rather than system-wide (eg. ``/usr/local/...``).
+rather than system-wide (eg. ``/usr/local/...``).
 Local installations are generally preferred.
 Installing packages system-wide requires root access, which is an increased security risk when downloading packages from the internet.
 Also, it is typically easier to uninstall packages or otherwise revert changes made at a local level.
