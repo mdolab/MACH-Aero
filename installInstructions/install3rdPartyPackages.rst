@@ -1,6 +1,7 @@
 .. Installation instruction on how to set up external packages need to
    run the MDOlab code.
    Author: Eirikur Jonsson (eirikurj@umich.edu)
+   Modified by Ross S. Chaudhry (rchaud@umich.edu) in July 2019
 
 
 .. _install3rdPartyPackages:
@@ -15,249 +16,62 @@ creating a directory to store these external dependencies, such as
 ``~/packages``.
 
 
-
 .. _install_prereq:
 
 Common Prerequisites
 --------------------
-Common prerequisites can be installed directly from a Debian repository::
+If they're not available already, common prerequisites can be installed directly from a Debian repository::
 
-   sudo apt-get install python-dev gfortran valgrind cmake cmake-curses-gui
+   sudo apt-get install python-dev gfortran valgrind cmake
 
 The packages are required by many of the packages installed later.
+On a cluster, check the output of ``module avail`` to see what has already been installed.
 
 
+C and Fotran Based Packages
+---------------------------
+These packages have minimal dependencies and should be installed first, in the order listed here.
+These source code for these packages are often downloaded and installed to ``$HOME/packages/$PACKAGE_NAME``,
+which will be adopted as convention for the instructions here.
+The environment is adapted for each package by modifying your ``$HOME/.bashrc`` or equivalent.
 
 
-.. _install_num_sci_py:
+`OpenMPI <http://www.open-mpi.org/>`_
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-`Numpy + Scipy <http://scipy.org/>`_
-------------------------------------
-
-Numpy is required for **all** MDOlab packages. Scipy is required for
-several packages including :ref:`pyoptsparse`, :ref:`pygeo` and certain
-functionality in pytacs and :ref:`pyspline`. For a desktop computer
-where you have root access, it is easiest to install numpy from the
-package manager::
-
-  sudo apt-get install python-numpy python-scipy
-
-.. note::
-   On a cluster, most likely numpy and scipy will already be
-   installed. If not, see the the system administrator. If you are
-   forced  to do it yourself, refer to the numpy and scipy
-   documentation for compilation instructions.
-
-
-
-
-.. _install_petsc:
-
-`PETSc <http://www.mcs.anl.gov/petsc/index.html>`_
---------------------------------------------------
-
-PETSc, the Portable Extensible Toolkit for Scientific Computation is a
-comprehensive library for helping solve large scale PDE problems.
-PETSc is used by :ref:`adflow`, :ref:`pywarp`, :ref:`pyhyp`, Tripan and pyAeroStruct.
+OpenMPI version ``1.10.7`` has been tested to work for MDO tools.
+OpenMPI depends only a C/Fortran compiler, such as ``gcc/gfortran`` or ``icc/ifort``.
 
 .. NOTE::
-   Version 3.7.7 of PETSc has been released and has been tested
-   with the MDOlab codes and the procedure described below.
-
-`Download <http://www.mcs.anl.gov/petsc/download/index.html>`__ the
-PETSc 3.7.7 tarball from the PETSc site. The lite version is ok but
-contains no documentation. Put in your packages directory and untar::
-
-  $ tar -xzf petsc-3.7.7.tar.gz
-
-Before compiling, PETSc must first be configured. There are a huge
-number and variety of options. To get a list of all available options run::
-
-  $ ./configure --help
-
-PETSc depends on additional software and packages. (This step can be
-skipped if you installed the general requirements above)::
-
-  sudo apt-get install cmake valgrind
-
-PETSc configurations options
-****************************
-
-Here we describe a few important options that are necessary
-for use with MDOlab codes. A few complete examples are provided later.
-
-1. **Debugging**: To compile without debugging use the switch::
-
-      --with-debugging=no
-
-   It is HIGHLY recommended to use debugging until you are ready to
-   perform production runs use a debug build.
-
-2. **MPI**: Provides parallel functionality to PETSc.
-
-   Configure will automatically look for MPI compilers mpicc/mpif77
-   etc and use them if found in your ``PATH`` (if already installed).
-
-   It is generally better to let PETSc do the job of configuring and
-   building a working MPI implementation. To use this option, include
-   the following in the configure::
-
-      --download-openmpi=1
-
-   It is also necessary to specify the C/C++/Fortran compilers for PETSc
-   to "wrap" into the mpicc, mpicxx and mpif90. This way, the **same**
-   compilers are used to build MPI and PETSc. This avoids that
-   libraries such as MPI are compiled with different C or Fortran
-   compilers if installed from other sources. To set compiles options
-   use the following configure options::
-
-      --with-cc=gcc
-      --with-cxx=g++
-      --with-fc=gfortran
-
-   As noted before PETSc will use to use the compilers specified in
-   your ``PATH``. If you want to use Intel's Ifort compiler this can
-   be done using::
-
-      --with-fc=ifort
-
-   .. NOTE::
-      On a cluster, compiling MPI is generally undesirable since the system
-      administrator will have already compiled various versions of MPI on the
-      system. In this case, the PETSc configure should automatically pick up
-      the mpicc/mpicxx/mpif90 compilers already in your ``PATH``.
-
-   For more information refer to `PETSc documentation on MPI
-   <http://www.mcs.anl.gov/petsc/documentation/installation.html#mpi>`_
-
-3. **BLAS and LAPACK**: Linear algebra packages.
-
-   If you do not have BLAS and LAPACK installed you can include
-   the following in the configure::
-
-      --download-fblaslapack=1
-
-4. **Other**:
-   Various options are also required::
-
-      --with-shared-libraries --download-superlu_dist=yes --download-parmetis=yes --download-metis=yes --with-fortran-interfaces=1
-
-   Specifically, :ref:`pyWarp` uses the ``superlu_dist``.
-
-Here are a few complete examples of configuring PETSc:
-
-1. Debug build, downloading openmpi and fblaslapack, real scalar type (if you plan to use complex-step with PETSc, don't include the ``download-openmpi`` option and follow the openmpi installation instructions described later)::
-
-    $ ./configure --with-shared-libraries --download-superlu_dist --download-parmetis --download-metis --with-fortran-interfaces --with-debugging=yes --with-scalar-type=real --download-openmpi --download-fblaslapack --PETSC_ARCH=real-debug --with-cc=gcc --with-cxx=g++ --with-fc=gfortran
-
-2. Same as above but with Intel fortran compiler::
-
-    $ ./configure --with-shared-libraries --download-superlu_dist --download-parmetis --download-metis --with-fortran-interfaces --with-debugging=yes --with-scalar-type=real --download-openmpi --download-fblaslapack --PETSC_ARCH=real-debug  --with-cc=gcc --with-cxx=g++ --with-fc=ifort
-
-3. Debug complex build on a cluster with existing MPI::
-
-    $ ./configure --with-shared-libraries --download-superlu_dist --download-parmetis=yes --download-metis=yes --with-fortran-interfaces=1 --with-debugging=yes --with-scalar-type=complex --PETSC_ARCH=complex-debug
-
-4. Optimized real build on a cluster with existing MPI. (For production runs on a cluster you *MUST* use an optimized build.)::
-
-    $ ./configure --with-shared-libraries --download-superlu_dist --download-parmetis=yes --download-metis=yes --with-fortran-interfaces=1 --with-debugging=no --with-scalar-type=real --PETSC_ARCH=real-opt
-
-5. Workstation debug build, downloading fblaslapack, real scalar type with MPI installed locally (see OpenMPI `user wide install`_ section)::
-
-   $ ./configure --with-shared-libraries --download-superlu_dist --download-parmetis=yes --download-metis=yes --with-fortran-interfaces=1 --with-debugging=yes --with-scalar-type=real --download-fblaslapack --PETSC_ARCH=real-debug-gfortran-3.7.7 --with-mpi-dir=/home/<your-user-name>/packages/openmpi-1.10.7/opt-gfortran
+   On a cluster, the system administrator will have already compiled various versions of MPI on the system already.
+   Do not build/install OpenMPI in this case.
 
 .. NOTE::
-   Note that the ``PETSC_ARCH`` option is any user specified
-   string. Typically you should use something that is representative of
-   the actual architecture.
+   OpenMPI may also be installed by PETSc (see below), but a separate installation as described here is preferred.
 
-Installation
-************
-After the configuration step, PETSc must be built. This is
-accomplished with the command provided at the end of the configure
-script. It will look something like below (the PETSc version should be consistent with the version being installed.)::
-
-   $ make PETSC_DIR=$HOME/packages/petsc-3.7.7 PETSC_ARCH=real-debug all
-
-The last step is to add ``PETSC_DIR`` and ``PETSC_ARCH`` entries to
-your .bashrc file. You also must add an entry to ``LD_LIBRARY_PATH``
-variable if you compiled MPI automatically with PETSc. This is
-essential! It should look something like this: (Make sure the CORRECT
-directory and name are used!))::
-
-    # PETSc ARCH and DIR
-    export PETSC_DIR=$HOME/packages/petsc-3.7.7
-    export PETSC_ARCH=real-debug
-
-    # Library Path for MPI
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PETSC_DIR/$PETSC_ARCH/lib
-
-    # Path for MPI -- configuration with MPI
-    export PATH=$PETSC_DIR/$PETSC_ARCH/bin:$PATH
-    export PATH=$PETSC_DIR/$PETSC_ARCH/include:$PATH
-
-Make sure the .bashrc file is sourced before trying to compile any other code::
-
-   $ source ~/.bashrc
-
-Now that you have built a single PETSc build, you can configure other
-architectures. Generally you will want an optimized architecture when
-starting production runs.
-
-.. NOTE::
-   After the paths are setup above you do not
-   need to use the ``--download-openmpi`` option again as PETSc will find
-   the MPI already compiled.
-
-`openmpi <http://www.open-mpi.org/>`_
--------------------------------------
-
-.. NOTE::
-   If openmpi was installed with PETSc there is no need to compile openmpi separately. However, if one will be using PETSc real and complex data you must compile it separately and not install it with PETSc.
-
-`Download <https://download.open-mpi.org/release/open-mpi/v1.10/openmpi-1.10.7.tar.gz>`__ the source, put in your packages directory and untar::
-
-   $ tar -xzf openmpi-1.10.7.tar.gz
-
-System wide install
-*******************
-If not already in place add the following to your .bashrc
+Download and unpack the source directory, from your packages directory:
 
 .. code-block:: bash
 
-   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
-   export PATH=/usr/local/bin:$PATH
+   cd $HOME/packages
+   wget https://download.open-mpi.org/release/open-mpi/v1.10/openmpi-1.10.7.tar.gz
+   tar -xvaf openmpi-1.10.7.tar.gz
+   cd openmpi-1.10.7
 
-To compile and install system wide openmpi you need to open a new terminal with root privileges and export the FC environmental variable to indicate which Fortran compiler. To configure and make and you will need to do the following
-
-.. code-block:: bash
-
-   sudo gnome-terminal
-   source /home/<your_user_name>/.bashrc     # to get the the environment variables you need
-   export FC=ifort                           # or FC=gfortran depending on your system
-   cd /home/<your_user_name>/packages/openmpi-1.10.7
-   ./configure
-   make
-   make install
-   exit
-
-User wide install
-*****************
-Installing for user only (recommended) allows for a easier and better control similar to different PETSc configuration and install. In practice multiple configurations are however not needed and in most cases this is only done once for the user. The user may want to upgrade MPI and can thus compile a new version easily in a similar manner and then change only the ``MPI_INSTALL_DIR`` environment variable in order to change MPI versions or builds.
-
-Add the following to your .bashrc
+Add the following lines to ``$HOME/.bashrc`` and ``source`` it:
 
 .. code-block:: bash
-   
+
+   # -- OpenMPI Installation
    export MPI_INSTALL_DIR=$HOME/packages/openmpi-1.10.7/opt-gfortran
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$MPI_INSTALL_DIR/lib
    export PATH=$MPI_INSTALL_DIR/bin:$PATH
 
-Once you have saved the .bashrc then in a new command line window (or source the .bashrc file to update the variables) we can configure and install MPI. The important variable that has to be set is ``MPI_INSTALL_DIR``. To verify that it is set to the correct location do ``echo $MPI_INSTALL_DIR``. To configure and install do
+Finally, configure and build the package:
 
 .. code-block:: bash
-   
-   export FC=gfortran                       # or FC=ifort or other, depending on compiler used on system
+
+   export CC=icc CXX=icpc F77=ifort FC=ifort    # Only necessary if using non-GCC compiler
    ./configure --prefix=$MPI_INSTALL_DIR
    make all install
 
@@ -270,7 +84,217 @@ To verify that paths are as expected run
 
 The above should print out the same path for both.
 
+.. _install_petsc:
 
+`PETSc <http://www.mcs.anl.gov/petsc/index.html>`_
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+PETSc, the Portable Extensible Toolkit for Scientific Computation is a
+comprehensive library for helping solve large scale PDE problems.
+PETSc is used by :ref:`adflow`, :ref:`pywarp`, :ref:`pyhyp`, Tripan and pyAeroStruct.
+
+Version ``3.7.7`` has been tested with the MDOlab codes and the procedure described below.
+Use other versions at your own risk.
+PETSc depends on OpenMPI, a C/Fotran compiler, cmake, and valgrind.
+
+Download and unpack the source directory, from your packages directory:
+
+.. code-block:: bash
+
+   cd $HOME/packages
+   wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.7.7.tar.gz
+   tar -xvaf petsc-3.7.7
+   cd petsc-3.7.7
+
+The lite version of the package is smaller but contains no documentation.
+Next, configure your environment for PETSc by adding the following lines to your ``$HOME/.bashrc`` and ``source``-ing it:
+
+.. code-block:: bash
+
+   # -- PETSc Installation
+   export PETSC_ARCH=real-debug
+   export PETSC_DIR=$HOME/packages/petsc-3.7.7/$PETSC_ARCH
+
+   export PATH=$PATH:$PETSC_DIR/bin
+   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PETSC_DIR/lib
+
+The ``PETSC_ARCH`` variable is any user-specified string.
+It should be set to something representative of the actual architecture.
+
+The next step is to configure PETSc.
+There are a huge number and variety of options.
+To get a list of all available options run::
+
+   ./configure --help
+
+The relevant configuration options for MDOlab codes are:
+
+1. **Debugging**: To compile without debugging use the switch::
+
+      --with-debugging=no
+
+   It is HIGHLY recommended to use debugging until you are ready to
+   perform production runs use a debug build.
+
+2. **BLAS and LAPACK**: Linear algebra packages.
+
+   If you do not have BLAS and LAPACK installed you can include
+   the following in the configure::
+
+      --download-fblaslapack=1
+
+3. **METIS and ParMETIS**: partitioning packages
+
+   If you do not have METIS and ParMETIS installed, include the following line::
+
+      --download-metis=yes --download-parmetis=yes
+
+4. **Other**:
+   Various options are also required::
+
+      --with-shared-libraries --download-superlu_dist=yes --with-fortran-interfaces=1
+
+   Specifically, :ref:`pyWarp` uses the ``superlu_dist``.
+
+There are many other options, and they enable linking and/or downloading to a variety of other packages.
+Putting these options together, some complete examples of configuring PETSc are:
+
+1. Standard debug build (``$PETSC_ARCH=real-debug``):
+
+.. code-block:: bash
+
+   ./configure --prefix=$PETSC_HOME --PETSC_ARCH=$PETSC_ARCH --with-debugging=yes \
+      --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes --download-superlu_dist=yes \
+      --with-shared-libraries --with-fortran-interfaces=yes
+
+2. Debug complex build (``$PETSC_ARCH=complex-debug``):
+
+.. code-block:: bash
+
+   ./configure --with-shared-libraries --download-superlu_dist --download-parmetis=yes --download-metis=yes \
+      --with-fortran-interfaces=1 --with-debugging=yes --with-scalar-type=complex --PETSC_ARCH=$PETSC_ARCH
+
+3. Optimized real build on a cluster with existing MPI (``$PETSC_ARCH=real-opt``). (For production runs on a cluster you *MUST* use an optimized build.):
+
+.. code-block:: bash
+
+   ./configure --with-shared-libraries --download-superlu_dist --download-parmetis=yes --download-metis=yes \
+      --with-fortran-interfaces=1 --with-debugging=no --with-scalar-type=real --PETSC_ARCH=$PETSC_ARCH
+
+4. Optimized build, referencing an existing parmetis/metis and hdf5 installation
+   (using the ``$HOME/opt`` installation directory convention):
+
+.. code-block:: bash
+
+   ./configure --prefix=/home/rchaud/opt/petsc/3.7.7/hdf5-1.8.21/OpenMPI-1.10.7/GCC-7.3.0 \
+      --with-shared-libraries --PETSC_ARCH=linux-gnu-real-opt --with-debugging=no \
+      --download-fblaslapack=1 --download-superlu_dist=1 \
+         --with-metis    --with-metis-dir=/home/rchaud/opt/parmetis/4.0.3/OpenMPI-1.10.7/GCC-7.3.0 \
+      --with-parmetis --with-parmetis-dir=/home/rchaud/opt/parmetis/4.0.3/OpenMPI-1.10.7/GCC-7.3.0 \
+      --with-hdf5 --with-hdf5-dir=/home/rchaud/opt/hdf5/1.8.21/OpenMPI-1.10.7/GCC-7.3.0 \
+      --with-fortran-interfaces
+
+5. Debug build which downloads and installs OpenMPI also (not recommended):
+
+.. code-block:: bash
+
+   ./configure --with-shared-libraries --download-superlu_dist --download-parmetis --download-metis \
+      --with-fortran-interfaces --with-debugging=yes --with-scalar-type=real --download-fblaslapack \
+      --PETSC_ARCH=$PETSC_ARCH --download-openmpi --with-cc=gcc --with-cxx=g++ --with-fc=gfortran
+
+Finally, build and install with::
+   
+   make all install
+
+
+.. _install_cgns:
+
+`CGNS Library <http://cgns.github.io/>`_
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The CGNS library is used to provide CGNS functionality for :ref:`adflow`,
+:ref:`pywarp`, and :ref:`pyhyp`.
+
+Versions ``3.3.0`` and ``3.2.1`` have been tested with the MDOlab codes.
+CGNS depends on cmake and a C/Fortran compiler.
+
+.. WARNING::
+   The 3.2.1 version fortran include file contains an error. After
+   untaring, manually edit the cgnslib_f.h.in file in the ``src``
+   directory and remove all the comment lines at the beginning of the
+   file starting with c. This is fixed in subsequent versions.
+
+.. NOTE::
+   CGNS now supports two output types: HDF5 and
+   the Advanced Data Format (ADF) format. While HDF5 is the
+   officially supported format, its compatability with other tools is sparse.
+   Therefore, for using MDOlab codes, the ADF format is recommended.
+   Installing and linking HDF5 is therefore not recommended.
+
+Download and unpack the source directory, from your packages directory:
+
+.. code-block:: bash
+
+   cd $HOME/packages
+   wget https://github.com/CGNS/CGNS/archive/v3.2.1.tar.gz
+   tar -xvaf v3.2.1.tar.gz
+   cd CGNS-3.2.1
+
+Next, configure your environment for CGNS by adding the following lines to your ``$HOME/.bashrc`` and ``source``-ing it:
+
+.. code-block:: bash
+
+   # -- CGNS
+   export CGNS_HOME $HOME/packages/CGNS-3.2.1/opt-gfortran
+   export PATH=$PATH:$CGNS_HOME/bin
+   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CGNS_HOME/lib
+
+Make a ``build`` directory, and call cmake from there to configure the package:
+
+.. code-block:: bash
+
+   mkdir build       # If it exists from a previous build, remove it first
+   cd build
+   cmake .. -DCGNS_ENABLE_FORTRAN=1 -DCMAKE_INSTALL_PREFIX=$CGNS_HOME
+
+Finally, build and install::
+
+   make all install
+
+Now, for pyHyp, ADflow, pyWarp and cgnsUtilities, the required include
+flags and linking flags will be:
+
+.. code-block:: bash
+
+   CGNS_INCLUDE_FLAGS=-I$(CGNS_HOME)/include
+   CGNS_LINKER_FLAGS=-L$(CGNS_HOME)/lib -lcgns
+
+.. NOTE::
+   **Optional**: To build the CGNS tools to view and edit CGNS files manually,
+   toggle the CGNS_BUILD_CGNSTOOLS option. To enable this option you may need
+   to install the following packages::
+
+   $ sudo apt-get install libxmu-dev libxi-dev
+   
+   CGNS library sometimes complains about missing includes and libraries
+   Most of the time this is either Tk/TCL or OpenGL. This can be solved by
+   installing the following packages. Note that the version of these
+   libraries might be different on your machine ::
+
+      $ sudo apt-get install freeglut3
+      $ sudo apt-get install tk8.6-dev
+      # If needed
+      $ sudo apt-get install freeglut3-dev
+
+   **Optional**: If you compiled with the CGNS_BUILD_CGNSTOOLS flag ON you
+   either need to add the binary path to your PATH environmental variable or
+   you can install the binaries system wide. To do so issue the command::
+
+   $ sudo make install
+
+Python Packages
+---------------
+WIP, below is the original
 
 .. _install_mpi4py:
 
@@ -332,93 +356,35 @@ should not be a problem.
 
 
 
-.. _install_cgns:
+.. _install_num_sci_py:
 
-`CGNS Library <http://cgns.sourceforge.net>`_
----------------------------------------------
+`Numpy + Scipy <http://scipy.org/>`_
+------------------------------------
 
-The CGNS library is used to provide CGNS functionality for :ref:`adflow`,
-:ref:`pywarp`, and :ref:`pyhyp`. `Download
-<http://cgns.sourceforge.net/download.html>`__ the latest version and
-untar. The latest CGNS version (3.2) is recommended,
-but the older versions of 3.1.x and 2.5.x may also be used. After
-downloading, untar::
+Numpy is required for **all** MDOlab packages. Scipy is required for
+several packages including :ref:`pyoptsparse`, :ref:`pygeo` and certain
+functionality in pytacs and :ref:`pyspline`. For a desktop computer
+where you have root access, it is easiest to install numpy from the
+package manager::
 
-   $ tar -xzf cgnslib_3.2.1.tar.gz
+  sudo apt-get install python-numpy python-scipy
 
-.. WARNING::
-   The 3.2.1 version fortran include file is bad. After
-   untaring, manually edit the cgnslib_f.h.in file in the ``src``
-   directory and remove all the comment lines at the beginning of the
-   file starting with c. This may be fixed in subsequent versions.
-
-.. NOTE::
-   CGNS now supports two versions: One based on HDF5 and one based on
-   the Advanced Data Format (ADF) format. While the HDF5 format is the
-   officially supported one, most other software doesn't support HDF5
-   files at all, and thus these files are practically
-   useless. Furthermore, compiling HDF5 is a nightmare, (especially in
-   parallel) and it is thus recommended that ADF format is used until
-   further notice.
-
-Since the CGNS lib (version 3.1 and up) use cmake for configuring the
-build these programs also have to be installed. On a desktop, this can
-be installed using.::
-
-  sudo apt-get install cmake cmake-curses-gui
-
-and it most likely already available as a module on a cluster.
-
-Enter cgnslib_3.2.1 and type::
-
-   $ cmake .
-
-By default, the CGNS library does not include the Fortran bindings
-that are required for MDOlab codes. This needs to be enabled using the
-cmake configure utility, `ccmake`.::
-
-   $ ccmake .
-
-A "GUI" appears and toggle ENABLE_FORTRAN by pressing [enter] (should
-be OFF when entering the screen for the first time, hence set it to ON). Type
-'c' to reconfigure and 'g' to generate and exit.
-
-.. NOTE::
-   **Optional**: To build the CGNS tools to view and edit CGNS files manually,
-   toggle the CGNS_BUILD_CGNSTOOLS option. To enable this option you may need
-   to install the following packages::
-
-   $ sudo apt-get install libxmu-dev libxi-dev
-   
-   CGNS library sometimes complains about missing includes and libraries
-   Most of the time this is either Tk/TCL or OpenGL. This can be solved by
-   installing the following packages. Note that the version of these
-   libraries might be different on your machine ::
-
-      $ sudo apt-get install freeglut3
-      $ sudo apt-get install tk8.6-dev
-      # If needed
-      $ sudo apt-get install freeglut3-dev
+.. note::
+   On a cluster, most likely numpy and scipy will already be
+   installed. If not, see the the system administrator. If you are
+   forced  to do it yourself, refer to the numpy and scipy
+   documentation for compilation instructions.
 
 
-Then build the library using::
 
-   $ make
 
-.. NOTE::
-   **Optional**: If you compiled with the CGNS_BUILD_CGNSTOOLS flag ON you
-   either need to add the binary path to your PATH environmental variable or
-   you can install the binaries system wide. To do so issue the command::
+Other Notes
+-----------
 
-   $ sudo make install
-
-We also have to make the location of this library available to the
-linker. To do this add the following line to your .bashrc file::
-
-  export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(HOME)/packages/cgnslib_3.2.1/src
-
-Now, for pyHyp, ADflow, pyWarp and cgnsUtilities, the required include
-flags and linking flags will be::
-
-  CGNS_INCLUDE_FLAGS=-I$(HOME)/packages/cgnslib_3.2.1/src
-  CGNS_LINKER_FLAGS=-L$(HOME)/packages/cgnslib_3.2.1/src -lcgns
+.. Other installation methods: apt get for openmpi, petsc, etc. System wide install
+   or modules instead of bashrc
+HDF5
+Source code, build, and install is all in $HOME/packages
+Another common convention is to use $HOME/src for source code and building, and $HOME/opt for installed files
+This separation adds a level of complexity but is more extensible if multiple package versions/installations are going to be used.
+Also allows for more complete list of dependencies.
