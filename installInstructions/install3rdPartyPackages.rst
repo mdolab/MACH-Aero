@@ -2,6 +2,11 @@
    run the MDOlab code.
    Author: Eirikur Jonsson (eirikurj@umich.edu)
    Modified by Ross S. Chaudhry (rchaud@umich.edu) in July 2019
+    - Reordered to have all C/Fortran sources first, then python
+    - Written examples now install locally, mostly without sudo apt-get
+    - Clearly state which versions are known to work (and not work).
+      This is now done with the IMPORTANT block, and would benefit from others including their systems.
+    - Added table of working stacks
 
 
 .. _install3rdPartyPackages:
@@ -28,7 +33,7 @@ The packages are required by many of the packages installed later.
 On a cluster, check the output of ``module avail`` to see what has already been installed.
 
 
-C and Fotran Based Packages
+C and Fortran Based Packages
 ---------------------------
 These packages have minimal dependencies and should be installed first, in the order listed here.
 These source code for these packages are often downloaded and installed to ``$HOME/packages/$PACKAGE_NAME``,
@@ -39,8 +44,10 @@ The environment is adapted for each package by modifying your ``$HOME/.bashrc`` 
 `OpenMPI <http://www.open-mpi.org/>`_
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-OpenMPI version ``1.10.7`` has been tested to work for MDO tools.
-OpenMPI depends only a C/Fortran compiler, such as ``gcc/gfortran`` or ``icc/ifort``.
+.. IMPORTANT::
+   The version(s) of OpenMPI tested to work with MDOlab tools is ``1.10.7``
+
+   OpenMPI depends only on a C/Fortran compiler, such as ``gcc/gfortran`` or ``icc/ifort``.
 
 .. NOTE::
    On a cluster, the system administrator will have already compiled various versions of MPI on the system already.
@@ -89,13 +96,15 @@ The above should print out the same path for both.
 `PETSc <http://www.mcs.anl.gov/petsc/index.html>`_
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. IMPORTANT::
+   The version(s) of PETSc tested to work with MDOlab tools is ``3.7.7``.
+   Use other versions at your own risk.
+
+   PETSc depends on OpenMPI, a C/Fortran compiler, and valgrind, and it requires cmake to build.
+
 PETSc, the Portable Extensible Toolkit for Scientific Computation is a
 comprehensive library for helping solve large scale PDE problems.
 PETSc is used by :ref:`adflow`, :ref:`pywarp`, :ref:`pyhyp`, Tripan and pyAeroStruct.
-
-Version ``3.7.7`` has been tested with the MDOlab codes and the procedure described below.
-Use other versions at your own risk.
-PETSc depends on OpenMPI, a C/Fotran compiler, cmake, and valgrind.
 
 Download and unpack the source directory, from your packages directory:
 
@@ -212,11 +221,13 @@ Finally, build and install with::
 `CGNS Library <http://cgns.github.io/>`_
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. IMPORTANT::
+   The version(s) of CGNS tested to work with MDOlab tools is ``3.3.0`` and ``3.2.1``.
+
+   CGNS depends on a C/Fortran compiler and requires cmake to build.
+
 The CGNS library is used to provide CGNS functionality for :ref:`adflow`,
 :ref:`pywarp`, and :ref:`pyhyp`.
-
-Versions ``3.3.0`` and ``3.2.1`` have been tested with the MDOlab codes.
-CGNS depends on cmake and a C/Fortran compiler.
 
 .. WARNING::
    The 3.2.1 version fortran include file contains an error. After
@@ -294,97 +305,152 @@ flags and linking flags will be:
 
 Python Packages
 ---------------
-WIP, below is the original
+
+.. IMPORTANT::
+   MDOlab tools have been tested to work with python2.
+   The MDOlab is in the process of migrating to python3;
+   support for python2 will be dropped before python2 EOL (January 2020).
+
+In this guide, python packages are installed using ``pip``.
+Other methods, such as from source or using ``conda``, will also work (see below RSCFIX for details).
+Local installations (with ``--user``) are also recommended but not required.
+If pip is not available, install it using:
+
+..code-block:: bash
+
+   cd $HOME/PACKAGES
+   wget https://bootstrap.pypa.io/get-pip.py
+   python get-pip.py --user
+
+When installing the same package multiple times with different dependencies,
+   for example ``petsc4py`` with different petsc builds, the pip cache can become incorrect.
+Therefore, we recommend the ``--no-cache`` flag when installing python packages with pip.
+
+.. _install_num_sci_py:
+
+.. _install_numpy:
+
+`Numpy <https://numpy.org/>`_
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. IMPORTANT::
+   Version ``1.13.3`` of numpy does **NOT** work.
+   The version(s) of numpy tested to work with MDOlab tools is ``1.16.4``.
+
+Numpy is required for all MDOlab packages.
+It is installed with::
+
+   pip install numpy==1.16.4 --user --no-cache
+
+`Scipy <http://scipy.org/>`_
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. IMPORTANT::
+   The version(s) of scipy tested to work with MDOlab tools is ``1.2.2``.
+
+   Scipy depends on numpy
+
+Scipy is required for several packages including :ref:`pyoptsparse`, :ref:`pygeo` and certain
+functionality in pytacs and :ref:`pyspline`.
+It is installed with::
+
+   pip install --user --no-cache scipy==1.2.2
+
+.. note::
+   On a cluster, most likely numpy and scipy will already be
+   installed. Unless the version is invalid, use the system-provided installation.
 
 .. _install_mpi4py:
 
 `mpi4py <http://mpi4py.scipy.org/>`_
-------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+..IMPORTANT::
+   The version(s) of mpi4py tested to work with MDOlab tools is 3.0.2.
 
-``mpi4py`` is the Python wrapper for MPI. This is required for
-**all** parallel MDOlab codes. `Download
-<https://bitbucket.org/mpi4py/mpi4py/downloads>`__  the source code and untar::
+   mpi4py depends on OpenMPI.
 
-  $ tar -xzf mpi4py-1.3.1.tar.gz
+mpi4py is the Python wrapper for MPI. This is required for
+**all** parallel MDOlab codes.
+It is installed with::
 
-From the ``mpi4py-1.3.1`` directory, do a user-space install::
-
-  $ python setup.py install --user
-
-This will install the package to the ``.local`` directory in your home
-directory which is suitable for both desktop and cluster accounts.
-
+   pip install --user --no-cache mpi4py==3.0.2
 
 
 .. _install_petsc4py:
 
 `petsc4py <https://bitbucket.org/petsc/petsc4py/downloads>`_
-------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+..IMPORTANT::
+   The MAJOR.MINOR version of petsc4py **MUST** match the MAJOR.MINOR version of petsc,
+   for example petsc 3.7.7 will only work with petsc4py 3.7.X.
+   In practice, this means you must request a specific version of petsc4py.
+
+   The version(s) of petsc4py tested to work with MDOlab tools is 3.7.0, built against petsc version 3.7.7.
+
+   petsc4py depends on petsc and its dependencies.
 
 ``petsc4py`` is the Python wrapper for PETSc. Strictly speaking, this
 is only required for the coupled solvers in pyAeroStruct. However, it
 *is* necessary if you want to use any of PETSc command-line options
-such as -log-summary. `Download
-<https://bitbucket.org/petsc/petsc4py/downloads>`__ the source code and
-extract the latest version (the major version should be consistent with 
-the PETSc version installed, i.e., 3.7.0 here)::
+such as -log-summary.
+It is installed with::
 
-  $ tar -xzf petsc4py-3.7.0.tar.gz
-
-From the petsc4py-3.7.0 directory do a user-space install::
-
-  $ python setup.py install --user
-
-This will install the package to the ``.local`` directory in your home
-directory which is suitable for both desktop and cluster accounts.
-You may seen an error warning related to ``python-mpi``, but this 
-should not be a problem. 
+   pip install --user --no-cache petsc4py==3.7.0
 
 .. WARNING:: 
-   You must compile a unique petsc4py install for each petsc
-   architecture. This is easy to forget and can cause lots of
-   problems. **IF THERE IS AN EXISTING** ``build`` **DIRECTORY IT MUST BE
-   FORCIBLY REMOVED** (``rm -fr build``) **BEFORE DOING ANOTHER ARCHITECTURE
-   INSTALL**. To install with a different architecture change the
-   ``PETSC_ARCH`` variable in your ``.bashrc`` file::
+   You must compile a unique petsc4py install for each petsc architecture.
+   To make sure the correct petsc4py is installed, ininstall and then reinstall
+   (using the command above) with the environment configured for the required petsc version.
+   The ``--no-cache`` option is necessary to prevent reuse of previous, invalid code.
 
-      export PETSC_ARCH=<new_architecture>
+Working Stacks
+--------------
+This section includes the stacks successfully used by MDOlab members.
+This is a work in progress.
 
-   Then install the package::
-
-      $ python setup.py install --user
-
-
-
-.. _install_num_sci_py:
-
-`Numpy + Scipy <http://scipy.org/>`_
-------------------------------------
-
-Numpy is required for **all** MDOlab packages. Scipy is required for
-several packages including :ref:`pyoptsparse`, :ref:`pygeo` and certain
-functionality in pytacs and :ref:`pyspline`. For a desktop computer
-where you have root access, it is easiest to install numpy from the
-package manager::
-
-  sudo apt-get install python-numpy python-scipy
-
-.. note::
-   On a cluster, most likely numpy and scipy will already be
-   installed. If not, see the the system administrator. If you are
-   forced  to do it yourself, refer to the numpy and scipy
-   documentation for compilation instructions.
+.. To write a table, here: http://docutils.sourceforge.net/docs/user/rst/quickref.html
+   Using Grid table so we can do multicolumn in header
+   Also good info here: http://docutils.sourceforge.net/docs/ref/rst/directives.html
+   Can't seem to make the table wider
+.. First entry (18.04) This is RSC's configuration on xeon desktop, used to build this guide. Added to the table July 2019
+   Second entry (16.04) is Eirikur's configuration. Added to the table July 2019
 
 
+.. table:: Working Impelemenations
 
+   +--------------------+--------------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+   |  OS                |  Compiler    |  cmake    |  OpenMPI  |  PETSc    |  CGNS     |  python   |  numpy    |  scipy    |  mpi4py   |  petsc4py |
+   +====================+==============+===========+===========+===========+===========+===========+===========+===========+===========+===========+
+   |  Ubuntu 18.04      |  GCC 7.3.0   |  3.14.5   |  1.10.7   |  3.7.7    |  3.2.1    |  2.7.15+  |  1.16.4   |  1.2.2    |  3.0.2    |  3.7.0    |
+   +--------------------+--------------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
+   |  Ubuntu 16.04      |  GCC 5.4.0   |  3.5.1    |  1.10.7   |  3.7.7    |  3.2.1    |  2.7.12   |  1.11.0   |  1.1.0    |  1.3.1    |  3.7.0    |
+   +--------------------+--------------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+
 
-Other Notes
------------
+Other Methods and Notes
+-----------------------
 
-.. Other installation methods: apt get for openmpi, petsc, etc. System wide install
-   or modules instead of bashrc
-HDF5
-Source code, build, and install is all in $HOME/packages
-Another common convention is to use $HOME/src for source code and building, and $HOME/opt for installed files
+The MDOlab tools can be configured to write HDF5 files,
+by building CGNS with hdf5 compatability.
+Generally, there is no need for this functionality and it increases the build complexity.
+However, it has been done in the past with ``hdf5 1.8.21``.
+
+The build examples described here are all installed *locally* (eg. ``$HOME/...``)
+   rather than system-wide (eg. ``/usr/local/...``).
+Local installations are generally preferred.
+Installing packages system-wide requires root access, which is an increased security risk when downloading packages from the internet.
+Also, it is typically easier to uninstall packages or otherwise revert changes made at a local level.
+Finally, local installations are required when running on a cluster environment.
+
+The build and installation paradigm demonstrated here puts
+source code, build files, and installed packages all in ``$HOME/packages``.
+Another common convention is to use ``$HOME/src`` for source code and building,
+and ``$HOME/opt`` for installed packages.
 This separation adds a level of complexity but is more extensible if multiple package versions/installations are going to be used.
-Also allows for more complete list of dependencies.
+
+When configuring your environment, the examples shown here set environment variables, ``$PATH``, and ``$LD_LIBRARY_PATH`` in ``.bashrc``.
+If multiple versions and dependencies are being used simultaneously,
+for example on a cluster, the paradigm of `environment modules <http://modules.sourceforge.net>` is often used (eg. ``module use petsc``).
+A module file is simply a text file containing lines such as::
+
+   append-path PATH /home/rchaud/opt/petsc/3.7.7/OpenMPI-1.10.7/GCC-7.3.0/bin
+
+MDOlab tools can be used by configuring your environment with either ``.bashrc`` or environment modules, or some combination of the two.
