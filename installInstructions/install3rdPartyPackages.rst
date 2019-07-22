@@ -1,13 +1,5 @@
 .. Installation instruction on how to set up external packages need to
-   run the Models code.
-   Author: Eirikur Jonas (eirikurj@umich.edu)
-   Modified by Ross S. Chaudhry (rchaud@umich.edu) in July 2019
-    - Reordered to have all C/Fortran sources first, then python
-    - Written examples now install locally, mostly without sudo apt-get
-    - Clearly state which versions are known to work (and not work).
-      This is now done with the IMPORTANT block, and would benefit from others including their systems.
-    - Added table of working stacks
-
+   run the MDOlab code.
 
 .. _install3rdPartyPackages:
 
