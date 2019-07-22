@@ -8,7 +8,7 @@
 
 
 Installing MDO Lab framework from scratch
-========================================
+=========================================
 
 
 This tutorial is intended to be a step-by-step guide on how to set up 
@@ -47,7 +47,7 @@ To install follow the link for each package.
 #. :ref:`install_cgns`
 
 MDO Lab packages
-***************
+****************
 To install the MDO Lab packages clone each repository from `GitHub <https://github.com/mdolab>`_ and 
 follow the installation instructions for each. Some packages are pure 
 Python packages so no compilation or setup is needed. For the packages 
