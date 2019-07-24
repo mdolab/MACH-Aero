@@ -247,7 +247,7 @@ Next, configure your environment for CGNS by adding the following lines to your 
 .. code-block:: bash
 
    # -- CGNS
-   export CGNS_HOME $HOME/packages/CGNS-3.2.1/opt-gfortran
+   export CGNS_HOME=$HOME/packages/CGNS-3.2.1/opt-gfortran
    export PATH=$PATH:$CGNS_HOME/bin
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CGNS_HOME/lib
 
