@@ -325,8 +325,9 @@ Therefore, we recommend the ``--no-cache`` flag when installing python packages 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. IMPORTANT::
-   Version ``1.13.3`` of numpy does **NOT** work.
-   The version(s) of numpy tested to work with MDOlab tools is ``1.16.4``.
+   Version ``1.13.3`` and ``1.15.4`` of numpy or f2py do **NOT** work.
+   See :ref:`working_stacks` for numpy versions that have been tested.
+   The version(s) of numpy used here is ``1.16.4``.
 
 Numpy is required for all MDOlab packages.
 It is installed with::
@@ -392,6 +393,8 @@ It is installed with::
    To make sure the correct petsc4py is installed, uninstall and then reinstall
    (using the command above) with the environment configured for the required petsc version.
    The ``--no-cache`` option is necessary to prevent reuse of previous, invalid code.
+
+.. _working_stacks:
 
 Working Stacks
 --------------
