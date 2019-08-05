@@ -103,7 +103,7 @@ Download and unpack the source directory, from your packages directory:
 
    cd $HOME/packages
    wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.7.7.tar.gz
-   tar -xvaf petsc-3.7.7
+   tar -xvaf petsc-3.7.7.tar.gz
    cd petsc-3.7.7
 
 The lite version of the package is smaller but contains no documentation.
@@ -113,10 +113,8 @@ Next, configure your environment for PETSc by adding the following lines to your
 
    # -- PETSc Installation
    export PETSC_ARCH=real-debug
-   export PETSC_DIR=$HOME/packages/petsc-3.7.7/$PETSC_ARCH
+   export PETSC_DIR=$HOME/packages/petsc-3.7.7/
 
-   export PATH=$PATH:$PETSC_DIR/bin
-   export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$PETSC_DIR/lib
 
 The ``PETSC_ARCH`` variable is any user-specified string.
 It should be set to something representative of the actual architecture.
@@ -202,9 +200,20 @@ Putting these options together, some complete examples of configuring PETSc are:
       --with-fortran-interfaces --with-debugging=yes --with-scalar-type=real --download-fblaslapack \
       --PETSC_ARCH=$PETSC_ARCH --download-openmpi --with-cc=gcc --with-cxx=g++ --with-fc=gfortran
 
-Finally, build and install with::
+After the configuration step, PETSc must be built. This is accomplished with the command provided at the end of the configure script. It will look something like below (the PETSc version should be consistent with the version being installed.)::
    
-   make all install
+   make PETSC_DIR=$HOME/packages/petsc-3.7.7 PETSC_ARCH=$PETSC_ARCH all
+
+After build, follow the the command provided at the end of the print out to test the functionality. It will look something like below::
+
+    make PETSC_DIR=$HOME/packages/petsc-3.7.7 PETSC_ARCH=$PETSC_ARCH test
+
+.. NOTE::
+   If your PETSc is not able to find mpi, try::
+
+   1. Add ``--with-mpi-dir=$MPI_INSTALL_DIR`` when you configure PETSc
+
+   2. Check your LD_LIBRARY_PATH order. If you have pytecplot, try moving tecplot LD_LIBRARY_PATH to the last.
 
 
 .. _install_cgns:
@@ -307,7 +316,7 @@ Other methods, such as from source or using ``conda``, will also work.
 Local installations (with ``--user``) are also recommended but not required.
 If pip is not available, install it using:
 
-..code-block:: bash
+.. code-block:: bash
 
    cd $HOME/PACKAGES
    wget https://bootstrap.pypa.io/get-pip.py
@@ -360,11 +369,16 @@ It is installed with::
 
    mpi4py depends on OpenMPI.
 
+   It is recommended that the OpenMPI version matches with the mpi4py version.
+
 mpi4py is the Python wrapper for MPI. This is required for
 **all** parallel MDOlab codes.
 It is installed with::
 
    pip install --user --no-cache mpi4py==3.0.2
+
+.. NOTE::
+   Some function usages have changed in newer versions of mpi4py. Check the `release <https://github.com/mpi4py/mpi4py/blob/master/CHANGES.rst>`_ to see the modifications that might be requried in the code.
 
 
 .. _install_petsc4py:
@@ -384,15 +398,53 @@ It is installed with::
 is only required for the coupled solvers in pyAeroStruct. However, it
 *is* necessary if you want to use any of PETSc command-line options
 such as -log-summary.
+
+If you want to make developments or multiple PETSc architectures are needed, you should install petsc4py manually, which decribed in **Advanced install**.
+Manually installing provide you useful run tests.
+
+If you know you will **only** need real PETSc architecture, you can use pip.
+
+Simple install with pip
+***********************
+
 It is installed with::
 
    pip install --user --no-cache petsc4py==3.7.0
 
+Advanced install (Multiple PETSc architectures needed)
+******************************************************
 .. WARNING:: 
-   You must compile a unique petsc4py install for each petsc architecture.
-   To make sure the correct petsc4py is installed, uninstall and then reinstall
-   (using the command above) with the environment configured for the required petsc version.
-   The ``--no-cache`` option is necessary to prevent reuse of previous, invalid code.
+   You must compile a unique petsc4py install for each PETSc architecture.
+
+`Download <https://bitbucket.org/petsc/petsc4py/downloads>`__ the source code and
+extract the latest version (the major version should be consistent with 
+the PETSc version installed, i.e., 3.7.0 here)::
+
+$ tar -xzf petsc4py-3.7.0.tar.gz
+
+From the petsc4py-3.7.0 directory do a user-space install::
+
+$ python setup.py install --user
+
+This will install the package to the ``.local`` directory in your home
+directory which is suitable for both desktop and cluster accounts.
+You may seen an error warning related to ``python-mpi``, but this 
+should not be a problem. 
+
+   
+**IF THERE IS AN EXISTING** ``build`` **DIRECTORY IT MUST BE
+FORCIBLY REMOVED** (``rm -fr build``) **BEFORE DOING ANOTHER ARCHITECTURE
+INSTALL**. To install with a different architecture change the
+``PETSC_ARCH`` variable in your ``.bashrc`` file and source it, or just type in your terminal to overwrite the old ``PETSC_ARCH``::
+
+   export PETSC_ARCH=<new_architecture>
+
+Then install the package::
+
+   $ python setup.py install --user
+
+
+
 
 .. _working_stacks:
 
