@@ -1,16 +1,18 @@
 import sys, os
 
 # Diretories with documentations:
-repos = {'pyhyp':'../../pyhyp',
-         'multipoint':'../../multipoint',
-         'pyoptsparse':'../../pyoptsparse',
-         'baseclasses':'../../baseclasses',
-         'pyspline':'../../pyspline',
-         'idwarp':'../../idwarp',
-         'pygeo':'../../pygeo',
-         'adflow':'../../adflow',
-         'pylayout':'../../pylayout',
-         'machtutorial':'../../machtutorial'
+repos = {
+        'adflow':'../../adflow',
+        'baseclasses':'../../baseclasses',
+        'idwarp':'../../idwarp',
+        'multipoint':'../../multipoint',
+        'pygeo':'../../pygeo',
+        'pyhyp':'../../pyhyp',
+        'pylayout':'../../pylayout',
+        'pyoptsparse':'../../pyoptsparse',
+        'pyspline':'../../pyspline',
+        # Docs
+        'machtutorial':'../../machtutorial'
 }
 
 cur_dir = os.path.abspath(os.getcwd())
