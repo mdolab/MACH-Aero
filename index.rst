@@ -21,8 +21,6 @@ The following modules now have documentation online:
    packages/weightandbalance/doc/index
    packages/performancecalcs/doc/index
    packages/pylayout/doc/index
-   packages/pyaerostructure/doc/index
-.. packages/dafoam/doc/index
 
 - `OpenAeroStruct <https://mdolab.github.io/OpenAeroStruct/>`_
 - `OpenConcept <https://openconcept.readthedocs.io/en/latest/>`_
