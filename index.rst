@@ -1,5 +1,13 @@
 .. MDOLAB Code documentation
 
+Aerodynamic Shape Optimization Framework
+========================================
+
+.. toctree::
+   :maxdepth: 1
+
+   asoFramework/aso.rst
+
 Code Documentation
 ==================
 
