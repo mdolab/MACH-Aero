@@ -8,7 +8,6 @@ repos = {
         'multipoint':'../../multipoint',
         'pygeo':'../../pygeo',
         'pyhyp':'../../pyhyp',
-        'pylayout':'../../pylayout',
         'pyoptsparse':'../../pyoptsparse',
         'pyspline':'../../pyspline',
         # Docs

@@ -22,7 +22,6 @@ The following modules now have documentation online:
    packages/multipoint/doc/index
    packages/pygeo/doc/index
    packages/pyhyp/doc/index
-   packages/pylayout/doc/index
    packages/pyoptsparse/doc/index
    packages/pyspline/doc/index
 
