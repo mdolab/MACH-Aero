@@ -1,0 +1,120 @@
+% Define all the styles used to produce XDSMs for MDO
+
+% Component types
+\tikzstyle{Optimization} = [rounded rectangle,draw,fill=blue!20,inner sep=6pt,minimum height=1cm,text badly centered]
+\tikzstyle{LP_Optimization} = [rectangle,draw,fill=blue!20,inner sep=6pt,minimum height=1cm,text badly centered]
+\tikzstyle{Analysis} = [rectangle,draw,fill=green!20,inner sep=6pt,minimum height=1cm,text badly centered]
+\tikzstyle{Function} = [rectangle,draw,fill=purple!20,inner sep=6pt,minimum height=1cm,text badly centered]
+\tikzstyle{MDA} = [rounded rectangle,draw,fill=orange!20,inner sep=6pt,minimum height=1cm,text badly centered]
+\tikzstyle{Metamodel} = [rectangle,draw,fill=yellow!20,inner sep=6pt,minimum height=1cm,text badly centered]
+\tikzstyle{DOE} = [rounded rectangle,draw,fill=yellow!20,inner sep=6pt,minimum height=1cm,text badly centered]
+%\tikzstyle{OptFunction} = [rectangle,draw,fill=red!20,inner sep=6pt,minimum height=1cm,text badly centered]
+
+%% A simple command to give the repeated structure look for components and data
+\tikzstyle{stack} = [double copy shadow]
+
+%% A simple command to fade components and data, e.g. demonstrating a sequence of steps in an animation
+\tikzstyle{faded} = [draw=black!50,fill=white,text opacity=0.5]
+
+%% Simple fading commands for the lines
+\tikzstyle{fadeddata} = [color=black!20]
+\tikzstyle{fadedprocess} = [color=black!50]
+
+% **OLD** Component types for repeated structures (i.e. for parallel structures)
+%\tikzstyle{Optimization_i} = [double copy shadow, Optimization]
+%\tikzstyle{LP_Optimization_i} = [double copy shadow, LP_Optimization]
+%\tikzstyle{Analysis_i} = [double copy shadow, Analysis]
+%\tikzstyle{Function_i} = [double copy shadow, Function]
+%\tikzstyle{MDA_i} = [double copy shadow, MDA]
+%\tikzstyle{Metamodel_i} = [double copy shadow, Metamodel]
+%\tikzstyle{DOE_i} = [double copy shadow, DOE]
+
+% **OLD** Faded component types for, e.g. demonstrations of each step. We use these style definitions to "gray out" large parts of the diagram.
+%\tikzstyle{Optimization_fade} = [Optimization,fill=blue!10,draw=black!30,text opacity=0.3]
+%\tikzstyle{Analysis_fade} = [Analysis,fill=green!10,draw=black!30,text opacity=0.3]
+%\tikzstyle{Function_fade} = [Function,fill=purple!10,draw=black!30,text opacity=0.3]
+%\tikzstyle{MDA_fade} = [MDA,fill=orange!10,draw=black!30,text opacity=0.3]
+%\tikzstyle{Metamodel_fade} = [Metamodel,fill=yellow!10,draw=black!30,text opacity=0.3]
+%\tikzstyle{DOE_fade} = [DOE,fill=yellow!10,draw=black!30,text opacity=0.3]
+%
+%\tikzstyle{Optimization_i_fade} = [Optimization_i,fill=blue!10,draw=black!30,text opacity=0.3]
+%\tikzstyle{Analysis_i_fade} = [Analysis_i,fill=green!10,draw=black!30,text opacity=0.3]
+%\tikzstyle{Function_i_fade} = [Function_i,fill=purple!10,draw=black!30,text opacity=0.3]
+%\tikzstyle{MDA_i_fade} = [MDA_i,fill=orange!10,draw=black!30,text opacity=0.3]
+%\tikzstyle{Metamodel_i_fade} = [Metamodel_i,fill=yellow!10,draw=black!30,text opacity=0.3]
+%\tikzstyle{DOE_i_fade} = [DOE_i,fill=yellow!10,draw=black!30,text opacity=0.3]
+
+% Data types
+\tikzstyle{DataInter} = [trapezium,trapezium left angle=75,trapezium right angle=105,draw,fill=black!10]
+\tikzstyle{DataIO} = [trapezium,trapezium left angle=75,trapezium right angle=105,draw,fill=white]
+
+% **OLD** Data types for repeated structures
+%\tikzstyle{DataInter_i} = [double copy shadow, DataInter]
+%\tikzstyle{DataIO_i} = [double copy shadow, DataIO]
+
+% **OLD** Faded data types
+%\tikzstyle{DataInter_fade} = [DataInter,draw=black!30,fill=white,text opacity=0.3]
+%\tikzstyle{DataIO_fade} = [DataIO_i,draw=black!30,fill=white,text opacity=0.3]
+%
+%\tikzstyle{DataInter_i_fade} = [DataInter_i,draw=black!30,fill=white,text opacity=0.3]
+%\tikzstyle{DataIO_i_fade} = [DataIO_i,draw=black!30,fill=white,text opacity=0.3]
+
+% Edges
+\tikzstyle{DataLine} = [color=black!40,line width=5pt]
+\tikzstyle{ProcessHV} = [-,line width=1pt,to path={-| (\tikztotarget)}]
+\tikzstyle{ProcessTip} = [-,line width=1pt]
+\tikzstyle{ProcessHVA} = [->,line width=1pt,to path={-| (\tikztotarget)}]
+\tikzstyle{ProcessHVARev} = [<-,line width=1pt,to path={-| (\tikztotarget)}]
+\tikzstyle{ProcessTipA} = [->,line width=1pt]
+
+% **OLD** Faded edges
+%\tikzstyle{DataLine_fade} = [DataLine,color=black!10]
+%\tikzstyle{ProcessHV_fade} = [ProcessHV,color=black!30]
+%\tikzstyle{ProcessTip_fade} = [ProcessTip,color=black!30]
+
+% Matrix options
+\tikzstyle{MatrixSetup} = [row sep=3mm, column sep=2mm]
+
+% Declare a background layer for showing node connections
+\pgfdeclarelayer{data}
+\pgfdeclarelayer{process}
+\pgfsetlayers{data,process,main}
+
+% A new command to split the component text over multiple lines
+\newcommand{\MultilineComponent}[3]
+{
+	\begin{minipage}{#1}
+	\begin{center}
+		#2 \linebreak #3
+	\end{center}
+	\end{minipage}
+}
+
+\newcommand{\FixedWidthText}[2]
+{
+	\begin{minipage}{#1}
+	\begin{center}
+		#2
+	\end{center}
+	\end{minipage}
+}
+
+% A new command to split the component text over multiple columns
+\newcommand{\MultiColumnComponent}[5]
+{
+	\begin{minipage}{#1}
+	\begin{center}
+	#2 \linebreak #3
+	\end{center}
+	\begin{minipage}{0.49\textwidth}
+	\begin{center}
+	#4
+	\end{center}
+	\end{minipage}
+	\begin{minipage}{0.49\textwidth}
+	\begin{center}
+	#5
+	\end{center}
+	\end{minipage}
+	\end{minipage}
+}
