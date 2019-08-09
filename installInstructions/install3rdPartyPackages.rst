@@ -161,7 +161,7 @@ Putting these options together, some complete examples of configuring PETSc are:
 
 .. code-block:: bash
 
-   ./configure --prefix=$PETSC_HOME --PETSC_ARCH=$PETSC_ARCH --with-debugging=yes \
+   ./configure --PETSC_ARCH=$PETSC_ARCH --with-debugging=yes \
       --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes --download-superlu_dist=yes \
       --with-shared-libraries --with-fortran-interfaces=yes
 
