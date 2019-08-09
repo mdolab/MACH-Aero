@@ -161,16 +161,17 @@ Putting these options together, some complete examples of configuring PETSc are:
 
 .. code-block:: bash
 
-   ./configure --PETSC_ARCH=$PETSC_ARCH --with-debugging=yes \
+   ./configure --PETSC_ARCH=$PETSC_ARCH --with-scalar-type=real --with-debugging=yes --with-mpi-dir=$MPI_INSTALL_DIR \
       --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes --download-superlu_dist=yes \
-      --with-shared-libraries --with-fortran-interfaces=yes
+      --with-shared-libraries=yes --with-fortran-interfaces=yes
 
 2. Debug complex build (``$PETSC_ARCH=complex-debug``):
 
 .. code-block:: bash
 
-   ./configure --with-shared-libraries --download-superlu_dist --download-parmetis=yes --download-metis=yes \
-      --with-fortran-interfaces=1 --with-debugging=yes --with-scalar-type=complex --PETSC_ARCH=$PETSC_ARCH
+   ./configure --PETSC_ARCH=$PETSC_ARCH --with-scalar-type=complex --with-debugging=yes --with-mpi-dir=$MPI_INSTALL_DIR \
+      --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes --download-superlu_dist=yes \
+      --with-shared-libraries=yes --with-fortran-interfaces=yes
 
 3. Optimized real build on a cluster with existing MPI (``$PETSC_ARCH=real-opt``). (For production runs on a cluster you *MUST* use an optimized build.):
 
