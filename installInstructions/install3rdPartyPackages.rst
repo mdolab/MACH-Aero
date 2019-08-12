@@ -267,7 +267,7 @@ Make a ``build`` directory, and call cmake from there to configure the package:
 
    mkdir build       # If it exists from a previous build, remove it first
    cd build
-   cmake .. -DCGNS_ENABLE_FORTRAN=1 -DCMAKE_INSTALL_PREFIX=$CGNS_HOME
+   cmake .. -DCGNS_ENABLE_FORTRAN=1 -DCMAKE_INSTALL_PREFIX=$CGNS_HOME -DCGNS_BUILD_CGNSTOOLS=1
 
 Finally, build and install::
 
