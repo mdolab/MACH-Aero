@@ -50,7 +50,7 @@ Tutorials
 .. toctree::
    :maxdepth: 1
 
-   packages/machtutorial/doc/index
+   packages/aeroopttutorial/doc/index
    tutorials/createSphinxDocs
    tutorials/tecplotTipsAndTricks
    tutorials/tapenadeTips
