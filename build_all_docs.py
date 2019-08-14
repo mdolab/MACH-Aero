@@ -9,7 +9,8 @@ repos = {
         'pygeo':'../../pygeo',
         'pyhyp':'../../pyhyp',
         'pyoptsparse':'../../pyoptsparse',
-        'pyspline':'../../pyspline'
+        'pyspline':'../../pyspline',
+        'aeroopttutorial':'../../aeroopttutorial'
 }
 
 cur_dir = os.path.abspath(os.getcwd())
