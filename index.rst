@@ -6,7 +6,7 @@ Aerodynamic Shape Optimization Framework
 .. toctree::
    :maxdepth: 1
 
-   asoFramework/aso.rst
+   optFramework/AeroOpt.rst
 
 Code Documentation
 ==================
