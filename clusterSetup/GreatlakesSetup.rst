@@ -144,5 +144,6 @@ Great Lakse currently has the following partitions:
 Job Submission and Monitoring
 -----------------------------
 
-Jobs are submitted with ``sbatch batch_script``, and cancelled with ``scancel jobid`, where ``jobid`` can be found with ``squeue -u uniqname``. 
+Jobs are submitted with ``sbatch batch_script``, and cancelled with ``scancel jobid``, where ``jobid`` can be found with ``squeue -u uniqname``. 
+To check the estimated starting time for your job, type ``squeue -j <job ID> --start``.
 Interactive jobs may be useful for debugging purposes, and they can be requested with the ``srun --nodes=2 --ntasks-per-node=4 --mem-per-cpu=1GB --cpus-per-task=1 --time=1:00:00 --pty /bin/bash``. 
