@@ -41,6 +41,7 @@ Installation instructions
 
    clusterSetup/pleaidesSetup
    clusterSetup/fluxSetup
+   clusterSetup/GreatlakesSetup
    clusterSetup/stampedeSetup
 
 
