@@ -56,9 +56,7 @@ home directory on Great Lakes.
 
    # User specific aliases and functions
    alias j='squeue -u uniqname'
-   alias emn='emacs -nw'
    alias scr='cd /scratch/jrram_root/jrram/uniqname'
-   PS1='${USER}@${HOSTNAME}:\w$ '
 
 This file starts by specifying the preset modules you want to load.
 On GreatLakes, if you want to use openmpi/1.10.7, you have to use gcc.
@@ -101,15 +99,17 @@ Below is an example Batch script for Great Lakes.
    #####################################################################  
    source ~/.bashrc                                                           
    # The application(s) to execute along with its input arguments and options:                                                       
-   mpirun -np 36 python opt.py 
+   srun -n 36 python opt.py 
 
 .. note::
     By default Slurm does not source the files ``~./bashrc`` or ``~/.profile``.
 
-Specifying Partition
----------------------
+Partitions
+----------
 
-Great Lakse currently has the following partitions:
+Great Lakes currently has the following partitions: standard, large memory, GPU, and visuallization.
+Typically, we will only have access to standard partition.
+There is no need to specify the architecture the same way as in flux.
 
 .. list-table:: 
     :widths: 30 20 20 20 
@@ -125,20 +125,6 @@ Great Lakse currently has the following partitions:
       - 192
       - 380
 
-    * - Large Momory
-      - 36
-      - 1,539
-      - 3
-
-    * - GPU
-      - 40
-      - 192
-      - 20
-
-    * - Visualization
-      - 40
-      - 192
-      - 4
 
 
 Job Submission and Monitoring
