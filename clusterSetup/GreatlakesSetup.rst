@@ -99,10 +99,12 @@ Below is an example Batch script for Great Lakes.
    #####################################################################  
    source ~/.bashrc                                                           
    # The application(s) to execute along with its input arguments and options:                                                       
-   srun -n 36 python opt.py 
+   mpirun -np 36 python opt.py 
 
 .. note::
-    By default Slurm does not source the files ``~./bashrc`` or ``~/.profile``.
+    1. By default Slurm does not source the files ``~./bashrc`` or ``~/.profile``.
+
+    2. You can use any of ``srun``, ``mpirun`` or ``mpiexec`` commands to start your MPI job. In most cases, ``mpirun`` will work correctly with OpenMPI. With some old version of OpenMPI, ``srun`` will fail.
 
 Partitions
 ----------
