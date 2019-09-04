@@ -18,7 +18,7 @@ ASO consists of six major modules:
 
 - Adjoint computation (`ADflow <http://mdolab.engin.umich.edu/docs/packages/adflow/doc/index.html>`_, `DAFoam <https://dafoam.rtfd.io>`_)
 
-.. image:: images/ASO.png
+.. image:: images/AeroOpt.png
 
 Generally, ASO starts with a baseline design and uses the derivatives (gradient) to find the most promising direction in the design space for improvement.
 This process is repeated until the optimality and feasibility conditions are satisfied.

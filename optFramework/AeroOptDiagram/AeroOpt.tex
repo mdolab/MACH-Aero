@@ -7,12 +7,12 @@
 
 \usepackage{tikz}
 
-\input{diagram_border}
+\input{../common_files/diagram_border}
 
 \begin{document}
 
 % Styles definition outside any picture
-\input{diagram_styles}
+\input{../common_files/diagram_styles}
 
 \begin{tikzpicture}
 
@@ -32,7 +32,7 @@
 		\node [Function] (pyHyp) {1: Pre-processing}; 
 		& 
 		&
-		\node [DataIO] (pyHyp-pyGeo) {3: Free-form deformation points};  
+		\node [DataIO] (pyHyp-pyGeo) {\FixedWidthText{3.cm}{3: FFD points}};  
 		&
 		&
 		\node [DataIO] (pyHyp-IDWarp) {4: Volume mesh}; 
@@ -45,7 +45,7 @@
 		& 
 		\node [Optimization] (Opt) {\MultilineComponent{2.0cm}{2, 7$\rightarrow$3:}{Optimizer}}; 
 		&
-		\node [DataIO] (Opt-pyGeo) {3: Updated design variables}; 
+		\node [DataIO] (Opt-pyGeo) {\FixedWidthText{3.cm}{3: Updated FFD displacement}}; 
 		&
 		&
 		& 
@@ -56,10 +56,10 @@
 		& 
 		\node [DataIO] (pyGeo-Opt) {\FixedWidthText{2.5cm}{7: Geometric constraints \& their derivatives}}; 
 		&  
-		\node [Function] (pyGeo) {3: Geometry parameterization}; 
+		\node [Function] (pyGeo) {\FixedWidthText{3.cm}{3: Geometry parameterization}}; 
 		&
 		&
-		\node [DataIO] (pyGeo-IDWarp) {4: Updated design surface}; 
+		\node [DataIO] (pyGeo-IDWarp) {\FixedWidthText{3.cm}{4: Updated design surface coordinates}}; 
 		& 
 		&
 		&
@@ -69,7 +69,7 @@
 		& 
 		& 
 		&
-		\node [Function] (IDWarp) {4: Volume mesh deformation}; 
+		\node [Function] (IDWarp) {\FixedWidthText{3.cm}{4: Volume mesh deformation}}; 
 		& 
 		&
 		\node [DataIO] (IDWarp-flowSolver) {5: Updated mesh}; 
@@ -84,7 +84,7 @@
 		&
 		& 
 		& 
-		\node [Function] (flowSolver) {5: Flow simulation}; 
+		\node [Function_i] (flowSolver) {5: Flow solvers}; 
 		&
 		\node [DataIO] (flowSolver-adjointSolver) {6: State variables}; 
 		\\
@@ -97,7 +97,7 @@
 		& 
 		& 
 		&
-		\node [Function] (adjointSolver) {6: Adjoint computation}; 
+		\node [Function_i] (adjointSolver) {6: Adjoint solvers}; 
 		\\
 	};
 	
