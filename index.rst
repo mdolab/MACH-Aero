@@ -51,7 +51,7 @@ Tutorials
 .. toctree::
    :maxdepth: 1
 
-   packages/aeroopttutorial/doc/index
+   packages/mach_aero_tutorials/doc/index
    tutorials/createSphinxDocs
    tutorials/tecplotTipsAndTricks
    tutorials/tapenadeTips
