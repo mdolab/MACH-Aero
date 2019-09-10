@@ -1,7 +1,7 @@
 .. MDOLAB Code documentation
 
-Aerodynamic Shape Optimization Framework
-========================================
+MACH Framework
+==============
 
 .. toctree::
    :maxdepth: 1

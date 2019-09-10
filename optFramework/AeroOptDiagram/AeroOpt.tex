@@ -18,7 +18,7 @@
 
 	% Use a matrix to line up all the nodes
 	\matrix[MatrixSetup]{
-		% First row
+		% row 1
 		& 
 		\node [DataIO] (Input) {2: Baseline design}; 
 		& 
@@ -28,19 +28,19 @@
 		& 
 		&
 		\\
-		% First row
-		\node [Function] (pyHyp) {1: Pre-processing}; 
+		% row 2
+		\node [Function] (preProcess) {1: Pre-processing}; 
 		& 
 		&
-		\node [DataIO] (pyHyp-pyGeo) {\FixedWidthText{3.cm}{3: FFD points}};  
+		\node [DataIO] (preProcess-pyGeo) {\FixedWidthText{3.cm}{3: FFD points}};  
 		&
 		&
-		\node [DataIO] (pyHyp-IDWarp) {4: Volume mesh}; 
+		\node [DataIO] (preProcess-IDWarp) {4: Volume mesh}; 
 		& 
 		& 
 		&
 		\\
-		% Second row
+		% row 3
 		\node [DataIO] (Output) {8: Optimized design}; 
 		& 
 		\node [Optimization] (Opt) {\MultilineComponent{2.0cm}{2, 7$\rightarrow$3:}{Optimizer}}; 
@@ -52,7 +52,7 @@
 		&
 		&
 		\\ 
-		% Third row
+		% row 4
 		& 
 		\node [DataIO] (pyGeo-Opt) {\FixedWidthText{2.5cm}{7: Geometric constraints \& their derivatives}}; 
 		&  
@@ -64,7 +64,7 @@
 		&
 		&
 		\\
-		% Fourth row
+		% row 5
 		& 
 		& 
 		& 
@@ -76,7 +76,7 @@
 		&
 
 		\\ 
-		% Fifth row
+		% row 6
 		& 
 		\node [DataIO] (flowSolver-Opt) {\FixedWidthText{2.5cm}{7: Values of objectives \& constraints}}; 
 		& 
@@ -88,7 +88,7 @@
 		&
 		\node [DataIO] (flowSolver-adjointSolver) {6: State variables}; 
 		\\
-		% Sixth row
+		% row 7
 		& 
 		\node [DataIO] (adjointSolver-Opt) {\FixedWidthText{2.5cm}{7: Derivatives of objectives \& constraints}}; 
 		& 
@@ -104,7 +104,7 @@
 	% Create a chain to outline process
 	{ [start chain=process]
 		\begin{pgfonlayer}{process}
-		\chainin (pyHyp);
+		\chainin (preProcess);
 		\chainin (Opt)		  [join=by ProcessHVA];
 		\chainin (Opt-pyGeo)          [join=by ProcessTipA];
 		\chainin (pyGeo)          [join=by ProcessTipA];
@@ -126,12 +126,12 @@
 		% Vertical Edges
 		\path 
 		(Input)        edge [DataLine] (adjointSolver-Opt)
-		(pyHyp-pyGeo)    edge [DataLine] (pyGeo)
-		(pyHyp-IDWarp) edge [DataLine] (IDWarp)
+		(preProcess-pyGeo)    edge [DataLine] (pyGeo)
+		(preProcess-IDWarp) edge [DataLine] (IDWarp)
 		(IDWarp-flowSolver) edge [DataLine] (flowSolver)
 		(flowSolver-adjointSolver) edge [DataLine] (adjointSolver)
 		%% Horizontal Edges
-		(pyHyp)        edge [DataLine] (pyHyp-IDWarp)
+		(preProcess)        edge [DataLine] (preProcess-IDWarp)
 		(Output)       edge [DataLine] (Opt-pyGeo)
 		(pyGeo-Opt)        edge [DataLine] (pyGeo-IDWarp)
 		(IDWarp)        edge [DataLine] (IDWarp-flowSolver)
