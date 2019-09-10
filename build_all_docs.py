@@ -10,7 +10,7 @@ repos = {
         'pyhyp':'../../pyhyp',
         'pyoptsparse':'../../pyoptsparse',
         'pyspline':'../../pyspline',
-        'aeroopttutorial':'../../aeroopttutorial'
+        'mach_aero_tutorials':'../../mach_aero_tutorials'
 }
 
 cur_dir = os.path.abspath(os.getcwd())
