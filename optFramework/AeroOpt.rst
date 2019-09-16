@@ -1,11 +1,11 @@
 .. _aso:
 
-MACH-AERO Mode
+MACH-Aero
 ==============
 
-This page is intended to introduce the overall framework for MDO of aircraft configurations with high fidelity (MACH) in aerodynamic shape optimization (AERO) mode.
+This page is intended to introduce the aerodynamic shape optimization capability within MACH (framework for MDO of aircraft configurations with high fidelity).
 
-MACH-AERO consists of six major modules: 
+MACH-Aero consists of six major modules:
 
 - Pre-processing (`pyHyp <http://mdolab.engin.umich.edu/docs/packages/pyhyp/doc/index.html>`_, `ANSYS ICEM-CFD <https://ansys.com>`_)
 
@@ -21,10 +21,10 @@ MACH-AERO consists of six major modules:
 
 .. image:: images/AeroOpt.png
 
-Generally, MACH-AERO starts with a baseline design and uses the derivatives (gradient) to find the most promising direction in the design space for improvement.
+Generally, MACH-Aero starts with a baseline design and uses the derivatives (gradient) to find the most promising direction in the design space for improvement.
 This process is repeated until the optimality and feasibility conditions are satisfied.
 More specific process is as follows, taking the above figure as reference.
-Here we use the extended design structure matrix (XDSM) representation developed by Lambe and Martins (2012). 
+Here we use the extended design structure matrix (XDSM) representation developed by Lambe and Martins (2012).
 The diagonal nodes represent the modules and the off-diagonal nodes represent the data.
 The black lines represent the process flow in the adjoint, whereas the thick gray lines represent the data flow.
 The number in each node represents the execution order:
@@ -41,6 +41,6 @@ The number in each node represents the execution order:
 
 - Finally, the optimizer receives the values and derivatives of objectives and constraints in process 7, performs the SQP computation, and outputs a set of updated design variables to pyGeo.
 
-The above process is repeated until the optimization converges (optimality and feasibility conditions satisfied). 
+The above process is repeated until the optimization converges (optimality and feasibility conditions satisfied).
 Refer to `Optimization <http://mdolab.engin.umich.edu/docs/packages/mach_aero_tutorials/doc/opt_overview.html>`_ for more detailed description of high-fidelity gradient-based optimization and `Airfoil Optimization
 <http://mdolab.engin.umich.edu/docs/packages/mach_aero_tutorials/doc/airfoilopt_overview.html>`_ and `Analysis and Optimization with Overset Meshes <http://mdolab.engin.umich.edu/docs/packages/mach_aero_tutorials/doc/overset_overview.html>`_ for tutorials.
