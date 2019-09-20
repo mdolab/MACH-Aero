@@ -19,6 +19,18 @@ MACH-Aero consists of six major modules:
 
 - Adjoint computation (`ADflow <http://mdolab.engin.umich.edu/docs/packages/adflow/doc/index.html>`_, `DAFoam <https://dafoam.rtfd.io>`_)
 
+See the following papers for technical background of the above modules. **If you use these modules in publications, please cite the corresponding papers**.
+
+- Ruben E. Perez, Peter W. Jansen, Joaquim R.R.A. Martins, pyOpt: A Python-based object-oriented framework for nonlinear constrained optimization, Structural and Multidisciplinary Optimization 45, 101–118, 2012. https://doi.org/10.1007/s00158-011-0666-3 (**pyOptSparse**)
+
+- Gaetan K.W. Kenway, Graeme J. Kennedy, Joaquim R.R.A. Martins, A CAD-free approach to high-fidelity aerostructural optimization, Proceedings of the 13th AIAA/ISSMO Multidisciplinary Analysis Optimization Conference, Fort Worth, TX, 2010. https://doi.org/10.2514/6.2010-9231 (**pyGeo**)
+
+- Gaetan K.W. Kenway, Charles A. Mader, Ping He, Joaquim R.R.A. Martins, Effective adjoint approaches for computational fluid dynamics, Progress in Aerospace Sciences, 2019. https://doi.org/10.1016/j.paerosci.2019.05.002 (**ADflow**)
+
+- Anil Yildirim, Gaetan K.W. Kenway, Charles A. Mader, Joaquim R.R.A. Martins, A Jacobian-free approximate Newton–Krylov startup strategy for RANS simulations, Journal of Computational Physics, 2019. https://doi.org/10.1016/j.jcp.2019.06.018 (**ADflow**)
+
+- Ping He, Charles A. Mader, Joaquim R.R.A. Martins, Kevin J. Maki, An aerodynamic design optimization framework using a discrete adjoint approach with OpenFOAM, Computers \& Fluids 168, 285-303, 2018. https://doi.org/10.1016/j.compfluid.2018.04.012 (**DAFoam**)
+
 .. image:: images/AeroOpt.png
 
 Generally, MACH-Aero starts with a baseline design and uses the derivatives (gradient) to find the most promising direction in the design space for improvement.
