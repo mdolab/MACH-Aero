@@ -6,7 +6,7 @@ MACH Framework
 .. toctree::
    :maxdepth: 1
 
-   optFramework/AeroOpt.rst
+   machFramework/MACH-Aero.rst
 
 Code Documentation
 ==================
