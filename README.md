@@ -1,3 +1,6 @@
+MACH-Aero
+=========
+
 This page is intended to introduce the aerodynamic shape optimization capability within MACH (framework for MDO of aircraft configurations with high fidelity).
 
 MACH-Aero consists of six major modules:
@@ -26,7 +29,7 @@ See the following papers for technical background of the above modules. **If you
 
 - Ping He, Charles A. Mader, Joaquim R.R.A. Martins, Kevin J. Maki, An aerodynamic design optimization framework using a discrete adjoint approach with OpenFOAM, Computers \& Fluids 168, 285-303, 2018. https://doi.org/10.1016/j.compfluid.2018.04.012 (**DAFoam**)
 
-![MACH-Aero](images/MACH-Aero.png)
+![MACH-Aero](MACH-Aero-Diagram.png)
 
 Generally, MACH-Aero starts with a baseline design and uses the derivatives (gradient) to find the most promising direction in the design space for improvement.
 This process is repeated until the optimality and feasibility conditions are satisfied.
