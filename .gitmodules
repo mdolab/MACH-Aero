@@ -1,0 +1,18 @@
+[submodule "adflow"]
+	path = adflow
+	url = https://github.com/mdolab/adflow.git
+[submodule "dafoam"]
+	path = dafoam
+	url = https://github.com/mdolab/dafoam.git
+[submodule "idwarp"]
+	path = idwarp
+	url = https://github.com/mdolab/idwarp.git
+[submodule "pygeo"]
+	path = pygeo
+	url = https://github.com/mdolab/pygeo.git
+[submodule "pyhyp"]
+	path = pyhyp
+	url = https://github.com/mdolab/pyhyp.git
+[submodule "pyoptsparse"]
+	path = pyoptsparse
+	url = https://github.com/mdolab/pyoptsparse.git
