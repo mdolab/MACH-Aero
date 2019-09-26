@@ -1,11 +1,11 @@
 MACH-Aero
 =========
 
-This page is intended to introduce the aerodynamic shape optimization capability within MACH (framework for MDO of aircraft configurations with high fidelity).
+This page is intended to introduce the aerodynamic shape optimization capability within MACH (framework for MDO of aircraft configurations with high fidelity). The MACH framework is developed by the Multidisciplinary Design Optimization Laboratory (MDO Lab) at University of Michigan. More documentations can be found at http://mdolab.engin.umich.edu/docs/
 
 MACH-Aero consists of six major modules:
 
-- Pre-processing ([pyhyp](http://mdolab.engin.umich.edu/docs/packages/pyhyp/doc/index.html), [ANSYS ICEM-CFD](https://ansys.com>))
+- Pre-processing ([pyHyp](http://mdolab.engin.umich.edu/docs/packages/pyhyp/doc/index.html), [ANSYS ICEM-CFD](https://ansys.com>))
 
 - Optimizer ([pyOptSparse](http://mdolab.engin.umich.edu/docs/packages/pyoptsparse/doc/index.html))
 
