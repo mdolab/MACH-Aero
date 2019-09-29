@@ -29,7 +29,7 @@ See the following papers for technical background of the above modules. **If you
 
 - Ping He, Charles A. Mader, Joaquim R.R.A. Martins, Kevin J. Maki, An aerodynamic design optimization framework using a discrete adjoint approach with OpenFOAM, Computers \& Fluids 168, 285-303, 2018. https://doi.org/10.1016/j.compfluid.2018.04.012 (**DAFoam**)
 
-In addition to the above modules, MACH-Aero also depends on: [baseClasses](http://mdolab.engin.umich.edu/docs/packages/baseclasses/doc/index.html), [multipoint](http://mdolab.engin.umich.edu/docs/packages/multipoint/doc/index.html), and [pySpline](http://mdolab.engin.umich.edu/docs/packages/pyspline/doc/index.html). To download MACH-Aero along with all its submodules, run:
+In addition to the above modules, MACH-Aero depends on: [baseClasses](http://mdolab.engin.umich.edu/docs/packages/baseclasses/doc/index.html), [multipoint](http://mdolab.engin.umich.edu/docs/packages/multipoint/doc/index.html), and [pySpline](http://mdolab.engin.umich.edu/docs/packages/pyspline/doc/index.html). To download MACH-Aero along with all its modules, run:
 
     git clone --recurse-submodules https://github.com/mdolab/MACH-Aero.git
 

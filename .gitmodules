@@ -16,3 +16,12 @@
 [submodule "pyoptsparse"]
 	path = pyoptsparse
 	url = https://github.com/mdolab/pyoptsparse.git
+[submodule "baseclasses"]
+	path = baseclasses
+	url = https://github.com/mdolab/baseclasses.git
+[submodule "multipoint"]
+	path = multipoint
+	url = https://github.com/mdolab/multipoint.git
+[submodule "pyspline"]
+	path = pyspline
+	url = https://github.com/mdolab/pyspline.git
