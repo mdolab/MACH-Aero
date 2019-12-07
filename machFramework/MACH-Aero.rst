@@ -3,7 +3,7 @@
 MACH-Aero
 ==============
 
-This page is intended to introduce the aerodynamic shape optimization capability within MACH (framework for MDO of aircraft configurations with high fidelity).
+This page provides and overview of the aerodynamic shape optimization capability within MACH (framework for MDO of aircraft configurations with high fidelity).
 
 MACH-Aero consists of six major modules:
 
