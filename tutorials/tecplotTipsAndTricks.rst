@@ -63,7 +63,7 @@ The size factors should automatically be set to one when this is done. This shou
 
 
 Adding Quick Marcos
-############################
+###################
 
 There are many things we do in Tecplot repeatedly which can become irritating and slow down the user. By making a macro these steps can be executed quickly with a double click from the *Quick Macro Panel*. To enable the *Quick Macro Panel* in tecplot click ``Scripting -> Quick Macros``
 
@@ -74,7 +74,7 @@ To create the actual macros, edit the ``tecplot.mcr`` file, using *sudo*, with y
 The location of your quick macro file is printed in the terminal when you launch Tecplot. Copy the following code blocks and paste them at the end of file, save and close
 
 Reset View
-$$$$$$$$$$$$
+$$$$$$$$$$
 
 Resets any weird scaling Tecplot might have applied and fits all zones in frame::
 
@@ -87,7 +87,7 @@ Resets any weird scaling Tecplot might have applied and fits all zones in frame:
    $!ENDMACROFUNCTION
 
 Apply TACS Deformations
-$$$$$$$$$$$$$$$$$$$$$$$$
+$$$$$$$$$$$$$$$$$$$$$$$
 
 Applies the deformations from TACS variables u0, v0, w0 to all zones, with a scaling factor::
 
