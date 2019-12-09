@@ -11,8 +11,8 @@ Tecplot
 Using Custom Color Maps
 """""""""""""""""""""""
 
-For most Tecplot versions a custom color map can be loaded for contour plots. 
-Tecplot 2014 R1 does not offer custom color plot option. 
+For most Tecplot versions a custom color map can be loaded for contour plots.
+Tecplot 2014 R1 does not offer custom color plot option.
 
 
 Download
@@ -21,18 +21,18 @@ You can download the colormaps here (right click -> Save Link As)
 
 Tecplot 2014 R2 and newer:
 
-- :download:`Viridis <./files/viridis_map_tecplot.map>` 
-- :download:`Parula <./files/parula_map_tecplot.map>`  
+- :download:`Viridis <./files/viridis_map_tecplot.map>`
+- :download:`Parula <./files/parula_map_tecplot.map>`
 
 Tecplot 2013 R2 and older:
 
-- :download:`Viridis <./files/viridis_map_tecplot_old.map>` 
-- :download:`Parula <./files/parula_map_tecplot_old.map>`  
+- :download:`Viridis <./files/viridis_map_tecplot_old.map>`
+- :download:`Parula <./files/parula_map_tecplot_old.map>`
 
 
 Install
 #######
-To use the colormap 
+To use the colormap
 
 - Run Tecplot and load your data.
 - Click the ``Details`` button next to the Contour checkbox.
@@ -62,16 +62,21 @@ Then set:
 The size factors should automatically be set to one when this is done. This should reset the view.
 
 
-Resetting view using a macro
+Adding Quick Marcos
 ############################
 
-When the above procedure is done repeatedly it can become irritating and slow down the user. By making a macro the above steps can be executed quickly with a double click from the *Quick Macro Panel*. To enable the *Quick Macro Panel* in tecplot click ``Scripting -> Quick Macros``
+There are many things we do in Tecplot repeatedly which can become irritating and slow down the user. By making a macro these steps can be executed quickly with a double click from the *Quick Macro Panel*. To enable the *Quick Macro Panel* in tecplot click ``Scripting -> Quick Macros``
 
-To create the actual macro, edit ``/usr/local/tecplot360ex/tecplot.mcr`` (using *sudo*) with your favorite text editor, for example::
+To create the actual macros, edit the ``tecplot.mcr`` file, using *sudo*, with your favorite text editor, for example::
 
-   sudo vi /usr/local/tecplot360ex/tecplot.mcr
+   sudo vi /usr/local/tecplot360ex2018r2/360ex_2018r2/tecplot.mcr
 
-Copy the following code block and paste it at the end of file, save and close::
+The location of your quick macro file is printed in the terminal when you launch Tecplot. Copy the following code blocks and paste them at the end of file, save and close
+
+Reset View
+$$$$$$$$$$$$
+
+Resets any weird scaling Tecplot might have applied and fits all zones in frame::
 
    ############## MDOLAB MACROS ###############
    $!MACROFUNCTION NAME = "MDOLAB - Reset view"
@@ -79,6 +84,22 @@ Copy the following code block and paste it at the end of file, save and close::
    $!THREEDAXIS DEPXTOYRATIO = 1
    $!THREEDAXIS DEPXTOZRATIO = 1
    $!VIEW FITSURFACES
+   $!ENDMACROFUNCTION
+
+Apply TACS Deformations
+$$$$$$$$$$$$$$$$$$$$$$$$
+
+Applies the deformations from TACS variables u0, v0, w0 to all zones, with a scaling factor::
+
+   $!MACROFUNCTION NAME = "TACS - Apply Deformations"
+   $!PromptForTextString |DefFactor|
+     Instructions = "Enter scaling factor for deformations"
+   $!AlterData
+    Equation = "{X}={X}+|DefFactor|*{u0}"
+   $!AlterData
+    Equation = "{Y}={Y}+|DefFactor|*{v0}"
+   $!AlterData
+    Equation = "{Z}={Z}+|DefFactor|*{w0}"
    $!ENDMACROFUNCTION
 
 Restart tecplot and you should see the *MDOLAB - Reset view* macro in the *Quick Macro Panel*.
@@ -119,7 +140,7 @@ Adding packages
 $$$$$$$$$$$$$$$
 
 Some packages are not pre-intalled with tecplot. To initialize the package in the preamble, edit ``/usr/local/tecplot360ex/tecplot_latex.mcr`` (using *sudo*) with your favorite text editor. For example, if one wants to use ``color``, add ``\usepackage{color}`` to the end of the preamble in the ``tecplot_latex.mcr``::
-  
+
    Preamble=R"(\usepackage{amsfonts}
               \usepackage{amsmath}
               \usepackage{amssymb}
@@ -129,7 +150,7 @@ Some packages are not pre-intalled with tecplot. To initialize the package in th
              )"
 
 Restart tecplot.
-	     
+
 Configure a Licensing Server
 """"""""""""""""""""""""""""
 To use Tecplot you must specify a license server. To configure, open tecplot and go to ``Help -> Tecplot 360 EX Licensing``, select the ``Network license server`` and fill in the license server name and port number::
@@ -144,10 +165,6 @@ Once you have typed in the information the window should look like
 
 Tecplot off campus
 """"""""""""""""""
-In case you are off campus you need to connect using the VPN. Please follow the instructions, :ref:`settingUpUMVPN`. to set up and use the UM VPN. 
+In case you are off campus you need to connect using the VPN. Please follow the instructions, :ref:`settingUpUMVPN`. to set up and use the UM VPN.
 
 For those frequently using Tecplot off campus or have a laptop and do not want to connect using the VPN all the time, a roaming license can be requested. To request a roaming license open Tecplot (either on campus or using the VPN) and go to ``Help -> License roaming...`` and specify the date when the roaming license should expire and click OK. If the request is successful Tecplot can now be used off campus **without** connecting the VPN.
-
-
-
-
