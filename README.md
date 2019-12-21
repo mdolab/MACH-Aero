@@ -56,4 +56,4 @@ The number in each node represents the execution order:
 - Finally, the optimizer receives the values and derivatives of objectives and constraints in process 7, performs the SQP computation, and outputs a set of updated design variables to pyGeo.
 
 The above process is repeated until the optimization converges (optimality and feasibility conditions satisfied).
-Refer to [MACH-Aero Tutorials](http://http://mdolab.engin.umich.edu/docs/packages/mach_aero_tutorials/doc/index.html) for tutorials.
+Refer to [MACH-Aero Tutorials](http://mdolab.engin.umich.edu/docs/packages/mach_aero_tutorials/doc/index.html) for tutorials.
