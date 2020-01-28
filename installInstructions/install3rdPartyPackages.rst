@@ -264,7 +264,7 @@ Next, configure your environment for CGNS by adding the following lines to your 
 Make a ``build`` directory, and call cmake from there to configure the package:
 
 .. NOTE::
-   When compiling on a cluster, it helps to set -DCGNS_BUILD_CGNSTOOLS = 0. It will
+   When compiling on a cluster, it helps to set ``-DCGNS_BUILD_CGNSTOOLS = 0``. It will
    build without the cgnstools which requires additional packages.
 
 .. code-block:: bash
