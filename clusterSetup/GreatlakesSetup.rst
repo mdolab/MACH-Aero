@@ -16,7 +16,9 @@ Great Lakes users manual is at:
 https://arc-ts.umich.edu/greatlakes/
 
 .. note::
-    It is known: "python-anaconda2/" works.
+    It is known: "python2.7-anaconda/2019.03" works.
+    If you want to run cases using multiple nodes, you will have to use a newer version of openmpi (openmpi/3.1.4), and you need specific forks for some reops to work with the newer openmpi. 
+    For example, pygeo (https://github.com/nbons/pygeo), idwarp (https://github.com/camader/idwarp), adflow (https://github.com/camader/adflow).
 
 Example .bashrc
 ---------------
@@ -33,16 +35,19 @@ home directory on Great Lakes.
         . /etc/bashrc
    fi
 
-   module load python-anaconda2/                                                                                                       
+   module load python2.7-anaconda/2019.03                                                                                                       
    module load gcc/4.8.5                                                                                                           
    module load openmpi/1.10.7
-   module load cmake
+   # if you want to use multiple nodes, use 3.1.4
+   # module load openmpi/3.1.4
+   module load cmake/3.13.2
 
 
    # add the repos directory to your python path so that the mdolab modules will be available
    export PYTHONPATH=$PYTHONPATH:$HOME/repos/
 
-   # CGNS
+   # CGNS 
+   # Follow the 3rd party package installation tutorial to add the correct PATH
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/packages/cgnslib_3.2.1/src
    # CGNS 3.3.0
    # export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/packages/CGNS-3.3.0/src
