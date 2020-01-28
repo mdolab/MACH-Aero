@@ -423,6 +423,11 @@ the PETSc version installed, i.e., 3.7.0 here)::
 
 $ tar -xzf petsc4py-3.7.0.tar.gz
 
+.. note::
+   For petsc4py 3.7.0, before installing::
+
+   $ export LDSHARED=-shared.
+
 From the petsc4py-3.7.0 directory do a user-space install::
 
 $ python setup.py install --user
