@@ -95,7 +95,7 @@ Below is an example Batch script for Great Lakes.
    ##### Recommended formats: MM:SS, HH:MM:SS, DD-HH:MM                                                                              
    #SBATCH --time=100:00:00                                                                                                          
    ##### The resource account; who pays                                                                                              
-   #SBATCH --account=jrram    
+   #SBATCH --account=jrram1    
    #SBATCH --partition=standard
    ##### Output path
    #SBATCH --output=/home/%u/%x-%j.log                                                                                                       
