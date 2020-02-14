@@ -472,39 +472,27 @@ This section is a work in progress.
 
    *  - OS
       - Compiler
-      - cmake
       - OpenMPI
+      - mpi4py
       - PETSc
+      - petsc4py
       - CGNS
       - python
       - numpy
       - scipy
-      - mpi4py
-      - petsc4py
+      - swig
 
    *  - Ubuntu 18.04
-      - GCC 7.3.0
-      - 3.14.5
-      - 1.10.7
-      - 3.7.7
-      - 3.2.1
-      - 2.7.15+
-      - 1.16.4
-      - 1.2.2
+      - GCC 7.4
+      - 3.1.4
       - 3.0.2
-      - 3.7.0
-
-   *  - Ubuntu 16.04
-      - GCC 5.4.0
-      - 3.5.1
-      - 1.10.7
-      - 3.7.7
-      - 3.2.1
-      - 2.7.12
-      - 1.11.0
-      - 1.1.0
-      - 1.3.1
-      - 3.7.0
+      - 3.11.0
+      - 3.11.0
+      - 3.3.0
+      - 2.7
+      - 1.16.4
+      - 1.2.1
+      - 2.0.12
 
 Other Methods and Notes
 -----------------------
