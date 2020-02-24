@@ -5,11 +5,60 @@
 
 3rd Party Packages
 ==================
+.. NOTE::
+   Before trying to compile everything yourself, including all dependencies, consider using the Docker image available on Docker Hub at ``mdolab/public``.
 
+.. _working_stacks:
 
-Before compiling **any** of the MDOlab codes, it is **HIGHLY
-RECOMMENDED** that you install the following packages below.
+Working Stacks
+--------------
+This section lists out the dependency versions that have been verified to work with specific code versions.
+Here ``version`` refers to the code version, and ``tag`` refers to the Docker image tag.
 
+.. list-table::
+   :header-rows: 1
+
+   *  - Version
+      - Tag
+      - OS
+      - Compiler
+      - OpenMPI
+      - mpi4py
+      - PETSc
+      - petsc4py
+      - CGNS
+      - python
+      - numpy
+      - scipy
+      - swig
+
+   *  - 2.x
+      - py2
+      - 18.04
+      - gcc/7.4
+      - 3.1.4
+      - 3.0.2
+      - 3.11.0
+      - 3.11.0
+      - 3.3.0
+      - 2.7
+      - 1.16.4
+      - 1.2.1
+      - 2.0.12
+
+   *  - 1.x
+      - v1
+      - 16.04
+      - gcc/7.4
+      - 1.10.7
+      - 1.3.1
+      - 3.7.7
+      - 3.7.0
+      - 3.2.1
+      - 2.7
+      - 1.16.4
+      - 1.2.1
+      - 2.0.12
 
 .. _install_prereq:
 
@@ -36,7 +85,7 @@ The environment is adapted for each package by modifying ``$HOME/.bashrc`` or eq
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. IMPORTANT::
-   The version(s) of OpenMPI tested to work with MDOlab tools is ``1.10.7``
+   The version(s) of OpenMPI tested to work with MDOlab tools is ``3.1.4``
 
    OpenMPI depends only on a C/Fortran compiler, such as ``gcc/gfortran`` or ``icc/ifort``.
 
@@ -44,7 +93,6 @@ The environment is adapted for each package by modifying ``$HOME/.bashrc`` or eq
    On a cluster, the system administrator will have already compiled various versions of MPI on the system already.
    Do not build/install OpenMPI in this case.
 
-.. NOTE::
    OpenMPI may also be installed by PETSc (see below), but a separate installation as described here is preferred.
 
 Download and unpack the source directory, from your packages directory:
@@ -52,16 +100,16 @@ Download and unpack the source directory, from your packages directory:
 .. code-block:: bash
 
    cd $HOME/packages
-   wget https://download.open-mpi.org/release/open-mpi/v1.10/openmpi-1.10.7.tar.gz
-   tar -xvaf openmpi-1.10.7.tar.gz
-   cd openmpi-1.10.7
+   wget https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.4.tar.gz
+   tar -xvaf openmpi-3.1.4.tar.gz
+   cd openmpi-3.1.4
 
 Add the following lines to ``$HOME/.bashrc`` and ``source`` it:
 
 .. code-block:: bash
 
    # -- OpenMPI Installation
-   export MPI_INSTALL_DIR=$HOME/packages/openmpi-1.10.7/opt-gfortran
+   export MPI_INSTALL_DIR=$HOME/packages/openmpi-3.1.4/opt-gfortran
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$MPI_INSTALL_DIR/lib
    export PATH=$MPI_INSTALL_DIR/bin:$PATH
 
@@ -69,7 +117,7 @@ Finally, configure and build the package:
 
 .. code-block:: bash
 
-   export CC=icc CXX=icpc F77=ifort FC=ifort    # Only necessary if using non-GCC compiler
+   # export CC=icc CXX=icpc F77=ifort FC=ifort    # Only necessary if using non-GCC compiler
    ./configure --prefix=$MPI_INSTALL_DIR
    make all install
 
@@ -88,10 +136,10 @@ The above should print out the same path for both.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. IMPORTANT::
-   The version(s) of PETSc tested to work with MDOlab tools is ``3.7.7``.
+   The version(s) of PETSc tested to work with MDOlab tools is ``3.11.0``.
    Use other versions at your own risk.
 
-   PETSc depends on OpenMPI, a C/Fortran compiler, and valgrind, and it requires cmake to build.
+   PETSc depends on OpenMPI, a C/Fortran compiler, and it requires cmake to build.
 
 PETSc, the Portable Extensible Toolkit for Scientific Computation is a
 comprehensive library for helping solve large scale PDE problems.
@@ -102,9 +150,9 @@ Download and unpack the source directory, from your packages directory:
 .. code-block:: bash
 
    cd $HOME/packages
-   wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.7.7.tar.gz
-   tar -xvaf petsc-3.7.7.tar.gz
-   cd petsc-3.7.7
+   wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.11.0.tar.gz
+   tar -xvaf petsc-3.11.0.tar.gz
+   cd petsc-3.11.0
 
 The lite version of the package is smaller but contains no documentation.
 Next, configure your environment for PETSc by adding the following lines to your ``$HOME/.bashrc`` and ``source``-ing it:
@@ -113,7 +161,7 @@ Next, configure your environment for PETSc by adding the following lines to your
 
    # -- PETSc Installation
    export PETSC_ARCH=real-debug
-   export PETSC_DIR=$HOME/packages/petsc-3.7.7/
+   export PETSC_DIR=$HOME/packages/petsc-3.11.0/
 
 
 The ``PETSC_ARCH`` variable is any user-specified string.
@@ -125,96 +173,124 @@ To get a list of all available options run::
 
    ./configure --help
 
-The relevant configuration options for MDOlab codes are:
+We explain the relevant flags below, but you can jump ahead to
+:ref:`configure PETSc <configure_petsc>` and use one of the pre-set list of options there.
 
-1. **Debugging**: To compile without debugging use the switch::
+#. **Debugging**: To compile without debugging use the switch:
+
+   .. code-block:: bash
 
       --with-debugging=no
 
-   It is HIGHLY recommended to use debugging until you are ready to
-   perform production runs use a debug build.
+   If you are doing any code development which uses PETSc,
+   it is *highly* recommended to use debugging.
+   However, if you are doing production runs on an HPC,
+   then you should turn this off to improve code performance.
 
-2. **BLAS and LAPACK**: Linear algebra packages.
+   To further specify compiler optimization flags, use:
+
+   .. code-block:: bash
+
+      --COPTFLAGS=-O3 --CXXOPTFLAGS=-O3 --FOPTFLAGS=-O3
+
+#. **BLAS and LAPACK**: Linear algebra packages.
 
    If you do not have BLAS and LAPACK installed you can include
-   the following in the configure::
+   the following in the configure:
+
+   .. code-block:: bash
 
       --download-fblaslapack=1
 
-3. **METIS and ParMETIS**: partitioning packages
+   This is typically not necessary on HPC systems as they tend to provide optimized packages, typically through MKL.
 
-   If you do not have METIS and ParMETIS installed, include the following line::
+#. **METIS and ParMETIS**: partitioning packages
+
+   If you do not have METIS and ParMETIS installed, include the following line:
+
+   .. code-block:: bash
 
       --download-metis=yes --download-parmetis=yes
 
-4. **Other**:
-   Various options are also required::
+#. **Complex build**: partitioning packages
 
-      --with-shared-libraries --download-superlu_dist=yes --with-fortran-interfaces=1
+   A complex build is configured via:
+
+   .. code-block:: bash
+
+      --with-scalar-type=complex
+
+#. **Other**:
+   Various options are also required:
+
+   .. code-block:: bash
+
+      --with-shared-libraries --download-superlu_dist=yes --with-fortran-interfaces=1 --with-cxx-dialect=C++11
 
    Specifically, :ref:`pyWarp` uses the ``superlu_dist``.
+
+.. _configure_petsc:
 
 There are many other options, and they enable linking and/or downloading to a variety of other packages.
 Putting these options together, some complete examples of configuring PETSc are:
 
-1. Standard debug build (``$PETSC_ARCH=real-debug``):
+#. Standard debug build (``$PETSC_ARCH=real-debug``):
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   ./configure --PETSC_ARCH=$PETSC_ARCH --with-scalar-type=real --with-debugging=yes --with-mpi-dir=$MPI_INSTALL_DIR \
-      --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes --download-superlu_dist=yes \
-      --with-shared-libraries=yes --with-fortran-interfaces=yes
+      ./configure --PETSC_ARCH=$PETSC_ARCH --with-scalar-type=real --with-debugging=yes --with-mpi-dir=$MPI_INSTALL_DIR \
+         --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes --download-superlu_dist=yes \
+         --with-shared-libraries=yes --with-fortran-interfaces=yes --with-cxx-dialect=C++11
 
-2. Debug complex build (``$PETSC_ARCH=complex-debug``):
+#. Debug complex build (``$PETSC_ARCH=complex-debug``):
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   ./configure --PETSC_ARCH=$PETSC_ARCH --with-scalar-type=complex --with-debugging=yes --with-mpi-dir=$MPI_INSTALL_DIR \
-      --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes --download-superlu_dist=yes \
-      --with-shared-libraries=yes --with-fortran-interfaces=yes
+      ./configure --PETSC_ARCH=$PETSC_ARCH --with-scalar-type=complex --with-debugging=yes --with-mpi-dir=$MPI_INSTALL_DIR \
+         --download-fblaslapack=yes --download-metis=yes --download-parmetis=yes --download-superlu_dist=yes \
+         --with-shared-libraries=yes --with-fortran-interfaces=yes --with-cxx-dialect=C++11
 
-3. Optimized real build on a cluster with existing MPI (``$PETSC_ARCH=real-opt``). (For production runs on a cluster you *MUST* use an optimized build.):
+#. Optimized real build on a cluster with existing MPI (``$PETSC_ARCH=real-opt``). (For production runs on a cluster you *MUST* use an optimized build.):
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   ./configure --with-shared-libraries --download-superlu_dist --download-parmetis=yes --download-metis=yes \
-      --with-fortran-interfaces=1 --with-debugging=no --with-scalar-type=real --PETSC_ARCH=$PETSC_ARCH
+      ./configure --with-shared-libraries --download-superlu_dist --download-parmetis=yes --download-metis=yes \
+         --with-fortran-interfaces=1 --with-debugging=no --with-scalar-type=real --PETSC_ARCH=$PETSC_ARCH --with-cxx-dialect=C++11
 
-4. Optimized build, referencing an existing parmetis/metis and hdf5 installation
+#. Optimized build, referencing an existing parmetis/metis and hdf5 installation
    (using the ``$HOME/opt`` installation directory convention):
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   ./configure --prefix=/home/rchaud/opt/petsc/3.7.7/hdf5-1.8.21/OpenMPI-1.10.7/GCC-7.3.0 \
-      --with-shared-libraries --PETSC_ARCH=linux-gnu-real-opt --with-debugging=no \
-      --download-fblaslapack=1 --download-superlu_dist=1 \
-         --with-metis    --with-metis-dir=/home/rchaud/opt/parmetis/4.0.3/OpenMPI-1.10.7/GCC-7.3.0 \
-      --with-parmetis --with-parmetis-dir=/home/rchaud/opt/parmetis/4.0.3/OpenMPI-1.10.7/GCC-7.3.0 \
-      --with-hdf5 --with-hdf5-dir=/home/rchaud/opt/hdf5/1.8.21/OpenMPI-1.10.7/GCC-7.3.0 \
-      --with-fortran-interfaces
+      ./configure --prefix=$HOME/opt/petsc/3.7.7/hdf5-1.8.21/OpenMPI-1.10.7/GCC-7.3.0 \
+         --with-shared-libraries --PETSC_ARCH=linux-gnu-real-opt --with-debugging=no \
+         --download-fblaslapack=1 --download-superlu_dist=1 \
+            --with-metis    --with-metis-dir=$HOME/opt/parmetis/4.0.3/OpenMPI-1.10.7/GCC-7.3.0 \
+         --with-parmetis --with-parmetis-dir=$HOME/opt/parmetis/4.0.3/OpenMPI-1.10.7/GCC-7.3.0 \
+         --with-hdf5 --with-hdf5-dir=$HOME/opt/hdf5/1.8.21/OpenMPI-1.10.7/GCC-7.3.0 \
+         --with-fortran-interfaces
 
-5. Debug build which downloads and installs OpenMPI also (not recommended):
+#. Debug build which downloads and installs OpenMPI also (not recommended):
 
-.. code-block:: bash
+   .. code-block:: bash
 
-   ./configure --with-shared-libraries --download-superlu_dist --download-parmetis --download-metis \
-      --with-fortran-interfaces --with-debugging=yes --with-scalar-type=real --download-fblaslapack \
-      --PETSC_ARCH=$PETSC_ARCH --download-openmpi --with-cc=gcc --with-cxx=g++ --with-fc=gfortran
+      ./configure --with-shared-libraries --download-superlu_dist --download-parmetis --download-metis \
+         --with-fortran-interfaces --with-debugging=yes --with-scalar-type=real --download-fblaslapack \
+         --PETSC_ARCH=$PETSC_ARCH --download-openmpi --with-cc=gcc --with-cxx=g++ --with-fc=gfortran
 
 After the configuration step, PETSc must be built. This is accomplished with the command provided at the end of the configure script. It will look something like below (the PETSc version should be consistent with the version being installed.)::
-   
-   make PETSC_DIR=$HOME/packages/petsc-3.7.7 PETSC_ARCH=$PETSC_ARCH all
+
+   make PETSC_DIR=$HOME/packages/petsc-3.11.0 PETSC_ARCH=$PETSC_ARCH all
 
 After build, follow the the command provided at the end of the print out to test the functionality. It will look something like below::
 
-    make PETSC_DIR=$HOME/packages/petsc-3.7.7 PETSC_ARCH=$PETSC_ARCH test
+    make PETSC_DIR=$HOME/packages/petsc-3.11.0 PETSC_ARCH=$PETSC_ARCH test
 
 .. NOTE::
-   If your PETSc is not able to find mpi, try::
+   If your PETSc is not able to find mpi, try:
 
-   1. Add ``--with-mpi-dir=$MPI_INSTALL_DIR`` when you configure PETSc
-
-   2. Check your LD_LIBRARY_PATH order. If you have pytecplot, try moving tecplot LD_LIBRARY_PATH to the last.
+   #. Add ``--with-mpi-dir=$MPI_INSTALL_DIR`` when you configure PETSc
+   #. Check your LD_LIBRARY_PATH order. If you have pytecplot, try moving tecplot LD_LIBRARY_PATH to the last.
 
 
 .. _install_cgns:
@@ -248,16 +324,16 @@ Download and unpack the source directory, from your packages directory:
 .. code-block:: bash
 
    cd $HOME/packages
-   wget https://github.com/CGNS/CGNS/archive/v3.2.1.tar.gz
-   tar -xvaf v3.2.1.tar.gz
-   cd CGNS-3.2.1
+   wget https://github.com/CGNS/CGNS/archive/v3.3.0.tar.gz
+   tar -xvaf v3.3.0.tar.gz
+   cd CGNS-3.3.0
 
 Next, configure your environment for CGNS by adding the following lines to your ``$HOME/.bashrc`` and ``source``-ing it:
 
 .. code-block:: bash
 
    # -- CGNS
-   export CGNS_HOME=$HOME/packages/CGNS-3.2.1/opt-gfortran
+   export CGNS_HOME=$HOME/packages/CGNS-3.3.0/opt-gfortran
    export PATH=$PATH:$CGNS_HOME/bin
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CGNS_HOME/lib
 
@@ -291,7 +367,7 @@ flags and linking flags will be:
    to install the following packages::
 
    $ sudo apt-get install libxmu-dev libxi-dev
-   
+
    CGNS library sometimes complains about missing includes and libraries
    Most of the time this is either Tk/TCL or OpenGL. This can be solved by
    installing the following packages. Note that the version of these
@@ -392,10 +468,10 @@ It is installed with::
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. IMPORTANT::
    The MAJOR.MINOR version of petsc4py **MUST** match the MAJOR.MINOR version of petsc,
-   for example petsc 3.7.7 will only work with petsc4py 3.7.X.
+   for example petsc 3.11.0 will only work with petsc4py 3.11.X.
    In practice, this means you must request a specific version of petsc4py.
 
-   The version(s) of petsc4py tested to work with MDOlab tools is 3.7.0, built against petsc version 3.7.7.
+   The version(s) of petsc4py tested to work with MDOlab tools is 3.11.0, built against petsc version 3.11.0.
 
    petsc4py depends on petsc and its dependencies.
 
@@ -418,11 +494,11 @@ It is installed with::
 
 Advanced install (Multiple PETSc architectures needed)
 ******************************************************
-.. WARNING:: 
+.. WARNING::
    You must compile a unique petsc4py install for each PETSc architecture.
 
 `Download <https://bitbucket.org/petsc/petsc4py/downloads>`__ the source code and
-extract the latest version (the major version should be consistent with 
+extract the latest version (the major version should be consistent with
 the PETSc version installed, i.e., 3.7.0 here)::
 
 $ tar -xzf petsc4py-3.7.0.tar.gz
@@ -437,10 +513,8 @@ $ python setup.py install --user
 
 This will install the package to the ``.local`` directory in your home
 directory which is suitable for both desktop and cluster accounts.
-You may seen an error warning related to ``python-mpi``, but this 
-should not be a problem. 
+You may seen an error warning related to ``python-mpi``, but this should not be a problem.
 
-   
 **IF THERE IS AN EXISTING** ``build`` **DIRECTORY IT MUST BE
 FORCIBLY REMOVED** (``rm -fr build``) **BEFORE DOING ANOTHER ARCHITECTURE
 INSTALL**. To install with a different architecture change the
@@ -452,47 +526,6 @@ Then install the package::
 
    $ python setup.py install --user
 
-
-
-
-.. _working_stacks:
-
-Working Stacks
---------------
-This section includes the stacks successfully used by MDOlab members.
-This section is a work in progress.
-
-.. First entry (18.04) This is Ross S. Chaudhry's configuration on Xeon desktop, used to build this guide. Added to the table July 2019
-   Second entry (16.04) is Eirikur's configuration. Added to the table July 2019
-
-
-.. list-table::
-   :widths: 14 12 8 9 9 7 9 9 7 9 9
-   :header-rows: 1
-
-   *  - OS
-      - Compiler
-      - OpenMPI
-      - mpi4py
-      - PETSc
-      - petsc4py
-      - CGNS
-      - python
-      - numpy
-      - scipy
-      - swig
-
-   *  - Ubuntu 18.04
-      - GCC 7.4
-      - 3.1.4
-      - 3.0.2
-      - 3.11.0
-      - 3.11.0
-      - 3.3.0
-      - 2.7
-      - 1.16.4
-      - 1.2.1
-      - 2.0.12
 
 Other Methods and Notes
 -----------------------
@@ -520,6 +553,6 @@ If multiple versions and dependencies are being used simultaneously,
 for example on a cluster, the paradigm of `environment modules <http://modules.sourceforge.net>` is often used (eg. ``module use petsc``).
 A module file is simply a text file containing lines such as::
 
-   append-path PATH /home/rchaud/opt/petsc/3.7.7/OpenMPI-1.10.7/GCC-7.3.0/bin
+   append-path PATH $HOME/opt/petsc/3.7.7/OpenMPI-1.10.7/GCC-7.3.0/bin
 
 MDOlab tools can be used by configuring your environment with either ``.bashrc`` or environment modules, or some combination of the two.
