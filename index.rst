@@ -40,7 +40,6 @@ Installation instructions
    installInstructions/install3rdPartyPackages
 
    clusterSetup/pleaidesSetup
-   clusterSetup/fluxSetup
    clusterSetup/GreatlakesSetup
    clusterSetup/stampedeSetup
 
