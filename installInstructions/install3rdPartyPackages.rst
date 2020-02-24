@@ -475,11 +475,7 @@ Advanced install (Multiple PETSc architectures needed)
 extract the latest version (the major version should be consistent with
 the PETSc version installed, i.e., 3.11.0 here)::
 
-$ tar -xzf petsc4py-3.11.0.tar.gz
-
-Due to the fact that we use a very old version of petsc4py (and potentially together with anaconda), before installing, issue the command::
-
-$ export LDSHARED=-shared
+   $ tar -xzf petsc4py-3.11.0.tar.gz
 
 From the petsc4py-3.11.0 directory do a user-space install::
 
