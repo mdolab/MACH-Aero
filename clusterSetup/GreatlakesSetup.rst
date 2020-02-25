@@ -69,32 +69,16 @@ Below is an example Batch script for Great Lakes.
 .. code-block:: bash
 
    #!/bin/bash
-   # The interpreter used to execute the script:
-   # "SBATCH" directives that convey submission options:
-   ##### The name of the job
-   #SBATCH --job-name=Jobname
-   ##### Email address
-   #SBATCH --mail-user=$USER@umich.edu
-   ##### When to send e-mail: pick from NONE, BEGIN, END, FAIL, REQUEUE, ALL
-   #SBATCH --mail-type=BEGIN,END,FAIL
-   ##### Resources for your job
-   # number of physical nodes
-   #SBATCH --nodes=1
-   # number of task per nodes (number of CPU-cores per node)
-   #SBATCH --ntasks-per-node=36
-   # memory per CPU core
-   #SBATCH --mem-per-cpu=5GB
-   ##### Maximum amount of time the job will be allowed to run
-   ##### Recommended formats: MM:SS, HH:MM:SS, DD-HH:MM
-   #SBATCH --time=100:00:00
-   ##### The resource account; who pays
-   #SBATCH --account=jrram1
-   #SBATCH --partition=standard
-   ##### Output path
-   #SBATCH --output=/home/%u/%x-%j.log
-   ########## End of preamble! #########################################
-   # No need to “cd”. Slurm starts the job in the submission directory.
-   #####################################################################
+   #SBATCH --job-name=<job-name>        # unique identifier for the job
+   #SBATCH --mail-user=$USER@umich.edu  # email address to send notification
+   #SBATCH --mail-type=BEGIN,END,FAIL   # when to notify, pick from NONE, BEGIN, END, FAIL, REQUEUE, ALL
+   #SBATCH --nodes=1                    # number of nodes
+   #SBATCH --ntasks-per-node=36         # number of CPU-cores per node, max is 36 for GL
+   #SBATCH --mem-per-cpu=5GB            # memory per CPU core
+   #SBATCH --time=100:00:00             # Recommended formats: MM:SS, HH:MM:SS, DD-HH:MM
+   #SBATCH --account=jrram1             # the billing account
+   #SBATCH --partition=standard         # typically either standard or debug
+
    source ~/.bashrc
    # The application(s) to execute along with its input arguments and options:
    mpirun -np 36 python opt.py
