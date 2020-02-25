@@ -75,7 +75,7 @@ Below is an example Batch script for Great Lakes.
    #SBATCH --nodes=1                    # number of nodes
    #SBATCH --ntasks-per-node=36         # number of CPU-cores per node, max is 36 for GL
    #SBATCH --mem-per-cpu=5GB            # memory per CPU core
-   #SBATCH --time=100:00:00             # Recommended formats: MM:SS, HH:MM:SS, DD-HH:MM
+   #SBATCH --time=100:00:00             # recommended formats: MM:SS, HH:MM:SS, DD-HH:MM
    #SBATCH --account=jrram1             # the billing account
    #SBATCH --partition=standard         # typically either standard or debug
 
@@ -116,10 +116,20 @@ It's exactly the same as the standard queue, but with a limit of 8 processors an
 as only one job per user at any given time.
 The debug queue itself has higher priority, so it can be useful when the standard queue is packed.
 
+Interactive Jobs
+----------------
+Interactive jobs are jobs where you get access to the terminal, such that you can run tasks interactively.
+It would be exactly the same as if you were running jobs on your local computer, except you get access to more cores and more memory.
+
+For example, an interactive job with 16 processors for one hour can be requested using::
+
+   srun --nodes=1 --ntasks-per-node=16 --mem-per-cpu=5GB --time=1:00:00 --partition standard --pty /bin/bash
+
+If the cluster is busy, using the debug queue (while staying under its resource limits) may be faster.
+Once successful, you'll be logged in to a compute node (the hostname would look something like ``gl3057``), and you can then run your code normally.
 
 Job Submission and Monitoring
 -----------------------------
 
 Jobs are submitted with ``sbatch batch_script``, and cancelled with ``scancel jobid``, where ``jobid`` can be found with ``squeue -u $USER``.
 To check the estimated starting time for your job, type ``squeue -j <job ID> --start``.
-Interactive jobs may be useful for debugging purposes, and they can be requested with the ``srun --nodes=2 --ntasks-per-node=4 --mem-per-cpu=1GB --cpus-per-task=1 --time=1:00:00 --pty /bin/bash``.
