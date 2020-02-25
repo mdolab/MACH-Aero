@@ -179,7 +179,7 @@ To get a list of all available options run::
 
    ./configure --help
 
-We explain the relevant flags below, but you can jump ahead to
+We explain the relevant options below, but you can jump ahead to
 :ref:`configure PETSc <configure_petsc>` and use one of the pre-set list of options there.
 
 #. **Debugging**: To compile without debugging use the switch:
@@ -332,14 +332,6 @@ Make a ``build`` directory, and call cmake from there to configure the package:
 Finally, build and install::
 
    make all install
-
-Now, for pyHyp, ADflow, pyWarp and cgnsUtilities, the required include
-flags and linking flags will be:
-
-.. code-block:: bash
-
-   CGNS_INCLUDE_FLAGS=-I$(CGNS_HOME)/include
-   CGNS_LINKER_FLAGS=-L$(CGNS_HOME)/lib -lcgns
 
 .. NOTE::
    **Optional**: To build the CGNS tools to view and edit CGNS files manually,
