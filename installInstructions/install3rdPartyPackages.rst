@@ -6,14 +6,20 @@
 3rd Party Packages
 ==================
 .. NOTE::
-   Before trying to compile everything yourself, including all dependencies, consider using the Docker image available on Docker Hub at ``mdolab/public``.
+   Before trying to compile everything yourself, including all dependencies, consider using the ``mdolab/public`` Docker image available on `Docker Hub <https://hub.docker.com/r/mdolab/public>`_.
 
 .. _working_stacks:
 
-Working Stacks
---------------
+Supported dependency versions
+-----------------------------
 This section lists out the dependency versions that have been verified to work with specific code versions.
 Here ``version`` refers to the code version, and ``tag`` refers to the Docker image tag.
+If you are using the latest code from GitHub, then please use the row that contains the latest ``version``.
+
+.. IMPORTANT::
+   Although the code may work with other dependency versions (for example numpy and scipy requirements are not
+   strict), we only test code against the dependency versions listed below. Therefore, if you choose to use
+   a different dependency version, then you are essentially on your own.
 
 .. list-table::
    :header-rows: 1
@@ -362,9 +368,9 @@ Python Packages
 ---------------
 
 .. IMPORTANT::
-   MDOlab tools have been tested to work with python2.
-   The MDOlab is in the process of migrating to python3;
-   support for python2 will be dropped before python2 EOL (January 2020).
+   MDOlab tools have been tested to work with python 2.
+   The MDOlab is in the process of migrating to python 3;
+   however we will continue to support python 2 for the forseeable future.
 
 In this guide, python packages are installed using ``pip``.
 Other methods, such as from source or using ``conda``, will also work.
@@ -398,6 +404,10 @@ It is installed with::
 
    pip install numpy==1.16.4 --user --no-cache
 
+On a ``conda``-based system, it is recommended to use ``conda`` to install numpy and scipy::
+
+   conda install numpy==1.16.4
+
 `Scipy <http://scipy.org/>`_
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Scipy is required for several packages including :ref:`pyoptsparse`, :ref:`pygeo` and certain
@@ -405,6 +415,10 @@ functionality in pytacs and :ref:`pyspline`.
 It is installed with::
 
    pip install scipy==1.2.1 --user --no-cache
+
+On a ``conda``-based system, it is recommended to use ``conda`` to install numpy and scipy::
+
+   conda install scipy==1.2.1
 
 .. note::
    On a cluster, most likely numpy and scipy will already be
