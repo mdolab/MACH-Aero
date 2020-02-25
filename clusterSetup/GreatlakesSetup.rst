@@ -8,7 +8,7 @@ GreatLakes Cluster Setup
 ========================
 This guide is intended to assist users with setting up the MDOlab software
 on the UMich GreatLakes Cluster.  The user will first need to create an account
-and get access to the cluster. GreatLakes requires an on-campus connection, which can be provided by UMVPN (see :ref:`settingUpUMVPN` for setup instructions). An alternative is to first ``ssh`` into ``login.itd.umich.edu``, which does not require an on-campus connection, then from there ``ssh`` on to ``greatlakes.arc-ts.umich.edu``. It is recommended to save these commands as aliases or bash scripts for convenience. 
+and get access to the cluster. GreatLakes requires an on-campus connection, which can be provided by UMVPN (see :ref:`settingUpUMVPN` for setup instructions). An alternative is to first ``ssh`` into ``login.itd.umich.edu``, which does not require an on-campus connection, then from there ``ssh`` on to ``greatlakes.arc-ts.umich.edu``. It is recommended to save these commands as aliases or bash scripts for convenience.
 
 Great Lakes users manual is at:
 https://arc-ts.umich.edu/greatlakes/
@@ -54,8 +54,8 @@ home directory on Great Lakes.
    export PATH=$PATH:$HOME/repos/cgnsutilities/bin
 
    # User specific aliases and functions
-   alias j='squeue -u <uniqname>'
-   alias scr='cd /scratch/jrram_root/jrram/<uniqname>'
+   alias j='squeue -u $USER'
+   alias scr='cd /scratch/jrram_root/jrram/$USER'
 
 This file starts by specifying the preset modules you want to load.
 This is followed by a section setting the environment variables to allow the use of the MDOlab software.
@@ -74,7 +74,7 @@ Below is an example Batch script for Great Lakes.
    ##### The name of the job
    #SBATCH --job-name=Jobname
    ##### Email address
-   #SBATCH --mail-user=<uniqname>@umich.edu
+   #SBATCH --mail-user=$USER@umich.edu
    ##### When to send e-mail: pick from NONE, BEGIN, END, FAIL, REQUEUE, ALL
    #SBATCH --mail-type=BEGIN,END,FAIL
    ##### Resources for your job
@@ -136,6 +136,6 @@ The debug queue itself has higher priority, so it can be useful when the standar
 Job Submission and Monitoring
 -----------------------------
 
-Jobs are submitted with ``sbatch batch_script``, and cancelled with ``scancel jobid``, where ``jobid`` can be found with ``squeue -u <uniqname>``. 
+Jobs are submitted with ``sbatch batch_script``, and cancelled with ``scancel jobid``, where ``jobid`` can be found with ``squeue -u $USER``.
 To check the estimated starting time for your job, type ``squeue -j <job ID> --start``.
 Interactive jobs may be useful for debugging purposes, and they can be requested with the ``srun --nodes=2 --ntasks-per-node=4 --mem-per-cpu=1GB --cpus-per-task=1 --time=1:00:00 --pty /bin/bash``.
