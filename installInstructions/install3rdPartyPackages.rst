@@ -400,16 +400,11 @@ It is installed with::
 
 `Scipy <http://scipy.org/>`_
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. IMPORTANT::
-   The version(s) of scipy tested to work with MDOlab tools is ``1.2.2``.
-
-   Scipy depends on numpy
-
 Scipy is required for several packages including :ref:`pyoptsparse`, :ref:`pygeo` and certain
 functionality in pytacs and :ref:`pyspline`.
 It is installed with::
 
-   pip install --user --no-cache scipy==1.2.2
+   pip install scipy==1.2.1 --user --no-cache
 
 .. note::
    On a cluster, most likely numpy and scipy will already be
@@ -430,7 +425,7 @@ mpi4py is the Python wrapper for MPI. This is required for
 **all** parallel MDOlab codes.
 It is installed with::
 
-   pip install --user --no-cache mpi4py==3.0.2
+   pip install mpi4py==3.0.2 --user --no-cache
 
 .. NOTE::
    Some function usages have changed in newer versions of mpi4py. Check the `release <https://github.com/mpi4py/mpi4py/blob/master/CHANGES.rst>`_ to see the modifications that might be requried in the code.
@@ -464,7 +459,7 @@ Simple install with pip
 
 It is installed with::
 
-   pip install --user --no-cache petsc4py==3.11.0
+   pip install petsc4py==3.11.0 --user --no-cache
 
 Advanced install (Multiple PETSc architectures needed)
 ******************************************************
