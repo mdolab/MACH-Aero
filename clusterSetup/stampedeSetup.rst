@@ -1,8 +1,6 @@
 .. Documentation of a basic setup on the stampede2 cluster.
    Note that the user is assumed to have already gotten an account
    setup, and has access to the login nodes on the cluster.
-   Author: C.A.(Sandy) Mader (cmader@umich.edu)
-   Edited by: Neil Wu (neilwu@umich.edu)
 
 .. _stampede2:
 

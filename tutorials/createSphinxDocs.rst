@@ -1,6 +1,5 @@
 .. Instructions on how to set up create a new documentation site for an
    existing repository
-   Author: Eirikur Jonsson (eirikurj@umich.edu)
 
 
 .. _createSphinxDocs:

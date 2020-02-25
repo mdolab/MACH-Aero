@@ -1,8 +1,5 @@
 .. Instructions on how to set up a computer from scratch and be able to 
    run the aero_runs/aero_opt/as_runs/as_opt
-   Author: Eirikur Jonsson (eirikurj@umich.edu)
-   Modifed: C.A.(Sandy) Mader (cmader@umich.edu)
-    
 
 .. _installFromScratch:
 

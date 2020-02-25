@@ -1,8 +1,6 @@
 .. Documentation of initial setup on the NASA Pleiades cluster.
    Note that the user is assumed to have already gotten an account
    setup, and has access to one of the pfe nodes on the cluster.
-   Author: David Burdette (daburdet@umich.edu)
-   Edited by: John Jasa (johnjasa@umich.edu)
 
 .. _pleiades:
 
