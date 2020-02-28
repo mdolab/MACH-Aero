@@ -1,5 +1,5 @@
-.. Some helpful tips or common pitfalls when using Tapenade to differentiate code. Please add or modify as you see fit.
-   Author: John Jasa (johnjasa@umich.edu)
+.. Some helpful tips or common pitfalls when using Tapenade to differentiate code.
+Please add or modify as you see fit.
 
 
 .. _tapenadeTips:

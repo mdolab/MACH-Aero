@@ -1,5 +1,4 @@
 .. Standard method of doing a grid refinement study.
-   Author: Nick Bons (nbons@umich.edu)
 
 
 .. _gridRefinementStudy:

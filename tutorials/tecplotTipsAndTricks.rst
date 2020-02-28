@@ -1,5 +1,4 @@
 .. Various tips and trick using tecplot. Most are small features that might improve the user experience.
-   Author: Eirikur Jonsson (eirikurj@umich.edu)
 
 
 .. _tecplotTipsAndTricks:

@@ -1,5 +1,4 @@
 .. Instructions on how to set up an FTP client to upload data to box.com
-   Author: Eirikur Jonsson (eirikurj@umich.edu)
 
 
 .. _uploadingToBox:
