@@ -53,10 +53,22 @@ home directory on Great Lakes.
    export PATH=${PATH}:${HOME}/repos/tacs_orig/extern/f5totec
    export PATH=$PATH:$HOME/repos/cgnsutilities/bin
 
-   # User specific aliases and functions
-   alias j='squeue -u $USER'
-   alias scr='cd /scratch/jrram_root/jrram/$USER'
+   # Convenient env variables
+   export SCRATCH=/scratch/jrram_root/jrram1/$USER
 
+   # User specific aliases and functions
+   alias squ='squeue -u $USER'
+   alias sqj='squeue -A jrram1'
+   alias scr="cd $SCRATCH"
+   alias billing='sreport -T billing cluster AccountUtilizationByUser Accounts=jrram1 Start=$(date '+%Y-%m-01') End=now'
+   alias utilization='sreport cluster Utilization -t percent End=$(date +%H:%M) Start=$(date +%H:%M -d "2 hours ago")'
+
+   alias debug8='srun --account=jrram1 --nodes=1 --ntasks-per-node=8 --mem-per-cpu=5GB --time=4:00:00 --partition=standard --cpus-per-task=1 --pty /bin/bash'
+   alias debug36='srun --account=jrram1 --nodes=1 --ntasks-per-node=36 --mem-per-cpu=5GB --time=4:00:00 --partition=standard --cpus-per-task=1 --pty /bin/bash'
+   alias debug72='srun --account=jrram1 --nodes=2 --ntasks-per-node=36 --mem-per-cpu=5GB --time=4:00:00 --partition=standard --cpus-per-task=1 --pty /bin/bash'   
+   alias debug108='srun --account=jrram1 --nodes=3 --ntasks-per-node=36 --mem-per-cpu=5GB --time=4:00:00 --partition=standard --cpus-per-task=1 --pty /bin/bash'
+
+   
 This file starts by specifying the preset modules you want to load.
 This is followed by a section setting the environment variables to allow the use of the MDOlab software.
 The last portion of the file specifies a series of aliases to make some standard operations easier.
@@ -133,3 +145,6 @@ Job Submission and Monitoring
 
 Jobs are submitted with ``sbatch batch_script``, and cancelled with ``scancel jobid``, where ``jobid`` can be found with ``squeue -u $USER``.
 To check the estimated starting time for your job, type ``squeue -j <job ID> --start``.
+To estimate the cost of your job, ``my_job_estimate <script name>``.
+To check how much money used on an account, ``sreport -T billing cluster AccountUtilizationByUser Accounts=<account name> Start=<date> End=<date>``. 
+A ``billing`` alias is shown in the above sample bashrc. The number needs to be divided by 100,000 to get the actual dollar amount used.
