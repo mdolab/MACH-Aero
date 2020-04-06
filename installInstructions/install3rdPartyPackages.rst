@@ -329,9 +329,6 @@ Make a ``build`` directory, and call cmake from there to configure the package:
    cd build
    cmake .. -DCGNS_ENABLE_FORTRAN=1 -DCMAKE_INSTALL_PREFIX=$CGNS_HOME -DCGNS_BUILD_CGNSTOOLS=1
 
-Finally, build and install::
-
-   make all install
 
 .. NOTE::
    **Optional**: To build the CGNS tools to view and edit CGNS files manually,
@@ -350,11 +347,22 @@ Finally, build and install::
       # If needed
       $ sudo apt-get install freeglut3-dev
 
+   **NOTE**:
+   If you are building the CGNSTOOLS on Ubuntu 18 you will need to modify some 
+   of the source files. The changes in the src files are shown in this 
+   `diff <https://bugs.debian.org/cgi-bin/bugreport.cgi?att=1;bug=890271;filename=libcgns.diff;msg=5>`_.
+
+
    **Optional**: If you compiled with the CGNS_BUILD_CGNSTOOLS flag ON you
    either need to add the binary path to your PATH environmental variable or
    you can install the binaries system wide. To do so issue the command::
 
    $ sudo make install
+
+
+Finally, build and install::
+
+   make all install
 
 Python Packages
 ---------------
