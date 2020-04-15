@@ -317,11 +317,58 @@ Next, configure your environment for CGNS by adding the following lines to your 
    export PATH=$PATH:$CGNS_HOME/bin
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CGNS_HOME/lib
 
-Make a ``build`` directory, and call cmake from there to configure the package:
+Next is to configure the package.
+Here are some notes for configuring below, or you can jump ahead to the configure commands
+:ref:`configure CGNS <configure_cgns>`. 
 
 .. NOTE::
-   When compiling on a cluster, it helps to set ``-DCGNS_BUILD_CGNSTOOLS = 0``. It will
-   build without the cgnstools which requires additional packages.
+
+   - If you want to build the CGNS tools to view and edit CGNS files manually,
+      set ``-DCGNS_BUILD_CGNSTOOLS = 1``. To enable this option you may need
+      to install the following packages::
+
+      $ sudo apt-get install libxmu-dev libxi-dev
+
+      CGNS library sometimes complains about missing includes and libraries
+      Most of the time this is either Tk/TCL or OpenGL. This can be solved by
+      installing the following packages. Note that the version of these
+      libraries might be different on your machine ::
+
+         $ sudo apt-get install freeglut3
+         $ sudo apt-get install tk8.6-dev
+         # If needed
+         $ sudo apt-get install freeglut3-dev
+
+      If you are building the CGNSTOOLS on Ubuntu 18 you will need to modify some 
+      of the source files. The changes in the src files are shown in this 
+      `diff <https://bugs.debian.org/cgi-bin/bugreport.cgi?att=1;bug=890271;filename=libcgns.diff;msg=5>`_.
+
+
+      **Optional**: If you compiled with ``-DCGNS_BUILD_CGNSTOOLS = 1`` you
+      either need to add the binary path to your PATH environmental variable or
+      you can install the binaries system wide. By specifying the installation prefix 
+      as shown in the later example configure commands, the binary path is in your PATH environmental variables; 
+      without specifying the prefix, the default is a system path, which requires sudo.
+
+   - When compiling on a cluster, it helps to set ``-DCGNS_BUILD_CGNSTOOLS = 0``. 
+      It will build without the cgnstools which requires additional packages.
+
+   - If you use intel compilers:
+      Check ``CMAKE_C_COMPILER:FILEPATH`` and ``CMAKE_FORTRAN_COMPILER:FILEPATH`` in ``CMakeCache.txt`` 
+      file after you configure the package. It's likely that CGNS gets compiled with some random old version of gcc stored in ``/bin/``. 
+      If they are incorrect, to compile it correctly, remove your old install and set the environment variables ``export CC=$(which icc)`` and ``export FC=$(which ifort)``. 
+
+
+      Another notice on the intel installs is that the ``config.mk`` files are out of date. 
+      With new intel compilers, the actual mpi-wrapped compilers changed names. 
+      Check out the compilers_, and modify the ``FF90`` and ``CC`` options in ``config.mk`` files as needed.
+
+   .. _compilers: https://software.intel.com/en-us/mpi-developer-reference-linux-compilation-commands
+
+
+Make a ``build`` directory, and call cmake from there to configure the package:
+
+.. _configure_cgns:
 
 .. code-block:: bash
 
@@ -330,39 +377,11 @@ Make a ``build`` directory, and call cmake from there to configure the package:
    cmake .. -DCGNS_ENABLE_FORTRAN=1 -DCMAKE_INSTALL_PREFIX=$CGNS_HOME -DCGNS_BUILD_CGNSTOOLS=1
 
 
-.. NOTE::
-   **Optional**: To build the CGNS tools to view and edit CGNS files manually,
-   toggle the CGNS_BUILD_CGNSTOOLS option. To enable this option you may need
-   to install the following packages::
-
-   $ sudo apt-get install libxmu-dev libxi-dev
-
-   CGNS library sometimes complains about missing includes and libraries
-   Most of the time this is either Tk/TCL or OpenGL. This can be solved by
-   installing the following packages. Note that the version of these
-   libraries might be different on your machine ::
-
-      $ sudo apt-get install freeglut3
-      $ sudo apt-get install tk8.6-dev
-      # If needed
-      $ sudo apt-get install freeglut3-dev
-
-   **NOTE**:
-   If you are building the CGNSTOOLS on Ubuntu 18 you will need to modify some 
-   of the source files. The changes in the src files are shown in this 
-   `diff <https://bugs.debian.org/cgi-bin/bugreport.cgi?att=1;bug=890271;filename=libcgns.diff;msg=5>`_.
-
-
-   **Optional**: If you compiled with the CGNS_BUILD_CGNSTOOLS flag ON you
-   either need to add the binary path to your PATH environmental variable or
-   you can install the binaries system wide. To do so issue the command::
-
-   $ sudo make install
-
 
 Finally, build and install::
 
-   make all install
+   $ make all install
+
 
 Python Packages
 ---------------
