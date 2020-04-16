@@ -79,6 +79,10 @@ files. The ``config.LINUX_INTEL.mk`` versions are usually used on clusters.
 ADflow has been successfully compiled on LINUX with either
 ifort or gfortran.
 
+.. NOTE::
+   If you are using the python 2, please set ``PYTHON-CONFIG = python-config`` in the ``config/config.mk``.
+   Also, make sure to specify the appropriate CGNS version.
+
 Once you have copied the config file, compile the module by running::
 
     $ make
