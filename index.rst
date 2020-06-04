@@ -51,11 +51,6 @@ Tutorials
    :maxdepth: 1
 
    packages/mach_aero_tutorials/doc/index
-   tutorials/createSphinxDocs
-   tutorials/tecplotTipsAndTricks
-   tutorials/tapenadeTips
-   tutorials/uploadingToBox
-   tutorials/gridRefinementStudy
 
 
 Indices and tables
