@@ -82,7 +82,7 @@ Below is an example Batch script for Great Lakes.
 
    #!/bin/bash
    #SBATCH --job-name=<job-name>        # unique identifier for the job
-   #SBATCH --mail-user=$USER@umich.edu  # email address to send notification
+   #SBATCH --mail-user=<email>          # email address to send notification
    #SBATCH --mail-type=BEGIN,END,FAIL   # when to notify, pick from NONE, BEGIN, END, FAIL, REQUEUE, ALL
    #SBATCH --nodes=1                    # number of nodes
    #SBATCH --ntasks-per-node=36         # number of CPU-cores per node, max is 36 for GL
