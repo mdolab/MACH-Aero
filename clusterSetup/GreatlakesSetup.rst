@@ -6,12 +6,13 @@
 
 GreatLakes Cluster Setup
 ========================
-This guide is intended to assist users with setting up the MDOlab software
-on the UMich GreatLakes Cluster.  The user will first need to create an account
-and get access to the cluster. GreatLakes requires an on-campus connection, which can be provided by UMVPN (see :ref:`settingUpUMVPN` for setup instructions). An alternative is to first ``ssh`` into ``login.itd.umich.edu``, which does not require an on-campus connection, then from there ``ssh`` on to ``greatlakes.arc-ts.umich.edu``. It is recommended to save these commands as aliases or bash scripts for convenience.
+This guide is intended to assist users with setting up the MDOlab software on the UMich GreatLakes Cluster.
+The user will first need to create an account and get access to the cluster.
+GreatLakes requires an on-campus connection, which can be provided by via the UM VPN service.
+An alternative is to first ``ssh`` into ``login.itd.umich.edu``, which does not require an on-campus connection, then from there ``ssh`` on to ``greatlakes.arc-ts.umich.edu``.
+It is recommended to save these commands as aliases or bash scripts for convenience.
 
-Great Lakes users manual is at:
-https://arc-ts.umich.edu/greatlakes/
+Please read the `Great Lakes user guide <https://arc-ts.umich.edu/greatlakes/user-guide/>`_ carefully first.
 
 A ``gcc``-based installation is recommended. The compiler/MPI versions can be found in the ``.bashrc`` below.
 Intel-based installs are possible, with ``intel/18.0.5`` and ``impi/2018.4.274``. However, the setup is significantly more complicated.
