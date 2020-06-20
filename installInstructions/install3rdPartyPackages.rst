@@ -339,10 +339,8 @@ Here are some notes for configuring below, or you can jump ahead to the configur
          # If needed
          $ sudo apt-get install freeglut3-dev
 
-      If you are building the CGNSTOOLS on Ubuntu 18 you will need to modify some 
-      of the source files. The changes in the src files are shown in this 
-      `diff <https://bugs.debian.org/cgi-bin/bugreport.cgi?att=1;bug=890271;filename=libcgns.diff;msg=5>`_.
-
+      .. warning:: 
+         There is a known bug in CGNS 3.3.0 (fixed in later versions) that crashes the build routine for Ubuntu 18/20 when this CGNS tools option is turned on. You can either turn it off compiling with ``-DCGNS_BUILD_CGNSTOOLS = 0`` or, if you still want to use CGNS tools, you can manually patch the source files using `this PR <https://github.com/CGNS/CGNS/pull/55/files>`_ as a reference.
 
       **Optional**: If you compiled with ``-DCGNS_BUILD_CGNSTOOLS = 1`` you
       either need to add the binary path to your PATH environmental variable or
