@@ -258,6 +258,9 @@ Putting these options together, some complete examples of configuring PETSc are:
       ./configure --with-shared-libraries --download-superlu_dist --download-parmetis=yes --download-metis=yes \
          --with-fortran-bindings=1 --with-debugging=0 --with-scalar-type=real --PETSC_ARCH=$PETSC_ARCH --with-cxx-dialect=C++11
 
+.. NOTE::
+   If you are compiling PETSc on Greatlakes, check the :ref:`configure_petsc_gl` for correct options.
+
 After the configuration step, PETSc must be built. This is accomplished with the command provided at the end of the configure script. It will look something like below (the PETSc version should be consistent with the version being installed.)::
 
    make PETSC_DIR=$HOME/packages/petsc-3.11.0 PETSC_ARCH=$PETSC_ARCH all

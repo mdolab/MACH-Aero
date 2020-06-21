@@ -2,7 +2,7 @@
    Note that the user is assumed to have already gotten an account
    setup, and has access to the login nodes on the cluster.
 
-.. _Great Lakes:
+.. _Great_Lakes:
 
 GreatLakes Cluster Setup
 ========================
@@ -15,7 +15,7 @@ It is recommended to save these commands as aliases or bash scripts for convenie
 Please read the `Great Lakes user guide <https://arc-ts.umich.edu/greatlakes/user-guide/>`_ carefully first.
 
 A ``gcc``-based installation is recommended. The compiler/MPI versions can be found in the ``.bashrc`` below.
-Intel-based installs are possible, with ``intel/18.0.5`` and ``impi/2018.4.274``. However, the setup is significantly more complicated.
+Intel-based installs are possible, with ``intel/18.0.5`` and ``impi/2018.4.274``. However, the setup is significantly more complicated and currently it's not recommended. Up to June 2020, the Intel-based installs on GL has been tested to be extremely slow.
 
 Example .bashrc
 ---------------
@@ -33,9 +33,11 @@ home directory on Great Lakes.
    fi
 
    module load python2.7-anaconda/2019.03
-   module load gcc/4.8.5
-   module load openmpi/3.1.4
+   module load gcc/8.2.0
+   module load openmpi/4.0.2
    module load cmake/3.13.2
+   module load mkl/2018.0.4
+   module load git
 
 
    # add the repos directory to your python path so that the mdolab modules will be available
@@ -149,3 +151,16 @@ To check the estimated starting time for your job, type ``squeue -j <job ID> --s
 To estimate the cost of your job, ``my_job_estimate <script name>``.
 To check how much money used on an account, ``sreport -T billing cluster AccountUtilizationByUser Accounts=<account name> Start=<date> End=<date>``. 
 A ``billing`` alias is shown in the above sample bashrc. The number needs to be divided by 100,000 to get the actual dollar amount used.
+
+.. _configure_petsc_gl:
+
+Greatlakes PETSc installation
+-----------------------------
+
+To build PETSc on Greatlakes, you need to load ``mkl`` first, and specify the blas/lapack lib path in a specific way, which is shown in the example below (``--with-blas-lapack-lib=``):
+
+.. code-block:: bash
+
+   ./configure --with-shared-libraries --download-superlu_dist --download-parmetis=yes --download-metis=yes    --with-fortran-bindings=1 \
+   --with-debugging=0 --with-scalar-type=real --PETSC_ARCH=$PETSC_ARCH --with-cxx-dialect=C++11 --with-mpi-dir=$MPI_HOME COPTFLAGS='-O3' CXXOPTFLAGS='-O3' FOPTFLAGS='-O3' \
+   --CFLAGS='-fPIC' --CXXFLAGS='-fPIC' --FFLAGS='-fPIC' --with-blas-lapack-lib=" -Wl,--start-group ${MKL_LIB}/libmkl_intel_lp64.a ${MKL_LIB}/libmkl_sequential.a ${MKL_LIB}/libmkl_core.a -Wl,--end-group -lpthread -lm -ldl"
