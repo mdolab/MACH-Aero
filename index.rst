@@ -39,10 +39,6 @@ Installation instructions
    installInstructions/installFromScratch
    installInstructions/install3rdPartyPackages
 
-   clusterSetup/pleaidesSetup
-   clusterSetup/GreatlakesSetup
-   clusterSetup/stampedeSetup
-
 
 Tutorials
 =========
