@@ -1,7 +1,7 @@
 MACH-Aero
 =========
 
-This page is intended to introduce the aerodynamic shape optimization capability within MACH (framework for MDO of aircraft configurations with high fidelity). The MACH framework is developed by the Multidisciplinary Design Optimization Laboratory (MDO Lab) at University of Michigan. More documentations can be found at http://mdolab.engin.umich.edu/docs/
+This page is intended to introduce the aerodynamic shape optimization capability within MACH (framework for MDO of aircraft configurations with high fidelity). The MACH framework is developed by the Multidisciplinary Design Optimization Laboratory (MDO Lab) at the University of Michigan. More documentation can be found at https://mdolab-mach-aero-tutorial.readthedocs-hosted.com/en/latest/
 
 MACH-Aero consists of six major modules:
 
