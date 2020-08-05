@@ -16,7 +16,7 @@ And the following optional modules:
 
 - `pyHyp <https://mdolab-pyhyp.readthedocs-hosted.com>`_ is a hyperbolic mesh generation tool used as a preprocessing step
 - `multiPoint <https://mdolab-multipoint.readthedocs-hosted.com>`_ facilitates distributed multipoint optimization and handles the parallel communication using MPI
-- `DAFoam <https://dafoam.readthedocs.io/en/latest/>`_ provides efficient adjoint implementations for OpenFOAM to be used for CFD instead of ADflow
+- `DAFoam <https://dafoam.github.io/>`_ provides efficient adjoint implementations for OpenFOAM to be used for CFD instead of ADflow
 
 More detail for the framework can be found in :ref:`mach-aero`.
 

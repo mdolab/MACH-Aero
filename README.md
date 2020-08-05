@@ -1,22 +1,25 @@
-# MDO Lab Documentation #
+# MACH-Aero
 
-MDO Lab public documentation repository
-Most of the docs in this repo are in reStructuredText (.rst) format and made with Sphinx.
-Some docs live in this repo, whereas others live in their respective code's repo.
+MACH-Aero is a framework for performing aerodynamic shape optimization.
+It contains the following core modules:
+- `baseClasses`
+- `pySpline`
+- `pyGeo`
+- `IDWarp`
+- `ADflow`
+- `pyOptSparse`
 
-# How to access the docs online #
+And optional modules:
+- `pyHyp`
+- `multiPoint`
+- `DAFoam`
 
-These docs are continuously built and published online to http://mdolab.engin.umich.edu/docs/.
+Note that all the code for MACH-Aero are contained within the individual repositories above, which can be found on GitHub under the organization `mdolab`.
+This repository contains the following:
+- A description of the overall framework
+- Installation instructions which are shared across the various repositories
+- Tutorials for using MACH-Aero to perform aerodynamic shape optimization
 
-# How to locally make the docs #
-
-To locally compile these docs, clone the rpeo, then type `make html` at the base folder.
-The built docs will live in the `_build/html` folder.
-Open up `index.html` within there to see the main doc page.
-
-The docs for the code repos will only be compiled if those repos live at the same level as this documentation repo.
-However, to make the rest of the docs, including the installation instructions, and tutorials, you don't need those code repos at that same level.
-
-# Maintainer #
-
-John Jasa, johnjasa@umich.edu
+These docs can be accessed online at https://mdolab-mach-aero.readthedocs-hosted.com/.
+To run the tutorials yourself, you need to follow the installation instructions to install all the modules, then clone this repository to access the tutorial scripts.
+Tutorial walkthroughs are found on the documentation site.
