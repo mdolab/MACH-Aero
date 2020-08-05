@@ -21,11 +21,9 @@ In order to analyze a geometry with ADflow, we need to take the following steps:
     Since ADflow is a script-based software, it is important to understand the elements of an ADflow runscript.
     Additionally, there are many settings that can be adjusted to make ADflow perform better for a given case.
 
-Table of Contents
-=================
-
 .. toctree::
    :maxdepth: 1
+   :caption: Table of Contents
 
    aero_pygeo
    aero_icem
@@ -35,17 +33,3 @@ Table of Contents
    aero_adflow_polar
    aero_gridRefinementStudy
 
-Directory Structure
-===================
-::
-
-    aero
-    |-- geometry
-    |   |-- rae2822.py
-    |   |-- generate_wing.py
-    |-- meshing
-    |   |-- surface
-    |   |-- volume
-    |       |-- extrude.py
-    |-- analysis
-        |-- aero_run.py

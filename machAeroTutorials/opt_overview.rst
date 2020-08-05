@@ -18,28 +18,10 @@ Here are a few of the items we will cover in the following pages:
     - Parametrize a 3D geometry using the Free-form Deformation method
     - Run single-point and multi-point aerodynamic shape optimizations
 
-Table of Contents
-=================
-
 .. toctree::
    :maxdepth: 1
+   :caption: Table of Contents
 
    opt_pyopt
    opt_ffd
    opt_aero
-
-Directory Structure
-===================
-::
-
-    opt
-    |-- pyoptsparse
-    |   |-- rosenbrock.py
-    |-- ffd
-    |   |-- simple_ffd.py
-    |   |-- parametrize.py
-    |-- mesh_warping
-    |   |-- warp_mesh.py
-    |-- aero
-    |   |-- aero_opt.py
-

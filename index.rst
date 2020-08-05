@@ -37,6 +37,6 @@ More detail for the framework can be found in :ref:`mach-aero`.
 
 .. toctree::
    :caption: Tutorials
-   :maxdepth: 3
+   :maxdepth: 2
 
    machAeroTutorials/index

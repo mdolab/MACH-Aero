@@ -15,27 +15,11 @@ Here are a few of the items we will cover in the following pages:
 
     - Run a multi-point aerodynamic shape optimization
 
-Table of Contents
-=================
-
 .. toctree::
    :maxdepth: 1
+   :caption: Table of Contents
 
    airfoilopt_mesh
    airfoilopt_ffd
    airfoilopt_singlepoint
    airfoilopt_multipoint
-
-Directory Structure
-===================
-::
-
-    opt
-    |-- meshing
-    |   |-- genMesh.py
-    |-- ffd
-    |   |-- genFFD.py
-    |-- single point opt
-    |   |-- airfoil_opt.py
-    |-- multipoint opt
-    |   |-- airfoil_multiopt.py
