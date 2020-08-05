@@ -28,9 +28,6 @@ More detail for the framework can be found in :ref:`mach-aero`.
    machFramework/MACH-Aero.rst
    machFramework/citeUs.rst
 
-Installation Instructions
-=========================
-
 .. toctree::
    :caption: Installation
    :maxdepth: 1
@@ -38,8 +35,8 @@ Installation Instructions
    installInstructions/installFromScratch
    installInstructions/install3rdPartyPackages
 
-Tutorials
-=========
+.. toctree::
+   :caption: Tutorials
+   :maxdepth: 3
 
-- `MACH-Aero tutorials <https://mdolab-mach-aero-tutorial.readthedocs-hosted.com>`_
-- The documentation of each module listed above may have additional tutorials.
+   machAeroTutorials/index
