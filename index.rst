@@ -19,6 +19,7 @@ And the following optional modules:
 - `DAFoam <https://dafoam.github.io/>`_ provides efficient adjoint implementations for OpenFOAM to be used for CFD instead of ADflow
 
 More detail for the framework can be found in :ref:`mach-aero`.
+If you use any of our codes, please :ref:`cite us <cite-us>`.
 
 .. toctree::
    :caption: Overview

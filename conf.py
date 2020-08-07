@@ -31,7 +31,7 @@ source_suffix = ".rst"
 master_doc = "index"
 
 # General information about the project.
-project = u"MACH Aero Documentation"
+project = u"MACH-Aero Documentation"
 copyright = "2020, MDO Lab"
 
 # List of patterns, relative to source directory, that match files and
