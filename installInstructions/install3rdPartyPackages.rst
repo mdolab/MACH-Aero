@@ -1,10 +1,10 @@
 .. Installation instruction on how to set up external packages need to
-   run the MDOlab code.
+   run the MDO Lab code.
 
-.. _install3rdPartyPackages:
+.. _installThirdPartyPackages:
 
-3rd Party Packages
-==================
+Third Party Packages
+====================
 .. NOTE::
    Before trying to compile everything yourself, including all dependencies, consider using the ``mdolab/public`` Docker image available on `Docker Hub <https://hub.docker.com/r/mdolab/public>`_.
 
@@ -87,11 +87,11 @@ which will be adopted as convention for the instructions here.
 The environment is adapted for each package by modifying ``$HOME/.bashrc`` or equivalent.
 
 
-`OpenMPI <http://www.open-mpi.org/>`_
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`OpenMPI <http://www.open-mpi.org/>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. IMPORTANT::
-   The version(s) of OpenMPI tested to work with MDOlab tools is ``3.1.4``
+   The version(s) of OpenMPI tested to work with MDO Lab tools is ``3.1.4``
 
    OpenMPI depends only on a C/Fortran compiler, such as ``gcc/gfortran`` or ``icc/ifort``.
 
@@ -138,18 +138,16 @@ The above should print out the same path for both.
 
 .. _install_petsc:
 
-`PETSc <http://www.mcs.anl.gov/petsc/index.html>`_
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`PETSc <http://www.mcs.anl.gov/petsc/index.html>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. IMPORTANT::
-   The version(s) of PETSc tested to work with MDOlab tools is ``3.11.0``.
+   The version(s) of PETSc tested to work with MDO Lab tools is ``3.11.0``.
    Use other versions at your own risk.
 
-   PETSc depends on OpenMPI, a C/Fortran compiler, and it requires cmake to build.
+   PETSc depends on OpenMPI, a C/Fortran compiler, and it requires ``cmake`` to build.
 
-PETSc, the Portable Extensible Toolkit for Scientific Computation is a
-comprehensive library for helping solve large scale PDE problems.
-PETSc is used by :ref:`adflow`, :ref:`pywarp`, :ref:`pyhyp`, Tripan and pyAeroStruct.
+PETSc, the Portable Extensible Toolkit for Scientific Computation is a comprehensive library for helping solve large scale PDE problems.
 
 Download and unpack the source directory, from your packages directory:
 
@@ -228,8 +226,6 @@ We explain the relevant options below, but you can jump ahead to
 
       --with-shared-libraries --download-superlu_dist=yes --with-fortran-bindings=1 --with-cxx-dialect=C++11
 
-   Specifically, :ref:`pyWarp` uses the ``superlu_dist``.
-
 .. _configure_petsc:
 
 There are many other options, and they enable linking and/or downloading to a variety of other packages.
@@ -259,7 +255,7 @@ Putting these options together, some complete examples of configuring PETSc are:
          --with-fortran-bindings=1 --with-debugging=0 --with-scalar-type=real --PETSC_ARCH=$PETSC_ARCH --with-cxx-dialect=C++11
 
 .. NOTE::
-   If you are compiling PETSc on Greatlakes, check the :ref:`configure_petsc_gl` for correct options.
+   If you are compiling PETSc on Great Lakes, check the cluster-specific setup page for the correct configurations.
 
 After the configuration step, PETSc must be built. This is accomplished with the command provided at the end of the configure script. It will look something like below (the PETSc version should be consistent with the version being installed.)::
 
@@ -278,16 +274,15 @@ After build, follow the the command provided at the end of the print out to test
 
 .. _install_cgns:
 
-`CGNS Library <http://cgns.github.io/>`_
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`CGNS Library <http://cgns.github.io/>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. IMPORTANT::
-   The version(s) of CGNS tested to work with MDOlab tools is ``3.3.0`` and ``3.2.1``.
+   The version(s) of CGNS tested to work with MDO Lab tools is ``3.3.0`` and ``3.2.1``.
 
    CGNS depends on a C/Fortran compiler and requires cmake to build.
 
-The CGNS library is used to provide CGNS functionality for :ref:`adflow`,
-:ref:`pywarp`, and :ref:`pyhyp`.
+The CGNS library is used to provide CGNS functionality for ``ADflow``, `IDWarp`, and ``pyHyp``.
 
 .. WARNING::
    The 3.2.1 version fortran include file contains an error. After
@@ -299,7 +294,7 @@ The CGNS library is used to provide CGNS functionality for :ref:`adflow`,
    CGNS now supports two output types: HDF5 and
    the Advanced Data Format (ADF) format. While HDF5 is the
    officially supported format, its compatability with other tools is sparse.
-   Therefore, for using MDOlab codes, the ADF format is recommended.
+   Therefore, for using MDO Lab codes, the ADF format is recommended.
    Installing and linking HDF5 is therefore not recommended.
 
 Download and unpack the source directory, from your packages directory:
@@ -385,8 +380,8 @@ Finally, build and install::
 
 .. _install_swig:
 
-`SWIG (optional) <https://github.com/swig/swig>`_ 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`SWIG (optional) <https://github.com/swig/swig>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 SWIG is a wrapper for external software written in C or C++. It is an **OPTIONAL** component for MACH-Aero, as it is required by only some of its sub-modules (eg. NSGA2 and NOMAD optimizers used by pyOptSparse, as discussed `here <https://mdolab-pyoptsparse.readthedocs-hosted.com/en/latest/install.html>`_). 
 
@@ -426,8 +421,8 @@ Python Packages
 ---------------
 
 .. IMPORTANT::
-   MDOlab tools have been tested to work with python 2.
-   The MDOlab is in the process of migrating to python 3;
+   MDO Lab tools have been tested to work with python 2.
+   The MDO Lab is in the process of migrating to python 3;
    however we will continue to support python 2 for the forseeable future.
 
 In this guide, python packages are installed using ``pip``.
@@ -449,15 +444,15 @@ Therefore, we recommend the ``--no-cache`` flag when installing python packages 
 
 .. _install_numpy:
 
-`Numpy <https://numpy.org/>`_
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`Numpy <https://numpy.org/>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. IMPORTANT::
    Version ``1.13.3`` and ``1.15.4`` of numpy or f2py do **NOT** work.
    See :ref:`working_stacks` for numpy versions that have been tested.
    The version(s) of numpy used here is ``1.16.4``.
 
-Numpy is required for all MDOlab packages.
+Numpy is required for all MDO Lab packages.
 It is installed with::
 
    pip install numpy==1.16.4 --user --no-cache
@@ -466,10 +461,9 @@ On a ``conda``-based system, it is recommended to use ``conda`` to install numpy
 
    conda install numpy==1.16.4
 
-`Scipy <http://scipy.org/>`_
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Scipy is required for several packages including :ref:`pyoptsparse`, :ref:`pygeo` and certain
-functionality in pytacs and :ref:`pyspline`.
+`Scipy <http://scipy.org/>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Scipy is required for several packages including ``pyOptSparse``, ``pyGeo`` and certain functionality in ``pySpline``.
 It is installed with::
 
    pip install scipy==1.2.1 --user --no-cache
@@ -484,17 +478,17 @@ On a ``conda``-based system, it is recommended to use ``conda`` to install numpy
 
 .. _install_mpi4py:
 
-`mpi4py <http://mpi4py.scipy.org/>`_
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`mpi4py <http://mpi4py.scipy.org/>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. IMPORTANT::
-   The version(s) of mpi4py tested to work with MDOlab tools is 3.0.2.
+   The version(s) of mpi4py tested to work with MDO Lab tools is 3.0.2.
 
    mpi4py depends on OpenMPI.
 
    It is recommended that the OpenMPI version matches with the mpi4py version.
 
 mpi4py is the Python wrapper for MPI. This is required for
-**all** parallel MDOlab codes.
+**all** parallel MDO Lab codes.
 It is installed with::
 
    pip install mpi4py==3.0.2 --user --no-cache
@@ -505,14 +499,14 @@ It is installed with::
 
 .. _install_petsc4py:
 
-`petsc4py <https://bitbucket.org/petsc/petsc4py/downloads>`_
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+`petsc4py <https://bitbucket.org/petsc/petsc4py/>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. IMPORTANT::
    The MAJOR.MINOR version of petsc4py **MUST** match the MAJOR.MINOR version of petsc,
    for example petsc 3.11.0 will only work with petsc4py 3.11.X.
    In practice, this means you must request a specific version of petsc4py.
 
-   The version(s) of petsc4py tested to work with MDOlab tools is 3.11.0, built against petsc version 3.11.0.
+   The version(s) of petsc4py tested to work with MDO Lab tools is 3.11.0, built against petsc version 3.11.0.
 
    petsc4py depends on petsc and its dependencies.
 
@@ -552,22 +546,21 @@ This will install the package to the ``.local`` directory in your home
 directory which is suitable for both desktop and cluster accounts.
 You may seen an error warning related to ``python-mpi``, but this should not be a problem.
 
-**IF THERE IS AN EXISTING** ``build`` **DIRECTORY IT MUST BE
-FORCIBLY REMOVED** (``rm -fr build``) **BEFORE DOING ANOTHER ARCHITECTURE
-INSTALL**. To install with a different architecture change the
-``PETSC_ARCH`` variable in your ``.bashrc`` file and source it, or just type in your terminal to overwrite the old ``PETSC_ARCH``::
+.. warning::
+   If there is an existing ``build`` directory it must be forcibly removed (``rm -fr build``) before doing another architecture install.
+   To install with a different architecture change the ``PETSC_ARCH`` variable in your ``.bashrc`` file and source it, or just type in your terminal to overwrite the old ``PETSC_ARCH``::
 
-   export PETSC_ARCH=<new_architecture>
+      export PETSC_ARCH=<new_architecture>
 
-Then install the package::
+   Then install the package::
 
-   $ python setup.py install --user
+      $ python setup.py install --user
 
 
 Other Methods and Notes
 -----------------------
 
-The MDOlab tools can be configured to write HDF5 files,
+The MDO Lab tools can be configured to write HDF5 files,
 by building CGNS with hdf5 compatability.
 Generally, there is no need for this functionality and it increases the build complexity.
 However, it has been done in the past with ``hdf5 1.8.21``.
@@ -592,4 +585,4 @@ A module file is simply a text file containing lines such as::
 
    append-path PATH $HOME/opt/petsc/3.7.7/OpenMPI-1.10.7/GCC-7.3.0/bin
 
-MDOlab tools can be used by configuring your environment with either ``.bashrc`` or environment modules, or some combination of the two.
+MDO Lab tools can be used by configuring your environment with either ``.bashrc`` or environment modules, or some combination of the two.

@@ -4,40 +4,30 @@
 .. _installFromScratch:
 
 
-Installing MDO Lab framework from scratch
-=========================================
-
-
-This tutorial is intended to be a step-by-step guide on how to set up the software needed to run MDO problems using the MDO Lab framework such as the `MACH-Aero-tutorial` repo.
-It does not describe how to set up each software package rather just the steps needed.
+Installing MACH-Aero from scratch
+=================================
+This tutorial is intended to be a step-by-step guide on how to set up the software needed to run ``MACH-Aero``.
+The focus here is on installing common dependencies shared across the various packages.
+A general description for installing packages within ``MACH-Aero`` is also provided, but please refer to the documentation site for each package for specific instructions.
 This tutorial assumes that you have a working Linux distribution such as Ubuntu 18.04.
 
-Installation steps
-------------------
 The following list what steps are needed. The instructions are divided into three parts
 
-- `3rd party packages`_
+- `Third party packages`_
 - `MDO Lab packages`_
 - `Standard MDO Lab Build Procedure`_
 
-Since MDO Lab packages depend heavily on 3rd party tools and packages, it is generally good to start by compiling and testing them. 
+Since MDO Lab packages depend heavily on third party tools and packages, it is generally good to start by compiling and testing them. 
 Finally, an example ``.bashrc`` file is shown.
 
 - `Example .bashrc`_
 
-3rd party packages
-******************
-To install, follow the link for each package.
-
-#. :ref:`install_prereq` 
-#. :ref:`install_num_sci_py`
-#. :ref:`install_petsc`
-#. :ref:`install_mpi4py`
-#. :ref:`install_petsc4py`
-#. :ref:`install_cgns`
+Third party packages
+--------------------
+To install, follow the instructions on :ref:`this page <installThirdPartyPackages>`.
 
 MDO Lab packages
-****************
+----------------
 To install the MDO Lab packages clone each repository from `GitHub <https://github.com/mdolab>`_ and follow the installation instructions for each.
 Some packages are pure Python packages so no compilation or setup is needed.
 For the packages that do require compilation, you can follow the standard MDO Lab build procedure below.
@@ -55,7 +45,7 @@ The packages needed are:
 #. `multipoint <https://github.com/mdolab/multipoint/>`_ (for doing multipoint optimization)
 
 Standard MDO Lab Build Procedure
-********************************
+--------------------------------
 
 To start, find a configuration file close to your current setup in::
 
@@ -66,7 +56,7 @@ and copy it to ''config/config.mk''. For example::
     $ cp config/defaults/config.LINUX_GFORTRAN.mk config/config.mk
 
 If you are a beginner user installing the packages on a Linux desktop, you should use the ``config.LINUX_GFORTRAN.mk`` versions of the configuration files.
-The ``config.LINUX_INTEL.mk`` versions are usually used on clusters, in conjunction with Intel compilers.
+The ``config.LINUX_INTEL.mk`` versions are usually used on HPC systems, in conjunction with Intel compilers.
 Our codes can be successfully compiled on Linux with either ``ifort`` or ``gfortran``.
 
 Once you have copied the config file, compile the module by running::
@@ -94,7 +84,7 @@ If you are developing code, we recommend using the ``-e`` option, e.g. ``pip ins
 
 
 Example ``.bashrc``
-*******************
+-------------------
 After installing the above software you should have something similar to the following somewhere in your ``~/.bashrc`` file
 
 .. code-block:: bash
