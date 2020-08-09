@@ -37,12 +37,14 @@ The packages needed are:
 #. `baseClasses <https://github.com/mdolab/baseclasses/>`_
 #. `pySpline <https://github.com/mdolab/pyspline/>`_
 #. `pyGeo <https://github.com/mdolab/pygeo/>`_
-#. `pyWarp <https://github.com/mdolab/pywarp/>`_
 #. `IDWarp <https://github.com/mdolab/idwarp/>`_
 #. `ADflow <https://github.com/mdolab/adflow/>`_
 #. `pyOptSparse <https://github.com/mdolab/pyoptsparse>`_
+
+Optional packages are:
 #. `pyHyp <https://github.com/mdolab/pyhyp>`_
-#. `multipoint <https://github.com/mdolab/multipoint/>`_ (for doing multipoint optimization)
+#. `multipoint <https://github.com/mdolab/multipoint/>`_ 
+#. `DAFoam <https://github.com/mdolab/dafoam>`_
 
 Standard MDO Lab Build Procedure
 --------------------------------
