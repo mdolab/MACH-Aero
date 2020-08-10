@@ -9,7 +9,7 @@ Introduction
 ================================================================================
 There are several simple meshing operations that can be done easily enough from the command line.
 For example, creating a 3D cartesian block of a given size with a specified uniform cell size only requires 4 parameters.
-We have developed a suite of functions called `cgnsUtilities <https://bitbucket.org/mdolab/cgnsutilities>`_ that can be called from the command line to perform simple, repeatable tasks like this.
+We have developed a suite of functions called `cgnsUtilities <https://github.com/mdolab/cgnsutilities>`_ that can be called from the command line to perform simple, repeatable tasks like this.
 
 Files
 =====
