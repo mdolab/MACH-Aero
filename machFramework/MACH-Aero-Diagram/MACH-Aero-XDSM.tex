@@ -1,0 +1,144 @@
+% MDF architecture diagram produced by the TikZ package
+\documentclass{article}
+\usepackage{geometry}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{tikz}
+
+\input{../common_files/diagram_border}
+
+\begin{document}
+
+% Styles definition outside any picture
+\input{../common_files/diagram_styles}
+
+\begin{tikzpicture}
+
+	% Use a matrix to line up all the nodes
+	\matrix[MatrixSetup]{
+		% row 1
+		& 
+		\node [DataIO] (Input) {2: Baseline design}; 
+		& 
+		&
+		&
+		& 
+		& 
+		&
+		\\
+		% row 2
+		\node [Function] (preProcess) {1: Pre-processing}; 
+		& 
+		&
+		\node [DataIO] (preProcess-pyGeo) {\FixedWidthText{3.cm}{3: FFD points}};  
+		&
+		&
+		\node [DataIO] (preProcess-IDWarp) {4: Volume mesh}; 
+		& 
+		& 
+		&
+		\\
+		% row 3
+		\node [DataIO] (Output) {8: Optimized design}; 
+		& 
+		\node [Optimization] (Opt) {\MultilineComponent{2.0cm}{2, 7$\rightarrow$3:}{Optimizer}}; 
+		&
+		\node [DataIO] (Opt-pyGeo) {\FixedWidthText{3.cm}{3: Updated FFD displacement}}; 
+		&
+		&
+		& 
+		&
+		&
+		\\ 
+		% row 4
+		& 
+		\node [DataIO] (pyGeo-Opt) {\FixedWidthText{2.5cm}{7: Geometric constraints \& their derivatives}}; 
+		&  
+		\node [Function] (pyGeo) {\FixedWidthText{3.cm}{3: Geometry parameterization}}; 
+		&
+		&
+		\node [DataIO] (pyGeo-IDWarp) {\FixedWidthText{3.cm}{4: Updated design surface coordinates}}; 
+		& 
+		&
+		&
+		\\
+		% row 5
+		& 
+		& 
+		& 
+		&
+		\node [Function] (IDWarp) {\FixedWidthText{3.cm}{4: Volume mesh deformation}}; 
+		& 
+		&
+		\node [DataIO] (IDWarp-flowSolver) {5: Updated mesh}; 
+		&
+
+		\\ 
+		% row 6
+		& 
+		\node [DataIO] (flowSolver-Opt) {\FixedWidthText{2.5cm}{7: Values of objectives \& constraints}}; 
+		& 
+		& 
+		&
+		& 
+		& 
+		\node [Function_i] (flowSolver) {5: Flow solvers}; 
+		&
+		\node [DataIO] (flowSolver-adjointSolver) {6: State variables}; 
+		\\
+		% row 7
+		& 
+		\node [DataIO] (adjointSolver-Opt) {\FixedWidthText{2.5cm}{7: Derivatives of objectives \& constraints}}; 
+		& 
+		&
+		& 
+		& 
+		& 
+		&
+		\node [Function_i] (adjointSolver) {6: Adjoint solvers}; 
+		\\
+	};
+	
+	% Create a chain to outline process
+	{ [start chain=process]
+		\begin{pgfonlayer}{process}
+		\chainin (preProcess);
+		\chainin (Opt)		  [join=by ProcessHVA];
+		\chainin (Opt-pyGeo)          [join=by ProcessTipA];
+		\chainin (pyGeo)          [join=by ProcessTipA];
+		\chainin (pyGeo-IDWarp)          [join=by ProcessTipA];
+		\chainin (IDWarp)  [join=by ProcessTipA];
+		\chainin (IDWarp-flowSolver)  [join=by ProcessTipA];
+		\chainin (flowSolver)     [join=by ProcessTipA];
+		\chainin (flowSolver-adjointSolver)     [join=by ProcessTipA];
+		\chainin (adjointSolver)  [join=by ProcessTipA];
+		\chainin (adjointSolver-Opt)  [join=by ProcessTipA];
+		\chainin (flowSolver-Opt)  [join=by ProcessTipA];
+		\chainin (pyGeo-Opt)  [join=by ProcessTipA];
+		\chainin (Opt)		  [join=by ProcessTipA];
+		\chainin (Output)	  [join=by ProcessTipA];
+		\end{pgfonlayer}
+	}
+	
+	\begin{pgfonlayer}{data}
+		% Vertical Edges
+		\path 
+		(Input)        edge [DataLine] (adjointSolver-Opt)
+		(preProcess-pyGeo)    edge [DataLine] (pyGeo)
+		(preProcess-IDWarp) edge [DataLine] (IDWarp)
+		(IDWarp-flowSolver) edge [DataLine] (flowSolver)
+		(flowSolver-adjointSolver) edge [DataLine] (adjointSolver)
+		%% Horizontal Edges
+		(preProcess)        edge [DataLine] (preProcess-IDWarp)
+		(Output)       edge [DataLine] (Opt-pyGeo)
+		(pyGeo-Opt)        edge [DataLine] (pyGeo-IDWarp)
+		(IDWarp)        edge [DataLine] (IDWarp-flowSolver)
+        (flowSolver-Opt)        edge [DataLine] (flowSolver-adjointSolver)
+		(adjointSolver)        edge [DataLine] (adjointSolver-Opt);
+	\end{pgfonlayer}
+		
+\end{tikzpicture}
+
+\end{document}
