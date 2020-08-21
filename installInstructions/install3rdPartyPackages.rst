@@ -62,35 +62,31 @@ which will be adopted as convention for the instructions here.
 The environment is adapted for each package by modifying ``$HOME/.bashrc`` or equivalent.
 
 
-`OpenMPI <http://www.open-mpi.org/>`__
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+OpenMPI
+~~~~~~~
 
 .. IMPORTANT::
-   The version(s) of OpenMPI tested to work with MDO Lab tools is ``3.1.4``
-
    OpenMPI depends only on a C/Fortran compiler, such as ``gcc/gfortran`` or ``icc/ifort``.
 
-.. NOTE::
    On a cluster, the system administrator will have already compiled various versions of MPI on the system already.
-   Do not build/install OpenMPI in this case.
+   Do not build/install OpenMPI in this case, and simply load the correct MPI module.
 
-   OpenMPI may also be installed by PETSc (see below), but a separate installation as described here is preferred.
-
-Download and unpack the source directory, from your packages directory:
+Download from the `OpenMPI <http://www.open-mpi.org/>`__ website and place the tarball in your packages directory (``$HOME/packages``).
+Then, unpack the source code:
 
 .. code-block:: bash
 
    cd $HOME/packages
-   wget https://download.open-mpi.org/release/open-mpi/v3.1/openmpi-3.1.4.tar.gz
-   tar -xvaf openmpi-3.1.4.tar.gz
-   cd openmpi-3.1.4
+   wget <download URL>
+   tar -xvaf openmpi-<version>.tar.gz
+   cd openmpi-<version>
 
 Add the following lines to ``$HOME/.bashrc`` and ``source`` it:
 
 .. code-block:: bash
 
    # -- OpenMPI Installation
-   export MPI_INSTALL_DIR=$HOME/packages/openmpi-3.1.4/opt-gfortran
+   export MPI_INSTALL_DIR=$HOME/packages/openmpi-<version>/opt-gfortran
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$MPI_INSTALL_DIR/lib
    export PATH=$MPI_INSTALL_DIR/bin:$PATH
 
@@ -98,7 +94,7 @@ Finally, configure and build the package:
 
 .. code-block:: bash
 
-   # export CC=icc CXX=icpc F77=ifort FC=ifort    # Only necessary if using non-GCC compiler
+   # export CC=icc CXX=icpc F77=ifort FC=ifort    # Only necessary if using Intel compiler
    ./configure --prefix=$MPI_INSTALL_DIR
    make all install
 
@@ -113,25 +109,21 @@ The above should print out the same path for both.
 
 .. _install_petsc:
 
-`PETSc <http://www.mcs.anl.gov/petsc/index.html>`__
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+PETSc
+~~~~~
 
 .. IMPORTANT::
-   The version(s) of PETSc tested to work with MDO Lab tools is ``3.11.0``.
-   Use other versions at your own risk.
-
    PETSc depends on OpenMPI, a C/Fortran compiler, and it requires ``cmake`` to build.
 
 PETSc, the Portable Extensible Toolkit for Scientific Computation is a comprehensive library for helping solve large scale PDE problems.
-
-Download and unpack the source directory, from your packages directory:
+Download from the `PETSc <http://www.mcs.anl.gov/petsc/index.html>`__ website and unpack the source directory, from your packages directory:
 
 .. code-block:: bash
 
    cd $HOME/packages
-   wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.11.0.tar.gz
-   tar -xvaf petsc-3.11.0.tar.gz
-   cd petsc-3.11.0
+   wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-<version>.tar.gz
+   tar -xvaf petsc-<version>.tar.gz
+   cd petsc-<version>
 
 The lite version of the package is smaller but contains no documentation.
 Next, configure your environment for PETSc by adding the following lines to your ``$HOME/.bashrc`` and ``source``-ing it:
@@ -140,7 +132,7 @@ Next, configure your environment for PETSc by adding the following lines to your
 
    # -- PETSc Installation
    export PETSC_ARCH=real-debug
-   export PETSC_DIR=$HOME/packages/petsc-3.11.0/
+   export PETSC_DIR=$HOME/packages/petsc-<version>/
 
 
 The ``PETSC_ARCH`` variable is any user-specified string.
@@ -234,11 +226,11 @@ Putting these options together, some complete examples of configuring PETSc are:
 
 After the configuration step, PETSc must be built. This is accomplished with the command provided at the end of the configure script. It will look something like below (the PETSc version should be consistent with the version being installed.)::
 
-   make PETSC_DIR=$HOME/packages/petsc-3.11.0 PETSC_ARCH=$PETSC_ARCH all
+   make PETSC_DIR=$HOME/packages/petsc-<version> PETSC_ARCH=$PETSC_ARCH all
 
 After build, follow the the command provided at the end of the print out to test the functionality. It will look something like below::
 
-    make PETSC_DIR=$HOME/packages/petsc-3.11.0 PETSC_ARCH=$PETSC_ARCH test
+    make PETSC_DIR=$HOME/packages/petsc-<version> PETSC_ARCH=$PETSC_ARCH test
 
 .. NOTE::
    If your PETSc is not able to find mpi, try:
@@ -253,7 +245,8 @@ After build, follow the the command provided at the end of the print out to test
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. IMPORTANT::
-   The version(s) of CGNS tested to work with MDO Lab tools is ``3.3.0`` and ``3.2.1``.
+   The version(s) of CGNS tested to work with MDO Lab tools is ``3.3.0``.
+   However, the older ``3.2.1`` should also work.
 
    CGNS depends on a C/Fortran compiler and requires cmake to build.
 
@@ -277,16 +270,16 @@ Download and unpack the source directory, from your packages directory:
 .. code-block:: bash
 
    cd $HOME/packages
-   wget https://github.com/CGNS/CGNS/archive/v3.3.0.tar.gz
-   tar -xvaf v3.3.0.tar.gz
-   cd CGNS-3.3.0
+   wget https://github.com/CGNS/CGNS/archive/<version>.tar.gz
+   tar -xvaf <version>.tar.gz
+   cd CGNS-<version>
 
 Next, configure your environment for CGNS by adding the following lines to your ``$HOME/.bashrc`` and ``source``-ing it:
 
 .. code-block:: bash
 
    # -- CGNS
-   export CGNS_HOME=$HOME/packages/CGNS-3.3.0/opt-gfortran
+   export CGNS_HOME=$HOME/packages/CGNS-<version>/opt-gfortran
    export PATH=$PATH:$CGNS_HOME/bin
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CGNS_HOME/lib
 
@@ -424,28 +417,27 @@ Therefore, we recommend the ``--no-cache`` flag when installing python packages 
 
 .. IMPORTANT::
    Version ``1.13.3`` and ``1.15.4`` of numpy or f2py do **NOT** work.
-   See :ref:`working_stacks` for numpy versions that have been tested.
-   The version(s) of numpy used here is ``1.16.4``.
+   See :ref:`working_stacks` for numpy versions that are tested.
 
 Numpy is required for all MDO Lab packages.
 It is installed with::
 
-   pip install numpy==1.16.4 --user --no-cache
+   pip install numpy==<version> --user --no-cache
 
 On a ``conda``-based system, it is recommended to use ``conda`` to install numpy and scipy::
 
-   conda install numpy==1.16.4
+   conda install numpy==<version>
 
 `Scipy <http://scipy.org/>`__
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Scipy is required for several packages including ``pyOptSparse``, ``pyGeo`` and certain functionality in ``pySpline``.
 It is installed with::
 
-   pip install scipy==1.2.1 --user --no-cache
+   pip install scipy==<version> --user --no-cache
 
 On a ``conda``-based system, it is recommended to use ``conda`` to install numpy and scipy::
 
-   conda install scipy==1.2.1
+   conda install scipy==<version>
 
 .. note::
    On a cluster, most likely numpy and scipy will already be
@@ -456,17 +448,14 @@ On a ``conda``-based system, it is recommended to use ``conda`` to install numpy
 `mpi4py <http://mpi4py.scipy.org/>`__
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. IMPORTANT::
-   The version(s) of mpi4py tested to work with MDO Lab tools is 3.0.2.
-
    mpi4py depends on OpenMPI.
-
    It is recommended that the OpenMPI version matches with the mpi4py version.
 
 mpi4py is the Python wrapper for MPI. This is required for
 **all** parallel MDO Lab codes.
 It is installed with::
 
-   pip install mpi4py==3.0.2 --user --no-cache
+   pip install mpi4py==<version> --user --no-cache
 
 .. NOTE::
    Some function usages have changed in newer versions of mpi4py. Check the `release <https://github.com/mpi4py/mpi4py/blob/master/CHANGES.rst>`_ to see the modifications that might be requried in the code.
@@ -478,12 +467,10 @@ It is installed with::
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. IMPORTANT::
    The MAJOR.MINOR version of petsc4py **MUST** match the MAJOR.MINOR version of petsc,
-   for example petsc 3.11.0 will only work with petsc4py 3.11.X.
+   for example PETSc 3.11.X will only work with petsc4py 3.11.Y.
    In practice, this means you must request a specific version of petsc4py.
 
-   The version(s) of petsc4py tested to work with MDO Lab tools is 3.11.0, built against petsc version 3.11.0.
-
-   petsc4py depends on petsc and its dependencies.
+   petsc4py depends on PETSc and its dependencies.
 
 ``petsc4py`` is the Python wrapper for PETSc. Strictly speaking, this
 is only required for the coupled solvers in pyAeroStruct. However, it
@@ -500,7 +487,7 @@ Simple install with pip
 
 It is installed with::
 
-   pip install petsc4py==3.11.0 --user --no-cache
+   pip install petsc4py==<version> --user --no-cache
 
 Advanced install (Multiple PETSc architectures needed)
 ******************************************************
@@ -508,12 +495,11 @@ Advanced install (Multiple PETSc architectures needed)
    You must compile a unique petsc4py install for each PETSc architecture.
 
 `Download <https://bitbucket.org/petsc/petsc4py/downloads>`__ the source code and
-extract the latest version (the major version should be consistent with
-the PETSc version installed, i.e., 3.11.0 here)::
+extract the correct version matching your PETSc version::
 
-   $ tar -xzf petsc4py-3.11.0.tar.gz
+   $ tar -xzf petsc4py-<version>.tar.gz
 
-From the petsc4py-3.11.0 directory do a user-space install::
+From the ``petsc4py`` directory do a user-space install::
 
 $ python setup.py install --user
 
