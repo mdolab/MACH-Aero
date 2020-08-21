@@ -55,7 +55,7 @@ To start, find a configuration file close to your current setup in::
 
     $ config/defaults
 
-and copy it to ''config/config.mk''. For example::
+and copy it to ``config/config.mk``. For example::
 
     $ cp config/defaults/config.LINUX_GFORTRAN.mk config/config.mk
 
