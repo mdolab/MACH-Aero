@@ -501,6 +501,11 @@ You may seen an error warning related to ``python-mpi``, but this should not be 
 
       $ python setup.py install --user
 
+Installing from source has the advantage of having access to the tests, which can be used to verify both the PETSc and petsc4py installations.
+
+To run the tests, go to the ``test`` directory, and type::
+
+   python runtests.py
 
 Other Methods and Notes
 -----------------------
