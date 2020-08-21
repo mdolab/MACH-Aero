@@ -57,10 +57,9 @@ They can also be installed locally, but they are common enough that a system ins
 C and Fortran Based Packages
 ----------------------------
 These packages have minimal dependencies and should be installed first, in the order listed here.
-These source code for these packages are often downloaded and installed to ``$HOME/packages/$PACKAGE_NAME``,
+These source code for these packages are often downloaded and installed to ``$HOME/packages/<package name>``,
 which will be adopted as convention for the instructions here.
 The environment is adapted for each package by modifying ``$HOME/.bashrc`` or equivalent.
-
 
 OpenMPI
 ~~~~~~~
@@ -153,10 +152,8 @@ We explain the relevant options below, but you can jump ahead to
 
       --with-debugging=0
 
-   If you are doing any code development which uses PETSc,
-   it is *highly* recommended to use debugging.
-   However, if you are doing production runs on an HPC,
-   then you should turn this off to improve code performance.
+   If you are doing any code development which uses PETSc, it is *highly* recommended to use debugging.
+   However, if you are doing production runs on an HPC, then you should turn this off to improve code performance.
 
    To further specify compiler optimization flags, use:
 
@@ -224,7 +221,8 @@ Putting these options together, some complete examples of configuring PETSc are:
 .. NOTE::
    If you are compiling PETSc on Great Lakes, check the cluster-specific setup page for the correct configurations.
 
-After the configuration step, PETSc must be built. This is accomplished with the command provided at the end of the configure script. It will look something like below (the PETSc version should be consistent with the version being installed.)::
+After the configuration step, PETSc must be built. This is accomplished with the command provided at the end of the configure script.
+It will look something like below (the PETSc version should be consistent with the version being installed.)::
 
    make PETSC_DIR=$HOME/packages/petsc-<version> PETSC_ARCH=$PETSC_ARCH all
 
@@ -241,8 +239,8 @@ After build, follow the the command provided at the end of the print out to test
 
 .. _install_cgns:
 
-`CGNS Library <http://cgns.github.io/>`__
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+CGNS Library
+~~~~~~~~~~~~
 
 .. IMPORTANT::
    The version(s) of CGNS tested to work with MDO Lab tools is ``3.3.0``.
@@ -250,18 +248,19 @@ After build, follow the the command provided at the end of the print out to test
 
    CGNS depends on a C/Fortran compiler and requires cmake to build.
 
-The CGNS library is used to provide CGNS functionality for ``ADflow``, `IDWarp`, and ``pyHyp``.
+CGNS is a general file format for storing CFD data, and is used by ``ADflow``, `IDWarp`, and ``pyHyp``.
+The CGNS Library provides Fortran bindings to read/write files in that format.
 
 .. WARNING::
    The 3.2.1 version fortran include file contains an error. After
-   untaring, manually edit the cgnslib_f.h.in file in the ``src``
+   extracting the folder, manually edit the ``cgnslib_f.h.in`` file in the ``src``
    directory and remove all the comment lines at the beginning of the
    file starting with c. This is fixed in subsequent versions.
 
 .. NOTE::
    CGNS now supports two output types: HDF5 and
    the Advanced Data Format (ADF) format. While HDF5 is the
-   officially supported format, its compatability with other tools is sparse.
+   officially supported format, its compatibility with other tools is sparse.
    Therefore, for using MDO Lab codes, the ADF format is recommended.
    Installing and linking HDF5 is therefore not recommended.
 
@@ -348,8 +347,8 @@ Finally, build and install::
 
 .. _install_swig:
 
-`SWIG (optional) <https://github.com/swig/swig>`__
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+SWIG (optional)
+~~~~~~~~~~~~~~~
 
 SWIG is a wrapper for external software written in C or C++. It is an **OPTIONAL** component for MACH-Aero, as it is required by only some of its sub-modules (eg. NSGA2 and NOMAD optimizers used by pyOptSparse, as discussed `here <https://mdolab-pyoptsparse.readthedocs-hosted.com/en/latest/install.html>`_). 
 
@@ -412,14 +411,14 @@ Therefore, we recommend the ``--no-cache`` flag when installing python packages 
 
 .. _install_numpy:
 
-`Numpy <https://numpy.org/>`__
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+NumPy
+~~~~~
 
 .. IMPORTANT::
    Version ``1.13.3`` and ``1.15.4`` of numpy or f2py do **NOT** work.
    See :ref:`working_stacks` for numpy versions that are tested.
 
-Numpy is required for all MDO Lab packages.
+NumPy is required for all MDO Lab packages.
 It is installed with::
 
    pip install numpy==<version> --user --no-cache
@@ -428,9 +427,9 @@ On a ``conda``-based system, it is recommended to use ``conda`` to install numpy
 
    conda install numpy==<version>
 
-`Scipy <http://scipy.org/>`__
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Scipy is required for several packages including ``pyOptSparse``, ``pyGeo`` and certain functionality in ``pySpline``.
+SciPy
+~~~~~
+SciPy is required for several packages including ``pyOptSparse``, ``pyGeo`` and certain functionality in ``pySpline``.
 It is installed with::
 
    pip install scipy==<version> --user --no-cache
@@ -445,8 +444,8 @@ On a ``conda``-based system, it is recommended to use ``conda`` to install numpy
 
 .. _install_mpi4py:
 
-`mpi4py <http://mpi4py.scipy.org/>`__
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mpi4py
+~~~~~~
 .. IMPORTANT::
    mpi4py depends on OpenMPI.
    It is recommended that the OpenMPI version matches with the mpi4py version.
@@ -460,11 +459,20 @@ It is installed with::
 .. NOTE::
    Some function usages have changed in newer versions of mpi4py. Check the `release <https://github.com/mpi4py/mpi4py/blob/master/CHANGES.rst>`_ to see the modifications that might be requried in the code.
 
+Alternatively, downloading from source is also possible.
+First, download the source code from `releases <https://github.com/mpi4py/mpi4py/releases>`__, and extract it into the packages directory.
+Then, either run ``pip install .`` or ``python setup.py install`` in the root directory.
+Installing from source has the advantage of having access to the tests, which can be used to verify both the OpenMPI and mpi4py installations.
+
+To run the tests, go to the ``test`` directory, and type::
+
+   python runtests.py
+
 
 .. _install_petsc4py:
 
-`petsc4py <https://bitbucket.org/petsc/petsc4py/>`__
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+petsc4py
+~~~~~~~~
 .. IMPORTANT::
    The MAJOR.MINOR version of petsc4py **MUST** match the MAJOR.MINOR version of petsc,
    for example PETSc 3.11.X will only work with petsc4py 3.11.Y.
@@ -472,12 +480,9 @@ It is installed with::
 
    petsc4py depends on PETSc and its dependencies.
 
-``petsc4py`` is the Python wrapper for PETSc. Strictly speaking, this
-is only required for the coupled solvers in pyAeroStruct. However, it
-*is* necessary if you want to use any of PETSc command-line options
-such as -log-summary.
+``petsc4py`` is the Python wrapper for PETSc.
 
-If you want to make developments or multiple PETSc architectures are needed, you should install petsc4py manually, which decribed in **Advanced install**.
+If you want to make developments or multiple PETSc architectures are needed, you should install petsc4py manually, which described in **Advanced install**.
 Manually installing provide you useful run tests.
 
 If you know you will **only** need real PETSc architecture, you can use pip.
@@ -489,8 +494,8 @@ It is installed with::
 
    pip install petsc4py==<version> --user --no-cache
 
-Advanced install (Multiple PETSc architectures needed)
-******************************************************
+Advanced install (For multiple PETSc architectures)
+***************************************************
 .. WARNING::
    You must compile a unique petsc4py install for each PETSc architecture.
 
@@ -503,8 +508,7 @@ From the ``petsc4py`` directory do a user-space install::
 
 $ python setup.py install --user
 
-This will install the package to the ``.local`` directory in your home
-directory which is suitable for both desktop and cluster accounts.
+This will install the package to the ``.local`` directory in your home directory which is suitable for both desktop and cluster accounts.
 You may seen an error warning related to ``python-mpi``, but this should not be a problem.
 
 .. warning::
@@ -520,21 +524,13 @@ You may seen an error warning related to ``python-mpi``, but this should not be 
 
 Other Methods and Notes
 -----------------------
-
-The MDO Lab tools can be configured to write HDF5 files,
-by building CGNS with hdf5 compatability.
-Generally, there is no need for this functionality and it increases the build complexity.
-However, it has been done in the past with ``hdf5 1.8.21``.
-
-The build examples described here are all installed *locally* (eg. ``$HOME/...``)
-rather than system-wide (eg. ``/usr/local/...``).
+The build examples described here are all installed *locally* (eg. ``$HOME/...``) rather than system-wide (eg. ``/usr/local/...``).
 Local installations are generally preferred.
 Installing packages system-wide requires root access, which is an increased security risk when downloading packages from the internet.
 Also, it is typically easier to uninstall packages or otherwise revert changes made at a local level.
 Finally, local installations are required when running on a cluster environment.
 
-The build and installation paradigm demonstrated here puts
-source code, build files, and installed packages all in ``$HOME/packages``.
+The build and installation paradigm demonstrated here puts source code, build files, and installed packages all in ``$HOME/packages``.
 Another common convention is to use ``$HOME/src`` for source code and building,
 and ``$HOME/opt`` for installed packages.
 This separation adds a level of complexity but is more extensible if multiple package versions/installations are going to be used.
