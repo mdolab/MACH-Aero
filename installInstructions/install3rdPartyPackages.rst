@@ -143,10 +143,38 @@ To get a list of all available options run::
 
    ./configure --help
 
-We explain the relevant options below, but you can jump ahead to
-:ref:`configure PETSc <configure_petsc>` and use one of the pre-set list of options there.
 
-#. **Debugging**: To compile without debugging use the switch:
+To facilitate installation of PETSc for use with MDO Lab tools, here are some common preset configurations.
+
+* Standard debug build (``$PETSC_ARCH=real-debug``):
+
+   .. code-block:: bash
+
+      ./configure --PETSC_ARCH=$PETSC_ARCH --with-scalar-type=real --with-debugging=1 --with-mpi-dir=$MPI_INSTALL_DIR \
+         --download-metis=yes --download-parmetis=yes --download-superlu_dist=yes \
+         --with-shared-libraries=yes --with-fortran-bindings=1 --with-cxx-dialect=C++11
+
+* Debug complex build (``$PETSC_ARCH=complex-debug``):
+
+   .. code-block:: bash
+
+      ./configure --PETSC_ARCH=$PETSC_ARCH --with-scalar-type=complex --with-debugging=1 --with-mpi-dir=$MPI_INSTALL_DIR \
+         --download-metis=yes --download-parmetis=yes --download-superlu_dist=yes \
+         --with-shared-libraries=yes --with-fortran-bindings=1 --with-cxx-dialect=C++11
+
+* Optimized real build on a cluster with existing MPI (``$PETSC_ARCH=real-opt``):
+
+   .. code-block:: bash
+
+      ./configure --with-shared-libraries --download-superlu_dist --download-parmetis=yes --download-metis=yes \
+         --with-fortran-bindings=1 --with-debugging=0 --with-scalar-type=real --PETSC_ARCH=$PETSC_ARCH --with-cxx-dialect=C++11
+
+.. NOTE::
+   If you are compiling PETSc on Great Lakes, check the cluster-specific setup page for the correct configurations.
+
+Here is a short overview of some of the options used above.
+
+* **Debugging**: To compile without debugging use the switch:
 
    .. code-block:: bash
 
@@ -161,7 +189,7 @@ We explain the relevant options below, but you can jump ahead to
 
       --COPTFLAGS=-O3 --CXXOPTFLAGS=-O3 --FOPTFLAGS=-O3
 
-#. **METIS and ParMETIS**: partitioning packages
+* **METIS and ParMETIS**: partitioning packages
 
    If you do not have METIS and ParMETIS installed, include the following line:
 
@@ -175,7 +203,7 @@ We explain the relevant options below, but you can jump ahead to
 
       --with-metis --with-metis-dir=<metis-dir> --with-parmetis --with-parmetis-dir=<parmetis-dir>
 
-#. **Complex build**: partitioning packages
+* **Complex build**: partitioning packages
 
    A complex build is configured via:
 
@@ -183,43 +211,11 @@ We explain the relevant options below, but you can jump ahead to
 
       --with-scalar-type=complex
 
-#. **Other**:
-   Various options are also required:
+* **Other**: Various options are also required:
 
    .. code-block:: bash
 
       --with-shared-libraries --download-superlu_dist=yes --with-fortran-bindings=1 --with-cxx-dialect=C++11
-
-.. _configure_petsc:
-
-There are many other options, and they enable linking and/or downloading to a variety of other packages.
-Putting these options together, some complete examples of configuring PETSc are:
-
-#. Standard debug build (``$PETSC_ARCH=real-debug``):
-
-   .. code-block:: bash
-
-      ./configure --PETSC_ARCH=$PETSC_ARCH --with-scalar-type=real --with-debugging=1 --with-mpi-dir=$MPI_INSTALL_DIR \
-         --download-metis=yes --download-parmetis=yes --download-superlu_dist=yes \
-         --with-shared-libraries=yes --with-fortran-bindings=1 --with-cxx-dialect=C++11
-
-#. Debug complex build (``$PETSC_ARCH=complex-debug``):
-
-   .. code-block:: bash
-
-      ./configure --PETSC_ARCH=$PETSC_ARCH --with-scalar-type=complex --with-debugging=1 --with-mpi-dir=$MPI_INSTALL_DIR \
-         --download-metis=yes --download-parmetis=yes --download-superlu_dist=yes \
-         --with-shared-libraries=yes --with-fortran-bindings=1 --with-cxx-dialect=C++11
-
-#. Optimized real build on a cluster with existing MPI (``$PETSC_ARCH=real-opt``):
-
-   .. code-block:: bash
-
-      ./configure --with-shared-libraries --download-superlu_dist --download-parmetis=yes --download-metis=yes \
-         --with-fortran-bindings=1 --with-debugging=0 --with-scalar-type=real --PETSC_ARCH=$PETSC_ARCH --with-cxx-dialect=C++11
-
-.. NOTE::
-   If you are compiling PETSc on Great Lakes, check the cluster-specific setup page for the correct configurations.
 
 After the configuration step, PETSc must be built. This is accomplished with the command provided at the end of the configure script.
 It will look something like below (the PETSc version should be consistent with the version being installed.)::
@@ -231,10 +227,10 @@ After build, follow the the command provided at the end of the print out to test
     make PETSC_DIR=$HOME/packages/petsc-<version> PETSC_ARCH=$PETSC_ARCH test
 
 .. NOTE::
-   If your PETSc is not able to find mpi, try:
+   If your PETSc is not able to find MPI, try:
 
    #. Add ``--with-mpi-dir=$MPI_INSTALL_DIR`` when you configure PETSc
-   #. Check your LD_LIBRARY_PATH order. If you have pytecplot, try moving tecplot LD_LIBRARY_PATH to the last.
+   #. Check your ``LD_LIBRARY_PATH`` order. If you have PyTecplot, try moving the entry for PyTecplot in the ``LD_LIBRARY_PATH`` to the end, possibly by modifying your ``.bashrc``.
 
 
 .. _install_cgns:
@@ -375,19 +371,10 @@ Python Packages
 In this guide, python packages are installed using ``pip``.
 Other methods, such as from source or using ``conda``, will also work.
 Local installations (with ``--user``) are also recommended but not required.
-If pip is not available, install it using:
-
-.. code-block:: bash
-
-   cd $HOME/PACKAGES
-   wget https://bootstrap.pypa.io/get-pip.py
-   python get-pip.py --user
 
 When installing the same package multiple times with different dependencies,
 for example ``petsc4py`` with different petsc builds, the pip cache can become incorrect.
 Therefore, we recommend the ``--no-cache`` flag when installing python packages with pip.
-
-.. _install_num_sci_py:
 
 .. _install_numpy:
 
