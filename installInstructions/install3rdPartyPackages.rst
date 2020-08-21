@@ -248,7 +248,7 @@ CGNS Library
 
    CGNS depends on a C/Fortran compiler and requires cmake to build.
 
-CGNS is a general file format for storing CFD data, and is used by ``ADflow``, `IDWarp`, and ``pyHyp``.
+CGNS is a general file format for storing CFD data, and is used by ``ADflow``, ``IDWarp``, and ``pyHyp``.
 The CGNS Library provides Fortran bindings to read/write files in that format.
 
 .. WARNING::
