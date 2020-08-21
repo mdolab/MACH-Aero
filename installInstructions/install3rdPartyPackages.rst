@@ -12,59 +12,34 @@ Third Party Packages
 
 Supported dependency versions
 -----------------------------
-This section lists out the dependency versions that have been verified to work with specific code versions.
-Here ``version`` refers to the code version, and ``tag`` refers to the Docker image tag.
-If you are using the latest code from GitHub, then please use the row that contains the latest ``version``.
+This section lists out the dependency versions that have been verified to work with the latest MDO Lab tools available on GitHub.
 
 .. IMPORTANT::
    Although the code may work with other dependency versions (for example numpy and scipy requirements are not
    strict), we only test code against the dependency versions listed below. Therefore, if you choose to use
    a different dependency version, then you are essentially on your own.
 
-.. list-table::
-   :header-rows: 1
+   For the package versions listed here, if no bugfix version (the third set of numbers) are provided, then you should use the latest bugfix version available online.
+   If the number is provided, then you MUST use that version.
+   For example, CGNS 3.3.1 will not work.
 
-   *  - Version
-      - Tag
-      - OS
-      - Compiler
-      - OpenMPI
-      - mpi4py
-      - PETSc
-      - petsc4py
-      - CGNS
-      - python
-      - numpy
-      - scipy
-      - swig
 
-   *  - 2.x
-      - py2
-      - 18.04
-      - gcc/7.4
-      - 3.1.4
-      - 3.0.2
-      - 3.11.0
-      - 3.11.0
-      - 3.3.0
-      - 2.7
-      - 1.16.4
-      - 1.2.1
-      - 2.0.12
+========= ======= ========== ==========
+Versions  py2     py3-stable py3-latest
+========= ======= ========== ==========
+OpenMPI   3.1     3.1        4.0
+mpi4py    3.0     3.0        3.0
+PETSc     3.11    3.11       3.12
+petsc4py  3.11    3.11       3.12
+CGNS      3.3.0   3.3.0      3.3.0
+python    2.7     3.7        3.8
+numpy     1.16    1.16       1.18
+scipy     1.2     1.2        1.4
+swig      2.0.12  2.0.12     2.0.12
+========= ======= ========== ==========
 
-   *  - 1.x
-      - v1
-      - 16.04
-      - gcc/7.4
-      - 1.10.7
-      - 1.3.1
-      - 3.7.7
-      - 3.7.0
-      - 3.2.1
-      - 2.7
-      - 1.16.4
-      - 1.2.1
-      - 2.0.12
+The supported operating systems are Ubuntu 18.04 and 20.04.
+For GNU compilers, we support versions 7 to 9.
 
 .. _install_prereq:
 
