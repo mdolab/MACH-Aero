@@ -62,6 +62,13 @@ If you are a beginner user installing the packages on a Linux desktop, you shoul
 The ``config.LINUX_INTEL.mk`` versions are usually used on HPC systems, in conjunction with Intel compilers.
 Our codes can be successfully compiled on Linux with either ``ifort`` or ``gfortran``.
 
+.. note::
+   For Intel builds, the ``config.mk`` files are potentially out of date. 
+   With new intel compilers, the actual mpi-wrapped compilers changed names. 
+   Check out the compilers_, and modify the ``FF90`` and ``CC`` options in ``config.mk`` files as needed.
+
+.. _compilers: https://software.intel.com/en-us/mpi-developer-reference-linux-compilation-commands
+
 Once you have copied the config file, compile the module by running::
 
     $ make

@@ -38,8 +38,8 @@ scipy     1.2     1.2        1.4
 swig      2.0.12  2.0.12     2.0.12
 ========= ======= ========== ==========
 
-The supported operating systems are Ubuntu 18.04 and 20.04.
-For GNU compilers, we support versions 7 to 9.
+The supported operating systems are Ubuntu 18.04 and 20.04, together with GNU compiler versions 7 to 9.
+For the rest of the instructions, we use angled brackets such as ``<version>`` as placeholders, where you should enter values specific to your installation such as package versions.
 
 .. _install_prereq:
 
@@ -51,7 +51,7 @@ If they're not available already, common prerequisites can be installed directly
 
 The packages are required by many of the packages installed later.
 On a cluster, check the output of ``module avail`` to see what has already been installed.
-They can also be installed locally, but they are common enough that a system install is acceptable.
+They can also be installed locally, but they are common enough that they are typically pre-installed.
 
 
 C and Fortran Based Packages
@@ -258,11 +258,10 @@ The CGNS Library provides Fortran bindings to read/write files in that format.
    file starting with c. This is fixed in subsequent versions.
 
 .. NOTE::
-   CGNS now supports two output types: HDF5 and
-   the Advanced Data Format (ADF) format. While HDF5 is the
-   officially supported format, its compatibility with other tools is sparse.
+   CGNS now supports two output types: HDF5 and the Advanced Data Format (ADF) format.
+   While HDF5 is the officially supported format, its compatibility with other tools is sparse.
    Therefore, for using MDO Lab codes, the ADF format is recommended.
-   Installing and linking HDF5 is therefore not recommended.
+   The rest of the instructions use ADF and not HDF5.
 
 Download and unpack the source directory, from your packages directory:
 
@@ -282,68 +281,49 @@ Next, configure your environment for CGNS by adding the following lines to your 
    export PATH=$PATH:$CGNS_HOME/bin
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CGNS_HOME/lib
 
-Next is to configure the package.
-Here are some notes for configuring below, or you can jump ahead to the configure commands
-:ref:`configure CGNS <configure_cgns>`. 
-
-.. NOTE::
-
-   - If you want to build the CGNS tools to view and edit CGNS files manually,
-      set ``-DCGNS_BUILD_CGNSTOOLS = 1``. To enable this option you may need
-      to install the following packages::
-
-      $ sudo apt-get install libxmu-dev libxi-dev
-
-      CGNS library sometimes complains about missing includes and libraries
-      Most of the time this is either Tk/TCL or OpenGL. This can be solved by
-      installing the following packages. Note that the version of these
-      libraries might be different on your machine ::
-
-         $ sudo apt-get install freeglut3
-         $ sudo apt-get install tk8.6-dev
-         # If needed
-         $ sudo apt-get install freeglut3-dev
-
-      .. warning:: 
-         There is a known bug in CGNS 3.3.0 (fixed in later versions) that crashes the build routine for Ubuntu 18/20 when this CGNS tools option is turned on. You can either turn it off compiling with ``-DCGNS_BUILD_CGNSTOOLS = 0`` or, if you still want to use CGNS tools, you can manually patch the source files using `this PR <https://github.com/CGNS/CGNS/pull/55/files>`_ as a reference.
-
-      **Optional**: If you compiled with ``-DCGNS_BUILD_CGNSTOOLS = 1`` you
-      either need to add the binary path to your PATH environmental variable or
-      you can install the binaries system wide. By specifying the installation prefix 
-      as shown in the later example configure commands, the binary path is in your PATH environmental variables; 
-      without specifying the prefix, the default is a system path, which requires sudo.
-
-   - When compiling on a cluster, it helps to set ``-DCGNS_BUILD_CGNSTOOLS = 0``. 
-      It will build without the cgnstools which requires additional packages.
-
-   - If you use intel compilers:
-      Check ``CMAKE_C_COMPILER:FILEPATH`` and ``CMAKE_FORTRAN_COMPILER:FILEPATH`` in ``CMakeCache.txt`` 
-      file after you configure the package. It's likely that CGNS gets compiled with some random old version of gcc stored in ``/bin/``. 
-      If they are incorrect, to compile it correctly, remove your old install and set the environment variables ``export CC=$(which icc)`` and ``export FC=$(which ifort)``. 
-
-
-      Another notice on the intel installs is that the ``config.mk`` files are out of date. 
-      With new intel compilers, the actual mpi-wrapped compilers changed names. 
-      Check out the compilers_, and modify the ``FF90`` and ``CC`` options in ``config.mk`` files as needed.
-
-   .. _compilers: https://software.intel.com/en-us/mpi-developer-reference-linux-compilation-commands
-
-
-Make a ``build`` directory, and call cmake from there to configure the package:
-
-.. _configure_cgns:
+To configure the package, make a ``build`` directory, and call cmake from there:
 
 .. code-block:: bash
 
    mkdir build       # If it exists from a previous build, remove it first
    cd build
-   cmake .. -DCGNS_ENABLE_FORTRAN=1 -DCMAKE_INSTALL_PREFIX=$CGNS_HOME -DCGNS_BUILD_CGNSTOOLS=1
-
-
+   cmake .. -DCGNS_ENABLE_FORTRAN=1 -DCMAKE_INSTALL_PREFIX=$CGNS_HOME -DCGNS_BUILD_CGNSTOOLS=0
 
 Finally, build and install::
 
    $ make all install
+
+.. important::
+   If your compilers are not located at ``/usr/bin/gcc``, either because you are on an HPC system or using Intel compilers, you must adjust the configure commands.
+   In the print out during configuration, check that the correct compiler is being used.
+   If they are incorrect, remove your old install and set the environment variables ``export CC=$(which icc)`` and ``export FC=$(which ifort)``.
+
+Installing CGNS Tools (Optional)
+********************************
+The CGNS Library comes with a set of tools to view and edit CGNS files manually.
+To install these tools, set ``-DCGNS_BUILD_CGNSTOOLS = 1``.
+Note that these tools should be installed on a local computer and not on a cluster.
+
+To enable this option you may need to install the following packages::
+
+   $ sudo apt-get install libxmu-dev libxi-dev
+
+CGNS library sometimes complains about missing includes and libraries
+Most of the time this is either Tk/TCL or OpenGL.
+This can be solved by installing the following packages.
+Note that the version of these libraries might be different on your machine ::
+
+   $ sudo apt-get install freeglut3
+   $ sudo apt-get install tk8.6-dev
+   # If needed
+   $ sudo apt-get install freeglut3-dev
+
+.. warning:: 
+   There is a known bug in CGNS 3.3.0 (fixed in later versions) that crashes the build routine for Ubuntu 18/20 when this CGNS tools option is turned on. You can either turn it off compiling with ``-DCGNS_BUILD_CGNSTOOLS = 0`` or, if you still want to use CGNS tools, you can manually patch the source files using `this PR <https://github.com/CGNS/CGNS/pull/55/files>`_ as a reference.
+
+If you compiled with ``-DCGNS_BUILD_CGNSTOOLS = 1`` you either need to add the binary path to your PATH environmental variable or you can install the binaries system wide.
+By specifying the installation prefix as shown in the example configure commands above, the binary path is in your PATH environmental variables; 
+without specifying the prefix, the default is a system path, which requires sudo.
 
 .. _install_swig:
 
