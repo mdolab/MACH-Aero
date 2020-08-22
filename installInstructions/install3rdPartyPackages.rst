@@ -222,7 +222,7 @@ It will look something like below (the PETSc version should be consistent with t
 
    make PETSC_DIR=$HOME/packages/petsc-<version> PETSC_ARCH=$PETSC_ARCH all
 
-After build, follow the the command provided at the end of the print out to test the functionality. It will look something like below::
+After build, follow the command provided at the end of the print out to test the functionality. It will look something like below::
 
     make PETSC_DIR=$HOME/packages/petsc-<version> PETSC_ARCH=$PETSC_ARCH test
 
