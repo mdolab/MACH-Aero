@@ -214,7 +214,7 @@ elif optimizer == "SNOPT":
         "Function precision": 1e-8,
         "Print file": os.path.join(outputDirectory, "SNOPT_print.out"),
         "Summary file": os.path.join(outputDirectory, "SNOPT_summary.out"),
-        'Major iterations limit': 1000,
+        "Major iterations limit": 1000,
     }
     opt = OPT("snopt", options=optOptions)
 

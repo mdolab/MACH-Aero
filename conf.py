@@ -11,14 +11,9 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys
-import os
-
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = [
-    "sphinxcontrib.bibtex"
-]
+extensions = ["sphinxcontrib.bibtex"]
 numpydoc_show_class_members = False
 
 # Add any paths that contain templates here, relative to this directory.
