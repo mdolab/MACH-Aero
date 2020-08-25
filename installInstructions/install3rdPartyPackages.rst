@@ -146,7 +146,7 @@ To get a list of all available options run::
 
 To facilitate installation of PETSc for use with MDO Lab tools, here are some common preset configurations.
 
-* Standard debug build (``$PETSC_ARCH=real-debug``):
+* Standard debug build (``PETSC_ARCH=real-debug``):
 
    .. code-block:: bash
 
@@ -154,7 +154,7 @@ To facilitate installation of PETSc for use with MDO Lab tools, here are some co
          --download-metis=yes --download-parmetis=yes --download-superlu_dist=yes \
          --with-shared-libraries=yes --with-fortran-bindings=1 --with-cxx-dialect=C++11
 
-* Debug complex build (``$PETSC_ARCH=complex-debug``):
+* Debug complex build (``PETSC_ARCH=complex-debug``):
 
    .. code-block:: bash
 
@@ -162,7 +162,7 @@ To facilitate installation of PETSc for use with MDO Lab tools, here are some co
          --download-metis=yes --download-parmetis=yes --download-superlu_dist=yes \
          --with-shared-libraries=yes --with-fortran-bindings=1 --with-cxx-dialect=C++11
 
-* Optimized real build on a cluster with existing MPI (``$PETSC_ARCH=real-opt``):
+* Optimized real build on a cluster with existing MPI (``PETSC_ARCH=real-opt``):
 
    .. code-block:: bash
 
@@ -230,7 +230,7 @@ After build, follow the command provided at the end of the print out to test the
    If your PETSc is not able to find MPI, try:
 
    #. Add ``--with-mpi-dir=$MPI_INSTALL_DIR`` when you configure PETSc
-   #. Check your ``LD_LIBRARY_PATH`` order. If you have PyTecplot, try moving the entry for PyTecplot in the ``LD_LIBRARY_PATH`` to the end, possibly by modifying your ``.bashrc``.
+   #. Check your ``LD_LIBRARY_PATH`` order. If you have PyTecplot, try moving the entry for PyTecplot in the ``LD_LIBRARY_PATH`` to the end, by modifying your ``.bashrc``.
 
 
 .. _install_cgns:
@@ -244,7 +244,7 @@ CGNS Library
 
    CGNS depends on a C/Fortran compiler and requires cmake to build.
 
-CGNS is a general file format for storing CFD data, and is used by ``ADflow``, ``IDWarp``, and ``pyHyp``.
+CGNS is a general file format for storing CFD data, and is used by ``ADflow``, ``IDWarp``, ``pyHyp``, and ``cgnsUtilities``.
 The CGNS Library provides Fortran bindings to read/write files in that format.
 
 .. WARNING::
@@ -415,10 +415,12 @@ mpi4py
 ~~~~~~
 .. IMPORTANT::
    mpi4py depends on OpenMPI.
-   It is recommended that the OpenMPI version matches with the mpi4py version.
+   Since mpi4py generally lags in version, it is recommended to use a version that matches as closely as possible to the installed OpenMPI version.
 
-mpi4py is the Python wrapper for MPI. This is required for
-**all** parallel MDO Lab codes.
+mpi4py is the Python wrapper for MPI. This is required for **all** parallel MDO Lab codes.
+
+Simple install with pip
+***********************
 It is installed with::
 
    pip install mpi4py==<version> --user --no-cache
@@ -426,7 +428,9 @@ It is installed with::
 .. NOTE::
    Some function usages have changed in newer versions of mpi4py. Check the `release <https://github.com/mpi4py/mpi4py/blob/master/CHANGES.rst>`_ to see the modifications that might be requried in the code.
 
-Alternatively, downloading from source is also possible.
+Advanced install
+****************
+Alternatively, installing from source is also possible.
 First, download the source code from `releases <https://github.com/mpi4py/mpi4py/releases>`__, and extract it into the packages directory.
 Then, either run ``pip install .`` or ``python setup.py install`` in the root directory.
 Installing from source has the advantage of having access to the tests, which can be used to verify both the OpenMPI and mpi4py installations.
