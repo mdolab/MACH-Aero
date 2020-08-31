@@ -17,7 +17,8 @@ It contains the following core modules:
 | [`multiPoint`](github.com/mdolab/multipoint) | Utilities for multipoint optimization | [![Documentation Status](https://readthedocs.com/projects/mdolab-multipoint/badge/?version=latest)](https://mdolab-multipoint.readthedocs-hosted.com/en/latest/?badge=latest) |  |
 | [`DAFoam`](github.com/mdolab/pygeo) | Alternate adjoint solver using OpenFOAM | [Documentation](https://dafoam.github.io/) | [![Build Status](https://travis-ci.com/mdolab/dafoam.svg?branch=master)](https://travis-ci.com/mdolab/dafoam.svg?branch=master) |
 
-Note that all the code for MACH-Aero are contained within the individual repositories above, which can be found on GitHub by clicking on the names in the table above.
+Note that all the code for MACH-Aero are contained within the individual repositories, which you can go to by clicking on the names in the table above.
+To go to the documentation site for each repository, click on the badge in the documentation column of the table above.
 
 This repository contains the following:
 - A description of the overall framework
