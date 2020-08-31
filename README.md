@@ -3,19 +3,22 @@
 
 MACH-Aero is a framework for performing aerodynamic shape optimization.
 It contains the following core modules:
-- `baseClasses`
-- `pySpline`
-- `pyGeo`
-- `IDWarp`
-- `ADflow`
-- `pyOptSparse`
 
-And optional modules:
-- `pyHyp`
-- `multiPoint`
-- `DAFoam`
+| Code repository | Functionality | Documentation | CI Status |
+| --------------- | ------------- | ------------- | --------- |
+| [`baseClasses`](github.com/mdolab/baseclasses) | Shared class definitions | [![Documentation Status](https://readthedocs.com/projects/mdolab-baseclasses/badge/?version=latest)](https://mdolab-baseclasses.readthedocs-hosted.com/?badge=latest) |  |
+| [`pySpline`](github.com/mdolab/pyspline) | B-spline implementation | [![Documentation Status](https://readthedocs.com/projects/mdolab-pyspline/badge/?version=latest)](https://mdolab-pyspline.readthedocs-hosted.com/en/latest/?badge=latest) | [![Build Status](https://travis-ci.com/mdolab/pyspline.svg?token=Kdy3JowvEtkKSPpqvdLj&branch=pySpline)](https://travis-ci.com/mdolab/pyspline) |
+| [`pyGeo`](github.com/mdolab/pygeo) | Geometry definition | [![Documentation Status](https://readthedocs.com/projects/mdolab-pygeo/badge/?version=latest)](https://mdolab-pygeo.readthedocs-hosted.com/en/latest/?badge=latest) | [![Build Status](https://travis-ci.com/mdolab/pygeo.svg?branch=pyGeo)](https://travis-ci.com/mdolab/pygeo) |
+| [`IDWarp`](github.com/mdolab/idwarp) | Volume mesh warping | [![Documentation Status](https://readthedocs.com/projects/mdolab-idwarp/badge/?version=latest)](https://mdolab-idwarp.readthedocs-hosted.com/en/latest/?badge=latest) | [![Build Status](https://travis-ci.com/mdolab/idwarp.svg?branch=master)](https://travis-ci.com/mdolab/idwarp) |
+| [`ADflow`](github.com/mdolab/adflow) | CFD and adjoint solver | [![Documentation Status](https://readthedocs.com/projects/mdolab-adflow/badge/?version=latest)](https://mdolab-adflow.readthedocs-hosted.com/?badge=latest) | [![Build Status](https://travis-ci.com/mdolab/adflow.svg?branch=master)](https://travis-ci.com/mdolab/adflow)  |
+| [`pyOptSparse`](github.com/mdolab/pyoptsparse) | Optimizer wrapper | [![Documentation Status](https://readthedocs.com/projects/mdolab-pyoptsparse/badge/?version=latest)](https://mdolab-pyoptsparse.readthedocs-hosted.com/en/latest/?badge=latest) | [![Build Status](https://travis-ci.com/mdolab/pyoptsparse.svg?branch=master)](https://travis-ci.com/mdolab/pyoptsparse) |
+| And optional modules: |  |  |  |
+| [`pyHyp`](github.com/mdolab/pyhyp) | Volume mesh generation | [![Documentation Status](https://readthedocs.com/projects/mdolab-pyhyp/badge/?version=latest)](https://mdolab-pyhyp.readthedocs-hosted.com/en/latest) | [![Build Status](https://travis-ci.com/mdolab/pyhyp.svg?branch=master)](https://travis-ci.com/mdolab/pyhyp) |
+| [`multiPoint`](github.com/mdolab/multipoint) | Utilities for multipoint optimization | [![Documentation Status](https://readthedocs.com/projects/mdolab-multipoint/badge/?version=latest)](https://mdolab-multipoint.readthedocs-hosted.com/en/latest/?badge=latest) |  |
+| [`DAFoam`](github.com/mdolab/pygeo) | Alternate adjoint solver using OpenFOAM | [Documentation](https://dafoam.github.io/) | [![Build Status](https://travis-ci.com/mdolab/dafoam.svg?branch=master)](https://travis-ci.com/mdolab/dafoam.svg?branch=master) |
 
-Note that all the code for MACH-Aero are contained within the individual repositories above, which can be found on GitHub under the organization `mdolab`.
+Note that all the code for MACH-Aero are contained within the individual repositories above, which can be found on GitHub by clicking on the names in the table above.
+
 This repository contains the following:
 - A description of the overall framework
 - Installation instructions which are shared across the various repositories
@@ -23,4 +26,3 @@ This repository contains the following:
 
 These docs can be accessed online at https://mdolab-mach-aero.readthedocs-hosted.com/.
 To run the tutorials yourself, you need to follow the installation instructions to install all the modules, then clone this repository to access the tutorial scripts.
-Tutorial walkthroughs are found on the documentation site.
