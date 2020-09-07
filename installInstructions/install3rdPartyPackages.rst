@@ -47,9 +47,10 @@ Common Prerequisites
 --------------------
 If they're not available already, common prerequisites can be installed directly from a Debian repository::
 
-   sudo apt-get install python-dev gfortran valgrind cmake libblas-dev liblapack-dev
+   sudo apt-get install python-dev gfortran valgrind cmake libblas-dev liblapack-dev build-essential
 
 The packages are required by many of the packages installed later.
+
 On a cluster, check the output of ``module avail`` to see what has already been installed.
 They can also be installed locally, but they are common enough that they are typically pre-installed.
 
