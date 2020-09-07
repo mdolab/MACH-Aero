@@ -50,6 +50,12 @@ If they're not available already, common prerequisites can be installed directly
    sudo apt-get install python-dev gfortran valgrind cmake libblas-dev liblapack-dev
 
 The packages are required by many of the packages installed later.
+
+.. NOTE::
+
+   In some cases, if using Ubuntu 20.04 LTS, ``g++`` might not be included in the set of packages listed above.
+   In case your builds error out because they cannot locate ``c++`` compilers, use ``sudo apt install build-essential``. 
+   
 On a cluster, check the output of ``module avail`` to see what has already been installed.
 They can also be installed locally, but they are common enough that they are typically pre-installed.
 
