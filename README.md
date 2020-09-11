@@ -16,6 +16,7 @@ It contains the following core modules:
 | [`pyHyp`](https://github.com/mdolab/pyhyp) | Volume mesh generation | [![Documentation Status](https://readthedocs.com/projects/mdolab-pyhyp/badge/?version=latest)](https://mdolab-pyhyp.readthedocs-hosted.com/en/latest) | [![Build Status](https://travis-ci.com/mdolab/pyhyp.svg?branch=master)](https://travis-ci.com/mdolab/pyhyp) |
 | [`multiPoint`](https://github.com/mdolab/multipoint) | Utilities for multipoint optimization | [![Documentation Status](https://readthedocs.com/projects/mdolab-multipoint/badge/?version=latest)](https://mdolab-multipoint.readthedocs-hosted.com/en/latest/?badge=latest) |  |
 | [`DAFoam`](https://github.com/mdolab/dafoam) | Alternate adjoint solver using OpenFOAM | [Documentation](https://dafoam.github.io/) | [![Build Status](https://travis-ci.com/mdolab/dafoam.svg?branch=master)](https://travis-ci.com/mdolab/dafoam.svg?branch=master) |
+| [`cgnsUtilities`](https://github.com/mdolab/cgnsutilities) | Utilities for CGNS mesh files |  | [![Build Status](https://travis-ci.com/mdolab/cgnsutilities.svg?branch=master)](https://travis-ci.com/mdolab/cgnsutilities) |
 
 Note that all the code for MACH-Aero are contained within the individual repositories, which you can go to by clicking on the names in the table above.
 To go to the documentation site for each repository, click on the badge in the documentation column of the table above.
