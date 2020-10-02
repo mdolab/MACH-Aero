@@ -15,7 +15,7 @@ Supported dependency versions
 This section lists out the dependency versions that have been verified to work with the latest MDO Lab tools available on GitHub.
 
 .. IMPORTANT::
-   Although the code may work with other dependency versions (for example numpy and scipy requirements are not
+   Although the code may work with other dependency versions (for example NumPy and SciPy requirements are not
    strict), we only test code against the dependency versions listed below. Therefore, if you choose to use
    a different dependency version, then you are essentially on your own.
 
@@ -23,20 +23,22 @@ This section lists out the dependency versions that have been verified to work w
    If the number is provided, then you MUST use that version.
    For example, CGNS 3.3.1 will not work.
 
+   If you are doing a clean install, it's probably best to use the versions listed under the ``latest`` column.
 
-========= ======= ========== ==========
-Versions  py2     py3-stable py3-latest
-========= ======= ========== ==========
-OpenMPI   3.1     3.1        4.0
-mpi4py    3.0     3.0        3.0
-PETSc     3.11    3.11       3.12
-petsc4py  3.11    3.11       3.12
-CGNS      3.3.0   3.3.0      3.3.0
-python    2.7     3.7        3.8
-numpy     1.16    1.16       1.18
-scipy     1.2     1.2        1.4
-swig      2.0.12  2.0.12     2.0.12
-========= ======= ========== ==========
+
+========= ======= =======
+Versions  stable  latest
+========= ======= =======
+OpenMPI   3.1     4.0
+mpi4py    3.0     3.0
+PETSc     3.11    3.12
+petsc4py  3.11    3.12
+CGNS      3.3.0   3.3.0
+Python    3.7     3.8
+NumPy     1.16    1.18
+SciPy     1.2     1.4
+swig      2.0.12  2.0.12
+========= ======= =======
 
 The supported operating systems are Ubuntu 18.04 and 20.04, together with GNU compiler versions 7 to 9.
 For the rest of the instructions, we use angled brackets such as ``<version>`` as placeholders, where you should enter values specific to your installation such as package versions.
@@ -363,12 +365,6 @@ Then configure SWIG and build the binaries using the following commands:
 
 Python Packages
 ---------------
-
-.. IMPORTANT::
-   MDO Lab tools have been tested to work with python 2.
-   The MDO Lab is in the process of migrating to python 3;
-   however we will continue to support python 2 for the forseeable future.
-
 In this guide, python packages are installed using ``pip``.
 Other methods, such as from source or using ``conda``, will also work.
 Local installations (with ``--user``) are also recommended but not required.
