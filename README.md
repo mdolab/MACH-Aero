@@ -18,13 +18,15 @@ It contains the following core modules:
 | [`DAFoam`](https://github.com/mdolab/dafoam) | Alternate adjoint solver using OpenFOAM | [Documentation](https://dafoam.github.io/) | [![Build Status](https://travis-ci.com/mdolab/dafoam.svg?branch=master)](https://travis-ci.com/mdolab/dafoam.svg?branch=master) |
 | [`cgnsUtilities`](https://github.com/mdolab/cgnsutilities) | Utilities for CGNS mesh files |  | [![Build Status](https://travis-ci.com/mdolab/cgnsutilities.svg?branch=master)](https://travis-ci.com/mdolab/cgnsutilities) |
 
-Note that all the code for MACH-Aero are contained within the individual repositories, which you can go to by clicking on the names in the table above.
+## Where is the code?
+All the code for MACH-Aero are contained within the individual repositories, which you can go to by clicking on the names in the table above.
 To go to the documentation site for each repository, click on the badge in the documentation column of the table above.
 
+## What's in this repo then?
 This repository contains the following:
 - A description of the overall framework
 - Installation instructions which are shared across the various repositories
 - Tutorials for using MACH-Aero to perform aerodynamic shape optimization
 
-These docs can be accessed online at https://mdolab-mach-aero.readthedocs-hosted.com/.
+These documentation can be accessed online at https://mdolab-mach-aero.readthedocs-hosted.com/.
 To run the tutorials yourself, you need to follow the installation instructions to install all the modules, then clone this repository to access the tutorial scripts.
