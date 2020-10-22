@@ -49,8 +49,13 @@ Optional packages are:
 #. `cgnsUtilities <https://github.com/mdolab/cgnsutilities>`_ 
 #. `DAFoam <https://github.com/mdolab/dafoam>`_
 
+Standard MDO Lab Build Procedure
+--------------------------------
+
+The following general instructions apply to all the packages and repos maintained by the MDO Lab. Note that the `Compilation`_ step is not required if the package is entirely written in Python.
+
 Compilation
------------
+~~~~~~~~~~~
 To start, find a configuration file close to your current setup in::
 
     $ config/defaults
@@ -84,12 +89,8 @@ If you don't see this, it will be necessary to configure the build manually.
 To configure manually, open ``config/config.mk`` and modify options as necessary.
 Remember to type ``make clean`` to remove outdated build files, before building again.
 
-.. NOTE::
-   If you are using Python 2, please set ``PYTHON-CONFIG = python-config`` in the ``config/config.mk``.
-   Also, make sure to specify the appropriate CGNS version.
-
 Installation
-------------
+~~~~~~~~~~~~
 To install the Python package, type::
 
    pip install .
