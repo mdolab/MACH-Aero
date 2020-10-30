@@ -55,7 +55,7 @@ General Options
 ``outerFaceBC``
     Tells pyHyp to which boundary condition to apply to the outermost face of the extruded mesh (Note that we do not set the inlet or outlet boundaries seperately because it is automatically handled in adflow by the free stream flow direction).
 ``BC``
-    Tells pyHyp to take the k=1 layer (surface of the airfoil) to be non-slip wall. Since it is a 2D problem, the jlow and jhigh  are set to be symmetry boundary conditions on both sides of the domain.
+    Tells pyHyp that since it is a 2D problem, the jlow and jhigh  are set to be symmetry boundary conditions on both sides of the domain (Note that Klow=1 is set by default to be a non-slip wall).
 ``families``
     Name given to wall surfaces. 
     If a dictionary is submitted, each wall patch can have a different name. 
