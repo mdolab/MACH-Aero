@@ -53,9 +53,9 @@ General Options
 ``unattachedEdgesAreSymmetry``
     Tells pyHyp to automatically apply symmetry boundary conditions to any unattached edges (those that do not interface with another block).
 ``outerFaceBC``
-    Tells pyHyp to which boundary condition to apply to the outermost face of the extruded mesh (Note that we do not set the inlet or outlet boundaries seperately because it is automatically handled in adflow by the free stream flow direction).
+    Tells pyHyp which boundary condition to apply to the outermost face of the extruded mesh. Note that we do not set the inlet or outlet boundaries seperately because they are automatically handled in ADflow consistently with the free stream flow direction.
 ``BC``
-    Tells pyHyp that since it is a 2D problem, the jlow and jhigh  are set to be symmetry boundary conditions on both sides of the domain (Note that Klow=1 is set by default to be a non-slip wall).
+    Tells pyHyp that, since it is a 2D problem, both sides of the domain ``jLow`` and ``jHigh``  are set to be symmetry boundary conditions. Note that ``kLow=1`` is set by default to be a non-slip wall.
 ``families``
     Name given to wall surfaces. 
     If a dictionary is submitted, each wall patch can have a different name. 
