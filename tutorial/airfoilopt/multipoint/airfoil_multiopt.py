@@ -36,8 +36,10 @@ MP = multiPointSparse(MPI.COMM_WORLD)
 MP.addProcessorSet("cruise", nMembers=nGroup, memberSizes=nProcPerGroup)
 comm, setComm, setFlags, groupFlags, ptID = MP.createCommunicators()
 outputDirectory = "output"
-if comm.rank == 0:
+if not os.path.exists(outputDirectory):
     os.mkdir(outputDirectory)
+else:
+    raise OSError("The directory already exists! Please delete it or provide a new path")
 # rst multipoint (end)
 # ======================================================================
 #         ADflow Set-up
@@ -212,6 +214,7 @@ def cruiseFuncsSens(x, funcs):
     for i in range(nFlowCases):
         if i % nGroup == ptID:
             CFDSolver.evalFunctionsSens(aeroProblems[i], funcsSens)
+            CFDSolver.checkAdjointFailure(aeroProblems[i], funcsSens)
     if MPI.COMM_WORLD.rank == 0:
         print(funcsSens)
     return funcsSens
