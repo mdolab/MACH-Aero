@@ -20,7 +20,7 @@ MP = multiPointSparse(MPI.COMM_WORLD)
 MP.addProcessorSet("cruise", nMembers=1, memberSizes=MPI.COMM_WORLD.size)
 comm, setComm, setFlags, groupFlags, ptID = MP.createCommunicators()
 outputDirectory = "output"
-if comm.rank == 0:
+if comm.rank == 0 and os.path.exists(outputDirectory) is False:
     os.mkdir(outputDirectory)
 # rst multipoint (end)
 # ======================================================================
@@ -156,6 +156,7 @@ def cruiseFuncsSens(x, funcs):
     funcsSens = {}
     DVCon.evalFunctionsSens(funcsSens)
     CFDSolver.evalFunctionsSens(ap, funcsSens)
+    CFDSolver.checkAdjointFailure(ap, funcsSens)
     if comm.rank == 0:
         print(funcsSens)
     return funcsSens
