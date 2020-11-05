@@ -23,7 +23,7 @@ outputDirectory = "output"
 if not os.path.exists(outputDirectory):
     os.mkdir(outputDirectory)
 else:
-    raise Warning("The directory already exists! Please delete it or provide a new path")
+    raise OSError("The directory already exists! Please delete it or provide a new path")
 # rst multipoint (end)
 # ======================================================================
 #         ADflow Set-up
