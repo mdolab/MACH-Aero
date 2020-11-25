@@ -1,0 +1,876 @@
+[srv-clst-t-864.cluster:12178] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15066] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15074] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15072] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12165] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13056] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13060] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12182] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15069] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12168] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15080] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13068] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15064] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12170] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19532] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13061] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13055] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19544] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15076] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13065] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19541] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13066] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13052] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15077] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12180] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15070] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12171] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13049] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15071] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15078] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19534] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12167] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12177] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15079] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12172] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15062] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19540] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19536] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12164] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12181] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19528] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13064] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12175] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15068] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12166] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15065] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12173] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12174] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19530] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15081] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13057] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13050] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15063] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15075] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15073] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13058] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12169] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-861.cluster:15067] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19531] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12183] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19543] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12176] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13053] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13067] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-864.cluster:12179] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19542] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13054] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13062] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13051] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13059] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-865.cluster:13063] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19527] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19526] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19529] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19535] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19545] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19539] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19537] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19533] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+[srv-clst-t-860.cluster:19538] pml_ucx.c:226 Error: UCP worker does not support MPI_THREAD_MULTIPLE
+#
+# ADflow, multiblock structured flow solver
+#
+# This code solves the 3D RANS, laminar NS or Euler equations
+# on multiblock structured hexahedral grids.
+# This is a parallel executable running on 80 processors.
+# It has been compiled with the following options:
+# - Optimized mode.
+# - Size of standard integers: 4 bytes.
+# - Size of standard floating point types: 8 bytes.
+# - With cgns support
+# - With support for signals.
+#
++---------------------------------------+
+|          All ADFLOW Options:          |
++---------------------------------------+
+{'adjointdivtol': 100000.0,
+ 'adjointl2convergence': 1e-06,
+ 'adjointl2convergenceabs': 1e-16,
+ 'adjointl2convergencerel': 1e-16,
+ 'adjointmaxiter': 500,
+ 'adjointmonitorstep': 10,
+ 'adjointsolver': 'gmres',
+ 'adjointsubspacesize': 100,
+ 'adpc': False,
+ 'agmglevels': 1,
+ 'agmgnsmooth': 3,
+ 'alphafollowing': True,
+ 'alphamode': False,
+ 'altitudemode': False,
+ 'ankadpc': False,
+ 'ankasmoverlap': 1,
+ 'ankcfl0': 5.0,
+ 'ankcflcutback': 0.5,
+ 'ankcflexponent': 0.5,
+ 'ankcflfactor': 10.0,
+ 'ankcfllimit': 100000.0,
+ 'ankcflmin': 1.0,
+ 'ankconstcflstep': 0.4,
+ 'ankcoupledswitchtol': 1e-16,
+ 'ankinnerpreconits': 1,
+ 'ankjacobianlag': 10,
+ 'anklinearsolvetol': 0.05,
+ 'anklinresmax': 0.9,
+ 'ankmaxiter': 40,
+ 'anknsubiterturb': 1,
+ 'ankouterpreconits': 1,
+ 'ankpcilufill': 2,
+ 'ankpcupdatetol': 0.5,
+ 'ankphysicallstol': 0.2,
+ 'ankphysicallstolturb': 0.99,
+ 'anksecondordswitchtol': 1e-16,
+ 'ankstepfactor': 1.0,
+ 'ankstepmin': 0.01,
+ 'anksubspacesize': -1,
+ 'ankswitchtol': 1.0,
+ 'ankturbcflscale': 1.0,
+ 'ankturbkspdebug': False,
+ 'ankunsteadylstol': 1.0,
+ 'ankusefullvisc': True,
+ 'ankusematrixfree': True,
+ 'ankuseturbdadi': False,
+ 'applyadjointpcsubspacesize': 20,
+ 'applypcsubspacesize': 10,
+ 'approxpc': True,
+ 'asmoverlap': 1,
+ 'autoadjointretry': False,
+ 'autosolveretry': False,
+ 'backgroundvolscale': 1.0,
+ 'betamode': False,
+ 'blocksplitting': True,
+ 'cavitationnumber': 1.4,
+ 'cfl': 0.8,
+ 'cflcoarse': 1.0,
+ 'cfllimit': 1.5,
+ 'closedsurfacefamilies': None,
+ 'coarsediscretization': 'central plus scalar dissipation',
+ 'computecavitation': False,
+ 'coupledsolution': False,
+ 'cutcallback': None,
+ 'debugzipper': False,
+ 'deltat': 0.01,
+ 'designsurfacefamily': None,
+ 'discretization': 'central plus scalar dissipation',
+ 'dissipationlumpingparameter': 6.0,
+ 'dissipationscalingexponent': 0.67,
+ 'eddyvisinfratio': 0.009,
+ 'equationmode': 'steady',
+ 'equationtype': 'RANS',
+ 'eulerwalltreatment': 'linear pressure extrapolation',
+ 'firstrun': True,
+ 'flowtype': 'external',
+ 'forcesastractions': True,
+ 'frozenturbulence': False,
+ 'globalpreconditioner': 'additive schwartz',
+ 'gridfile': '../mesh/wing_final_L2.cgns',
+ 'gridprecision': 'double',
+ 'gridprecisionsurface': 'single',
+ 'ilufill': 2,
+ 'infchangecorrection': False,
+ 'innerpreconits': 1,
+ 'isosurface': {},
+ 'isovariables': [],
+ 'l2convergence': 1e-14,
+ 'l2convergencecoarse': 0.01,
+ 'l2convergencerel': 1e-16,
+ 'liftindex': 3,
+ 'limiter': 'vanalbeda',
+ 'loadbalanceiter': 10,
+ 'loadimbalance': 0.1,
+ 'localpreconditioner': 'ilu',
+ 'lowspeedpreconditioner': False,
+ 'machmode': False,
+ 'matrixordering': 'rcm',
+ 'maxl2deviationfactor': 1.0,
+ 'meshsurfacefamily': None,
+ 'mgcycle': 'sg',
+ 'mgstartlevel': -1,
+ 'monitorvariables': ['resrho', 'resturb', 'cl', 'cd'],
+ 'ncycles': 20000,
+ 'ncyclescoarse': 500,
+ 'nearwalldist': 0.1,
+ 'nkadpc': False,
+ 'nkasmoverlap': 1,
+ 'nkcfl0': 100.0,
+ 'nkfixedstep': 0.25,
+ 'nkinnerpreconits': 1,
+ 'nkjacobianlag': 20,
+ 'nklinearsolvetol': 0.3,
+ 'nkls': 'cubic',
+ 'nkouterpreconits': 1,
+ 'nkpcilufill': 2,
+ 'nksubspacesize': 60,
+ 'nkswitchtol': 1e-06,
+ 'nkuseew': True,
+ 'nkviscpc': False,
+ 'nrefine': 10,
+ 'nrkreset': 20,
+ 'nsavesurface': 1,
+ 'nsavevolume': 1,
+ 'nsubiter': 1,
+ 'nsubiterturb': 1,
+ 'ntimestepscoarse': 48,
+ 'ntimestepsfine': 400,
+ 'numbersolutions': True,
+ 'outerpreconits': 3,
+ 'outputdirectory': 'output',
+ 'outputsurfacefamily': 'wall',
+ 'overlapfactor': 0.9,
+ 'oversetloadbalance': True,
+ 'oversetpriority': {},
+ 'oversetprojtol': 1e-12,
+ 'oversetupdatemode': 'frozen',
+ 'partitionlikenproc': -1,
+ 'partitiononly': False,
+ 'pmode': False,
+ 'preconditionerside': 'right',
+ 'printiterations': True,
+ 'printtiming': True,
+ 'printwarnings': True,
+ 'qmode': False,
+ 'resaveraging': 'alternateresaveraging',
+ 'restartadjoint': True,
+ 'restartfile': None,
+ 'restrictionrelaxation': 0.8,
+ 'rkreset': True,
+ 'rmode': False,
+ 'selfzipcutoff': 120.0,
+ 'sepsensoroffset': 0.0,
+ 'sepsensorsharpness': 10.0,
+ 'setmonitor': True,
+ 'skipafterfailedadjoint': True,
+ 'smoother': 'runge kutta',
+ 'smoothparameter': 1.5,
+ 'solutionprecision': 'single',
+ 'solutionprecisionsurface': 'single',
+ 'storerindlayer': True,
+ 'surfacevariables': ['cp', 'vx', 'vy', 'vz', 'mach', 'blank'],
+ 'timeaccuracy': 2,
+ 'timeintegrationscheme': 'bdf',
+ 'timeintervals': 1,
+ 'timelimit': -1.0,
+ 'tsstability': False,
+ 'turbresscale': 10000.0,
+ 'turbulencemodel': 'sa',
+ 'turbulenceorder': 'first order',
+ 'turbulenceproduction': 'strain',
+ 'useale': True,
+ 'useanksolver': True,
+ 'useapproxwalldistance': True,
+ 'useblockettes': True,
+ 'usediagtspc': True,
+ 'useft2sa': True,
+ 'usegridmotion': False,
+ 'uselinresmonitor': False,
+ 'usematrixfreedrdw': True,
+ 'usenksolver': True,
+ 'useoversetwallscaling': False,
+ 'useqcr': False,
+ 'userotationsa': False,
+ 'usewallfunctions': False,
+ 'usezippermesh': True,
+ 'verifyextra': True,
+ 'verifyspatial': True,
+ 'verifystate': True,
+ 'vis2': 0.25,
+ 'vis2coarse': 0.5,
+ 'vis4': 0.0156,
+ 'viscoussurfacevelocities': True,
+ 'viscpc': False,
+ 'viscwalltreatment': 'constant pressure extrapolation',
+ 'volumevariables': ['resrho', 'blank'],
+ 'walldistcutoff': 1e+20,
+ 'windaxis': False,
+ 'writesurfacesolution': True,
+ 'writetecplotsurfacesolution': False,
+ 'writevolumesolution': True,
+ 'zippersurfacefamily': 'overset'}
+-> Alpha... 0.000000 
+#
+#                      Warning
+# Conversion factor from grid units to meter not specified and some blocks
+# do not have units. It is assumed that the grid is given in meters.
+#
+#
+#                    Warning
+# Specified load imbalance tolerance  0.100 not achieved.
+# I continue with  0.193 load imbalance for the cells and  0.213 for the faces
+#
+#
+# Grid level: 1, Total number of cells: 936936
+#
++--------------------------------------------------+
+  CGNS Surface Families by Boundary Condition Type
++--------------------------------------------------+
+| Wall Types           : wall 
+| Inflow Types : 
+| Outflow Types : 
+| Symmetry Types       : sym 
+| Farfield Types       : far 
+| Oveset Types         : overset 
++--------------------------------------------------+
+ Flood Iteration:           1 Blanked            0 Interior Cells.
+ +--------------------------------+
+ | Compute Cells           :      798822
+ | Fringe Cells            :      137988
+ | Blanked Cells           :           0
+ | Explicitly Blanked Cells:           0
+ | Flooded   Cells         :           0
+ | FloodSeed Cells         :         126
+ +--------------------------------+
+ Total number of orphans:           0
+ Flood Iteration:           1 Blanked          126 Interior Cells.
+ Flood Iteration:           2 Blanked            0 Interior Cells.
+ +--------------------------------+
+ | Compute Cells           :      798822
+ | Fringe Cells            :      137988
+ | Blanked Cells           :           0
+ | Explicitly Blanked Cells:           0
+ | Flooded   Cells         :           0
+ | FloodSeed Cells         :         126
+ +--------------------------------+
+ Total number of orphans:           0
+ +--------------------------------+
+ | Compute Cells           :      798822
+ | Fringe Cells            :       75274
+ | Blanked Cells           :       62714
+ | Explicitly Blanked Cells:           0
+ | Flooded   Cells         :           0
+ | FloodSeed Cells         :         126
+ +--------------------------------+
+ Total number of orphans:           0
++--------------------------------------------------+
+|
+| Initialization Times:
+|
+| Library Load Time             :      0.126 sec
+| Set Defaults Time             :      0.001 sec
+| Base class init Time          :      0.001 sec
+| Introductory Time             :      0.004 sec
+| Partitioning Time             :      1.210 sec
+| Preprocessing Time            :      4.732 sec
+| Family Setup Time             :      0.000 sec
+| Cut callback Time             :      0.000 sec
+| Overset Preprocessing Time    :     35.761 sec
+| Initialize Flow Time          :      0.023 sec
+|
+| Total Init Time               :     41.860 sec
++--------------------------------------------------+
++----------------------------------------------------------------------+
+|  Switching to Aero Problem: Re11720000.0_M0.8395_AoA3.06_L2          |
++----------------------------------------------------------------------+
+-> Alpha... 3.060000 
++---------------------------------------+
+|      All Modified ADFLOW Options:     |
++---------------------------------------+
+{'ankuseturbdadi': False,
+ 'cfl': 0.8,
+ 'equationtype': 'RANS',
+ 'gridfile': '../mesh/wing_final_L2.cgns',
+ 'l2convergence': 1e-14,
+ 'liftindex': 3,
+ 'mgcycle': 'sg',
+ 'monitorvariables': ['resrho', 'resturb', 'cl', 'cd'],
+ 'ncycles': 20000,
+ 'nkswitchtol': 1e-06,
+ 'nrkreset': 20,
+ 'outputdirectory': 'output',
+ 'outputsurfacefamily': 'wall',
+ 'rkreset': True,
+ 'surfacevariables': ['cp', 'vx', 'vy', 'vz', 'mach', 'blank'],
+ 'turbresscale': 10000.0,
+ 'useanksolver': True,
+ 'usenksolver': True,
+ 'volumevariables': ['resrho', 'blank'],
+ 'zippersurfacefamily': 'overset'}
+#
+# Grid 1: Performing 20000 iterations, unless converged earlier. Minimum required iteration before NK switch:     20. Switch to NK at totalR of:   0.13E+03
+#
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#  Grid  | Iter | Iter |  Iter  |   CFL   | Step | Lin  |        Res rho         |       Res nuturb       |         C_lift         |        C_drag          |        totalRes        |
+#  level |      | Tot  |  Type  |         |      | Res  |                        |                        |                        |                        |                        |
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      1       0      0     None   0.00E+00  1.00   ----   0.3082030190451063E+05   0.1222198645337476E-01   0.8035904083319124E-02   0.4799477194917160E+00   0.1277214896875398E+09 
+      1       1      1       RK   0.80E+00  1.00   ----   0.2646168201530266E+05   0.1187461419085147E-01   0.1571152433062070E+00   0.5273519167188747E+00   0.1075873439523456E+09 
+      1       2      2       RK   0.80E+00  1.00   ----   0.2196712072592952E+05   0.3215595078729087E-02   0.2569318968706767E+00   0.5547000878746007E+00   0.8987071545192692E+08 
+      1       3      3       RK   0.80E+00  1.00   ----   0.1772340869998558E+05   0.1333879549104668E-02   0.3054829000617471E+00   0.5696396127793536E+00   0.7403012535243376E+08 
+      1       4      4       RK   0.80E+00  1.00   ----   0.1424453591728314E+05   0.7531436314322714E-03   0.3085949749055684E+00   0.5708659233945632E+00   0.6125775009639888E+08 
+      1       5      5       RK   0.80E+00  1.00   ----   0.1216881703345746E+05   0.4767324348525620E-03   0.2808597242136326E+00   0.5584235626440469E+00   0.5356052944915139E+08 
+      1       6      6       RK   0.80E+00  1.00   ----   0.1180503858667734E+05   0.3231126531930185E-03   0.2424985118906515E+00   0.5338634345150821E+00   0.5203205926800526E+08 
+      1       7      7       RK   0.80E+00  1.00   ----   0.1256815829080303E+05   0.2626578824920247E-03   0.2121405092073950E+00   0.5000427845490178E+00   0.5507743681159548E+08 
+      1       8      8       RK   0.80E+00  1.00   ----   0.1292366123719276E+05   0.2162089263241733E-03   0.2000567098301204E+00   0.4621737679657132E+00   0.5682806266036052E+08 
+      1       9      9       RK   0.80E+00  1.00   ----   0.1199932854156064E+05   0.1419916136739981E-03   0.2057751291841743E+00   0.4266505223727605E+00   0.5285811944947556E+08 
+      1      10     10       RK   0.80E+00  1.00   ----   0.1012038673557275E+05   0.7326748519310244E-04   0.2221628713117015E+00   0.3988219972538513E+00   0.4464528114473639E+08 
+      1      11     11       RK   0.80E+00  1.00   ----   0.8682671780932025E+04   0.7294022871122010E-04   0.2394644151404915E+00   0.3820833330782008E+00   0.3897481486054080E+08 
+      1      12     12       RK   0.80E+00  1.00   ----   0.8401087957617568E+04   0.8570567579274431E-04   0.2498862687415500E+00   0.3746435661151905E+00   0.3846048465997520E+08 
+      1      13     13       RK   0.80E+00  1.00   ----   0.8744155364513284E+04   0.6769548591404814E-04   0.2509948284234932E+00   0.3741756027322442E+00   0.4002385533822055E+08 
+      1      14     14       RK   0.80E+00  1.00   ----   0.8684471636959086E+04   0.5811764984247601E-04   0.2450846032447919E+00   0.3769386027953918E+00   0.3947898061853537E+08 
+      1      15     15       RK   0.80E+00  1.00   ----   0.7711602046780161E+04   0.5243116807303962E-04   0.2369148245147556E+00   0.3783309115884349E+00   0.3507721778829288E+08 
+      1      16     16       RK   0.80E+00  1.00   ----   0.6792164816515344E+04   0.5417854288916702E-04   0.2310219398925081E+00   0.3744682979322825E+00   0.3142558579397336E+08 
+      1      17     17       RK   0.80E+00  1.00   ----   0.6719325443756003E+04   0.6958450317108790E-04   0.2297018368791805E+00   0.3654568948462280E+00   0.3136901671742736E+08 
+      1      18     18       RK   0.80E+00  1.00   ----   0.6918118450196725E+04   0.6963782145224590E-04   0.2325308715506650E+00   0.3529052176831406E+00   0.3203516484633868E+08 
+      1      19     19       RK   0.80E+00  1.00   ----   0.6734640134486107E+04   0.5879568209993810E-04   0.2372820929747214E+00   0.3396541660901361E+00   0.3109486517762305E+08 
+      1      20     20       RK   0.80E+00  1.00   ----   0.5992694832280778E+04   0.5229723369847362E-04   0.2413851914693540E+00   0.3286690059247173E+00   0.2782693126028746E+08 
+      1      21     23     *ANK   0.50E+01  0.19  0.014   0.5025441809852669E+04   0.1721030770909884E-04   0.2412899153422720E+00   0.3244794548509687E+00   0.2348359075651881E+08 
+      1      22     27      ANK   0.50E+01  0.24  0.022   0.3993611267532235E+04   0.2320362102478465E-04   0.2411672791186781E+00   0.3193688775694550E+00   0.1878584270692915E+08 
+      1      23     32      ANK   0.50E+01  0.32  0.018   0.2957800528730453E+04   0.3010074155222552E-04   0.2410155436658827E+00   0.3129714514482614E+00   0.1400608748490836E+08 
+      1      24     38      ANK   0.50E+01  0.39  0.021   0.2073259329801505E+04   0.3516595909443532E-04   0.2408654916834037E+00   0.3055506685589231E+00   0.9869948512566373E+07 
+      1      25     41     *ANK   0.50E+01  0.44  0.029   0.1437846053710544E+04   0.3434510412049900E-04   0.2407691478276546E+00   0.2978433660112561E+00   0.6869346772266676E+07 
+      1      26     45      ANK   0.50E+01  0.47  0.021   0.1001596482282761E+04   0.3364930242635801E-04   0.2407363320304084E+00   0.2902050169661483E+00   0.4809955825981606E+07 
+      1      27     49     *ANK   0.16E+02  0.19  0.023   0.8486920746839660E+03   0.2144959406980059E-04   0.2404474843762177E+00   0.2831083590348389E+00   0.4120872035381961E+07 
+      1      28     54      ANK   0.16E+02  0.23  0.019   0.6994943016820423E+03   0.1558470121565961E-04   0.2401871540186945E+00   0.2751836540784355E+00   0.3438286055514008E+07 
+      1      29     59      ANK   0.16E+02  0.27  0.048   0.5658838227086563E+03   0.1252634996587019E-04   0.2396742824300435E+00   0.2663266550485660E+00   0.2814236443457571E+07 
+      1      30     65      ANK   0.16E+02  0.29  0.046   0.4672133153293290E+03   0.1174299761809580E-04   0.2390730410194547E+00   0.2576890180550729E+00   0.2339225131430579E+07 
+      1      31     69     *ANK   0.16E+02  0.29  0.049   0.4031636943430544E+03   0.9823159383047163E-05   0.2382577700821848E+00   0.2496562170534606E+00   0.2006622567007304E+07 
+      1      32     74      ANK   0.16E+02  0.29  0.018   0.3669552068310122E+03   0.8611293022625713E-05   0.2374723916911371E+00   0.2419497924920183E+00   0.1790382818424890E+07 
+      1      33     79      ANK   0.16E+02  0.34  0.025   0.3505159292692875E+03   0.7532123166869627E-05   0.2363583918941590E+00   0.2331517359497560E+00   0.1645590710670146E+07 
+      1      34     84      ANK   0.16E+02  0.42  0.033   0.3533244373004322E+03   0.6655461085936858E-05   0.2347105449324853E+00   0.2226124914512947E+00   0.1577689339792551E+07 
+      1      35     89      ANK   0.16E+02  0.55  0.039   0.3697724649563000E+03   0.5974812501659441E-05   0.2321478124564380E+00   0.2089234576217747E+00   0.1581506879679462E+07 
+      1      36     94      ANK   0.16E+02  0.63  0.049   0.3806171780932997E+03   0.5408137889259420E-05   0.2289075587528056E+00   0.1934081980235584E+00   0.1607889917700615E+07 
+      1      37    100      ANK   0.16E+02  0.32  0.040   0.3778450147007574E+03   0.4921915427431733E-05   0.2272924623217277E+00   0.1858128903952574E+00   0.1604173267788942E+07 
+      1      38    106      ANK   0.16E+02  0.38  0.044   0.3726014671100655E+03   0.4673582304019702E-05   0.2254419139556216E+00   0.1768061629100796E+00   0.1591801870632870E+07 
+      1      39    112      ANK   0.16E+02  0.47  0.050   0.3653030061085937E+03   0.4559191257062016E-05   0.2233310687040520E+00   0.1658651757380589E+00   0.1567670900940737E+07 
+      1      40    119      ANK   0.16E+02  0.42  0.036   0.3596760660133872E+03   0.4436652580840642E-05   0.2216332117203609E+00   0.1564554393226586E+00   0.1541890605565306E+07 
+      1      41    125     *ANK   0.36E+02  0.28  0.025   0.3502762756442416E+03   0.3983352857976066E-05   0.2199749282598097E+00   0.1443679972950317E+00   0.1499338905400640E+07 
+      1      42    131      ANK   0.36E+02  0.30  0.027   0.3416721666253113E+03   0.3554940908372317E-05   0.2185708071506745E+00   0.1325803096768485E+00   0.1452800428062405E+07 
+      1      43    137      ANK   0.36E+02  0.34  0.032   0.3319543216650160E+03   0.3124950131392283E-05   0.2174655031994525E+00   0.1208561340728694E+00   0.1397434733515072E+07 
+      1      44    143      ANK   0.36E+02  0.38  0.041   0.3192081810773424E+03   0.2685233020500668E-05   0.2169022159110337E+00   0.1096959942518757E+00   0.1329094630271768E+07 
+      1      45    150      ANK   0.36E+02  0.41  0.029   0.3044936965598498E+03   0.2269012257904627E-05   0.2169984294107305E+00   0.9977414979957130E-01   0.1255568354671836E+07 
+      1      46    157      ANK   0.36E+02  0.45  0.043   0.2852795600438508E+03   0.1866195800436593E-05   0.2178159210756773E+00   0.9092929669147369E-01   0.1167675870442873E+07 
+      1      47    165      ANK   0.36E+02  0.51  0.038   0.2630139607208553E+03   0.1497925076180967E-05   0.2194157007862464E+00   0.8317751860511745E-01   0.1071661899678937E+07 
+      1      48    174      ANK   0.36E+02  0.62  0.037   0.2355254543538245E+03   0.1173778307093016E-05   0.2220179435487059E+00   0.7643799381442197E-01   0.9591885885343233E+06 
+      1      49    184      ANK   0.36E+02  0.82  0.039   0.2022911727993910E+03   0.9345412945679768E-06   0.2261488582107309E+00   0.7080723400758951E-01   0.8271142515533168E+06 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#  Grid  | Iter | Iter |  Iter  |   CFL   | Step | Lin  |        Res rho         |       Res nuturb       |         C_lift         |        C_drag          |        totalRes        |
+#  level |      | Tot  |  Type  |         |      | Res  |                        |                        |                        |                        |                        |
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      1      50    195      ANK   0.36E+02  1.00  0.038   0.1686216194742096E+03   0.8689048712341620E-06   0.2317611699846054E+00   0.6740535175934875E-01   0.6947597632719635E+06 
+      1      51    205     *ANK   0.13E+03  0.67  0.036   0.1130493652009233E+03   0.7786689070900492E-06   0.2420912350412400E+00   0.6141741421230621E-01   0.4987044342660440E+06 
+      1      52    215      ANK   0.13E+03  1.00  0.041   0.6879667156620916E+02   0.8598166371949127E-06   0.2550618272386549E+00   0.5396949185646897E-01   0.3408761521031053E+06 
+      1      53    233     *ANK   0.41E+03  0.44  0.048   0.6674511908502367E+02   0.1158905502606635E-05   0.2641508769712076E+00   0.4686154445095712E-01   0.3392331658881087E+06 
+      1      54    256      ANK   0.41E+03  0.06  0.045   0.6710186748637783E+02   0.1876692583389587E-05   0.2650717817460868E+00   0.4615399616669337E-01   0.3400460185468104E+06 
+      1      55    284      ANK   0.41E+03  0.00  0.044   0.6710186748637783E+02   0.1876692583389587E-05   0.2650717817460869E+00   0.4615399616669337E-01   0.3400460185468104E+06 
+      1      56    295     *ANK   0.20E+03  1.00  0.044   0.6831040288260866E+02   0.3488333115063259E-05   0.2775702867427529E+00   0.3831067156743646E-01   0.3244089526921016E+06 
+      1      57    305      ANK   0.20E+03  1.00  0.036   0.7066346906202524E+02   0.7237663290439600E-05   0.2864502801356984E+00   0.3225555631422768E-01   0.3180922856663649E+06 
+      1      58    315      ANK   0.20E+03  1.00  0.043   0.6339294209046605E+02   0.8066297539766959E-05   0.2914922308425463E+00   0.2791428793609154E-01   0.2822129618869201E+06 
+      1      59    326      ANK   0.20E+03  1.00  0.048   0.5076160680963049E+02   0.8785641362129768E-05   0.2938213251568405E+00   0.2464042849450551E-01   0.2313808758755072E+06 
+      1      60    339      ANK   0.20E+03  1.00  0.047   0.4141206789753469E+02   0.9386906835384479E-05   0.2943821596173886E+00   0.2185453821435334E-01   0.1949884649900118E+06 
+      1      61    352      ANK   0.20E+03  1.00  0.041   0.3632220439501072E+02   0.9876217858035814E-05   0.2934984731344770E+00   0.1935751489958846E-01   0.1728590567205347E+06 
+      1      62    365      ANK   0.20E+03  1.00  0.046   0.3219637631628814E+02   0.1025998900325037E-04   0.2913567455405487E+00   0.1714938507685599E-01   0.1566433839544307E+06 
+      1      63    381     *ANK   0.71E+03  0.49  0.050   0.3081277911169670E+02   0.1039128308186275E-04   0.2882280113091054E+00   0.1523816743470205E-01   0.1581256497226249E+06 
+      1      64    396      ANK   0.71E+03  0.70  0.045   0.3058447118489775E+02   0.1055903901509445E-04   0.2833645358427805E+00   0.1355555320481579E-01   0.1591142591954982E+06 
+      1      65    408      ANK   0.71E+03  1.00  0.047   0.3009795515385836E+02   0.1076538049897773E-04   0.2764938770358555E+00   0.1262982427462494E-01   0.1508868207510425E+06 
+      1      66    423      ANK   0.71E+03  1.00  0.048   0.2812479817799035E+02   0.1092117155449207E-04   0.2699833169075581E+00   0.1325856395168113E-01   0.1367587563737861E+06 
+      1      67    436      ANK   0.71E+03  1.00  0.049   0.2393131634762999E+02   0.1105834050962790E-04   0.2666375734634479E+00   0.1431028694467315E-01   0.1175175639550041E+06 
+      1      68    450      ANK   0.71E+03  1.00  0.048   0.2045114743059998E+02   0.1119205845461790E-04   0.2669550724690745E+00   0.1524247130465554E-01   0.1048662096641333E+06 
+      1      69    466      ANK   0.71E+03  1.00  0.045   0.1785082068153429E+02   0.1132476105432113E-04   0.2702452187245930E+00   0.1570955478755219E-01   0.9600876664126768E+05 
+      1      70    484      ANK   0.71E+03  1.00  0.045   0.1571201045638566E+02   0.1145303043088756E-04   0.2750404183592399E+00   0.1552611724030371E-01   0.8754923549196369E+05 
+      1      71    501      ANK   0.71E+03  1.00  0.044   0.1491281718846096E+02   0.1156540933440123E-04   0.2791610408951135E+00   0.1490019617825623E-01   0.8349845462425073E+05 
+      1      72    517      ANK   0.71E+03  1.00  0.048   0.1386052328384000E+02   0.1165987033369109E-04   0.2817346888924573E+00   0.1415984713412764E-01   0.7586476020549751E+05 
+      1      73    535     *ANK   0.23E+04  0.49  0.049   0.1436475547350015E+02   0.1169844614501634E-04   0.2821247381764162E+00   0.1349511882400904E-01   0.7571017757492722E+05 
+      1      74    555      ANK   0.23E+04  0.24  0.045   0.1457713898165553E+02   0.1171572838564206E-04   0.2820809582036153E+00   0.1328793285666683E-01   0.7580048304733350E+05 
+      1      75    577      ANK   0.23E+04  0.12  0.043   0.1467273358318221E+02   0.1172385435388873E-04   0.2820260022206987E+00   0.1320829527271538E-01   0.7583332008700780E+05 
+      1      76    600      ANK   0.23E+04  0.08  0.043   0.1473808643856024E+02   0.1172943857252780E-04   0.2819795500634882E+00   0.1315898856706528E-01   0.7586071452755427E+05 
+      1      77    623      ANK   0.23E+04  0.08  0.042   0.1480535929657272E+02   0.1173495673064873E-04   0.2819285370455757E+00   0.1311383857624008E-01   0.7590698999925285E+05 
+      1      78    647      ANK   0.23E+04  0.06  0.042   0.1484970388547569E+02   0.1173877206500346E-04   0.2818900929005485E+00   0.1308497953910947E-01   0.7593162647356628E+05 
+      1      79    671      ANK   0.23E+04  0.06  0.042   0.1489391745072230E+02   0.1174255670813758E-04   0.2818500242449224E+00   0.1305792732189365E-01   0.7596011934297666E+05 
+      1      80    692      ANK   0.23E+04  0.12  0.050   0.1496790758874766E+02   0.1175030670832095E-04   0.2817825661526197E+00   0.1300483767910816E-01   0.7598972940624348E+05 
+      1      81    713      ANK   0.23E+04  0.12  0.049   0.1503771686262945E+02   0.1175792456270438E-04   0.2817074398584752E+00   0.1295834449275083E-01   0.7601731037390089E+05 
+      1      82    734      ANK   0.23E+04  0.12  0.048   0.1510034722709666E+02   0.1176541530515031E-04   0.2816260226556697E+00   0.1291798609889749E-01   0.7603141565696847E+05 
+      1      83    755     *ANK   0.23E+04  0.12  0.049   0.1516462009095946E+02   0.1177277830223473E-04   0.2815397983166895E+00   0.1288309643164148E-01   0.7606894012376662E+05 
+      1      84    775      ANK   0.23E+04  0.17  0.047   0.1524172023768965E+02   0.1178313880787168E-04   0.2814106599544504E+00   0.1284077941931008E-01   0.7611330068838051E+05 
+      1      85    794      ANK   0.23E+04  0.24  0.046   0.1530358091012248E+02   0.1179762361771649E-04   0.2812175007041368E+00   0.1279441434465186E-01   0.7609096637699397E+05 
+      1      86    811      ANK   0.23E+04  0.49  0.043   0.1530390512556715E+02   0.1182638631291169E-04   0.2808116900205561E+00   0.1273551904057201E-01   0.7601947892855211E+05 
+      1      87    826      ANK   0.23E+04  1.00  0.039   0.1425593902895395E+02   0.1188202884344049E-04   0.2800037601307631E+00   0.1273325135533154E-01   0.7370323551817823E+05 
+      1      88    840      ANK   0.23E+04  1.00  0.044   0.9988775850663519E+01   0.1193131699860527E-04   0.2794110622726528E+00   0.1285715627295591E-01   0.5951007312916659E+05 
+      1      89    857      ANK   0.23E+04  1.00  0.040   0.7808590780151555E+01   0.1197494195104646E-04   0.2790372640505400E+00   0.1296996093258721E-01   0.5022259160872168E+05 
+      1      90    877      ANK   0.23E+04  0.70  0.045   0.8099472691002694E+01   0.1200347936034592E-04   0.2788581575908265E+00   0.1296503705786177E-01   0.4903660042053909E+05 
+      1      91    901      ANK   0.23E+04  0.24  0.049   0.8209814590533567E+01   0.1201241008156856E-04   0.2787510069537162E+00   0.1294483126759890E-01   0.4898032679914319E+05 
+      1      92    935      ANK   0.23E+04  0.00  0.047   0.8209814590533568E+01   0.1201241008156856E-04   0.2787510069537162E+00   0.1294483126759890E-01   0.4898032679914319E+05 
+      1      93    954     *ANK   0.12E+04  0.70  0.046   0.8365295084954107E+01   0.1203664657351331E-04   0.2784297103622026E+00   0.1297935524702639E-01   0.4886232027273101E+05 
+      1      94    986      ANK   0.12E+04  0.00  0.046   0.8365295084954107E+01   0.1203664657351331E-04   0.2784297103622026E+00   0.1297935524702639E-01   0.4886232027273101E+05 
+      1      95   1002     *ANK   0.58E+03  1.00  0.049   0.8039452659969093E+01   0.1206539593317876E-04   0.2779837056178617E+00   0.1307594847512495E-01   0.4733653264038058E+05 
+      1      96   1032      ANK   0.58E+03  0.00  0.045   0.8039452659969095E+01   0.1206539593317876E-04   0.2779837056178617E+00   0.1307594847512495E-01   0.4733653264038057E+05 
+      1      97   1046     *ANK   0.29E+03  1.00  0.046   0.8203068544584170E+01   0.1208730768573461E-04   0.2775956828682818E+00   0.1312164766425099E-01   0.4607262381335557E+05 
+      1      98   1073      ANK   0.29E+03  0.00  0.045   0.8203068544584172E+01   0.1208730768573461E-04   0.2775956828682818E+00   0.1312164766425099E-01   0.4607262381335556E+05 
+      1      99   1084     *ANK   0.14E+03  1.00  0.046   0.7614559074789564E+01   0.1210295472689218E-04   0.2773405554265109E+00   0.1314658609463191E-01   0.4158830205676734E+05 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#  Grid  | Iter | Iter |  Iter  |   CFL   | Step | Lin  |        Res rho         |       Res nuturb       |         C_lift         |        C_drag          |        totalRes        |
+#  level |      | Tot  |  Type  |         |      | Res  |                        |                        |                        |                        |                        |
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      1     100   1096      ANK   0.14E+03  1.00  0.039   0.8967503961503011E+01   0.1211663789271480E-04   0.2770104799913905E+00   0.1313369688422069E-01   0.4593968415538837E+05 
+      1     101   1109      ANK   0.14E+03  0.70  0.035   0.9985411074403531E+01   0.1212505212966316E-04   0.2767402778484261E+00   0.1311843387882155E-01   0.4976967717090742E+05 
+      1     102   1121      ANK   0.14E+03  1.00  0.033   0.1041114670716725E+02   0.1213640720705247E-04   0.2763202919078979E+00   0.1309567958321753E-01   0.5343916065713687E+05 
+      1     103   1133      ANK   0.14E+03  1.00  0.032   0.8901269924561642E+01   0.1214677334748367E-04   0.2758623023866675E+00   0.1307418114553079E-01   0.5269108966878260E+05 
+      1     104   1145      ANK   0.14E+03  1.00  0.040   0.6704557554289138E+01   0.1215604655235620E-04   0.2753880000648840E+00   0.1305611396598840E-01   0.4971825516811707E+05 
+      1     105   1157      ANK   0.14E+03  1.00  0.047   0.8123431025278348E+01   0.1216392693607476E-04   0.2749017726278947E+00   0.1304218962632299E-01   0.5085720712892675E+05 
+      1     106   1171      ANK   0.14E+03  0.70  0.039   0.1094051637112348E+02   0.1216822001397940E-04   0.2745430619150327E+00   0.1303538804272468E-01   0.5488709564334683E+05 
+      1     107   1187      ANK   0.14E+03  0.34  0.036   0.1224317907850800E+02   0.1216994829380788E-04   0.2743654968688720E+00   0.1303286556143448E-01   0.5725522925558360E+05 
+      1     108   1200      ANK   0.14E+03  0.70  0.049   0.1422614893015072E+02   0.1217345414212327E-04   0.2740208299125946E+00   0.1302815271205287E-01   0.6208260608721755E+05 
+      1     109   1212     *ANK   0.14E+03  0.70  0.042   0.1559301983060571E+02   0.1217659897874734E-04   0.2736606605280043E+00   0.1302440152570241E-01   0.6667706035500397E+05 
+      1     110   1223      ANK   0.14E+03  1.00  0.037   0.1518405391541989E+02   0.1218098149817899E-04   0.2731414827788086E+00   0.1301937273133601E-01   0.6748527162665792E+05 
+      1     111   1234      ANK   0.14E+03  1.00  0.035   0.1142967005947457E+02   0.1218514738204403E-04   0.2726315299204690E+00   0.1301419383316702E-01   0.5758601696568555E+05 
+      1     112   1245      ANK   0.14E+03  1.00  0.043   0.8980075276739838E+01   0.1218919501167853E-04   0.2721418147142463E+00   0.1300745691402671E-01   0.4897180514165894E+05 
+      1     113   1257      ANK   0.14E+03  1.00  0.042   0.1140224220702142E+02   0.1219314946237761E-04   0.2716587642598356E+00   0.1299794794116337E-01   0.5289860931910408E+05 
+      1     114   1270      ANK   0.14E+03  0.70  0.050   0.1264678598118556E+02   0.1219577444486939E-04   0.2713301306897468E+00   0.1298892544783695E-01   0.5530198986368161E+05 
+      1     115   1282      ANK   0.14E+03  1.00  0.048   0.1348433005748944E+02   0.1219956049413497E-04   0.2708564972175253E+00   0.1297367461226460E-01   0.5784229943935946E+05 
+      1     116   1293      ANK   0.14E+03  1.00  0.048   0.1234730353625508E+02   0.1220318653690833E-04   0.2703884246263800E+00   0.1295573814319047E-01   0.5453400057185141E+05 
+      1     117   1304      ANK   0.14E+03  1.00  0.046   0.1019186256069315E+02   0.1220661206241566E-04   0.2699249758078596E+00   0.1293543000161477E-01   0.4783032359058709E+05 
+      1     118   1316      ANK   0.14E+03  1.00  0.037   0.8664650871135986E+01   0.1220986355818859E-04   0.2694458318856126E+00   0.1291307896436385E-01   0.4273728675355561E+05 
+      1     119   1332     *ANK   0.30E+03  0.34  0.040   0.8796870053012208E+01   0.1221112592293751E-04   0.2691590852590294E+00   0.1288164807700374E-01   0.4339472587815317E+05 
+      1     120   1346      ANK   0.30E+03  0.70  0.039   0.8987145762222507E+01   0.1221383827250716E-04   0.2685690858524042E+00   0.1282892830110997E-01   0.4434196343901926E+05 
+      1     121   1359      ANK   0.30E+03  1.00  0.039   0.8529075373560794E+01   0.1221792029271567E-04   0.2677094059743046E+00   0.1277835960891295E-01   0.4296999591183425E+05 
+      1     122   1372      ANK   0.30E+03  1.00  0.036   0.7329646334926704E+01   0.1222193076778987E-04   0.2668151892457373E+00   0.1274522263058149E-01   0.3892797556655863E+05 
+      1     123   1384      ANK   0.30E+03  1.00  0.045   0.6128113097793609E+01   0.1222524249572400E-04   0.2659479767762990E+00   0.1271985976682600E-01   0.3374553623376950E+05 
+      1     124   1397      ANK   0.30E+03  1.00  0.049   0.5093116636297960E+01   0.1222766198776660E-04   0.2650303940508975E+00   0.1270091916351224E-01   0.2932903185481204E+05 
+      1     125   1412      ANK   0.30E+03  1.00  0.045   0.5488365560663119E+01   0.1222984728747483E-04   0.2639486415290175E+00   0.1268329345690493E-01   0.2997606285346786E+05 
+      1     126   1440      ANK   0.30E+03  0.00  0.046   0.5488365560663119E+01   0.1222984728747483E-04   0.2639486415290175E+00   0.1268329345690493E-01   0.2997606285346787E+05 
+      1     127   1451     *ANK   0.15E+03  1.00  0.048   0.6164047548957136E+01   0.1223137596396478E-04   0.2633348525313143E+00   0.1271026422855941E-01   0.3041525584097466E+05 
+      1     128   1465      ANK   0.15E+03  0.34  0.043   0.6511271614607447E+01   0.1223209118819544E-04   0.2631093796893599E+00   0.1271004515957914E-01   0.3170168383902959E+05 
+      1     129   1478      ANK   0.15E+03  0.49  0.039   0.6840495615065942E+01   0.1223321122278774E-04   0.2627822605414769E+00   0.1270885084424903E-01   0.3343495449960446E+05 
+      1     130   1489      ANK   0.15E+03  1.00  0.037   0.6932944526702557E+01   0.1223580707662847E-04   0.2621037796960747E+00   0.1270444560656046E-01   0.3617416730049420E+05 
+      1     131   1500      ANK   0.15E+03  1.00  0.034   0.5909692306216317E+01   0.1223864704708503E-04   0.2614029695897015E+00   0.1269752431322595E-01   0.3528316790300471E+05 
+      1     132   1510      ANK   0.15E+03  1.00  0.049   0.4797576644057512E+01   0.1224145103232367E-04   0.2606991736928212E+00   0.1268975007718254E-01   0.3224806634630632E+05 
+      1     133   1521      ANK   0.15E+03  1.00  0.039   0.4661736896174406E+01   0.1224414751749113E-04   0.2599122597445932E+00   0.1268033478277360E-01   0.2979923167054349E+05 
+      1     134   1532      ANK   0.15E+03  1.00  0.044   0.5196371966035939E+01   0.1224643178093781E-04   0.2590721102933182E+00   0.1266950369085870E-01   0.2931489770087614E+05 
+      1     135   1544      ANK   0.15E+03  1.00  0.043   0.6084655296660566E+01   0.1224850415357235E-04   0.2581746921949015E+00   0.1265687357663491E-01   0.3159656479104199E+05 
+      1     136   1557      ANK   0.15E+03  0.70  0.044   0.6390179688201576E+01   0.1224985878419480E-04   0.2575124363480216E+00   0.1264686657752121E-01   0.3349296153917005E+05 
+      1     137   1569     *ANK   0.15E+03  0.70  0.033   0.6355367791160935E+01   0.1225130067040260E-04   0.2568253062769459E+00   0.1263596345893479E-01   0.3500760188028695E+05 
+      1     138   1580      ANK   0.15E+03  0.70  0.049   0.6416391392380707E+01   0.1225279972019884E-04   0.2561541185956930E+00   0.1262571451641479E-01   0.3630436042199592E+05 
+      1     139   1590      ANK   0.15E+03  1.00  0.046   0.7180393955385398E+01   0.1225519538825159E-04   0.2551979387170060E+00   0.1261202009935377E-01   0.3895009012331610E+05 
+      1     140   1600      ANK   0.15E+03  1.00  0.047   0.7264604740673892E+01   0.1225778929386768E-04   0.2542253090144568E+00   0.1260014140440351E-01   0.3809208614780263E+05 
+      1     141   1611      ANK   0.15E+03  1.00  0.035   0.6167600700199526E+01   0.1226054434527051E-04   0.2531348127572835E+00   0.1258868653132176E-01   0.3370623085077254E+05 
+      1     142   1622      ANK   0.15E+03  1.00  0.043   0.5342092000233298E+01   0.1226296568839678E-04   0.2520435965250191E+00   0.1258098997799362E-01   0.3109285640590710E+05 
+      1     143   1633      ANK   0.15E+03  1.00  0.048   0.6225344275164977E+01   0.1226520696133026E-04   0.2509130851279130E+00   0.1257608383321282E-01   0.3370449991658019E+05 
+      1     144   1645      ANK   0.15E+03  0.70  0.041   0.7072719767974706E+01   0.1226656107286302E-04   0.2501125564031441E+00   0.1257525956928617E-01   0.3565449600469206E+05 
+      1     145   1656      ANK   0.15E+03  1.00  0.041   0.8192093578373068E+01   0.1226848045049318E-04   0.2489698790542525E+00   0.1257675747230518E-01   0.3870862556958365E+05 
+      1     146   1666      ANK   0.15E+03  1.00  0.050   0.8375745307975398E+01   0.1227030295419805E-04   0.2478397411769191E+00   0.1258283739544481E-01   0.3929758192540448E+05 
+      1     147   1675     *ANK   0.15E+03  1.00  0.047   0.7636217940714028E+01   0.1227217743248810E-04   0.2466839144207770E+00   0.1258971436337942E-01   0.3765961328455133E+05 
+      1     148   1684      ANK   0.15E+03  1.00  0.042   0.6515990029605646E+01   0.1227408145165200E-04   0.2455167402609179E+00   0.1260187999594616E-01   0.3535984938431780E+05 
+      1     149   1694      ANK   0.15E+03  1.00  0.030   0.6228009384225444E+01   0.1227593864753396E-04   0.2443208012010580E+00   0.1262003164327572E-01   0.3538165478640661E+05 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#  Grid  | Iter | Iter |  Iter  |   CFL   | Step | Lin  |        Res rho         |       Res nuturb       |         C_lift         |        C_drag          |        totalRes        |
+#  level |      | Tot  |  Type  |         |      | Res  |                        |                        |                        |                        |                        |
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      1     150   1704      ANK   0.15E+03  1.00  0.040   0.7357198430477389E+01   0.1227754949264050E-04   0.2431652392073201E+00   0.1264481753811151E-01   0.3860426586646618E+05 
+      1     151   1714      ANK   0.15E+03  1.00  0.047   0.8716717025259634E+01   0.1227915836980112E-04   0.2420500799379955E+00   0.1267550811580984E-01   0.4207428004384228E+05 
+      1     152   1725      ANK   0.15E+03  1.00  0.027   0.9315740977200166E+01   0.1228110831780285E-04   0.2408577823887143E+00   0.1271241654975468E-01   0.4323387461609051E+05 
+      1     153   1736      ANK   0.15E+03  1.00  0.027   0.8845148689108765E+01   0.1228279002132122E-04   0.2396896206030263E+00   0.1275594155932096E-01   0.4124452388807107E+05 
+      1     154   1747      ANK   0.15E+03  1.00  0.030   0.8122953721537256E+01   0.1228442808432462E-04   0.2385351682265390E+00   0.1280475432566794E-01   0.3929136964740268E+05 
+      1     155   1758      ANK   0.15E+03  1.00  0.034   0.7727185147915566E+01   0.1228589924448401E-04   0.2373741498839861E+00   0.1285789325213343E-01   0.3863682701621156E+05 
+      1     156   1769      ANK   0.15E+03  1.00  0.039   0.7713574617276163E+01   0.1228710814454686E-04   0.2361841332097879E+00   0.1291463104234797E-01   0.3838635760252468E+05 
+      1     157   1779     *ANK   0.16E+03  1.00  0.046   0.7769417779244113E+01   0.1228804656275767E-04   0.2348276199164258E+00   0.1296533030239907E-01   0.3786113629792222E+05 
+      1     158   1789      ANK   0.16E+03  1.00  0.046   0.7308432995482691E+01   0.1228866092154621E-04   0.2334036317289357E+00   0.1302136080296060E-01   0.3559271283177588E+05 
+      1     159   1799      ANK   0.16E+03  1.00  0.050   0.6735985904108374E+01   0.1228886311328252E-04   0.2319083558454939E+00   0.1308188707946371E-01   0.3316826642150457E+05 
+      1     160   1810      ANK   0.16E+03  1.00  0.036   0.6881803934994170E+01   0.1228895144996719E-04   0.2302991036735369E+00   0.1314815594682817E-01   0.3305490997743730E+05 
+      1     161   1821      ANK   0.16E+03  1.00  0.035   0.7857734042602344E+01   0.1228825926515436E-04   0.2286198084074890E+00   0.1321363089414983E-01   0.3587662767729247E+05 
+      1     162   1832      ANK   0.16E+03  1.00  0.036   0.9079208873176603E+01   0.1228754612551661E-04   0.2268848477513357E+00   0.1327735998982588E-01   0.4018818956811410E+05 
+      1     163   1843      ANK   0.16E+03  1.00  0.040   0.1003532473463371E+02   0.1228720430196089E-04   0.2251093949948536E+00   0.1334023633896201E-01   0.4424237857827239E+05 
+      1     164   1854      ANK   0.16E+03  1.00  0.048   0.1060381413545805E+02   0.1228703816767337E-04   0.2233123683461093E+00   0.1340481998742378E-01   0.4736375365130406E+05 
+      1     165   1866      ANK   0.16E+03  1.00  0.047   0.1086386127415479E+02   0.1228873749048532E-04   0.2215023452193634E+00   0.1347076941477909E-01   0.4951450506753058E+05 
+      1     166   1880      ANK   0.16E+03  1.00  0.041   0.1074988248295305E+02   0.1229030855989809E-04   0.2197117085193860E+00   0.1354278382347223E-01   0.5009791299958301E+05 
+      1     167   1890     *ANK   0.16E+03  1.00  0.050   0.1013025606031305E+02   0.1228284852410493E-04   0.2179943035432549E+00   0.1360138109497592E-01   0.4818682458550739E+05 
+      1     168   1901      ANK   0.16E+03  1.00  0.046   0.1009147965713565E+02   0.1228518223555345E-04   0.2164953139370225E+00   0.1367623741806098E-01   0.4818719827929461E+05 
+      1     169   1912      ANK   0.16E+03  1.00  0.049   0.1014059853437676E+02   0.1228305912076628E-04   0.2152801998684721E+00   0.1376053476189946E-01   0.4828096393507123E+05 
+      1     170   1924      ANK   0.16E+03  1.00  0.040   0.1010921702909552E+02   0.1227969206282559E-04   0.2144532293530760E+00   0.1386559791024444E-01   0.4816867379502022E+05 
+      1     171   1936      ANK   0.16E+03  1.00  0.049   0.9923595543545167E+01   0.1227314134229951E-04   0.2139108733909202E+00   0.1397153169827817E-01   0.4735709996631039E+05 
+      1     172   1950      ANK   0.16E+03  1.00  0.046   0.9672134027083747E+01   0.1226743017800367E-04   0.2136788670496322E+00   0.1409114909281232E-01   0.4616483641221665E+05 
+      1     173   1966      ANK   0.16E+03  1.00  0.040   0.9454258712110418E+01   0.1226413102830388E-04   0.2136457790884129E+00   0.1422609374839844E-01   0.4485406128699899E+05 
+      1     174   1983      ANK   0.16E+03  1.00  0.045   0.9267413636411206E+01   0.1226963430597261E-04   0.2137295055730495E+00   0.1436940904748308E-01   0.4372862810153935E+05 
+      1     175   2001      ANK   0.16E+03  1.00  0.042   0.9000368875524854E+01   0.1228377529840910E-04   0.2137686665384870E+00   0.1452158873060636E-01   0.4308746433975455E+05 
+      1     176   2018      ANK   0.16E+03  1.00  0.044   0.8703751207541295E+01   0.1230233742521268E-04   0.2135771708001536E+00   0.1467721004500485E-01   0.4299606905112633E+05 
+      1     177   2031     *ANK   0.22E+03  1.00  0.042   0.9166583506286518E+01   0.1232143580699430E-04   0.2125087108157808E+00   0.1484379621920754E-01   0.4656407520801310E+05 
+      1     178   2043      ANK   0.22E+03  1.00  0.046   0.9661343219089957E+01   0.1234232846798589E-04   0.2108634482561565E+00   0.1501179450989226E-01   0.4791103886199046E+05 
+      1     179   2055      ANK   0.22E+03  1.00  0.047   0.9765576101114235E+01   0.1236299247390653E-04   0.2085835509291327E+00   0.1518309327156518E-01   0.4678284668832939E+05 
+      1     180   2068      ANK   0.22E+03  1.00  0.036   0.9772737320863017E+01   0.1238349301179013E-04   0.2055659962330252E+00   0.1536120812591939E-01   0.4505101167874668E+05 
+      1     181   2081      ANK   0.22E+03  1.00  0.049   0.9478424326900154E+01   0.1239978297414835E-04   0.2019604587167292E+00   0.1552246590060115E-01   0.4253117307291907E+05 
+      1     182   2096      ANK   0.22E+03  1.00  0.049   0.9558663302077983E+01   0.1240780240591161E-04   0.1976120970612292E+00   0.1566033053986388E-01   0.4203789052882437E+05 
+      1     183   2115      ANK   0.22E+03  1.00  0.049   0.1064932977318097E+02   0.1240732428735526E-04   0.1921263853028592E+00   0.1573520995809972E-01   0.4569950161438472E+05 
+      1     184   2142      ANK   0.22E+03  0.92  0.048   0.1270646205916807E+02   0.1241223790720008E-04   0.1859741308488750E+00   0.1569403654110776E-01   0.5324396267373690E+05 
+      1     185   2174      ANK   0.22E+03  0.77  0.048   0.1408495522014133E+02   0.1243123242660459E-04   0.1798800387528825E+00   0.1553236915326097E-01   0.5832434577158227E+05 
+      1     186   2211      ANK   0.22E+03  0.45  0.048   0.1387698083217814E+02   0.1244841000608513E-04   0.1758129779256062E+00   0.1535835299130524E-01   0.5741506937375486E+05 
+      1     187   2229     *ANK   0.22E+03  0.75  0.048   0.1417848756067951E+02   0.1247754728658258E-04   0.1689498409938456E+00   0.1502321266338605E-01   0.5833948608098218E+05 
+      1     188   2247      ANK   0.22E+03  0.66  0.049   0.1362177862288575E+02   0.1250220428958431E-04   0.1623856741930776E+00   0.1462048974545385E-01   0.5603830236507145E+05 
+      1     189   2266      ANK   0.22E+03  0.74  0.048   0.1353265856466656E+02   0.1252931744833925E-04   0.1548605102377617E+00   0.1410117374879478E-01   0.5566606386751435E+05 
+      1     190   2290      ANK   0.22E+03  0.75  0.048   0.1331000331044261E+02   0.1255412292030702E-04   0.1470995725013653E+00   0.1352563998455951E-01   0.5500721880195320E+05 
+      1     191   2318      ANK   0.22E+03  0.88  0.050   0.1349027019856170E+02   0.1257781451329307E-04   0.1383876022169411E+00   0.1288166986293766E-01   0.5621852823428425E+05 
+      1     192   2350      ANK   0.22E+03  0.85  0.047   0.1527430241463815E+02   0.1259149535933697E-04   0.1310438311705193E+00   0.1240202445816889E-01   0.6329259844322276E+05 
+      1     193   2381      ANK   0.22E+03  1.00  0.049   0.1718094290217186E+02   0.1259901300295096E-04   0.1245646234505683E+00   0.1211522138649460E-01   0.7131552001392192E+05 
+      1     194   2415      ANK   0.22E+03  1.00  0.045   0.1515752206349972E+02   0.1259975208880744E-04   0.1202972722056724E+00   0.1209949959805563E-01   0.6464141388833771E+05 
+      1     195   2453      ANK   0.22E+03  0.93  0.049   0.1658892000882205E+02   0.1258811972152382E-04   0.1183421321188285E+00   0.1223129368753335E-01   0.7113477570622391E+05 
+      1     196   2487      ANK   0.22E+03  0.86  0.046   0.1645752064788497E+02   0.1256250882577669E-04   0.1176724210656355E+00   0.1235263708326216E-01   0.7269213322502415E+05 
+      1     197   2506     *ANK   0.22E+03  1.00  0.035   0.1399681942647820E+02   0.1253025641981458E-04   0.1180474143681780E+00   0.1240520999451208E-01   0.6501731500213248E+05 
+      1     198   2524      ANK   0.22E+03  1.00  0.041   0.1493919761771061E+02   0.1249072333160830E-04   0.1203796126385708E+00   0.1234989632563572E-01   0.6656415945661633E+05 
+      1     199   2541      ANK   0.22E+03  1.00  0.039   0.1470422753014647E+02   0.1244824348401599E-04   0.1254574815880994E+00   0.1223236035765176E-01   0.6352992513562493E+05 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#  Grid  | Iter | Iter |  Iter  |   CFL   | Step | Lin  |        Res rho         |       Res nuturb       |         C_lift         |        C_drag          |        totalRes        |
+#  level |      | Tot  |  Type  |         |      | Res  |                        |                        |                        |                        |                        |
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      1     200   2561      ANK   0.22E+03  1.00  0.049   0.1295273914211325E+02   0.1243549971438268E-04   0.1337061152954866E+00   0.1218069385005509E-01   0.5692701836830900E+05 
+      1     201   2586      ANK   0.22E+03  1.00  0.041   0.1297009746850529E+02   0.1246307007108750E-04   0.1463859203718896E+00   0.1229457820835938E-01   0.5781692087636417E+05 
+      1     202   2612      ANK   0.22E+03  1.00  0.050   0.1556169968276557E+02   0.1251724888324103E-04   0.1598989760838057E+00   0.1250909473780811E-01   0.6674216360101568E+05 
+      1     203   2640      ANK   0.22E+03  1.00  0.050   0.1667523351662735E+02   0.1256715349329239E-04   0.1725016269357486E+00   0.1273445611788281E-01   0.6980788093547657E+05 
+      1     204   2674      ANK   0.22E+03  1.00  0.048   0.1409541093053548E+02   0.1261371055435511E-04   0.1843140159992980E+00   0.1294404587555094E-01   0.5957878852226771E+05 
+      1     205   2712      ANK   0.22E+03  1.00  0.049   0.1180087448834639E+02   0.1266442425426470E-04   0.1951922765870163E+00   0.1320077403401421E-01   0.5089935607932294E+05 
+      1     206   2754      ANK   0.22E+03  0.23  0.062   0.1129125267114723E+02   0.1267628917778015E-04   0.1975461846603997E+00   0.1329019979712932E-01   0.4891162204402623E+05 
+      1     207   2771     *ANK   0.22E+03  1.00  0.045   0.1243071380667610E+02   0.1273739109551046E-04   0.2084235143339194E+00   0.1373369706645579E-01   0.5295423100038676E+05 
+      1     208   2789      ANK   0.22E+03  1.00  0.043   0.1288193915445341E+02   0.1281008309070815E-04   0.2198416922189984E+00   0.1436417089359505E-01   0.5445767148062915E+05 
+      1     209   2807      ANK   0.22E+03  1.00  0.048   0.1191865032530213E+02   0.1288700564739549E-04   0.2313127389492323E+00   0.1509450384856030E-01   0.5088966055185923E+05 
+      1     210   2829      ANK   0.22E+03  1.00  0.048   0.1322080268383515E+02   0.1296285495521136E-04   0.2421810421358534E+00   0.1577162668634819E-01   0.5586209664261466E+05 
+      1     211   2859      ANK   0.22E+03  0.63  0.049   0.1382152048257591E+02   0.1300285509343466E-04   0.2476122195861062E+00   0.1608752788628212E-01   0.5795592968621876E+05 
+      1     212   2895      ANK   0.22E+03  0.54  0.049   0.1301743944313709E+02   0.1302950581340146E-04   0.2513447710695833E+00   0.1630368959918990E-01   0.5500270760573121E+05 
+      1     213   2937      ANK   0.22E+03  0.71  0.047   0.1176419687167329E+02   0.1305503318300565E-04   0.2552341981547289E+00   0.1653638049239784E-01   0.5083378902035800E+05 
+      1     214   2979      ANK   0.22E+03  0.72  0.065   0.1121830582809737E+02   0.1306696994979069E-04   0.2580938798515499E+00   0.1673113791825836E-01   0.4921769520341716E+05 
+      1     215   2997     *ANK   0.22E+03  1.00  0.044   0.1215257583368189E+02   0.1306834575803992E-04   0.2607570846678098E+00   0.1696069111499762E-01   0.5286635906514205E+05 
+      1     216   3013      ANK   0.22E+03  1.00  0.047   0.1239883441052606E+02   0.1304685658034145E-04   0.2624050902737630E+00   0.1718269163140941E-01   0.5369675305135950E+05 
+      1     217   3029      ANK   0.22E+03  1.00  0.043   0.1073373029979039E+02   0.1300718792627811E-04   0.2634559898951139E+00   0.1743520405987159E-01   0.4757691710331983E+05 
+      1     218   3046      ANK   0.22E+03  1.00  0.047   0.9654526784613406E+01   0.1294965141480642E-04   0.2643088746413838E+00   0.1773433129134781E-01   0.4349643473558623E+05 
+      1     219   3066      ANK   0.22E+03  1.00  0.049   0.1172613881032136E+02   0.1287723475752585E-04   0.2651620098038028E+00   0.1806451234285648E-01   0.5139399761179934E+05 
+      1     220   3091      ANK   0.22E+03  0.49  0.043   0.1282550660302530E+02   0.1283720731511041E-04   0.2655867745990083E+00   0.1823405965937577E-01   0.5603262765999356E+05 
+      1     221   3118      ANK   0.22E+03  0.24  0.049   0.1329544854858887E+02   0.1281688124515905E-04   0.2657898001316560E+00   0.1831484884059042E-01   0.5807601611798856E+05 
+      1     222   3146      ANK   0.22E+03  0.24  0.040   0.1369576714531260E+02   0.1279669644478706E-04   0.2659872945085287E+00   0.1839453946469274E-01   0.5990571262747857E+05 
+      1     223   3172      ANK   0.22E+03  0.49  0.041   0.1439436738377917E+02   0.1275707423171018E-04   0.2663833130261581E+00   0.1855392063362854E-01   0.6336877592039407E+05 
+      1     224   3195      ANK   0.22E+03  1.00  0.049   0.1443099664379421E+02   0.1268454416736344E-04   0.2672163942109098E+00   0.1886799099623737E-01   0.6579766158222900E+05 
+      1     225   3211     *ANK   0.22E+03  1.00  0.050   0.1348897061555622E+02   0.1262840719293897E-04   0.2678393186209708E+00   0.1915074316005144E-01   0.6284816259731352E+05 
+      1     226   3230      ANK   0.22E+03  0.49  0.050   0.1454589070736830E+02   0.1260661307251714E-04   0.2681474456688371E+00   0.1927727968857135E-01   0.6604890925824702E+05 
+      1     227   3249      ANK   0.22E+03  1.00  0.044   0.1451395475137961E+02   0.1258395223342843E-04   0.2687088306764621E+00   0.1954280153065431E-01   0.6843928339877733E+05 
+      1     228   3274      ANK   0.22E+03  0.24  0.045   0.1388747944755266E+02   0.1258488374054157E-04   0.2688249242012376E+00   0.1961188109301991E-01   0.6844165533797172E+05 
+      1     229   3308      ANK   0.22E+03  0.00  0.048   0.1388747944755266E+02   0.1258488374054157E-04   0.2688249242012376E+00   0.1961188109301991E-01   0.6844165533797174E+05 
+      1     230   3322     *ANK   0.11E+03  0.70  0.047   0.1677186093377305E+02   0.1258348442349855E-04   0.2690634527312982E+00   0.1973553520951970E-01   0.7737201029642066E+05 
+      1     231   3348      ANK   0.11E+03  0.00  0.047   0.1677186093377304E+02   0.1258348442349855E-04   0.2690634527312982E+00   0.1973553520951970E-01   0.7737201029642063E+05 
+      1     232   3357     *ANK   0.54E+02  1.00  0.044   0.1854465967975669E+02   0.1877344446706530E-04   0.2692818235836711E+00   0.1983648621632649E-01   0.8046634633020045E+05 
+      1     233   3366      ANK   0.54E+02  1.00  0.045   0.2250590788403593E+02   0.2672192983160459E-04   0.2694547976804264E+00   0.1994074295877232E-01   0.9536132677771943E+05 
+      1     234   3376      ANK   0.54E+02  1.00  0.030   0.2555791019836665E+02   0.3421462469050584E-04   0.2695663872913629E+00   0.2004636830983091E-01   0.1076741044559771E+06 
+      1     235   3386      ANK   0.54E+02  1.00  0.037   0.2591514498686991E+02   0.4280423130889026E-04   0.2695964565751756E+00   0.2015129862029317E-01   0.1099411800786783E+06 
+      1     236   3397      ANK   0.54E+02  1.00  0.041   0.2473225472200016E+02   0.5008781066412265E-04   0.2695288606398897E+00   0.2025393620500869E-01   0.1064914979030137E+06 
+      1     237   3410      ANK   0.54E+02  1.00  0.037   0.2893150820507868E+02   0.6588692701661272E-04   0.2693254446919885E+00   0.2035920356002286E-01   0.1225870226066480E+06 
+      1     238   3424      ANK   0.54E+02  1.00  0.043   0.3588398920459254E+02   0.7463467246208101E-04   0.2689343810628296E+00   0.2046620209424948E-01   0.1483256407446940E+06 
+      1     239   3438      ANK   0.54E+02  1.00  0.048   0.3484738085695581E+02   0.8922592308688373E-04   0.2684595272824999E+00   0.2057524262865112E-01   0.1429946557994951E+06 
+      1     240   3453      ANK   0.54E+02  1.00  0.046   0.2789420057728801E+02   0.1010305950654450E-03   0.2678371451146481E+00   0.2069259552818714E-01   0.1153553666583869E+06 
+      1     241   3470      ANK   0.54E+02  1.00  0.042   0.2306098658330226E+02   0.1359437829480069E-03   0.2670272671604783E+00   0.2081659585706239E-01   0.9715447319001929E+05 
+      1     242   3478     *ANK   0.54E+02  1.00  0.047   0.2154671235859630E+02   0.1431827532451984E-03   0.2659823990647783E+00   0.2094279372810761E-01   0.9150905483614470E+05 
+      1     243   3487      ANK   0.54E+02  1.00  0.039   0.2123357572293592E+02   0.1478552059170234E-03   0.2647208244324432E+00   0.2108508010609378E-01   0.8967655232372136E+05 
+      1     244   3496      ANK   0.54E+02  1.00  0.046   0.2063654499696353E+02   0.1488513700973570E-03   0.2632648056371402E+00   0.2123815710439709E-01   0.8646374274132853E+05 
+      1     245   3506      ANK   0.54E+02  1.00  0.039   0.1998005007344042E+02   0.1836480040314977E-03   0.2616156770836776E+00   0.2139295794582687E-01   0.8320810015053354E+05 
+      1     246   3516      ANK   0.54E+02  1.00  0.049   0.1979111261373359E+02   0.2004902996883027E-03   0.2596813302644526E+00   0.2154033373575190E-01   0.8200623223243264E+05 
+      1     247   3527      ANK   0.54E+02  1.00  0.045   0.2018578637015549E+02   0.1722984683198017E-03   0.2574517700213302E+00   0.2166692161765816E-01   0.8317645909414283E+05 
+      1     248   3538      ANK   0.54E+02  1.00  0.046   0.2084079561934630E+02   0.1811553363121290E-03   0.2549283452698175E+00   0.2175125761855667E-01   0.8552077467151947E+05 
+      1     249   3549      ANK   0.54E+02  0.95  0.046   0.2174936341818740E+02   0.1911142937394431E-03   0.2521709224222206E+00   0.2177350147663791E-01   0.8884248040104292E+05 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#  Grid  | Iter | Iter |  Iter  |   CFL   | Step | Lin  |        Res rho         |       Res nuturb       |         C_lift         |        C_drag          |        totalRes        |
+#  level |      | Tot  |  Type  |         |      | Res  |                        |                        |                        |                        |                        |
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      1     250   3560      ANK   0.54E+02  1.00  0.045   0.2321924863850037E+02   0.2011216655647870E-03   0.2488982373375073E+00   0.2172226346928976E-01   0.9427923698134998E+05 
+      1     251   3571      ANK   0.54E+02  1.00  0.043   0.2501173296999683E+02   0.2304396837926495E-03   0.2452244294883817E+00   0.2158649002366307E-01   0.1010012542041976E+06 
+      1     252   3579     *ANK   0.54E+02  1.00  0.048   0.2656406723087442E+02   0.2575216589683649E-03   0.2411477785858759E+00   0.2137147514145670E-01   0.1068528279326133E+06 
+      1     253   3588      ANK   0.54E+02  1.00  0.037   0.2740445023535198E+02   0.2846099506329320E-03   0.2366928280372766E+00   0.2109031426061789E-01   0.1098719220438007E+06 
+      1     254   3597      ANK   0.54E+02  1.00  0.041   0.2736606711662468E+02   0.3305305930319989E-03   0.2319449045863856E+00   0.2076372190350587E-01   0.1094539211175402E+06 
+      1     255   3606      ANK   0.54E+02  1.00  0.045   0.2703135380712180E+02   0.4019518151332828E-03   0.2270537746163980E+00   0.2041372929616582E-01   0.1079932125699956E+06 
+      1     256   3616      ANK   0.54E+02  1.00  0.035   0.2646461591981340E+02   0.4070979709758090E-03   0.2221631226441128E+00   0.2005866540514573E-01   0.1058437382480161E+06 
+      1     257   3627      ANK   0.54E+02  1.00  0.045   0.2508084909075700E+02   0.3830647021524185E-03   0.2175499598846190E+00   0.1973474428499680E-01   0.1007641913756582E+06 
+      1     258   3642      ANK   0.54E+02  1.00  0.037   0.2525352857195556E+02   0.3667545338628015E-03   0.2129888808187132E+00   0.1941852681317152E-01   0.1015041807287987E+06 
+      1     259   3659      ANK   0.54E+02  0.82  0.040   0.2634655312233562E+02   0.3770827619807222E-03   0.2096391599256854E+00   0.1921084275311650E-01   0.1053641426762432E+06 
+      1     260   3675      ANK   0.54E+02  1.00  0.050   0.2918716028726334E+02   0.3841519265655465E-03   0.2058912019998370E+00   0.1899591071216970E-01   0.1156878809327325E+06 
+      1     261   3690      ANK   0.54E+02  1.00  0.046   0.2984817018295166E+02   0.3694047155247770E-03   0.2026494777945624E+00   0.1883051931699702E-01   0.1179657637328324E+06 
+      1     262   3698     *ANK   0.54E+02  1.00  0.044   0.2681262155540038E+02   0.3364219896822003E-03   0.1999644306860123E+00   0.1871017025182241E-01   0.1061296692254389E+06 
+      1     263   3706      ANK   0.54E+02  1.00  0.047   0.2295877021006337E+02   0.2948997202827983E-03   0.1976881291011796E+00   0.1860741119330706E-01   0.9129291881542074E+05 
+      1     264   3715      ANK   0.54E+02  1.00  0.032   0.1906044585234759E+02   0.2573333035969564E-03   0.1958058653378264E+00   0.1850823978921846E-01   0.7648629915612646E+05 
+      1     265   3724      ANK   0.54E+02  1.00  0.046   0.1577950182554471E+02   0.2337556806524936E-03   0.1942888251039118E+00   0.1840649773167429E-01   0.6436731931479152E+05 
+      1     266   3735      ANK   0.54E+02  1.00  0.041   0.1371635324392694E+02   0.2221405396627197E-03   0.1931810493101197E+00   0.1829754152557823E-01   0.5699142298338691E+05 
+      1     267   3750     *ANK   0.18E+03  1.00  0.044   0.1138977192295444E+02   0.2234280185122292E-03   0.1924759962152053E+00   0.1826933825551648E-01   0.5586205156860916E+05 
+      1     268   3766      ANK   0.18E+03  1.00  0.044   0.9631367273907852E+01   0.1380839622006912E-03   0.1936671514799096E+00   0.1795453333148138E-01   0.4821879813180592E+05 
+      1     269   3781      ANK   0.18E+03  1.00  0.044   0.8285900599356941E+01   0.9929657331856800E-04   0.1958769053909317E+00   0.1757908416417226E-01   0.3897906999649893E+05 
+      1     270   3796      ANK   0.18E+03  1.00  0.043   0.6906047856152619E+01   0.9828996779808291E-04   0.1986286122467526E+00   0.1723881483293133E-01   0.3181961281609491E+05 
+      1     271   3812      ANK   0.18E+03  1.00  0.049   0.5747475174758542E+01   0.1391798956291934E-03   0.2017315568853118E+00   0.1694535936084532E-01   0.2792777191469516E+05 
+      1     272   3836     *ANK   0.58E+03  0.70  0.049   0.5199238502716354E+01   0.2006224937048340E-03   0.2073355046281137E+00   0.1698127934742977E-01   0.2927838033611012E+05 
+      1     273   3859      ANK   0.58E+03  0.70  0.045   0.5712282971509780E+01   0.1993275711754358E-03   0.2122900274954253E+00   0.1685895766343181E-01   0.3027602201545725E+05 
+      1     274   3881      ANK   0.58E+03  1.00  0.046   0.6014169701743266E+01   0.1582185592242164E-03   0.2189948500063568E+00   0.1667257639478954E-01   0.2915807233864577E+05 
+      1     275   3904      ANK   0.58E+03  1.00  0.042   0.5017112730944776E+01   0.1231749955463931E-03   0.2254943886374489E+00   0.1657337829416571E-01   0.2463715690502736E+05 
+      1     276   3926      ANK   0.58E+03  1.00  0.049   0.3659496108499131E+01   0.1027029146040565E-03   0.2315347243650737E+00   0.1655883014333686E-01   0.1976190292796493E+05 
+      1     277   3948      ANK   0.58E+03  1.00  0.048   0.3204849738419905E+01   0.8076315037305259E-04   0.2373885035289145E+00   0.1659982897878868E-01   0.1823550387356366E+05 
+      1     278   3970      ANK   0.58E+03  1.00  0.049   0.2774361789080285E+01   0.8374748589569134E-04   0.2426533267379793E+00   0.1667151341745319E-01   0.1662853825405771E+05 
+      1     279   3993      ANK   0.58E+03  1.00  0.047   0.2485687565041238E+01   0.7900223265463786E-04   0.2473187663946734E+00   0.1676342283127967E-01   0.1504592432237065E+05 
+      1     280   4020      ANK   0.58E+03  0.49  0.047   0.2839793166254772E+01   0.4913386561892682E-04   0.2493244645522863E+00   0.1681022132066412E-01   0.1550079270111104E+05 
+      1     281   4054      ANK   0.58E+03  0.04  0.049   0.2878659738231491E+01   0.2498418935164443E-04   0.2494793678188265E+00   0.1681364350548247E-01   0.1557092996656426E+05 
+      1     282   4087     *ANK   0.58E+03  0.00  0.046   0.2878659738231491E+01   0.2498418935164443E-04   0.2494793678188265E+00   0.1681364350548247E-01   0.1557092996656426E+05 
+      1     283   4105     *ANK   0.29E+03  1.00  0.033   0.3928850743964427E+01   0.2759381552724971E-04   0.2522282193689428E+00   0.1676206964742250E-01   0.1739192765118351E+05 
+      1     284   4122      ANK   0.29E+03  1.00  0.044   0.4221960481135243E+01   0.1770791848524531E-04   0.2546401264350897E+00   0.1681565905481122E-01   0.1843371490585460E+05 
+      1     285   4138      ANK   0.29E+03  1.00  0.047   0.3717835508530255E+01   0.1610119074733215E-04   0.2565668457668140E+00   0.1687437730191987E-01   0.1674123548204951E+05 
+      1     286   4154      ANK   0.29E+03  1.00  0.039   0.2977990826952953E+01   0.1398413843238377E-04   0.2581712368928390E+00   0.1692970188982037E-01   0.1421357034418282E+05 
+      1     287   4170      ANK   0.29E+03  1.00  0.037   0.2331740991713285E+01   0.1178807725361962E-04   0.2594731648675025E+00   0.1697744093651245E-01   0.1191500978350127E+05 
+      1     288   4186      ANK   0.29E+03  1.00  0.037   0.2074707128061753E+01   0.1067294787326870E-04   0.2605453314983965E+00   0.1701814304182265E-01   0.1071156062058983E+05 
+      1     289   4202      ANK   0.29E+03  1.00  0.034   0.2024080427476071E+01   0.9259538066803819E-05   0.2614524050194883E+00   0.1705346322360141E-01   0.1004131478330066E+05 
+      1     290   4217      ANK   0.29E+03  1.00  0.049   0.1904398379614225E+01   0.8043904228887989E-05   0.2622224565677714E+00   0.1708603578169022E-01   0.9134790612514318E+04 
+      1     291   4232      ANK   0.29E+03  1.00  0.047   0.1652081156349310E+01   0.7026118488076435E-05   0.2629296530882468E+00   0.1711610020171885E-01   0.7913525948696857E+04 
+      1     292   4248      ANK   0.29E+03  1.00  0.032   0.1317333375830061E+01   0.6198856967876412E-05   0.2635991420187683E+00   0.1714464360799620E-01   0.6490267567988648E+04 
+      1     293   4280     *ANK   0.11E+04  0.24  0.049   0.1206125820918485E+01   0.3754083345415475E-05   0.2639946508425093E+00   0.1718024209030937E-01   0.6521705908243852E+04 
+      1     294   4320      ANK   0.11E+04  0.00  0.050   0.1206125820918485E+01   0.3754083345415473E-05   0.2639946508425093E+00   0.1718024209030937E-01   0.6521705908243849E+04 
+      1     295   4341     *ANK   0.55E+03  1.00  0.046   0.1212525022346491E+01   0.5236099146194498E-05   0.2650099485155220E+00   0.1723693954577111E-01   0.6762087628525565E+04 
+      1     296   4363      ANK   0.55E+03  0.70  0.042   0.1357603597663500E+01   0.4040981990907869E-05   0.2656745452311002E+00   0.1726880167669628E-01   0.7004962837443995E+04 
+      1     297   4383      ANK   0.55E+03  1.00  0.045   0.1473641976308182E+01   0.4545429156921740E-05   0.2665602524438860E+00   0.1731217534544671E-01   0.7141566559041966E+04 
+      1     298   4403      ANK   0.55E+03  1.00  0.040   0.1399986819184066E+01   0.4175724257546993E-05   0.2673878434999374E+00   0.1735396782318978E-01   0.6727988155355521E+04 
+      1     299   4422      ANK   0.55E+03  1.00  0.049   0.1159629279615516E+01   0.3937016094534163E-05   0.2681312469007295E+00   0.1739290993128600E-01   0.5799707667646349E+04 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#  Grid  | Iter | Iter |  Iter  |   CFL   | Step | Lin  |        Res rho         |       Res nuturb       |         C_lift         |        C_drag          |        totalRes        |
+#  level |      | Tot  |  Type  |         |      | Res  |                        |                        |                        |                        |                        |
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      1     300   4442      ANK   0.55E+03  1.00  0.042   0.9771507195740698E+00   0.3657677246552567E-05   0.2688313878676516E+00   0.1742936866885810E-01   0.5145830599171909E+04 
+      1     301   4462      ANK   0.55E+03  1.00  0.044   0.8399541320447291E+00   0.3362909236491344E-05   0.2694606067574513E+00   0.1746232930259517E-01   0.4626561380075279E+04 
+      1     302   4482      ANK   0.55E+03  1.00  0.046   0.7590324958304210E+00   0.3058046350857855E-05   0.2700207187978609E+00   0.1749166657293954E-01   0.4272281952129189E+04 
+      1     303   4502      ANK   0.55E+03  1.00  0.046   0.7129723832700889E+00   0.2762140237023391E-05   0.2705168642599329E+00   0.1751766147145226E-01   0.4017811647962566E+04 
+      1     304   4522      ANK   0.55E+03  1.00  0.045   0.6856343280479879E+00   0.2483560583258458E-05   0.2709544534903903E+00   0.1754066697459830E-01   0.3821165087332700E+04 
+      1     305   4564     *ANK   0.14E+04  0.00  0.044   0.6856343280479876E+00   0.2483560583258458E-05   0.2709544534903903E+00   0.1754066697459830E-01   0.3821165087332700E+04 
+      1     306   4599     *ANK   0.72E+03  0.00  0.049   0.6856343280479875E+00   0.2483560583258459E-05   0.2709544534903903E+00   0.1754066697459830E-01   0.3821165087332700E+04 
+      1     307   4616     *ANK   0.36E+03  1.00  0.048   0.5622823846713172E+00   0.2247890957612541E-05   0.2712424914546194E+00   0.1755140982628196E-01   0.2993340344155518E+04 
+      1     308   4634      ANK   0.36E+03  1.00  0.040   0.5216753558760632E+00   0.2045341654333388E-05   0.2715089345055375E+00   0.1756587113291056E-01   0.2762510709629378E+04 
+      1     309   4652      ANK   0.36E+03  1.00  0.041   0.5170921754288837E+00   0.1856156566845233E-05   0.2717470024025418E+00   0.1757943066688250E-01   0.2681783396348873E+04 
+      1     310   4670      ANK   0.36E+03  1.00  0.040   0.5210075961919416E+00   0.1696495662143942E-05   0.2719602701401662E+00   0.1759173365415160E-01   0.2641231486437257E+04 
+      1     311   4688      ANK   0.36E+03  1.00  0.038   0.5182024526298312E+00   0.1563434017841256E-05   0.2721517577824168E+00   0.1760280875928685E-01   0.2586746560339300E+04 
+      1     312   4706      ANK   0.36E+03  1.00  0.037   0.5059634487088128E+00   0.1448720895779031E-05   0.2723240778508486E+00   0.1761274854894186E-01   0.2506571443097379E+04 
+      1     313   4723      ANK   0.36E+03  1.00  0.049   0.4860390043079198E+00   0.1344979535330173E-05   0.2724781622300047E+00   0.1762162693838594E-01   0.2405013154787910E+04 
+      1     314   4740      ANK   0.36E+03  1.00  0.048   0.4622665207349467E+00   0.1247886797213894E-05   0.2726183561222363E+00   0.1762962397693042E-01   0.2294368871601745E+04 
+      1     315   4757      ANK   0.36E+03  1.00  0.047   0.4375768209103467E+00   0.1132024219119684E-05   0.2727460107751772E+00   0.1763685535575557E-01   0.2182009310723151E+04 
+      1     316   4774      ANK   0.36E+03  1.00  0.046   0.4148394348405205E+00   0.1043543775994785E-05   0.2728623393301999E+00   0.1764341730886357E-01   0.2077289489882259E+04 
+      1     317   4814     *ANK   0.10E+04  0.00  0.047   0.4148394348405204E+00   0.1043543775994785E-05   0.2728623393301999E+00   0.1764341730886357E-01   0.2077289489882259E+04 
+      1     318   4846     *ANK   0.51E+03  0.00  0.049   0.4148394348405203E+00   0.1043543775994785E-05   0.2728623393301999E+00   0.1764341730886357E-01   0.2077289489882258E+04 
+      1     319   4862     *ANK   0.26E+03  1.00  0.039   0.3373487343175173E+00   0.9796127013120763E-06   0.2729468990654614E+00   0.1764736365622483E-01   0.1664914364243857E+04 
+      1     320   4878      ANK   0.26E+03  1.00  0.045   0.3111873889761982E+00   0.9123719812602255E-06   0.2730249646429388E+00   0.1765173575165680E-01   0.1540256623383659E+04 
+      1     321   4894      ANK   0.26E+03  1.00  0.044   0.3038966078464069E+00   0.8462035416097830E-06   0.2730965481460339E+00   0.1765584673719978E-01   0.1492443294912580E+04 
+      1     322   4910      ANK   0.26E+03  1.00  0.043   0.3005804431800365E+00   0.7870692515849962E-06   0.2731625152452515E+00   0.1765965060634744E-01   0.1461999591165913E+04 
+      1     323   4926      ANK   0.26E+03  1.00  0.041   0.2956328931585813E+00   0.7357633532792101E-06   0.2732236203893165E+00   0.1766316872231536E-01   0.1428574690632651E+04 
+      1     324   4942      ANK   0.26E+03  1.00  0.040   0.2879599592506797E+00   0.6906943438154498E-06   0.2732804209386443E+00   0.1766642538228666E-01   0.1387624153194409E+04 
+      1     325   4958      ANK   0.26E+03  1.00  0.040   0.2780458391849512E+00   0.6499486457822233E-06   0.2733333263131281E+00   0.1766944125065690E-01   0.1340082097716738E+04 
+      1     326   4974      ANK   0.26E+03  1.00  0.039   0.2668516960521972E+00   0.6119217685115572E-06   0.2733826545404402E+00   0.1767223531484942E-01   0.1288714871285744E+04 
+      1     327   4990      ANK   0.26E+03  1.00  0.039   0.2553483627208344E+00   0.5756723658943301E-06   0.2734286710386825E+00   0.1767482689331203E-01   0.1236614062745106E+04 
+      1     328   5006      ANK   0.26E+03  1.00  0.038   0.2442721896438912E+00   0.5407823005762827E-06   0.2734716116072926E+00   0.1767723598081025E-01   0.1186281029542766E+04 
+      1     329   5040     *ANK   0.69E+03  0.00  0.046   0.2442721896438910E+00   0.5407823005762832E-06   0.2734716116072926E+00   0.1767723598081025E-01   0.1186281029542766E+04 
+      1     330   5070     *ANK   0.34E+03  0.00  0.037   0.2442721896438909E+00   0.5407823005762836E-06   0.2734716116072926E+00   0.1767723598081025E-01   0.1186281029542766E+04 
+      1     331   5100     *ANK   0.33E+03  0.01  0.035   0.2445004177227467E+00   0.2934142747518242E-06   0.2734720731759635E+00   0.1767726398493323E-01   0.1187427822163427E+04 
+      1     332   5130      ANK   0.33E+03  0.01  0.034   0.2447217009284733E+00   0.1702855129602040E-06   0.2734725396708346E+00   0.1767729198411647E-01   0.1188536237790803E+04 
+      1     333   5160      ANK   0.33E+03  0.01  0.034   0.2449379404092688E+00   0.1035068834012526E-06   0.2734730093053197E+00   0.1767731996146660E-01   0.1189648255273334E+04 
+      1     334   5190      ANK   0.33E+03  0.01  0.034   0.2451499613837201E+00   0.6622771155583876E-07   0.2734734809118068E+00   0.1767734791599806E-01   0.1190752690009299E+04 
+      1     335   5220      ANK   0.33E+03  0.01  0.034   0.2453582815747146E+00   0.4469778728946468E-07   0.2734739536927099E+00   0.1767737584522069E-01   0.1191844001982914E+04 
+      1     336   5250      ANK   0.33E+03  0.01  0.034   0.2455632639858803E+00   0.3135065418041923E-07   0.2734744271221369E+00   0.1767740374686864E-01   0.1192921023416916E+04 
+      1     337   5280      ANK   0.33E+03  0.01  0.034   0.2457651913367652E+00   0.2254940469020678E-07   0.2734749008466748E+00   0.1767743161954194E-01   0.1193984191003939E+04 
+      1     338   5310      ANK   0.33E+03  0.01  0.034   0.2459642955630241E+00   0.1652347706487338E-07   0.2734753746298513E+00   0.1767745946198849E-01   0.1195034238345361E+04 
+      1     339   5340      ANK   0.33E+03  0.01  0.033   0.2461607600945938E+00   0.1242344177586503E-07   0.2734758483156630E+00   0.1767748727296944E-01   0.1196071871429810E+04 
+      1     340   5370      ANK   0.33E+03  0.01  0.033   0.2463547145462083E+00   0.9519578845454701E-08   0.2734763218010773E+00   0.1767751505148925E-01   0.1197097440421976E+04 
+      1     341   5397     *ANK   0.33E+03  0.03  0.033   0.2468959051060568E+00   0.1124050919253061E-07   0.2734776973266059E+00   0.1767759559329359E-01   0.1199967405688338E+04 
+      1     342   5421      ANK   0.33E+03  0.08  0.033   0.2484269798116946E+00   0.2531928883137141E-07   0.2734816982871829E+00   0.1767782953885083E-01   0.1208102256901093E+04 
+      1     343   5442      ANK   0.33E+03  0.24  0.033   0.2524779618734777E+00   0.6955630261009729E-07   0.2734932785496851E+00   0.1767850415289759E-01   0.1229744099079626E+04 
+      1     344   5459      ANK   0.33E+03  1.00  0.032   0.2641468080550571E+00   0.2700338518217079E-06   0.2735404710902174E+00   0.1768122603498789E-01   0.1293834154443738E+04 
+      1     345   5475      ANK   0.33E+03  1.00  0.048   0.2514413002360610E+00   0.3387580008408845E-06   0.2735827683835068E+00   0.1768358893680644E-01   0.1239892125533572E+04 
+      1     346   5491      ANK   0.33E+03  1.00  0.049   0.2363457340797393E+00   0.3489361454670971E-06   0.2736210440004744E+00   0.1768573135123587E-01   0.1175752175761516E+04 
+      1     347   5507      ANK   0.33E+03  1.00  0.048   0.2214687635439793E+00   0.3465692586146599E-06   0.2736560410549008E+00   0.1768770515176356E-01   0.1112147956014001E+04 
+      1     348   5523      ANK   0.33E+03  1.00  0.047   0.2085477569130805E+00   0.3359800973134239E-06   0.2736882625075941E+00   0.1768953368852605E-01   0.1055517336895215E+04 
+      1     349   5539      ANK   0.33E+03  1.00  0.046   0.1975796579846672E+00   0.3213500755379512E-06   0.2737181087715792E+00   0.1769123363258620E-01   0.1005840494999750E+04 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#  Grid  | Iter | Iter |  Iter  |   CFL   | Step | Lin  |        Res rho         |       Res nuturb       |         C_lift         |        C_drag          |        totalRes        |
+#  level |      | Tot  |  Type  |         |      | Res  |                        |                        |                        |                        |                        |
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      1     350   5555      ANK   0.33E+03  1.00  0.046   0.1881668662832570E+00   0.3050148787858852E-06   0.2737458565498054E+00   0.1769281742225040E-01   0.9617218330395135E+03 
+      1     351   5585     *ANK   0.51E+03  0.00  0.047   0.1881668662832569E+00   0.3050148787858851E-06   0.2737458565498054E+00   0.1769281742225040E-01   0.9617218330395141E+03 
+      1     352   5602     *ANK   0.36E+03  1.00  0.030   0.1930196527534147E+00   0.2833019459001487E-06   0.2737738952942314E+00   0.1769446155606323E-01   0.9823767587309532E+03 
+      1     353   5618      ANK   0.36E+03  1.00  0.047   0.1839658871219459E+00   0.2649165975184268E-06   0.2737994084410026E+00   0.1769591744216093E-01   0.9407511722939843E+03 
+      1     354   5634      ANK   0.36E+03  1.00  0.047   0.1739408351215644E+00   0.2480476316172733E-06   0.2738228233145946E+00   0.1769724901818586E-01   0.8956353704488531E+03 
+      1     355   5650      ANK   0.36E+03  1.00  0.046   0.1639269080800106E+00   0.2321671533358156E-06   0.2738443657547462E+00   0.1769847660895664E-01   0.8508770168616518E+03 
+      1     356   5666      ANK   0.36E+03  1.00  0.045   0.1548474083542703E+00   0.2174787322764407E-06   0.2738640816834074E+00   0.1769960349061950E-01   0.8094914755595378E+03 
+      1     357   5682      ANK   0.36E+03  1.00  0.044   0.1465599013616216E+00   0.2036679018326749E-06   0.2738820390212685E+00   0.1770063255126237E-01   0.7710757863518140E+03 
+      1     358   5698      ANK   0.36E+03  1.00  0.043   0.1388882009729215E+00   0.1907294284893315E-06   0.2738983405884440E+00   0.1770156885044116E-01   0.7350687688709970E+03 
+      1     359   5714      ANK   0.36E+03  1.00  0.042   0.1317157173993734E+00   0.1788330286739211E-06   0.2739131082878637E+00   0.1770241886260461E-01   0.7011145704746033E+03 
+      1     360   5730      ANK   0.36E+03  1.00  0.041   0.1248468534582350E+00   0.1678269664529163E-06   0.2739264697477268E+00   0.1770318956909935E-01   0.6686064817497389E+03 
+      1     361   5746      ANK   0.36E+03  1.00  0.040   0.1181960656987922E+00   0.1575849060588703E-06   0.2739385499954712E+00   0.1770388790602138E-01   0.6372268007749493E+03 
+      1     362   5777     *ANK   0.79E+03  0.00  0.036   0.1181960656987921E+00   0.1575849060588704E-06   0.2739385499954712E+00   0.1770388790602138E-01   0.6372268007749492E+03 
+      1     363   5795     *ANK   0.45E+03  0.49  0.050   0.1214813660440557E+00   0.9949391079832398E-07   0.2739445388499656E+00   0.1770424231771246E-01   0.6492710709836807E+03 
+      1     364   5811      ANK   0.45E+03  1.00  0.047   0.1217238676923896E+00   0.1239437081138787E-06   0.2739562405536595E+00   0.1770492044743172E-01   0.6483754993542894E+03 
+      1     365   5827      ANK   0.45E+03  1.00  0.044   0.1137713728020883E+00   0.1268215108646611E-06   0.2739667348686979E+00   0.1770551983025892E-01   0.6145678662001359E+03 
+      1     366   5843      ANK   0.45E+03  1.00  0.042   0.1047935957652802E+00   0.1229876810721278E-06   0.2739761554434381E+00   0.1770606012788663E-01   0.5767167064792130E+03 
+      1     367   5859      ANK   0.45E+03  1.00  0.041   0.9658645072634460E-01   0.1128542809272349E-06   0.2739845979766802E+00   0.1770654680673497E-01   0.5411376756387456E+03 
+      1     368   5874      ANK   0.45E+03  1.00  0.049   0.8905913065166182E-01   0.1059146000828776E-06   0.2739919476683541E+00   0.1770697409052730E-01   0.5078548894850606E+03 
+      1     369   5889      ANK   0.45E+03  1.00  0.048   0.8328073341267046E-01   0.9960829974310022E-07   0.2739985709651553E+00   0.1770736005481444E-01   0.4796999778843023E+03 
+      1     370   5904      ANK   0.45E+03  1.00  0.047   0.7795716739319723E-01   0.9354896468165296E-07   0.2740045675182142E+00   0.1770771100010195E-01   0.4532522702172905E+03 
+      1     371   5919      ANK   0.45E+03  1.00  0.046   0.7307372457921944E-01   0.8777303207384126E-07   0.2740099903177929E+00   0.1770802927604766E-01   0.4284519315704756E+03 
+      1     372   5933      ANK   0.45E+03  1.00  0.050   0.6777724464414797E-01   0.8223721217262963E-07   0.2740147903673903E+00   0.1770831262959755E-01   0.4028804460922551E+03 
+      1     373   5963     *ANK   0.10E+04  0.00  0.047   0.6777724464414799E-01   0.8223721217262975E-07   0.2740147903673903E+00   0.1770831262959755E-01   0.4028804460922551E+03 
+      1     374   5979     *ANK   0.56E+03  1.00  0.045   0.7161315226352535E-01   0.7585780749073149E-07   0.2740198434811157E+00   0.1770860355158703E-01   0.4111246323500042E+03 
+      1     375   5994      ANK   0.56E+03  1.00  0.048   0.6617987727099681E-01   0.7021450516046098E-07   0.2740242035148874E+00   0.1770885489486171E-01   0.3866601366563488E+03 
+      1     376   6009      ANK   0.56E+03  1.00  0.046   0.6041010553091646E-01   0.6542504327101762E-07   0.2740281050481900E+00   0.1770908056516047E-01   0.3602045077378473E+03 
+      1     377   6024      ANK   0.56E+03  1.00  0.045   0.5505464950107920E-01   0.6099857549211539E-07   0.2740315839086915E+00   0.1770928383830090E-01   0.3348818213055302E+03 
+      1     378   6039      ANK   0.56E+03  1.00  0.044   0.5052021764043982E-01   0.5685620359273871E-07   0.2740346683996598E+00   0.1770946578054608E-01   0.3121369503441672E+03 
+      1     379   6053      ANK   0.56E+03  1.00  0.049   0.4630478535072927E-01   0.5294981252326423E-07   0.2740373534813951E+00   0.1770962633623541E-01   0.2906558180199106E+03 
+      1     380   6067      ANK   0.56E+03  1.00  0.049   0.4302649115396524E-01   0.4937206519197160E-07   0.2740397259092635E+00   0.1770976908452067E-01   0.2718927683551247E+03 
+      1     381   6081      ANK   0.56E+03  1.00  0.047   0.4011347752218850E-01   0.4596334896601034E-07   0.2740418302250733E+00   0.1770989654560405E-01   0.2544994861628882E+03 
+      1     382   6095      ANK   0.56E+03  1.00  0.046   0.3731577046198068E-01   0.4270149196173364E-07   0.2740436962241165E+00   0.1771001034927987E-01   0.2378348818443397E+03 
+      1     383   6109      ANK   0.56E+03  1.00  0.045   0.3463024338895056E-01   0.3963387380621190E-07   0.2740453485167664E+00   0.1771011174124739E-01   0.2218443643793650E+03 
+      1     384   6139     *ANK   0.16E+04  0.00  0.041   0.3463024338895056E-01   0.3963387380621188E-07   0.2740453485167664E+00   0.1771011174124739E-01   0.2218443643793651E+03 
+      1     385   6154     *ANK   0.79E+03  1.00  0.049   0.3585234991954359E-01   0.3396126913058031E-07   0.2740470845874569E+00   0.1771021041839575E-01   0.2207292748426113E+03 
+      1     386   6169      ANK   0.79E+03  1.00  0.045   0.3271508946774029E-01   0.3073244659962448E-07   0.2740486196022497E+00   0.1771030168674936E-01   0.2048173641258296E+03 
+      1     387   6183      ANK   0.79E+03  1.00  0.049   0.2912451698227767E-01   0.2812895484070679E-07   0.2740499631953898E+00   0.1771038430960238E-01   0.1874881456297673E+03 
+      1     388   6197      ANK   0.79E+03  1.00  0.049   0.2633540719341678E-01   0.2583971475900153E-07   0.2740511607789242E+00   0.1771045910020941E-01   0.1723160876415036E+03 
+      1     389   6211      ANK   0.79E+03  1.00  0.048   0.2393722390954274E-01   0.2370618862731146E-07   0.2740522252834586E+00   0.1771052672612887E-01   0.1585408748300369E+03 
+      1     390   6225      ANK   0.79E+03  1.00  0.047   0.2186718617387497E-01   0.2169908204467056E-07   0.2740531675715410E+00   0.1771058773145274E-01   0.1460314089028778E+03 
+      1     391   6239      ANK   0.79E+03  1.00  0.046   0.2004552878340614E-01   0.1981590965164726E-07   0.2740539979223819E+00   0.1771064244276150E-01   0.1345726396542126E+03 
+      1     392   6253      ANK   0.79E+03  1.00  0.045   0.1838311838883091E-01   0.1805802093809599E-07   0.2740547256030483E+00   0.1771069118000549E-01   0.1239138466826871E+03 
+      1     393   6281      *NK     ----    0.33  0.292   0.1344766116199321E-01   0.1703795572234133E-07   0.2740554816917162E+00   0.1771076598268836E-01   0.8672578660581472E+02 
+      1     394   6295       NK     ----    1.00  0.539   0.1023295358562853E-01   0.2918523757630574E-07   0.2740566259878384E+00   0.1771088716000510E-01   0.4678761517934697E+02 
+      1     395   6327       NK     ----    1.00  0.379   0.4425771742496255E-02   0.4611012219308884E-07   0.2740588340058382E+00   0.1771102416800945E-01   0.1775024327675784E+02 
+      1     396   6363       NK     ----    1.00  0.216   0.1535735364678225E-02   0.2000777757600372E-07   0.2740599618476577E+00   0.1771109511462603E-01   0.3830522113183392E+01 
+      1     397   6425       NK     ----    1.00  0.105   0.3418208503235443E-03   0.2126405424823537E-08   0.2740599362622873E+00   0.1771109183086390E-01   0.4016021008834010E+00 
+      1     398   6487       NK     ----    1.00  0.154   0.4922053457772293E-04   0.2337118410321913E-09   0.2740599417445770E+00   0.1771108829526843E-01   0.6198838757628407E-01 
+      1     399   6549       NK     ----    1.00  0.155   0.6043055582455722E-05   0.5554085722735596E-10   0.2740599538930526E+00   0.1771108981695907E-01   0.9615757001463408E-02 
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#  Grid  | Iter | Iter |  Iter  |   CFL   | Step | Lin  |        Res rho         |       Res nuturb       |         C_lift         |        C_drag          |        totalRes        |
+#  level |      | Tot  |  Type  |         |      | Res  |                        |                        |                        |                        |                        |
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      1     400   6611       NK     ----    1.00  0.190   0.1211969245377322E-05   0.5525803939275850E-11   0.2740599433241996E+00   0.1771109235173204E-01   0.1823186501503999E-02 
+      1     401   6673       NK     ----    1.00  0.113   0.1313337284939016E-06   0.1000079410673040E-11   0.2740599427396971E+00   0.1771109240400344E-01   0.2058454008081557E-03 
+      1     402   6735       NK     ----    1.00  0.199   0.3048230725825066E-07   0.1678343593866663E-12   0.2740599429701790E+00   0.1771109233803893E-01   0.4093586984297490E-04 
+      1     403   6797       NK     ----    1.00  0.250   0.7661885377043216E-08   0.4866233847850031E-13   0.2740599429663945E+00   0.1771109234597990E-01   0.1021377480884136E-04 
+      1     404   6859       NK     ----    1.00  0.222   0.1575978922139675E-08   0.6705621420476156E-14   0.2740599429551891E+00   0.1771109234672153E-01   0.2270850527696483E-05 
+      1     405   6921       NK     ----    1.00  0.184   0.2560163812690316E-09   0.1917122266061760E-14   0.2740599429577608E+00   0.1771109234605163E-01   0.4189163759166682E-06 
+#
+# Writing grid file(s): output/Re11720000.0_M0.8395_AoA3.06_L2_000_vol.cgns
+# Grid file(s) written
+#
+#
+# Writing volume solution file(s): output/Re11720000.0_M0.8395_AoA3.06_L2_000_vol.cgns
+# Volume solution file(s) written
+#
+#
+# Writing surface solution file(s): output/Re11720000.0_M0.8395_AoA3.06_L2_000_surf.cgns
+# Surface solution file(s) written
+#
++-------------------------------------------------+
+|
+| Solution Timings:
+|
+| Set AeroProblem Time          :      1.832 sec
+| Solution Time                 :    972.118 sec
+| Write Solution Time           :      1.115 sec
+| Stability Parameter Time      :      0.000 sec
+|
+| Total Call Time               :    975.064 sec
++--------------------------------------------------+
+-> Alpha... 3.060000 
++---------------------------------------------------+
+|
+| Function Timings:
+|
+| Function AeroProblem Time     :      0.004 sec
+| Function Evaluation Time      :      0.003 sec
+| User Function Evaluation Time :      0.000 sec
+|
+| Total Function Evaluation Time:      0.007 sec
++--------------------------------------------------+
+CL: 0.2740599429577608, CD: 0.01771109234605162, CM: -0.022370483752864
