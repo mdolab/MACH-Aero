@@ -187,4 +187,28 @@ We create the mesh ``near_wing`` in a new layer to keep everything orderly.
 
 
 Because we want to coarsen our mesh multiple times, it is important to think about how many nodes we should have on a 
-connector. They should always be amultiple of 
+connector (Apart from that it is allways good to be multi-grid-friendly). To calculate the number of nodes (:math:`N`) per connector, we
+use this formula:
+
+.. math::
+
+    N=2^n m + 1
+
+Where :math:`n` is the ``number of refinements + 1`` and :math:`m` is an ``integer``. To save some work, we will set the default number 
+of nodes for a connector to ``145``. This means, we will not have to change the node number in the chord-wise direction.
+
+1. Click ``Defaults``
+2. Make sure ``Connector`` is checked
+3. Select ``Dimension`` and enter ``145``
+4. Select the ``upper`` and ``lower`` surface of the wing
+5. Click ``Connectors on Database Entities``
+6. Click on ``Layers`` and uncheck the ``Geo`` layer
+7. Select the ``two connectors`` in the middle of the wing (Detail A) and delete them. They showed up because we split the database
+8. Select the ``6 spanwise connectors`` (Detail B)
+9. Click ``Edit`` -> ``Join``
+
+.. figure:: images/overset_pointwise_near_wing1.png
+    :width: 600
+    :align: center 
+
+    Create the connectors for the ``near_wing`` mesh.
