@@ -17,7 +17,7 @@ The real ONERA M6 experiment looked like this:
     :width: 300
     :align: center 
 
-    ONERA M6 experiment :cite:`nasaM6real`
+    ONERA M6 experiment :cite:`nasaM6real`\.
 
 As we are not the first to simulate this wing, we can grab the geometry data and the airfoil from :cite:`nasaM6sim`. 
 Here is a short summary:
@@ -44,7 +44,7 @@ If you open OpenVSP the first time, it should look like that:
     :width: 400
     :align: center 
 
-    OpenVSP mainview 
+    OpenVSP Overview.
 
 Lets start the geometry generation:
 
@@ -59,7 +59,7 @@ Adding a new Wing
     :width: 500
     :align: center 
 
-    Add a new wing to OpenVSP
+    Add a new wing to OpenVSP.
 
 We notice a new geometry in the ``Main View``. This is the wing we just added. It also 
 shows up as ``WingGeom`` int the ``Geom Browser`` To controll the view, use
@@ -81,19 +81,19 @@ Move your view, so you can take a look the whole wing. The first thing we notice
 it is a 'full' wing, but we need only half of it. To change this, do the following:
 
 1. Click on ``XForm``
-2. Uncheck ``XZ`` in the ``Symmetry`` area.
+2. Uncheck ``XZ`` in the ``Symmetry`` area
 
 .. figure:: images/overset_vsp_half_wing.png
     :width: 500
     :align: center 
 
-    Disable ``XZ`` Symmetry
+    Disable ``XZ`` Symmetry.
 
 Now we change the wing geometry. OpenVSP has no units, but we want to create the mesh in meters and thus
 choose our unitsize to be one meter.
 
 1. Click on ``Sect``
-2. Change the values to the values listed in the table above.
+2. Change the values to the values listed in the table above
 
 .. figure:: images/overset_vsp_wing_geo.png
     :width: 500

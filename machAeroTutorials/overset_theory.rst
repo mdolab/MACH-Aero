@@ -24,8 +24,10 @@ meshes:
 
 More about the overset implementation in ADFlow can be found here: `An Efficient Parallel Overset 
 Method for Aerodynamic Shape Optimization 
-<https://www.researchgate.net/publication/313459613_An_Efficient_Parallel_Overset_Method_for_Aerodynamic_Shape_Optimization>`_
+<https://www.researchgate.net/publication/313459613_An_Efficient_Parallel_Overset_Method_for_Aerodynamic_Shape_Optimization>`_\.
 
+.. note:: As the solver has to interpolate in the overlapping region, the calculated solution will locally not be
+          as accurate. This means it should not happen in critical regions like the wing tip.
 
 Implicit Hole Cutting (IHC)
 ===========================
@@ -43,7 +45,7 @@ blanks/interpolates the bigger ones.
     src: overset_guide.pdf page 7
 
 More about IHC can be found here: `Implicit Hole Cutting - A New Approach to Overset Grid Connectivity
-<https://arc.aiaa.org/doi/10.2514/6.2003-4128>`_
+<https://arc.aiaa.org/doi/10.2514/6.2003-4128>`_\.
 
 
 Zipper Mesh
@@ -61,4 +63,4 @@ zipper meshes to provide a watertight surface.
 
 More about zipper meshes can be found here: `Enhancements to the Hybrid Mesh Approach to
 Surface Loads Integration on Overset Structured Grids 
-<https://www.nas.nasa.gov/assets/pdf/staff/Chan_W_Enhancements_to_the_Hybrid_Mesh_Approach_to_Surface_Loads_Integration_on_Overset_Structured_Grids.pdf>`_
+<https://www.nas.nasa.gov/assets/pdf/staff/Chan_W_Enhancements_to_the_Hybrid_Mesh_Approach_to_Surface_Loads_Integration_on_Overset_Structured_Grids.pdf>`_\.
