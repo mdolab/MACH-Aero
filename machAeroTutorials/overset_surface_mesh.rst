@@ -294,3 +294,81 @@ we have to remove the so called ``break point`` at that location.
     Apply the propper spacing.
 
 The mesh ``near_wing`` is now complete. We will export it later.
+
+
+
+Creating the ``near_tip`` surface mesh
+======================================
+
+Now we will create the ``near_tip`` mesh. Let's start with creating a new layer and hide everything unnecessairy.
+
+1. Click on ``Layers``
+2. Check ``Show Empty Layers``
+3. Rightlick on Layter ``20`` -> ``Set Current``
+4. Uncheck ``Show Empty Layers``
+5. Check Layer ``0`` so the database is visible
+6. Hide the mesh ``near_wing`` by unchecking layer ``10``
+
+Now we will create the connectors. 
+
+1. Click on ``Defaults`` -> enter ``201`` for ``Dimension``
+2. Select everything from the tip to the cut we made earlier
+3. Click ``Connectors on Database Entities``
+4. Click on ``Layers`` -> uncheck layer ``0``. You should now see only the connectors we created
+
+Let's clean up the generated connectors at the tip TE.
+
+1. Zoom intot the ``tip TE``
+2. Select the ``5`` shown ``connectors`` (A)
+3. Delete them
+4. Select and delete the remaining ``pole`` (the point with a circle around) (B)
+5. Select the ``2`` ``connectors`` that define the outer tip (C)
+6. Click ``Edit`` -> ``Join``
+7. Click on ``Defaults`` and enter ``65`` for ``Dimension``
+8. Click on ``2 Point Curves``
+9. Close the ``TE`` again (D)
+
+.. figure:: images/overset_pointwise_tip_clean_tip.png
+    :width: 600
+    :align: center 
+
+    Clean up the ``tip TE``.
+
+Next we clean up the root TE.
+
+1. Select the ``2`` ``connectors`` that define the TE (A)
+2. Delete them
+3. Click on ``2 Point Curves``
+4. Close the Tip again (B)
+
+.. figure:: images/overset_pointwise_tip_clean_root.png
+    :width: 600
+    :align: center 
+
+    Clean up the ``root TE``.
+
+The last thing to clean up is the ``tip LE``.
+
+1. Select the ``3`` shown ``connectors`` (A)
+2. Click on the ``arrow pointing down`` next to ``show``
+3. Click ``Hide``
+4. Selecte and delete the remaining ``pole`` (B)
+5. Click on ``View`` -> ``Show Hidden``
+6. Select the ``3`` ``connectors`` (A)
+7. Click on the ``arrow pointing down`` next to ``Hide``
+8. CLick on ``Show``
+
+.. figure:: images/overset_pointwise_tip_clean_LE_tip.png
+    :width: 600
+    :align: center 
+
+    Clean up the ``tip LE``.
+
+Now we will dimension the remaining connectors and space the nodes properly.
+
+1. Select the ``3`` shown connectors (A)
+2. Enter ``97`` for ``Dimension`` and hit ``enter``
+3. Click ``All Masks On/Off``
+4. Click ``Spacing Constraints``
+
+

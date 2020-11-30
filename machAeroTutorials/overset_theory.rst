@@ -17,6 +17,7 @@ fluid solver then interpolates between those. Typically, there are one farfield 
 meshes:
 
 .. figure:: images/overset_Overview.png
+    :align: center 
 
     Multiple nearfield and one farfield mesh can be seen.
 ..
@@ -39,6 +40,7 @@ to a wall have a smaller area. If there are overlapping meshes, it basically use
 blanks/interpolates the bigger ones.
 
 .. figure:: images/overset_IHC.png
+    :align: center 
 
     Before (left) and after IHC (right).
 ..
@@ -55,6 +57,7 @@ This makes it hard to correctly integrate the forces and moments acting there. F
 zipper meshes to provide a watertight surface. 
 
 .. figure:: images/overset_zipper.png
+    :align: center 
 
     Overlapped meshes (left), Removed overlaps (mid), Triangulated gaps (right)
 
@@ -64,3 +67,92 @@ zipper meshes to provide a watertight surface.
 More about zipper meshes can be found here: `Enhancements to the Hybrid Mesh Approach to
 Surface Loads Integration on Overset Structured Grids 
 <https://www.nas.nasa.gov/assets/pdf/staff/Chan_W_Enhancements_to_the_Hybrid_Mesh_Approach_to_Surface_Loads_Integration_on_Overset_Structured_Grids.pdf>`_\.
+
+
+Things to note
+==============
+
+Tip #1
+------
+Make sure there is sufficient overlap between meshes.
+
+.. figure:: images/overset_tip1.png
+    :align: center 
+
+    Overlapping is needed betwee meshes.
+
+Tip #2
+------
+Match cells sizes of the overlapped meshes, especially near boundaries
+
+.. figure:: images/overset_tip2.png
+    :align: center 
+
+    Left: Not remommended. May give a valid hole cutting with additional effort. Right: Better transition. Easier to find interpolation stencils.
+
+Tip #3
+------
+Match the growth ratios of the mesh extrusion. 
+
+* Use similar values of initial cell height for all meshes (``s0`` option in pyHyp)
+* Make sure that all meshes have similar growth ratios during the pyHyp extrusion. A variation of +- 0.05 is okay
+* If you want to priorize one mesh, use slightly smaler values for ``s0`` and growth ratio.
+
+Debugging an Overset Mesh
+========================
+
+Sometimes overset meshes are a bit tricky. This section is here to help you. The following
+points indicate a Problem with your mesh:
+
+* Several flooding iterations
+* Small number of compute cells
+* Orphan cells are present
+
+.. figure:: images/overset_bad_IHC.png
+    :align: center 
+    :width: 400
+
+    Bad IHC terminal output.
+
+Flood troubleshooting
+---------------------
+
+The following points might help to fix your flooding issue. Check them first.
+
+Flooding is usually caused by cells that grow too fast off a wall.
+    The mesh with a high growth ratio may cause the flooding of the other overlapped meshes, since the other 
+    meshes will not create a layer of interpolate cells to contain the flood. 
+    Check if meshes have similar growth ratios for the pyHyp extrusion.
+
+Change the ``nearwalldist`` option in ADow.
+    This option controls how compute cells are preserved near walls. Changing this value may prevent 
+    flooding. We usually use 0.01 for a full-scale aircraft mesh defined in metric units. If a collar mesh 
+    is flooding, try increasing ``nearwalldist`` to reduce the number of flood seeds.
+
+Check for sufficient overlap on the surface and in the volume.
+    The overlap should have at least 5 cells from each mesh.
+
+The background mesh may be too coarse.
+    Either extend the near-field meshes or refine the background mesh until you have a 5 cell 
+    overlap along the off-wall direction.
+
+
+Orphans troubleshooting
+-----------------------
+ADflow outputs the CGNS block id, and the i ,j ,k position of the orphan cells. The k values (4th column) 
+may point to the issue.
+
+.. figure:: images/overset_orphan_debug.png
+    :align: center 
+    :width: 450
+
+    Output from a mesh with an orphan issue.
+
+Orphans with high k: Lack of volume overlap.
+    Some interpolate cells cannot find donors. So they become blanked cells within the stencil of a 
+    compute cell. Possible solutions are increasing the mesh extrusion distance (``marchDist`` option in pyHyp) 
+    or adding more layers to the mesh extrusion process (``N`` option in pyHyp). You may also refine the background mesh.
+
+Orphans with small k: Reduce ``nearwalldist`` option in ADflow.
+    You have compute cells beneath the surface defined by overlapping meshes. The smaller ``nearwalldist`` may 
+    flood these unnecessary cells.
