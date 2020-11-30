@@ -212,3 +212,85 @@ of nodes for a connector to ``145``. This means, we will not have to change the 
     :align: center 
 
     Create the connectors for the ``near_wing`` mesh.
+
+When creating the connectors, we left out the TE. We did this because there were 2 surfaces from OpenVSP. It is less work for us,
+if we manually create two connectors.
+
+1. Click ``Defaults``
+2. Select ``Dimension`` and enter ``17``
+3. Click ``2 Point Curves``
+4. Close the ``root trailing edge`` (make sure your pointer becomes a cross-hair before you click. This way you are sure the new connector lies on the closest point)
+5. Close the ``tip trailing edge``
+6. Press ``OK``
+
+.. figure:: images/overset_pointwise_near_close_TE.png
+    :width: 600
+    :align: center 
+
+    Close the trailing edge.
+
+Now we initialize the surface mesh.
+
+1. Select ``everything``
+2. Click ``Assemble Domains``
+3. Select ``everything``
+4. Click on the ``small arrow pointing down`` next to ``Wireframe``
+5. Click on ``Hiden Line``
+
+.. figure:: images/overset_pointwise_near_init.png
+    :width: 600
+    :align: center 
+
+    Initialize the ``near_wing`` mesh.
+
+Now we have to ``size`` the LE (Leading Edge) and TE (Trailing Edge) connectors. Also we have to adjust the ``spacing``.
+
+1. Click on ``All Masks On/Off``
+2. Click on ```Connectors``
+3. Select the ``LE`` and ``TE`` ``Connectors`` by drawing a rectangle like it is showen
+4. Click on the ``inputfield`` next to ``Dimension``, enter ``73`` and press ``enter``
+
+.. figure:: images/overset_pointwise_near_dimension_LETE.png
+    :width: 600
+    :align: center 
+
+    Dimension the LE & TE connectors.
+
+The surface mesh is now allmost complete. We only have to distribute the nodes on it properly by changing the ``spacing``. 
+Usually all Points are distributed according to ``Tanh``. But because we split up the database in the previous steps, 
+we have to remove the so called ``break point`` at that location.
+
+1. Selecte the ``LE`` and ``TE`` connectors again.
+2. Click on ``Grid`` -> ``Distribute``
+3. Click on ``Break Points``
+4. Click on ``Delete all Break Points``
+5. Click on ``OK``
+
+.. figure:: images/overset_pointwise_near_del_break_points.png
+    :width: 600
+    :align: center 
+
+    Delete unneeded Break Points.
+
+1. Click on ``All Masks On/Off``
+2. Click on ``Spacing Constraints``
+3. Select the 2 spacing constraints at the ``LE`` of the ``root`` (A)
+4. Click the field next to ``Spacing`` and enter ``0.0003``. Then hit ``enter``
+5. Select the 2 spacing constraints at the ``TE root`` (B)
+6. Apply ``7.15e-5`` for spacing
+7. Select the 2 spacing constraints at the ``LE tip'' (C)
+8. Apply ``0.00016`` for spacing
+9. Select the 2 spacing constraints at the ``TE tip`` (D)
+10. Apply ``4e-5`` for spacing
+11. Select the 3 spacing constraints at the ``tip`` (E)
+12. Apply ``0.0025`` for spacing
+13. Select the 3 spacing constraints at the ``root`` (F)
+14. Apply ``0.04`` as spacing
+
+.. figure:: images/overset_pointwise_near_spacing.png
+    :width: 600
+    :align: center 
+
+    Apply the propper spacing.
+
+The mesh ``near_wing`` is now complete. We will export it later.

@@ -3,3 +3,4 @@ _build
 *.cgns
 .vscode/*
 make.bat
+*.xcf
