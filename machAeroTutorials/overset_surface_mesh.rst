@@ -111,7 +111,7 @@ Spacing Constraint
     This controls how the ``nodes`` lie on a ``Connector``. The ``Connector`` controlls the ``nodes`` in a ``Domain`` or ``Block``
 
 
-Preparing the Database
+Prepare the Database
 ======================
 
 To make our live a bit easier in the comming mesh work, we first prepare the database a bit (take a look at the next 
@@ -169,7 +169,7 @@ on the root surfaces.
 
 
 
-Creating the ``near_wing`` surface mesh
+Create the ``near_wing`` surface mesh
 =======================================
 We create the mesh ``near_wing`` in a new layer to keep everything orderly.
 
@@ -297,7 +297,7 @@ The mesh ``near_wing`` is now complete. We will export it later.
 
 
 
-Creating the ``near_tip`` surface mesh
+Create the ``near_tip`` surface mesh
 ======================================
 
 Now we will create the ``near_tip`` mesh. Let's start with creating a new layer and hide everything unnecessairy.
@@ -324,9 +324,11 @@ Let's clean up the generated connectors at the tip TE.
 4. Select and delete the remaining ``pole`` (the point with a circle around) (B)
 5. Select the ``2`` ``connectors`` that define the outer tip (C)
 6. Click ``Edit`` -> ``Join``
-7. Click on ``Defaults`` and enter ``65`` for ``Dimension``
-8. Click on ``2 Point Curves``
-9. Close the ``TE`` again (D)
+7. Select the ``newly joined`` connector (C)
+8. Enter ``65`` For ``Dimension`` and hit ``enter``
+9. Click on ``Defaults`` and enter ``65`` for ``Dimension``
+10. Click on ``2 Point Curves``
+11. Close the ``TE`` again (D)
 
 .. figure:: images/overset_pointwise_tip_clean_tip.png
     :width: 600
@@ -370,5 +372,133 @@ Now we will dimension the remaining connectors and space the nodes properly.
 2. Enter ``97`` for ``Dimension`` and hit ``enter``
 3. Click ``All Masks On/Off``
 4. Click ``Spacing Constraints``
+5. Select the ``2`` spacing constraints at the ``root LE`` (B)
+6. Apply ``0.0008`` for spacing
+7. Select the ``2`` spacing constraints at the ``tip LE`` (C)
+8. Apply ``0.0008`` for spacing
+9. Select the ``2`` spacing constraints at the ``root TE`` (D)
+10. Apply ``1.3e-5`` as spacing
+11. Select the ``2`` spacing constraints at the ``tip TE`` (E)
+12. Apply ``1.3e-5`` as spacing
+13. Select the ``3`` spacing constraints at the ``root`` (F)
+14. Apply ``0.01`` as spacing
+15. Select the ``1`` spacing constarint at the ``tip LE`` (G)
+16. Apply ``0.0005`` as spacing
+17. Select the ``2`` spacing constraints at the ``tip TE`` (H)
+18. Apply ``1.56e-5`` as spacing
 
+.. figure:: images/overset_pointwise_tip_spacing.png
+    :width: 600
+    :align: center 
 
+    Apply spacing constraints for the ``near_tip`` mesh.
+
+Next, we split the connectors at the tip to allow a topology where we can achive a decent quality mesh. 
+
+1. Select the ``tip top`` connector (A)
+2. Click ``Edit`` -> ``Split``
+3. Make sure ``Advanced`` is checked
+4. Enter ``17`` for ``IJK`` and hit ``enter``
+5. Click ``OK``
+6. Select the ``tip bottom`` connector (B)
+7. Click ``Edit`` -> ``Split```
+8. Enter ``185`` for ``IJK`` and hit ``enter``
+9. Click ``OK``
+10. Click on ``2 Point Curves``
+11. Connect the ``2`` new ``points`` (A) to (B)
+
+.. figure:: images/overset_pointwise_tip_split_le_con.png
+    :width: 600
+    :align: center 
+
+    Split the ``tip`` connectors.
+
+Since our tip is rounded, we have to ``project`` the newly created connector on to our database.
+
+1. Select the ``newly`` created ``connector`` (A)
+2. Click on ``Edit`` -> ``Project``
+3. Click on ``Layers``
+4. Check layer ``0`` (``Geo``)
+5. Click on ``Project``
+6. Make sure ``Targed Database Selection`` is checked
+7. Click ``Begin``
+8. Select the ``upper`` and ``lower`` tip surface (hold down ``ctrl``) (B)
+9. Click ``End``
+10. Click ``Project``
+11. Click ``OK``
+
+.. figure:: images/overset_pointwise_tip_project.png
+    :width: 600
+    :align: center 
+
+    Project the connector on to the database.
+
+Now we actually start meshing.
+
+1. Click on ``Layers``
+2. Uncheck layer ``0`` (``Geo``)
+3. Select the ``newly`` created ``connector`` (A)
+4. Click on the ``arrow pointing down`` next to ``Tanh Distribution``
+5. Click on ``Equal``
+6. Click ``Edit`` -> ``Split``
+7. Enter ``17`` for ``IJK`` and hit ``enter``
+8. Enter ``49`` for ``IJK`` and hit ``enter``
+9. Click ``OK``
+10. Click on ``Create`` -> ``Assemble Special`` -> ``Domain``
+11. Select ``1`` ``connector`` (B)
+12. Click ``Next Edge``
+13. Select ``2`` ``connectors`` (C)
+14. Click ``Next Edge``
+15. Click ``OK``
+
+.. figure:: images/overset_pointwise_tip_mesh_LE_tip.png
+    :width: 600
+    :align: center 
+
+    Assemble the mesh at the ``LE tip``.
+
+Next, we mesh the rest.
+
+1. Download `this Script <https://raw.githubusercontent.com/pointwise/Semicircle/master/Semicircle.glf>`_ and save it somewhere
+2. Select the ``2`` connectors that form the semi-circle (A)
+3. Click ``Script`` -> ``Execute``
+4. Look for the ``script`` you just downloaded and ``open`` it.
+5. Select ``all`` connectors
+6. Click ``Assemble Domains``
+
+.. figure:: images/overset_pointwise_tip_semi-circle.png
+    :width: 600
+    :align: center 
+
+    Mesh the ``semi-circle``  at the TE.
+
+The last step is to make sure, that the skewed elements at the tip are smoothed. As ``Assemble Domains`` didn't work
+for the most outer mesh, we will delete this domain first, and create it manually again.
+
+1. Select ``all`` domains
+2. Click ``Hidden Line``
+3. Select the ``outer most`` domain and delete it (A)
+4. Select all ``9`` connectors, that define the last remaining domain
+5. Click ``Assemble Domain``
+6. Select the ``newly`` created ``domain`` and click ``Hidden Line``
+7. Selct the ``2`` domains that define the ``tip`` (A & B)
+8. Click ``Grid`` -> ``Solve``
+9. Click on ``Edge Attributes``
+10. Make sure ``Boundary Conditions`` is checked and set the ``Type`` to ``Floating``
+11. Click on ``Attributes``
+12. Make sure ``Surface Shape`` is checked and set ``Shape`` to ``Database``
+13. Click on ``Begin`` and make sure, the tip is selected (it should be)
+14. Click on ``End``
+15. Make sure ``Solution Algorithm`` is checked and set ``Solver Engine`` to ``Successive Over Relaxation``
+16. Set ``Relaxation Factor`` to ``Nominal``
+17. Click on ``Solve``
+18. Enter ``50`` for ``Iterations`` and hit ``Run``
+19. Click ``OK``
+
+.. figure:: images/overset_pointwise_tip_solve.png
+    :width: 600
+    :align: center 
+
+    Finish the ``near_tip`` mesh.
+
+Lets check the quality of the created mesh. The most important metrics are ``Area Ratio`` and ``Skewness Equiangle
