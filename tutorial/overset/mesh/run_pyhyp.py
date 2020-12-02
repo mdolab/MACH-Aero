@@ -2,18 +2,15 @@
 #         Import modules
 # ======================================================================
 # rst Imports (beg)
-import os
-import sys
 from collections import OrderedDict
 from mpi4py import MPI
 from pyhyp import pyHypMulti
 from cgnsutilities.cgnsutilities import *
 import argparse
-import numpy
-
-
-
 # rst Imports (end)
+
+
+
 # ======================================================================
 #         Init stuff
 # ======================================================================
@@ -25,10 +22,10 @@ parser.add_argument('--input_dir', default = '.')
 parser.add_argument('--output_dir', default = '.')
 parser.add_argument('--level', default='L1')
 args = parser.parse_args()
-
-
-
 # rst Init (end)
+
+
+
 # ======================================================================
 #         Specify parameters for extrusion
 # ======================================================================
@@ -72,16 +69,16 @@ fact = {
 coarsen = {
     'L1':   1,
     'L2':   2,
-    'L3':   3
+    'L3':   3,
 }[args.level]
-
-
-
 # rst parameters (end)
+
+
+
 # ======================================================================
-#         Default PyHyp options
+#         Common PyHyp options
 # ======================================================================
-# rst default_options (beg)
+# rst common_options (beg)
 commonOptions = {
 
     # ---------------------------
@@ -97,7 +94,6 @@ commonOptions = {
     'N': nNearfield, 
     's0':s0/fact,
     'marchDist':2.5*0.8,
-    'splay':0.025,
     'coarsen':coarsen,
     # ---------------------------
     #   Pseudo Grid Parameters
@@ -115,16 +111,14 @@ commonOptions = {
     'volBlend': 0.00001,
     'volSmoothIter': int(100*fact),
 }
+# rst common_options (end)
 
 
 
-# rst default_options (end)
 # ======================================================================
 #         Individual PyHyp options
 # ======================================================================
 # rst individual_options (beg)
-options = OrderedDict()
-
 # wing options
 wing_dict = {
     'inputFile': '%s/near_wing.cgns'%(args.input_dir),
@@ -144,25 +138,26 @@ tip_dict = {
     'outputFile': '%s/near_tip_vol_%s.cgns'%(args.output_dir, args.level),
     'families':'near_tip',
 }
-
-
-
 # rst individual_options (end)
+
+
+
 # ======================================================================
 #         Generate Near-Field
 # ======================================================================
 # rst near_field (beg)
 # figure out what grids we will generate again
+options = OrderedDict()
 options['wing'] = wing_dict
 options['tip'] = tip_dict
 
 # Run pyHypMulti
 hyp = pyHypMulti(options=options, commonOptions=commonOptions)
 MPI.COMM_WORLD.barrier()
-
-
-
 # rst near_field (end)
+
+
+
 # ======================================================================
 #        Combine Near-Field
 # ======================================================================
@@ -181,20 +176,20 @@ combinedGrid = combineGrids(gridList)
 
 # move to y=0
 combinedGrid.symmZero('y')
-
-
-
 # rst combine_near_field (end)
+
+
+
 # ======================================================================
 #        Generate Far-Field
 # ======================================================================
 # rst far_field (beg)
 farfield = '%s/far_%s.cgns'%(args.output_dir, args.level)
-combinedGrid.simpleOCart(dhStar, 100., nFarfield, 'y', 1, farfield)
+combinedGrid.simpleOCart(dhStar, 40., nFarfield, 'y', 1, farfield)
+# rst far_field (end)
 
 
 
-# rst combine_near_field (end)
 # ======================================================================
 #        Combine all Grids
 # ======================================================================
