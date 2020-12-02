@@ -4,11 +4,26 @@
 Surface Mesh
 *********************************
 
+Introduction
+============
 Now that we have a geometry, we can start meshing it. We are using Pointwise to generate the surface mesh. 
-Once this is done, we hyperbolically extrude it into a 3D mesh on the next tutorial page. This is not a full 
-blown tutorial, more a walk through. If you want to learn more about it, I can highly recommend their 
-`youtube channel <https://www.youtube.com/user/CFDMeshing>`_\. You dont have to use Pointwise to generate 
-an overset mesh. ICEM or an other mesher would work aswell.
+This is not a full blown tutorial, more a walk through. If you want to learn more about it, I can highly 
+recommend their `youtube channel <https://www.youtube.com/user/CFDMeshing>`_\. You dont have to use 
+Pointwise to generate an overset mesh. ICEM or an other mesher would work aswell.
+
+Files
+=====
+Either use the previousle generated ``.igs`` file or copy it from the tutorial folder.
+::
+
+    $ cp tutorial/overset/geo/onera_m6.igs .
+
+It is possible to script Pointwise. In order to use one, we have to download it first. You can either
+`download <https://raw.githubusercontent.com/pointwise/Semicircle/master/Semicircle.glf>`_ it here or copy it 
+from the tutorial folder.
+::
+
+    $ cp tutorial/overset/mesh/Semicircle.glf .
 
 Meshing strategy
 ================
@@ -31,9 +46,11 @@ debugging purposes. Additionally, there could be an intermediate level starting 
 surface mesh that is sqrt(2) coarser than ``L0``. In this tutorial, we will start at ``L1`` (~8M cells) and end at ``L3`` 
 (~0.125M cells).
 
+Mesh Generation
+===============
 
 Pointwise overview
-==================
+------------------
 If you start Pointwise, it should look something like in the next picture.
 
 1. Object, Layer and Default control
@@ -48,7 +65,7 @@ If you start Pointwise, it should look something like in the next picture.
 
     Pointwise Overview.
 
-You can control the main view with the following key- and mous combinations:
+You can control the main view with the following key- and mouse combinations:
 
 zoom
   Rotate your ``mousewheel``. The zoom zenters around your ``mouse pointer``.
@@ -61,7 +78,7 @@ move
 
 
 Setup Pointwise
-===============
+---------------
 Before we actually begin meshing, we have to set some standard values and import our geometry. At first, we set some
 tolerances for Pointwise
 
@@ -112,7 +129,7 @@ Spacing Constraint
 
 
 Prepare the Database
-======================
+--------------------
 
 To make our live a bit easier in the comming mesh work, we first prepare the database a bit (take a look at the next 
 picture to help guide you).
@@ -170,7 +187,7 @@ on the root surfaces.
 
 
 Create the ``near_wing`` surface mesh
-=======================================
+-------------------------------------
 We create the mesh ``near_wing`` in a new layer to keep everything orderly.
 
 1. Click ``Layers`` 
@@ -298,16 +315,17 @@ The mesh ``near_wing`` is now complete. We will export it later.
 
 
 Create the ``near_tip`` surface mesh
-======================================
+------------------------------------
 
 Now we will create the ``near_tip`` mesh. Let's start with creating a new layer and hide everything unnecessairy.
 
 1. Click on ``Layers``
 2. Check ``Show Empty Layers``
-3. Rightlick on Layter ``20`` -> ``Set Current``
-4. Uncheck ``Show Empty Layers``
-5. Check Layer ``0`` so the database is visible
-6. Hide the mesh ``near_wing`` by unchecking layer ``10``
+3. Rightlick on Layer ``20`` -> ``Set Current``
+4. Doubleclick the ``Description`` Field and enter ``near_tip``
+5. Uncheck ``Show Empty Layers``
+6. Check Layer ``0`` so the database is visible
+7. Hide the mesh ``near_wing`` by unchecking layer ``10``
 
 Now we will create the connectors. 
 
@@ -459,12 +477,13 @@ Now we actually start meshing.
 
 Next, we mesh the rest.
 
-1. Download `this Script <https://raw.githubusercontent.com/pointwise/Semicircle/master/Semicircle.glf>`_ and save it somewhere
-2. Select the ``2`` connectors that form the semi-circle (A)
-3. Click ``Script`` -> ``Execute``
-4. Look for the ``script`` you just downloaded and ``open`` it.
-5. Select ``all`` connectors
-6. Click ``Assemble Domains``
+.. 1. Download `this Script <https://raw.githubusercontent.com/pointwise/Semicircle/master/Semicircle.glf>`_ and save it somewhere
+
+1. Select the ``2`` connectors that form the semi-circle (A)
+2. Click ``Script`` -> ``Execute``
+3. Look for the ``script`` you just downloaded and ``open`` it.
+4. Select ``all`` connectors
+5. Click ``Assemble Domains``
 
 .. figure:: images/overset_pointwise_tip_semi-circle.png
     :width: 600

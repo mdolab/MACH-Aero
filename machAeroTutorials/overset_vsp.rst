@@ -4,9 +4,20 @@
 Geometry Generation
 *********************************
 
+Introduction
+============
+
 OpenVSP is a parametric airfcraft geometry tool. It allows the user to quickly generate aircraft geometries. 
 We will use it to generate the ONERA M6 wing. This is not a full blown tutorial, more a walk through. If you 
 want to learn more about it, you can go to their `tutorial videos <http://openvsp.org/vid_tutorial.shtml>`_
+
+Files
+=====
+Navigate to the directory ``overset/geo`` in your tutorial folder. Copy the file ``profile_m6.dat`` from the
+tutorial folder.
+::
+
+    $ cp tutorial/overset/geo/profile_m6.dat .
 
 Geometry Overview 
 =================
@@ -36,8 +47,11 @@ Here is a short summary:
 
 
 
+Geometry Generation
+===================
+
 OpenVSP Window
-==============
+--------------
 If you open OpenVSP the first time, it should look like that:
 
 .. figure:: images/overset_vsp_overview.png
@@ -49,8 +63,8 @@ If you open OpenVSP the first time, it should look like that:
 Lets start the geometry generation:
 
 
-Adding a new Wing
-=================
+Add a new Wing
+-----------------
 1.  Choose ``WING``
 2.  Click ``Add``
 3.  A new Window ``Wing: WingGeom`` pops up
@@ -74,8 +88,8 @@ move
 
 
 
-Manipulating the wing geometry
-==============================
+Manipulate the wing geometry
+------------------------------
 
 Move your view, so you can take a look the whole wing. The first thing we notice, 
 it is a 'full' wing, but we need only half of it. To change this, do the following:
@@ -116,7 +130,7 @@ To make the meshing process easier, we will round the tip:
 
 
 Change the airfoil
-==================
+------------------
 
 Now, the wing geometry is as it should be, but we still have to change the airfoil:
 
@@ -134,15 +148,15 @@ Now, the wing geometry is as it should be, but we still have to change the airfo
 
 
 Export the geometry
-===================
+-------------------
 
 Now we can export the geometry to read it into our meshing software. It might also be a good idea to save
 it first.
 
 1. Click on ``File`` -> ``Export``
 2. Click ``Untrimmed IGES (.igs)``
-3. Choos the proper unit. In this case it should be meter
-4. Click ``OK`` and save it somewhere
+3. Choose the proper unit. In this case it should be meter
+4. Click ``OK`` and in your tutorial folder
 
 .. figure:: images/overset_vsp_export.png
     :width: 500
