@@ -1,7 +1,7 @@
 .. _overset_surface_mesh:
 
 *********************************
-Surface mesh with Pointwise
+Surface Mesh
 *********************************
 
 Now that we have a geometry, we can start meshing it. We are using Pointwise to generate the surface mesh. 
@@ -278,7 +278,7 @@ we have to remove the so called ``break point`` at that location.
 4. Click the field next to ``Spacing`` and enter ``0.0003``. Then hit ``enter``
 5. Select the 2 spacing constraints at the ``TE root`` (B)
 6. Apply ``7.15e-5`` for spacing
-7. Select the 2 spacing constraints at the ``LE tip'' (C)
+7. Select the 2 spacing constraints at the ``LE tip`` (C)
 8. Apply ``0.00016`` for spacing
 9. Select the 2 spacing constraints at the ``TE tip`` (D)
 10. Apply ``4e-5`` for spacing
@@ -501,4 +501,38 @@ for the most outer mesh, we will delete this domain first, and create it manuall
 
     Finish the ``near_tip`` mesh.
 
-Lets check the quality of the created mesh. The most important metrics are ``Area Ratio`` and ``Skewness Equiangle
+Lets check the quality of the created mesh. The most important metrics are ``Area Ratio`` and ``Equiangle Skewness``.
+
+1. Select ``all`` domains
+2. Click ``Examine`` -> ``Area Ratio``
+3. Click on the ``Magnification Glass`` next to ``max``
+4. You see, the biggest ``Area Ratio`` is ``~2.24``
+5. Click on ``Advanced`` 
+6. Make sure ``Histogram`` and ``Show Histogram`` are checked
+7. As you see, the vast majority of cells has an ``Area Ratio`` of less than ``1.25``. This should be fine
+8. Click on ``Examine``
+9. Choose ``Skewness Equiangle`` for ``Type``
+10. As you can see, the most skewed cell has a ``Skewness Equiangle`` of ``~0.4``. This is also fine
+11. Click ``Close``
+
+.. note::
+    The lower max ``Area Ratio`` is, the easier it is to extrude a mesh with ``pyhyp``. If it is more than ``2``, 
+    it can get tricky. ``Skewness Equiangle`` describes how skewed a cell is. It should be below ``0.8``
+
+.. figure:: images/overset_pointwise_tip_examine.png
+    :width: 600
+    :align: center 
+
+    Check the mesh quality.
+
+
+Export all meshes for use in pyhyp
+==================================
+
+The last step is to export the mesh. For ``pyhyp`` it is important, that the ``normals`` look in the outwards direction.
+We will set the boundaries manually in pyhyp. As i have not found an easy way to figure out which domain is which, I 
+usually orient them all the same way. Then I apply a BC for all domains and run my pyhyp script. When i get an errror
+message for one domain, i comment it out. I keep doing this until there are no errors left.
+
+
+near_tip layer name geben

@@ -1,7 +1,7 @@
 .. _overset_vsp:
 
 *********************************
-Geometry generation with OpenVSP
+Geometry Generation
 *********************************
 
 OpenVSP is a parametric airfcraft geometry tool. It allows the user to quickly generate aircraft geometries. 

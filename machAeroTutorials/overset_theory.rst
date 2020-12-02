@@ -99,7 +99,7 @@ Match the growth ratios of the mesh extrusion.
 * If you want to priorize one mesh, use slightly smaler values for ``s0`` and growth ratio.
 
 Debugging an Overset Mesh
-========================
+=========================
 
 Sometimes overset meshes are a bit tricky. This section is here to help you. The following
 points indicate a Problem with your mesh:
