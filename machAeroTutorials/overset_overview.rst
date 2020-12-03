@@ -15,10 +15,11 @@ a common example to validate flow solvers in the transonic regime. Note that an 
 for a simple geometry like this.
 
 Here are a few of the items we will cover in the following pages:
+
 * Some theory on overset meshes
-* Create a wingeometry using OpenVSP
+* Create a wing geometry using OpenVSP
 * Surface mesh generationg with Pointwise
-* Volume mesh extrusion with pyGeo of an overset mesh
+* Volume mesh extrusion with pyGeo
 * ADflow analysis for overset meshes
 
 
@@ -31,3 +32,4 @@ Here are a few of the items we will cover in the following pages:
    overset_vsp
    overset_surface_mesh
    overset_volume_mesh
+   overset_analysis
