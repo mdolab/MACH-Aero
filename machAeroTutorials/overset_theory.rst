@@ -36,7 +36,7 @@ When there are overlapping meshes, one must decide which cells of one grid shoul
 with cells from an other grid. Additionally, there will be some cells that should be ignored at all. 
 This process is called hole cutting. For some solvers, the user must set it up in advance. ADFlow 
 does this implicitly without any additional input. It works on the assumption, that the cells closer 
-to a wall, have a smaller area. If there are overlapping meshes, it basically uses the smaller cells and 
+to a wall, have a smaller volume. If there are overlapping meshes, it basically uses the smaller cells and 
 blanks/interpolates the bigger ones.
 
 .. figure:: images/overset_IHC.png
@@ -84,7 +84,7 @@ Make sure there is sufficient overlap between meshes.
 
 Tip #2
 ------
-Match cells sizes of the overlapped meshes, especially near boundaries
+Match cell sizes of the overlapped meshes, especially near boundaries
 
 .. figure:: images/overset_tip2.png
     :align: center 

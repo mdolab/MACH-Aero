@@ -163,10 +163,3 @@ it first.
     :align: center 
 
     Export the geometry.
-
-
-References
-==========
-
-.. bibliography:: overset.bib
-    :style: unsrt

@@ -33,3 +33,10 @@ Here are a few of the items we will cover in the following pages:
    overset_surface_mesh
    overset_volume_mesh
    overset_analysis
+
+
+References
+==========
+
+.. bibliography:: overset.bib
+    :style: unsrt
