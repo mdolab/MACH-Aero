@@ -63,7 +63,7 @@ solverOptions = {
     'zippersurfacefamily': 'wall',
     'surfacevariables': ['cp','vx', 'vy','vz', 'blank'],
     'volumevariables': ['resrho', 'rmach', 'blank'],
-    'nCycles':10000,
+    'nCycles':20000,
     'L2Convergence':1e-14,
 }
 

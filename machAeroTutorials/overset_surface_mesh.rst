@@ -553,5 +553,54 @@ We will set the boundaries manually in pyhyp. As i have not found an easy way to
 usually orient them all the same way. Then I apply a BC for all domains and run my pyhyp script. When i get an errror
 message for one domain, i comment it out. I keep doing this until there are no errors left.
 
+Lets start with orienting the ``near_tip`` mesh first.
 
-near_tip layer name geben
+1. Make sure only the layer ``near_tip`` is visible
+2. Select ``all`` domains
+3. Click ``Edit`` -> ``Orient``
+4. Select ``one`` domain (It doesnt matter whitch one)
+5. Click ``I-J`` a few times until you are sure, the ``orange arrow`` is pointing outwards
+6. Click ``Set Master``
+7. Select ``all`` domains
+8. Click ``Align``
+9. Click ``OK``
+
+.. figure:: images/overset_pointwise_orient_near_tip.png
+    :width: 600
+    :align: center 
+
+    Orient the ``near_tip`` mesh so all normals point outwards.
+
+Now we can export it.
+
+1. Select ``all`` domains
+2. Click ``File`` -> ``Export`` -> ``CAE``
+3. Set ``near_tip`` as Filename and save it somewhere
+4. Make sure ``Data Precision`` and ``double`` is checked
+5. You can uncheck ``the rest`` (It doesnt really matter. But the files will be bigger if you leave it on)
+6. Press ``OK``
+
+.. figure:: images/overset_pointwise_export_near_tip.png
+    :width: 600
+    :align: center 
+
+    Export the ``near_tip`` mesh.
+
+Now lets do the same for the ``near_wing`` mesh. As we have a symmetry boundary condition, the orientation
+procedure is slightly more complicated. 
+
+1. Make sure only the layer ``near_wing`` is visible
+2. Select ``all`` domains
+3. Click ``Edit`` -> ``Orient``
+4. Select ``one`` domain (It doesnt matter which one)
+5. Click ``I-J`` until the ``orange arrow`` is pointing outwards
+6. If the ``red arrow`` is not pointing towards the tip, click ``I`` and ``I-J`` until both conditions are satisfied
+7. Click ``Set Master``
+8. Select ``all`` domains
+9. Click ``Align``
+10. Make sure all ``red arrows`` point towards the tip (if this is not the case, select this domain and repeat step 6)
+11. Click ``OK``
+
+Now you can export the mesh ``near_wing`` like you did in the previous step.
+
+Congratulations, you manged to create the surface mesh. On the next page, we will extrude it into a volume mesh.
