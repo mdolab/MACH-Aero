@@ -33,5 +33,5 @@ Files
 If you want to use ``adflow_util`` download and install it first:
 ::
 
-    $ pip install git+https://github.com/DavidAnderegg/adflow_util.git .
+    $ pip install git+https://github.com/DavidAnderegg/adflow_util.git
 

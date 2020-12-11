@@ -4,7 +4,7 @@
 Overset Mesh
 *******************************************************
 
-In this part of the tutorial we will mainly generate an overset meshe for ADFlow. We will use 
+In this part of the tutorial we will mainly generate an overset mesh for ADFlow. We will use 
 `OpenVSP <http://openvsp.org/>`_ to create the geometry, generate a surface mesh with 
 `Pointwise <http://www.pointwise.com>`_ (subject to charge) and extrude the volume mesh with pyHyp.
 

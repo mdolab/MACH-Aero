@@ -28,15 +28,15 @@ Method for Aerodynamic Shape Optimization
 <https://www.researchgate.net/publication/313459613_An_Efficient_Parallel_Overset_Method_for_Aerodynamic_Shape_Optimization>`_\.
 
 .. note:: As the solver has to interpolate in the overlapping region, the calculated solution will locally not be
-          as accurate. This means it should not happen in critical regions like the wing tip.
+          as accurate. This means it should not happen in critical regions, like the wing tip.
 
 Implicit Hole Cutting (IHC)
 ===========================
-When there are overlapping meshes, we must decide which cells of one grid should exchange information 
-with cells from an other grid. Additionally there will be some cells, that should be ignored at all. 
-This process is called hole cutting. Depending on the solver, the user must set it up in advance. ADFlow 
-does this implicitly without any additional user input. It works on the assumption, that the cells closer 
-to a wall have a smaller area. If there are overlapping meshes, it basically uses the smaller cells and 
+When there are overlapping meshes, one must decide which cells of one grid should exchange information 
+with cells from an other grid. Additionally, there will be some cells that should be ignored at all. 
+This process is called hole cutting. For some solvers, the user must set it up in advance. ADFlow 
+does this implicitly without any additional input. It works on the assumption, that the cells closer 
+to a wall, have a smaller area. If there are overlapping meshes, it basically uses the smaller cells and 
 blanks/interpolates the bigger ones.
 
 .. figure:: images/overset_IHC.png
@@ -71,6 +71,7 @@ Surface Loads Integration on Overset Structured Grids
 
 Things to note
 ==============
+Overset meshes can be tricky. Here are a few tips to help you.
 
 Tip #1
 ------
@@ -101,8 +102,7 @@ Match the growth ratios of the mesh extrusion.
 Debugging an Overset Mesh
 =========================
 
-Sometimes overset meshes are a bit tricky. This section is here to help you. The following
-points indicate a Problem with your mesh:
+The ADflow output might help you to debug an overset mesh. The following points indicate a problem.
 
 * Several flooding iterations
 * Small number of compute cells
