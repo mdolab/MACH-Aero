@@ -8,3 +8,8 @@ project = "MACH-Aero Documentation"
 # here we add external extensions, which must also be added to requirements.txt
 # so that RTD can import and use them
 extensions.extend(["sphinxcontrib.bibtex"])
+
+# Specify the baseurls for the projects I want to link to
+intersphinx_mapping = {
+    "pyoptsparse": ("https://mdolab-pyoptsparse.readthedocs-hosted.com/en/latest", None),
+}
