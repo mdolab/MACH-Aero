@@ -206,7 +206,13 @@ To finish up, we choose the optimizer and then run the optimization.
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
     :start-after: # rst optimizer
 
-.. note:: The complete set of options for ``SNOPT`` can be found in ` the pyOptSparse documentation <https://mdolab-pyoptsparse.readthedocs-hosted.com/en/latest/optimizers/pysnopt.html#options>`_. It is useful to remember that you can include major iterations information in the history file by providing the proper options. It has been observed that the ``_print`` and ``_summary`` files occasionally fail to be updated, possibly due to unknown hardware issues on GreatLakes. The problem is not common, but if you want to avoid losing this information, you might back it up in the history file. This would allow you monitor the optimization even if the ``_print`` and ``_summary`` files are not being updated. Note that the size of the history file will increase due to this additional data.
+.. note::
+    The complete set of options for ``SNOPT`` can be found in :ref:`the pyOptSparse documentation <pyoptsparse:snopt>`.
+    It is useful to remember that you can include major iterations information in the history file by providing the proper options.
+    It has been observed that the ``_print`` and ``_summary`` files occasionally fail to be updated, possibly due to unknown hardware issues on GreatLakes.
+    The problem is not common, but if you want to avoid losing this information, you might back it up in the history file.
+    This would allow you monitor the optimization even if the ``_print`` and ``_summary`` files are not being updated.
+    Note that the size of the history file will increase due to this additional data.
 
 Run it yourself!
 ================
