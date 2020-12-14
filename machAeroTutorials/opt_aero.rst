@@ -206,6 +206,8 @@ To finish up, we choose the optimizer and then run the optimization.
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
     :start-after: # rst optimizer
 
+.. note:: A more complete ``optoptions`` for ``SNOPT`` can be found in `pyOptSparse doc <https://mdolab-pyoptsparse.readthedocs-hosted.com/en/latest/optimizers/pysnopt.html#options>`_. You can save major iterations information in the history file by providing proper options. It has been observed that the print and summary files failed to be updated due to possibly unknown hardware issues on GreatLakes. The problem is not common, but if you want to avoid it, you might save the informtaion in the history file. This would allow you monitor the optimization even the print and summary files are not being updated.
+
 Run it yourself!
 ================
 To run the script, use the ``mpirun`` and place the total number of processors after the ``-np`` argument::

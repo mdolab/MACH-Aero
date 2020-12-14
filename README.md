@@ -30,3 +30,4 @@ This repository contains the following:
 
 These documentation can be accessed online at https://mdolab-mach-aero.readthedocs-hosted.com/.
 To run the tutorials yourself, you need to follow the installation instructions to install all the modules, then clone this repository to access the tutorial scripts.
+To compile the doc locally, first install dependencies via ``pip install -r requirements.txt``, then build locally with ``make html``.
