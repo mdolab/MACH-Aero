@@ -10,7 +10,7 @@ In this part, we will extrude the previously generated surface mesh into a volum
 overset mesh, it consists of multiple sub-meshes (``near_wing``, ``near_tip`` and ``far``). After extruding all of them, 
 we will combine them into one single grid, that ADflow can read.
 
-As we said in the previous tutorial, we want different sized meshes. To accomplish this, we generated the finest and
+As we said in the previous tutorial, we want differently sized meshes. To accomplish this, we generated the finest and
 will use this script to coarsen it multiple times. We will implement a basic command line parsing to tell the script
 wich grid to generate. For example, a ``L1`` mesh would be generated like this:
 ::
@@ -21,8 +21,8 @@ wich grid to generate. For example, a ``L1`` mesh would be generated like this:
 Files
 =====
 
-Create an empty file called ``run_pyhyp.py`` in your ``mesh`` folder. You will also need to copy the surface
-meshes from the tutorial folder if you did not generate it in the previous part:
+Navigate to the directory ``overset/mesh`` in your tutorial folder and create an empty file called ``run_pyhyp.py``. 
+You will also need to copy the surface meshes from the tutorial folder if you did not generate it in the previous part:
 ::
 
     $ cp tutorial/overset/mesh/near_tip.cgns .
@@ -46,7 +46,7 @@ Then we need to setup up some libraries:
    :start-after: # rst Init (beg)
    :end-before: # rst Init (end)
 
-The first line makes the processor number, on which this script is beeing run, availabe. (Only used if it is prallelized 
+The first line makes the processor number, on which this script is running, availabe. (Only used if it is parallelized 
 via MPI). 
 
 After that, we setup up the command line parsing with three arguments 
@@ -76,7 +76,7 @@ common options:
 This options are quite basic and you should recognize most of them. But I want to point out some:
 
 outerFaceBC
-    This has to be set to ``overset``. This way ADflow knows it has to interpolate the outer faces and dont apply
+    This has to be set to ``overset``. This way ADflow knows it has to interpolate the outer faces and doesn't apply
     any boundary conditions.
 
 marchDist
@@ -107,8 +107,8 @@ BC
     the same side of all domains. Then I delete them one by one until no 
     more error messages pop up in pyHyp.
 families
-    Here we give a unique name to a surface. This lets ADflow calculate the forces seperately and would allow you to get
-    the lift and drag forces for your wing and tail individually for example
+    Here we give a unique name to a surface. This lets ADflow calculate the forces seperately and would allow you, for example,
+    to get the lift and drag forces for your wing and tail individually
 
 
 Extrude the nearfield
@@ -120,8 +120,8 @@ Now we extrude the nearfield:
    :start-after: # rst near_field (beg)
    :end-before: # rst near_field (end)
 
-We start the extrusion by calling ``pyHypMulti`` as arguments we give the previously defined common and individual options.
-After the extrusion we wait for all procs to finish before we continue.
+We start the extrusion by calling ``pyHypMulti``\. As arguments we give the previously defined common and individual options.
+After the extrusion, we wait for all procs to finish before we continue.
 
 
 Combine the nearfield
@@ -144,7 +144,7 @@ Now we can generate the farfield:
    :start-after: # rst far_field (beg)
    :end-before: # rst far_field (end)
 
-I want to point out the arguments for simpleOCart:
+I want to point out the arguments for ``simpleOCart``:
 
 dhStar
     The spacing in the cartesian part

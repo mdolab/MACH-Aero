@@ -13,12 +13,12 @@ Pointwise to generate an overset mesh. ICEM or an other mesher would work aswell
 
 Files
 =====
-Either use the previousle generated ``.igs`` file or copy it from the tutorial folder.
+Navigate to the directory ``overset/mesh`` in your tutorial folder. Either use the previously generated ``.igs`` file or copy it from the tutorial folder.
 ::
 
     $ cp tutorial/overset/geo/onera_m6.igs .
 
-It is possible to script Pointwise. In order to use one, we have to download it first. You can either
+It is possible to script Pointwise. In order to use it, we have to download the script first. You can either
 `download <https://raw.githubusercontent.com/pointwise/Semicircle/master/Semicircle.glf>`_ it here or copy it 
 from the tutorial folder.
 ::
@@ -83,7 +83,7 @@ Before we actually begin meshing, we have to set some standard values and import
 tolerances for Pointwise
 
 1. Click on ``File`` -> ``Properties``
-2. Set ``Model Size`` to ``1``. This should only be in the order of magnitude
+2. Set ``Model Size`` to ``1``. (It is enough, if the order of magnitude is similar)
 3. Set ``Node`` to ``1e-6``. The value of ``Connector`` should automatically jump to ``1e-6`` aswell
 4. ``OK``
 
@@ -93,7 +93,7 @@ MACH-Framework with ``hdf5`` support, you can skip the last step.
 1. Click ``CAE`` -> ``Select Solver``
 2. Make Sure ``CGNS`` is selected. 
 3. Click ``OK``.
-4. Click ``CAE`` -> ``Set Dimension`` -> ``2D`` (A surface mesh can be fully placed in 3D, but is here called  2D)
+4. Click ``CAE`` -> ``Set Dimension`` -> ``2D`` (That's how surface meshes are called here)
 5. Click ``CAE`` -> ``Set Solver Attributes`` (If you have ``hdf5`` support, you can stop here)
 6. Select ``adf`` for ``CGNS File Type``
 7. Click ``Close``
@@ -114,7 +114,7 @@ After those steps, the window should look like this (you should probably save at
 
     Pointwise after setup.
 
-In Pointwise, this is are the most important labels:
+Few important Pointwise labels:
 
 Block
     This is a 3 dimensional Mesh
@@ -125,13 +125,14 @@ Connector
 Database
     An imported geometry
 Spacing Constraint
-    This controls how the ``nodes`` lie on a ``Connector``. The ``Connector`` controlls the ``nodes`` in a ``Domain`` or ``Block``
+    This controls how the ``nodes`` lay on a ``Connector``. Further down the line, the ``Connector`` controlls 
+    how the ``nodes`` lay in a ``Domain`` or ``Block``
 
 
 Prepare the Database
 --------------------
 
-To make our live a bit easier in the comming mesh work, we first prepare the database a bit (take a look at the next 
+To make our live a bit easier in the coming mesh work, we first prepare the database a bit (take a look at the next 
 picture to help guide you).
 
 1. Select the whole ``database``. Just draw a rectangle arount it while your ``left mousebutton`` is pressed
@@ -150,7 +151,7 @@ Because we have two overlapping meshes (``near_wing`` and ``near_tip``), we have
 This will indicate where the ``near_tip`` mesh will start. The ``near_wing`` mesh will go right to the tip of the wing. But 
 because ADflow uses an ``Implicit Hole Cuttin Scheme`` we only have to make sure, that the ``near_tip`` mesh is slightly smaller
 than the ``near_wing`` mesh. This will ensure, that the overlapping region is approximately where we cut the database. In this
-way we can make sure, the solver does not have to interpolate in a critical region (like the wing tip for example).
+way we are certain, the solver does not have to interpolate in a critical region (like the wing tip).
 
 1. Click on ``Create`` -> ``Planes``
 2. Choose ``Constant X, Y or Z``
@@ -172,8 +173,7 @@ way we can make sure, the solver does not have to interpolate in a critical regi
 
 Now we are doing some cleaning up and delete some unneeded surfaces.
 
-1. Rotate your view with pressing ``ctrl`` and ``your right mousebutton`` while moving your mouse until you have a good view
-on the root surfaces.
+1. Rotate your view with pressing ``ctrl`` and your ``right mousebutton`` while moving your mouse until you have a good view on the root surfaces.
 2. Select the first ``root surface``
 3. Press ``ctrl`` while selecting the seccond ``root surface``
 4. Press ``del`` on your keyboard to delete them
@@ -204,15 +204,15 @@ We create the mesh ``near_wing`` in a new layer to keep everything orderly.
 
 
 Because we want to coarsen our mesh multiple times, it is important to think about how many nodes we should have on a 
-connector (Apart from that it is allways good to be multi-grid-friendly). To calculate the number of nodes (:math:`N`) per connector, we
+connector (Apart from that, it is allways good to be multi-grid-friendly). To calculate the number of nodes (:math:`N`) per connector, we
 use this formula:
 
 .. math::
 
     N=2^n m + 1
 
-Where :math:`n` is the ``number of refinements + 1`` and :math:`m` is an ``integer``. To save some work, we will set the default number 
-of nodes for a connector to ``145``. This means, we will not have to change the node number in the chord-wise direction.
+Where :math:`n` is the ``number of refinements + 1`` and :math:`m` is an ``integer``. For our chord-wise direction, we will
+use ''145'' Nodes. To save some work, we will set it as default.
 
 1. Click ``Defaults``
 2. Make sure ``Connector`` is checked
@@ -260,12 +260,12 @@ Now we initialize the surface mesh.
 
     Initialize the ``near_wing`` mesh.
 
-Now we have to ``size`` the LE (Leading Edge) and TE (Trailing Edge) connectors. Also we have to adjust the ``spacing``.
+Now we ``size`` the LE (Leading Edge) and TE (Trailing Edge) connectors.
 
 1. Click on ``All Masks On/Off``
 2. Click on ```Connectors``
-3. Select the ``LE`` and ``TE`` ``Connectors`` by drawing a rectangle like it is showen
-4. Click on the ``inputfield`` next to ``Dimension``, enter ``73`` and press ``enter``
+3. Select the ``LE`` and ``TE`` ``Connectors`` by drawing a rectangle like it is shown
+4. Click on the inputfield next to ``Dimension``, enter ``73`` and hit ``enter``
 
 .. figure:: images/overset_pointwise_near_dimension_LETE.png
     :width: 600
@@ -275,7 +275,9 @@ Now we have to ``size`` the LE (Leading Edge) and TE (Trailing Edge) connectors.
 
 The surface mesh is now allmost complete. We only have to distribute the nodes on it properly by changing the ``spacing``. 
 Usually all Points are distributed according to ``Tanh``. But because we split up the database in the previous steps, 
-we have to remove the so called ``break point`` at that location.
+we have to remove so called ``break point`` at that location.
+
+.. note:: ``Break Points`` give you even more controll to distribute your nodes on a connector.
 
 1. Selecte the ``LE`` and ``TE`` connectors again.
 2. Click on ``Grid`` -> ``Distribute``
@@ -324,7 +326,7 @@ Now we will create the ``near_tip`` mesh. Let's start with creating a new layer 
 3. Rightlick on Layer ``20`` -> ``Set Current``
 4. Doubleclick the ``Description`` Field and enter ``near_tip``
 5. Uncheck ``Show Empty Layers``
-6. Check Layer ``0`` so the database is visible
+6. Check Layer ``0`` to make the database visible
 7. Hide the mesh ``near_wing`` by unchecking layer ``10``
 
 Now we will create the connectors. 
@@ -332,7 +334,7 @@ Now we will create the connectors.
 1. Click on ``Defaults`` -> enter ``201`` for ``Dimension``
 2. Select everything from the tip to the cut we made earlier
 3. Click ``Connectors on Database Entities``
-4. Click on ``Layers`` -> uncheck layer ``0``. You should now see only the connectors we created
+4. Click on ``Layers`` -> uncheck layer ``0``. Now, you should only see the connectors we created
 
 Let's clean up the generated connectors at the tip TE.
 
@@ -376,7 +378,7 @@ The last thing to clean up is the ``tip LE``.
 5. Click on ``View`` -> ``Show Hidden``
 6. Select the ``3`` ``connectors`` (A)
 7. Click on the ``arrow pointing down`` next to ``Hide``
-8. CLick on ``Show``
+8. Click on ``Show``
 
 .. figure:: images/overset_pointwise_tip_clean_LE_tip.png
     :width: 600
@@ -535,7 +537,7 @@ Lets check the quality of the created mesh. The most important metrics are ``Are
 11. Click ``Close``
 
 .. note::
-    The lower max ``Area Ratio`` is, the easier it is to extrude a mesh with ``pyhyp``. If it is more than ``2``, 
+    The lower max ``Area Ratio`` is, the easier it is to extrude a mesh with pyHyp. If it is more than ``2``, 
     it can get tricky. ``Skewness Equiangle`` describes how skewed a cell is. It should be below ``0.8``
 
 .. figure:: images/overset_pointwise_tip_examine.png
@@ -548,9 +550,9 @@ Lets check the quality of the created mesh. The most important metrics are ``Are
 Export all meshes for use in pyhyp
 ==================================
 
-The last step is to export the mesh. For ``pyhyp`` it is important, that the ``normals`` look in the outwards direction.
-We will set the boundaries manually in pyhyp. As i have not found an easy way to figure out which domain is which, I 
-usually orient them all the same way. Then I apply a BC for all domains and run my pyhyp script. When i get an errror
+The last step is to export the mesh. For pyHyp it is important, that the ``normals`` look in the outwards direction.
+We will set the boundaries manually in pyHyp. As I have not found an easy way to figure out which domain in Pointwise
+corresponds to which domain in pyHyp, I usually orient them all the same way. Then I apply a BC for all domains and run my pyhyp script. When i get an errror
 message for one domain, i comment it out. I keep doing this until there are no errors left.
 
 Lets start with orienting the ``near_tip`` mesh first.
@@ -577,7 +579,7 @@ Now we can export it.
 2. Click ``File`` -> ``Export`` -> ``CAE``
 3. Set ``near_tip`` as Filename and save it somewhere
 4. Make sure ``Data Precision`` and ``double`` is checked
-5. You can uncheck ``the rest`` (It doesnt really matter. But the files will be bigger if you leave it on)
+5. You can uncheck ``the rest`` (It doesn't really matter. But the files will be bigger if you leave it on)
 6. Press ``OK``
 
 .. figure:: images/overset_pointwise_export_near_tip.png
@@ -592,7 +594,7 @@ procedure is slightly more complicated.
 1. Make sure only the layer ``near_wing`` is visible
 2. Select ``all`` domains
 3. Click ``Edit`` -> ``Orient``
-4. Select ``one`` domain (It doesnt matter which one)
+4. Select ``one`` domain (It doesn't matter which one)
 5. Click ``I-J`` until the ``orange arrow`` is pointing outwards
 6. If the ``red arrow`` is not pointing towards the tip, click ``I`` and ``I-J`` until both conditions are satisfied
 7. Click ``Set Master``

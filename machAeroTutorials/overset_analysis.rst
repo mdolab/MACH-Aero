@@ -34,11 +34,12 @@ For simplicity, I will only cover the Calculation on the ``L3`` mesh.
 
 Files
 =====
-Create an empty file called ``run_adflow_L3.py`` in your ``analysis`` folder. If you did not create the volume
-mesh on the previous page, you will also have to copy the meshfile:
+Navigate to the directory ``overset/analysis`` in your tutorial folder and create an empty file called 
+``run_adflow_L3.py``. If you did not create the volume mesh on the previous page, you will also have to 
+copy the meshfile:
 ::
 
-    $ cp tutorial/overset/analysis/near_tip_vol_L3.cgns .
+    $ cp tutorial/overset/analysis/ONERA_M6_L3.cgns .
 
 If you want to use ``adflow_util`` download and install it:
 ::
@@ -64,9 +65,9 @@ Then we define a variable for the level we want to use. This makes it easier to 
    :start-after: # rst Level (beg)
    :end-before: # rst Level (end)
 
-``adflow_util`` takes 3 different dictionairys as input. One sets some ``adflow_util``-specific options, 
+``adflow_util`` takes 3 different dictionaries as input. One sets some ``adflow_util``-specific options, 
 one sets the boundary conditions, as ``AeroProblem`` would and the last one is the regular ``Adflow`` options dict.
-Les set the ``adflow_util`` options first:
+Lets set the ``adflow_util`` options first:
 
 .. literalinclude:: ../tutorial/overset/analysis/run_adflow_L3.py
    :start-after: # rst Options (beg)
@@ -88,7 +89,8 @@ Now we define the ``AeroProblem`` options:
    :end-before: # rst AeroOptions (end)
 
 Here we set the various flow parameters. It is exactly the same as you would set in ``baseclasses.AeroProblem``.
-But we could, for example, set alpha as an array of variables. In that case, ``adflow_util`` would handle everything for us.
+But we could, for example, set alpha as an array of variables. In that case, ``adflow_util`` would handle everything else 
+for us.
 
 Now, let's set the ``ADflow`` options:
 
@@ -99,7 +101,7 @@ Now, let's set the ``ADflow`` options:
 I want to point out a few things:
 
 outputsurfacefamily
-    We choose ``wall`` which we defined earlier as consisting of ``near_wing`` and ``near_tip```. This will
+    We choose ``wall`` which we defined earlier as consisting of ``near_wing`` and ``near_tip``. This will
     write out only the wing as our surface solution.
 
 zippersurfacefamily
@@ -108,6 +110,9 @@ zippersurfacefamily
 surfacevariables & volumevariables
     Here it is very important to add ``blank``. This way we know which cells we can hide in the postprocessor as
     the 'blanked' cells still show up in the solution. 
+
+.. note:: To only view computed cells, add a filter to your post-processor in a way, that only cells where
+          ``blank`` is bigger than 0 are shown.
 
 And lastly, we plug everything into ``adflow_util``:
 
@@ -129,10 +134,10 @@ If you want to run in parallel, start it with mpi
     $ mpirun -np 4 python run_adflow_L3.py
 
 
-Plot the Script in realtime
----------------------------
+Plot the Iterations in realtime
+-------------------------------
 If you want to have a graphical representation of all the ADflow variables, ``adflow_util`` comes in handy aswell.
-I has an additional package called ``adflow_plot``. If you installed it using pip, you can simply start it this way:
+It has an additional package called ``adflow_plot``. If you installed it using pip, you can simply start it this way:
 ::
 
     $ adflow_plot -i run_adflow_L3.py
@@ -142,7 +147,7 @@ If you want to run in parallel:
 
     $ adflow_plot -i run_adflow_L3.py -np 4
 
-This is simply an overlay, which starts the adflow script in the background and parses its ``stdout``. At startup
+This is simply an overlay, which starts the adflow script in the background and parses it's ``stdout``. At startup
 you will see the regular adflow-ouput. But as soon as the calculation starts, you'll see a plot of ``resRho``:
 
 .. figure:: images/overset_analysis_adflow_plot.png

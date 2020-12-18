@@ -30,7 +30,7 @@ The real ONERA M6 experiment looked like this:
 
     ONERA M6 experiment :cite:`nasaM6real`\.
 
-As we are not the first to simulate this wing, we can grab the geometry data and the airfoil from :cite:`nasaM6sim`. 
+As we are not the first to simulate this wing, we can grab the geometry data and the airfoil from :cite:`nasaM6sim`\.
 Here is a short summary:
 
 +--------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -76,7 +76,7 @@ Add a new Wing
     Add a new wing to OpenVSP.
 
 We notice a new geometry in the ``Main View``. This is the wing we just added. It also 
-shows up as ``WingGeom`` int the ``Geom Browser`` To controll the view, use
+shows up as ``WingGeom`` in the ``Geom Browser``\. To controll the view, use
 the following key- and mouse combinations:
 
 zoom
@@ -156,7 +156,7 @@ it first.
 1. Click on ``File`` -> ``Export``
 2. Click ``Untrimmed IGES (.igs)``
 3. Choose the proper unit. In this case it should be meter
-4. Click ``OK`` and in your tutorial folder
+4. Click ``OK`` and save it
 
 .. figure:: images/overset_vsp_export.png
     :width: 500

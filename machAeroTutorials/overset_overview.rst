@@ -35,6 +35,11 @@ Here are a few of the items we will cover in the following pages:
    overset_analysis
 
 
+About this tutorial
+===================
+This tutorial was written by David Anderegg which is employed by `ZHAW <https://www.zhaw.ch/en/university/>`_ in Switzerland.
+
+
 References
 ==========
 

@@ -80,7 +80,7 @@ Make sure there is sufficient overlap between meshes.
 .. figure:: images/overset_tip1.png
     :align: center 
 
-    Overlapping is needed betwee meshes.
+    Overlapping is needed between meshes.
 
 Tip #2
 ------
@@ -89,7 +89,7 @@ Match cell sizes of the overlapped meshes, especially near boundaries
 .. figure:: images/overset_tip2.png
     :align: center 
 
-    Left: Not remommended. May give a valid hole cutting with additional effort. Right: Better transition. Easier to find interpolation stencils.
+    Left: Not recommended. May give a valid hole cutting with additional effort. Right: Better transition. Easier to find interpolation stencils.
 
 Tip #3
 ------
@@ -124,7 +124,7 @@ Flooding is usually caused by cells that grow too fast off a wall.
     meshes will not create a layer of interpolate cells to contain the flood. 
     Check if meshes have similar growth ratios for the pyHyp extrusion.
 
-Change the ``nearwalldist`` option in ADow.
+Change the ``nearwalldist`` option in ADflow.
     This option controls how compute cells are preserved near walls. Changing this value may prevent 
     flooding. We usually use 0.01 for a full-scale aircraft mesh defined in metric units. If a collar mesh 
     is flooding, try increasing ``nearwalldist`` to reduce the number of flood seeds.
