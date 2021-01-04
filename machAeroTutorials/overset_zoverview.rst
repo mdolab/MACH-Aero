@@ -44,4 +44,5 @@ References
 ==========
 
 .. bibliography:: overset.bib
-    :style: unsrt
+   :style: unsrt
+   :labelprefix: O

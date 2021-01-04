@@ -605,4 +605,4 @@ procedure is slightly more complicated.
 
 Now you can export the mesh ``near_wing`` like you did in the previous step.
 
-Congratulations, you manged to create the surface mesh. On the next page, we will extrude it into a volume mesh.
+Congratulations, you managed to create the surface mesh. On the next page, we will extrude it into a volume mesh.
