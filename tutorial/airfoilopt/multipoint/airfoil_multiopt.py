@@ -50,7 +50,7 @@ aeroOptions = {
     "gridFile": "n0012.cgns",
     "outputDirectory": outputDirectory,
     # Physics Parameters
-    "equationType": "RANS",
+    "equationType": "rans",
     "smoother": "dadi",
     "MGCycle": "sg",
     "nCycles": 20000,

@@ -10,7 +10,7 @@ options = {
     "fileType": "cgns",
     "unattachedEdgesAreSymmetry": True,
     "outerFaceBC": "farfield",
-    "autoConnect": "True",
+    "autoConnect": True,
     "BC": {},
     "families": "wall",
     # rst grid
@@ -24,8 +24,8 @@ options = {
     # ---------------------------
     #   Pseudo Grid Parameters
     # ---------------------------
-    "ps0": -1,
-    "pGridRatio": -1,
+    "ps0": -1.0,
+    "pGridRatio": -1.0,
     "cMax": 1.0,
     # rst smoothing
     # ---------------------------
