@@ -67,13 +67,13 @@ value, that correspondes to the current level, to that variable.
 Common pyHyp options
 ---------------------
 We extrude multiple nearfield meshes with pyHyp. As there are a lot of options used for all meshes, we first define some
-common options:
+common `options <https://mdolab-pyhyp.readthedocs-hosted.com/en/latest/options.html>`_\:
 
 .. literalinclude:: ../tutorial/overset/mesh/run_pyhyp.py
    :start-after: # rst common_options (beg)
    :end-before: # rst common_options (end)
 
-This options are quite basic and you should recognize most of them. But I want to point out some:
+This options are quite basic and you should recognize most of them. Some overset specific ones are pointed out:
 
 outerFaceBC
     This has to be set to ``overset``. This way ADflow knows it has to interpolate the outer faces and doesn't apply
@@ -85,7 +85,7 @@ marchDist
 
 Individual pyHyp options
 ------------------------
-Lets define some individual options:
+Lets define some individual `options <https://mdolab-pyhyp.readthedocs-hosted.com/en/latest/options.html>`_\:
 
 .. literalinclude:: ../tutorial/overset/mesh/run_pyhyp.py
    :start-after: # rst individual_options (beg)
@@ -102,9 +102,9 @@ BC
     Here we apply the boundary conditions (BC). The integer defines the Domain (starting at 1). The dict key defines
     which side of the domain the BC applies to. The dict value defines the type of the BC. 
 
-    As I have talked about in the previous tutorial, I dont know a reliable way of getting this integer, which defines
-    the domain, out of Pointwise. So I usually rotate all domains in such a way, that i can apply the BC on 
-    the same side of all domains. Then I delete them one by one until no 
+    As it has been mentioned in the previous tutorial, there is no a reliable way to get this integer, which defines
+    the domain, out of Pointwise. So it is recommended to rotate all domains in such a way, that the BC can be applied on 
+    the same side of all domains. Then they are deleted one by one until no 
     more error messages pop up in pyHyp.
 families
     Here we give a unique name to a surface. This lets ADflow calculate the forces seperately and would allow you, for example,
@@ -144,7 +144,7 @@ Now we can generate the farfield:
    :start-after: # rst far_field (beg)
    :end-before: # rst far_field (end)
 
-I want to point out the arguments for ``simpleOCart``:
+These are the arguments for a ``simpleOCart``:
 
 dhStar
     The spacing in the cartesian part

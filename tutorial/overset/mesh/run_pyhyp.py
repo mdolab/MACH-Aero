@@ -176,7 +176,7 @@ gridList = [wingGrid, tipGrid]
 combinedGrid = combineGrids(gridList)
 
 # move to y=0
-# combinedGrid.symmZero('y')
+combinedGrid.symmZero('y')
 # rst combine_near_field (end)
 
 

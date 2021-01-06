@@ -23,13 +23,13 @@ we know the flow conditions:
 | Temperature        | 300° K  |
 +--------------------+---------+
 
-I developed a convenience package for ADflow called 
+There is a convenience package for ADflow called 
 `adflow_util <https://github.com/DavidAnderegg/adflow_util>`_\. It allows to plot the ADflow state variables live in the console and 
 handles some annoying stuff like creating the ``output`` folder for ADflow automatically. It also makes it easy
-to sweep a variable, for example ``alpha``. I will use this utility here, but the regular python API, 
+to sweep a variable, for example ``alpha``. This utility will be used here, but the regular python API, 
 that is detailed in other tutorials, would work aswell.
 
-For simplicity, I will only cover the Calculation on the ``L3`` mesh.
+For simplicity, only the calculation on the ``L3`` mesh is covered. The other meshes might require slightly different ADflow options.
 
 
 Files
@@ -98,7 +98,7 @@ Now, let's set the ``ADflow`` options:
    :start-after: # rst SolverOptions (beg)
    :end-before: # rst SolverOptions (end)
 
-I want to point out a few things:
+Some things to note:
 
 outputsurfacefamily
     We choose ``wall`` which we defined earlier as consisting of ``near_wing`` and ``near_tip``. This will
@@ -160,8 +160,8 @@ At the bottom is a console where you can define which variables you want to see.
 number of 'pixels', it is also possible to show only a limited number of iterations. Simply type ``help`` or ``h`` 
 and hit ``Enter``. You will get a list of all available commands. To quit, simply type ``q`` and confirm with ``y``.
 
-Outputfiles
------------
+Output files
+------------
 In addition to the expected volume and surface files from adflow, there will also be a file called ``ONERA_M6_L3.out``.
 It is from ``adflow_util`` and looks like this:
 ::
@@ -194,7 +194,7 @@ points would be listed here too.
 Results
 =======
 
-I ran ADflow with all meshes and plotted the results combined with results from :cite:`nasaM6SA`. As you can see,
+For validation purposes, ADflow was run with all meshes and the results were plotted against various differen solvers from :cite:`nasaM6SA`. As you can see,
 ADflow lies right in the middle:
 
 .. figure:: images/overset_grid_convergence.png

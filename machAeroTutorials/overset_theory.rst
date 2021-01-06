@@ -9,7 +9,7 @@ Overset Mesh
 
 ADFlow can only process multiblock structured meshes. For simple geometries, this is fine. 
 But it can be really hard to generate a single structured mesh for a complex geometry. 
-It might even be impossible to archive the required mesh quality.
+It might even be impossible to achieve the required mesh quality.
 
 To mitigate this problem, the overset approach (also called chimera-patch) was developed. Instead 
 of having one big structured mesh, the fluid domain is split up in different, overlapping meshes. The 
@@ -19,7 +19,7 @@ meshes:
 .. figure:: images/overset_Overview.png
     :align: center 
 
-    Multiple nearfield and one farfield mesh can be seen.
+    Example of a farfield mesh embedding multiple nearfield meshes for a BLI aircraft configuration model.
 ..
     src: https://openmdao.org/wp-content/uploads/2018/06/bli_16_9_clean.png
 
@@ -27,8 +27,8 @@ More about the overset implementation in ADFlow can be found here: `An Efficient
 Method for Aerodynamic Shape Optimization 
 <https://www.researchgate.net/publication/313459613_An_Efficient_Parallel_Overset_Method_for_Aerodynamic_Shape_Optimization>`_\.
 
-.. note:: As the solver has to interpolate in the overlapping region, the calculated solution will locally not be
-          as accurate. This means it should not happen in critical regions, like the wing tip.
+.. note:: As the solver has to interpolate in the overlapping region, the numerical solution will locally not be
+          as accurate. It is recommended to avoid such overlapping near critical regions of the flowfield, like the wing tip.
 
 Implicit Hole Cutting (IHC)
 ===========================
@@ -69,8 +69,8 @@ Surface Loads Integration on Overset Structured Grids
 <https://www.nas.nasa.gov/assets/pdf/staff/Chan_W_Enhancements_to_the_Hybrid_Mesh_Approach_to_Surface_Loads_Integration_on_Overset_Structured_Grids.pdf>`_\.
 
 
-Things to note
-==============
+Useful Tips
+===========
 Overset meshes can be tricky. Here are a few tips to help you.
 
 Tip #1
@@ -113,6 +113,19 @@ The ADflow output might help you to debug an overset mesh. The following points 
     :width: 400
 
     Bad IHC terminal output.
+
+During the IHC, each cell gets an logical attribute, that defines if it should be calulated as usual, 
+deactivated/blanked or used for interpolation between meshes.The basic principle of IHC is to allways use 
+the smaller cell and blank the bigger one. If you look at the cells of a farfield mesh that lie behind a body, 
+there are no smaller cells to pick. This means, they must be blanked by a different condition. This 
+condition is something like: "If a patch of cells is completly surrounded by interpolation cells, 
+the whole patch can be blanked". This is process is called ``flooding``.
+
+An ``orphan cell`` is a cell, that could not find a corresponding cell on a different mesh for interplation purposes.
+
+More about this and the implementation of IHC in ADflow can be found `here <http://mdolab.engin.umich.edu/bibliography/Kenway2017a.html>`_
+
+
 
 Flood troubleshooting
 ---------------------
