@@ -121,7 +121,7 @@ there are no smaller cells to pick. This means, they must be blanked by a differ
 condition is something like: "If a patch of cells is completly surrounded by interpolation cells, 
 the whole patch can be blanked". This is process is called ``flooding``.
 
-An ``orphan cell`` is a cell, that could not find a corresponding cell on a different mesh for interplation purposes.
+An ``orphan cell`` is a cell, that could not find a corresponding cell on a different mesh for interpolation purposes.
 
 More about this and the implementation of IHC in ADflow can be found `here <http://mdolab.engin.umich.edu/bibliography/Kenway2017a.html>`_
 

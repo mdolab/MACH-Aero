@@ -102,7 +102,7 @@ BC
     Here we apply the boundary conditions (BC). The integer defines the Domain (starting at 1). The dict key defines
     which side of the domain the BC applies to. The dict value defines the type of the BC. 
 
-    As it has been mentioned in the previous tutorial, there is no a reliable way to get this integer, which defines
+    As it has been mentioned in the previous tutorial, there is not a reliable way to get this integer, which defines
     the domain, out of Pointwise. So it is recommended to rotate all domains in such a way, that the BC can be applied on 
     the same side of all domains. Then they are deleted one by one until no 
     more error messages pop up in pyHyp.

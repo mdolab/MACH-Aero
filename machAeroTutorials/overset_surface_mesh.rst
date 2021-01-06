@@ -8,7 +8,7 @@ Introduction
 ============
 Now that we have a geometry, we can start meshing it. We are using Pointwise to generate the surface mesh. 
 This is not a full blown tutorial, more a walk through. If you want to learn more about it, their 
-`youtube channel <https://www.youtube.com/user/CFDMeshing>`_\ i highly recommended. You dont have to use 
+`youtube channel <https://www.youtube.com/user/CFDMeshing>`_\ is highly recommended. You dont have to use 
 Pointwise to generate an overset mesh. ICEM or an other mesher would work aswell.
 
 Files

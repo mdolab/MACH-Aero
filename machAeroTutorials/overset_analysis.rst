@@ -194,7 +194,7 @@ points would be listed here too.
 Results
 =======
 
-For validation purposes, ADflow was run with all meshes and the results were plotted against various differen solvers from :cite:`nasaM6SA`. As you can see,
+For validation purposes, ADflow was run with all meshes and the results were plotted against various different solvers from :cite:`nasaM6SA`. As you can see,
 ADflow lies right in the middle:
 
 .. figure:: images/overset_grid_convergence.png
