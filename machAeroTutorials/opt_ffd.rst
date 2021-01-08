@@ -194,7 +194,7 @@ Additional scaling dictionaries include ``scale_y``, ``scale_z``, and ``scale``,
 
     Be aware that ``scale_x``, ``scale_y``, ``scale_z``, and ``scale`` are sectional attributes and only work on scaling planes perpendicular to the reference axis, i.e. do not have any effect along the spanwise axis of your FFD grid. In this example, if you use ``scale`` you will see that the wing gets `inflated` along the x and y axis, but the wing span remains identical.
 
-    Planform variables such as span, and sweep should only ever be done by moving the ref axis control points. This can be done using the ``.extractCoef()`` and ``.restoreCoef()`` (as done here for dihedral angle) and possibly normalizing the section / control points displacement w.r.t. the baseline FFD grid.
+    Planform variables such as span, and sweep should only ever be done by moving the ref axis control points. This can be done using the :meth:`.extractCoef() <pygeo:pygeo.DVGeometry.extractCoef>` and :meth:`.restoreCoef() <pygeo:pygeo.DVGeometry.restoreCoef>` (as done here for dihedral angle) and possibly normalizing the section / control points displacement w.r.t. the baseline FFD grid.
 
 .. image:: images/ffd_designvars.png
    :scale: 60
