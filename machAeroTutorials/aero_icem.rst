@@ -33,11 +33,11 @@ Opening ICEM
 First determine where the ICEM executable is located::
 
     $ which icemcfd
-    /usr/ansys_inc/v150/icemcfd/linux64_amd/bin/icemcfd
+    /usr/ansys_inc/<your-version>/icemcfd/linux64_amd/bin/icemcfd
 
 Then run the executable with superuser privileges::
 
-    $ sudo /usr/ansys_inc/v150/icemcfd/linux64_amd/bin/icemcfd
+    $ sudo /usr/ansys_inc/<your-version>/icemcfd/linux64_amd/bin/icemcfd
 
 File Types
 ----------
@@ -136,7 +136,7 @@ All geometry creation and manipulation is done under the ``Geometry`` tab, outli
        :scale: 80
 
     There are some curves and points missing still.
-    If you look closely at the trailing edge of the wing, you will see that only one curve was made when we repaired the geometry (unckeck the ``Surfaces`` branch in the model tree under ``Geometry`` to make it easier to see).
+    If you look closely at the trailing edge of the wing, you will see that only one curve was made when we repaired the geometry (uncheck the ``Surfaces`` branch in the model tree under ``Geometry`` to make it easier to see).
     This is because the lower surface of the wing is continuous with the trailing edge surface, so there is no intersection.
     We need to make a curve to define the lower edge of the trailing edge.
     First we need to create some points.
@@ -228,7 +228,7 @@ For this case, we will define properties for the edges of the blocks which will 
     If you check the box next to ``Blocks``, you will see green surfaces appear surrounding the wing.
     Since the wing root is on the symmetry plane, we want to remove the block along the symmetry plane.
     This can be done with the ``Delete Block`` button in the ``Blocking`` tab.
-    Check the box for "Delete permanently" and then select the green surface parallel with the root airfoil.
+    Check the box for "Delete permanently" and then select the green surface parallel with the airfoil root.
     It should become highlighted like in the image below.
 
     .. image:: images/icem_DeleteBlock.png
@@ -323,7 +323,7 @@ For this case, we will define properties for the edges of the blocks which will 
     Then do the same for ``Sp2`` with the vertical edge at the trailing side of the wingtip.
     Click the box for ``Copy Parameters`` if it isn't selected by default (this will copy these settings for the three other edges at the wingtip and the root) and click ``OK``.
 
-    Next, we will set the edge parameters for the edges running along the leading and trailing edges of the wing.
+    Next, we will set the edge parameters for the edges running spanwise along the leading and trailing edges of the wing.
     Select the upper edge at the leading edge of the wing for ``Edge`` in the ``Pre-Mesh Params`` menu.
     Specify 161 for ``Nodes`` and select ``Uniform`` for the ``Mesh law``.
     The click on the box to the left of ``Copy Parameters`` and select ``To All Parallel Edges`` under ``Copy`` (if not already selected by default).
@@ -473,5 +473,5 @@ The window is shown below.
 
 The surface mesh is now ready for use in pyHyp.
 To proceed to the next tutorial (volume meshing with pyHyp), reduce the number of nodes specified for the edges so far (e.g., 17 to 5, and 161 to 41), and convert and export the mesh again.
-Or use the ``wing.cgns`` file provided in ``MACH_Aero_Tutorials/tutorial/aero/meshing/surface``.
+Or use the ``wing.cgns`` file provided in ``MACH-Aero/tutorial/aero/meshing/volume``.
 This should reduce computational time and the probability of pyHyp failing with the default options provided in the following tutorial and the mesh generated so far.
