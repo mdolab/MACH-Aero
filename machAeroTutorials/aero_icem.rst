@@ -228,7 +228,7 @@ For this case, we will define properties for the edges of the blocks which will 
     If you check the box next to ``Blocks``, you will see green surfaces appear surrounding the wing.
     Since the wing root is on the symmetry plane, we want to remove the block along the symmetry plane.
     This can be done with the ``Delete Block`` button in the ``Blocking`` tab.
-    Check the box for "Delete permanently" and then select the green surface parallel with the airfoil root.
+    Check the box for "Delete permanently" and then select the green surface parallel with the root airfoil.
     It should become highlighted like in the image below.
 
     .. image:: images/icem_DeleteBlock.png
