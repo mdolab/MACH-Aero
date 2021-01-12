@@ -17,7 +17,7 @@ Navigate to the directory ``aero/analysis`` in your tutorial folder.
 Copy the following files from the volume meshing directory:
 ::
 
-    $ cp ../volume/wing_vol.cgns .
+    $ cp ../meshing/volume/wing_vol.cgns .
 
 Create the following empty runscript in the current directory:
 
