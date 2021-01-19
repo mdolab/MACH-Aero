@@ -39,7 +39,7 @@ aeroOptions = {
     # Physics Parameters
     "equationType": "RANS",
     # Solver Parameters
-    "smoother": "dadi",
+    "smoother": "DADI",
     "MGCycle": "sg",
     "infchangecorrection": True,
     # ANK Solver Parameters

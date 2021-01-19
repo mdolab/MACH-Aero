@@ -49,7 +49,7 @@ aeroOptions = {
     "outputDirectory": outputDirectory,
     # Physics Parameters
     "equationType": "RANS",
-    "smoother": "dadi",
+    "smoother": "DADI",
     "MGCycle": "sg",
     "nCycles": 20000,
     "monitorvariables": ["resrho", "cl", "cd", "cmz", "yplus"],
@@ -62,7 +62,7 @@ aeroOptions = {
     "L2Convergence": 1e-15,
     "L2ConvergenceCoarse": 1e-4,
     # Adjoint Parameters
-    "adjointSolver": "gmres",
+    "adjointSolver": "GMRES",
     "adjointL2Convergence": 1e-12,
     "ADPC": True,
     "adjointMaxIter": 5000,
