@@ -12,10 +12,10 @@ aeroOptions = {
     "monitorvariables": ["resrho", "cl", "cd"],
     "writeTecplotSurfaceSolution": True,
     # Physics Parameters
-    "equationType": "rans",
+    "equationType": "RANS",
     "infchangecorrection": True,
     # Solver Parameters
-    "smoother": "dadi",
+    "smoother": "DADI",
     "MGCycle": "sg",
     "MGStartLevel": -1,
     "nCyclesCoarse": 250,
