@@ -13,7 +13,7 @@ We have developed a suite of functions called `cgnsUtilities <https://github.com
 
 Files
 =====
-Navigate to the directory ``aero/surface/volume`` in your tutorial folder.
+Navigate to the directory ``aero/meshing/volume`` in your tutorial folder.
 We will perform operations on the file ``wing_vol.cgns``.
 
 cgnsUtilities Operations

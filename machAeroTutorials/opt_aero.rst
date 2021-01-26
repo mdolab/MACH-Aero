@@ -24,8 +24,8 @@ Navigate to the directory ``opt/aero`` in your tutorial folder.
 Copy the following files from the MACH_Aero_Tutorials repository:
 ::
 
-    $ cp MACH_Aero_Tutorials/tutorial/opt/ffd/ffd.xyz .
-    $ cp MACH_Aero_Tutorials/tutorial/aero/meshing/volume/wing_vol.cgns .
+    $ cp MACH-Aero/<your_tutorial_name>/opt/ffd/ffd.xyz .
+    $ cp MACH-Aero/<your_tutorial_name>/aero/meshing/volume/wing_vol.cgns .
 
 Create the following empty runscript in the current directory:
 
