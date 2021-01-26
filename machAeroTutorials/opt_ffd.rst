@@ -24,13 +24,13 @@ Before diving into the parametrization, however, we need to generate an FFD, whi
 Files
 ================================================================================
 Navigate to the directory ``opt/ffd`` in your tutorial folder.
-Copy the following files from the MACH_Aero_Tutorials repository::
+Copy the following files from the MACH-Aero repository::
 
-    $ cp MACH_Aero_Tutorials/tutorial/opt/ffd/simple_ffd.py .
+    $ cp MACH-Aero/tutorial/opt/ffd/simple_ffd.py .
 
-Also copy the volume mesh from the MACH_Aero_Tutorials repository::
+Also copy the volume mesh from the MACH-Aero repository::
 
-    $ cp MACH_Aero_Tutorials/tutorial/aero/analysis/wing_vol.cgns .
+    $ cp MACH-Aero/tutorial/aero/analysis/wing_vol.cgns .
 
 Create the following empty runscript in the current directory:
 
@@ -40,7 +40,7 @@ Creating an FFD volume
 ======================
 As mentioned above, the actual definition of an FFD volume is simply a 3D grid of points.
 We can create this by hand in a meshing software like ICEM, or for very simple cases, we can generate it with a script.
-There is also a funtion `write_wing_FFD_file` in `pygeo/geo_utils.py` that you can use to generate a simple FFD by specifying slices and point distributions.
+There is also a function `write_wing_FFD_file` in `pygeo/geo_utils.py` that you can use to generate a simple FFD by specifying slices and point distributions.
 For this tutorial, we are dealing with a relatively simple wing geometry---straight edges, no kink, no dihedral---so we will just use the script approach.
 This script is not very generalizable though, so it is not part of the MACH library.
 I will explain briefly how it works, but I won't give it the same attention as the other scripts we use in this tutorial.
