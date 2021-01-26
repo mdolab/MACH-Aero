@@ -198,3 +198,6 @@ You can run it with the command:
 ::
 
     $ python <path-to-pyoptsparse>/postprocessing/OptView.py opt.hst
+or if you've properly installed PyOptSparse
+::
+    optview opt.hst
