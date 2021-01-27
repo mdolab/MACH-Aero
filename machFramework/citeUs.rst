@@ -12,5 +12,5 @@ See the following papers for technical background of the above modules. **If you
 
 - **DAFoam** :cite:`He2018b`
 
-.. bibliography:: references.bib
+.. bibliography::
     :style: unsrt

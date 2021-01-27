@@ -14,3 +14,6 @@ intersphinx_mapping = {
     "pyoptsparse": ("https://mdolab-pyoptsparse.readthedocs-hosted.com/en/latest", None),
     "pygeo": ("https://mdolab-pygeo.readthedocs-hosted.com/en/latest", None),
 }
+
+# bibtex
+bibtex_bibfiles = ["machFramework/references.bib"]
