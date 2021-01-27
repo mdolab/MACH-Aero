@@ -44,6 +44,18 @@ Import libraries
 
 The multipoint library is the only new library to include in this script.
 
+Adding command line arguments
+-----------------------------
+This is a convenience feature that allows the user to pass in command line arguments to the script.
+Two options are provided:
+
+-  specifying the output directory
+-  specifying the optimizer to be used
+
+.. literalinclude:: ../tutorial/opt/aero/aero_opt.py
+    :start-after: # rst args (beg)
+    :end-before: # rst args (end)
+
 Creating processor sets
 -----------------------
 The multiPointSparse class allows us to allocate sets of processors for different analyses.
