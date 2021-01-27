@@ -3,6 +3,7 @@
 # ======================================================================
 # rst Imports (beg)
 import os
+import argparse
 from mpi4py import MPI
 from baseclasses import AeroProblem
 from adflow import ADFLOW
@@ -12,6 +13,13 @@ from idwarp import USMesh
 from multipoint import multiPointSparse
 
 # rst Imports (end)
+# rst args (beg)
+# Use Python's built-in Argument parser to get commandline options
+parser = argparse.ArgumentParser()
+parser.add_argument("--output", type=str, default="output")
+parser.add_argument("--opt", type=str, default="SLSQP", choices=["SLSQP", "SNOPT"])
+args = parser.parse_args()
+# rst args (end)
 # ======================================================================
 #         Create multipoint communication object
 # ======================================================================
@@ -19,9 +27,10 @@ from multipoint import multiPointSparse
 MP = multiPointSparse(MPI.COMM_WORLD)
 MP.addProcessorSet("cruise", nMembers=1, memberSizes=MPI.COMM_WORLD.size)
 comm, setComm, setFlags, groupFlags, ptID = MP.createCommunicators()
-outputDirectory = "output"
-if not os.path.exists(outputDirectory):
-    os.mkdir(outputDirectory)
+
+if not os.path.exists(args.output):
+    if comm.rank == 0:
+        os.mkdir(args.output)
 else:
     raise OSError("The directory already exists! Please delete it or provide a new path")
 # rst multipoint (end)
@@ -33,7 +42,7 @@ gridFile = "wing_vol.cgns"
 aeroOptions = {
     # I/O Parameters
     "gridFile": gridFile,
-    "outputDirectory": outputDirectory,
+    "outputDirectory": args.output,
     "monitorvariables": ["resrho", "cl", "cd"],
     "writeTecplotSurfaceSolution": True,
     # Physics Parameters
@@ -122,7 +131,7 @@ DVCon.addLeTeConstraints(0, "iHigh")
 
 if comm.rank == 0:
     # Only make one processor do this
-    DVCon.writeTecplot(os.path.join(outputDirectory, "constraints.dat"))
+    DVCon.writeTecplot(os.path.join(args.output, "constraints.dat"))
 # rst dvconLeTe (end)
 # ======================================================================
 #         Mesh Warping Set-up
@@ -204,24 +213,23 @@ optProb.printSparsity()
 # rst optprob (end)
 # rst optimizer
 # Set up optimizer
-optimizer = "SLSQP"
-if optimizer == "SLSQP":
-    optOptions = {"IFILE": os.path.join(outputDirectory, "SLSQP.out")}
-    opt = OPT("slsqp", options=optOptions)
-elif optimizer == "SNOPT":
+if args.opt == "SLSQP":
+    optOptions = {"IFILE": os.path.join(args.output, "SLSQP.out")}
+    opt = OPT(args.opt, options=optOptions)
+elif args.opt == "SNOPT":
     optOptions = {
         "Major feasibility tolerance": 1e-4,
         "Major optimality tolerance": 1e-4,
         "Difference interval": 1e-3,
         "Hessian full memory": None,
         "Function precision": 1e-8,
-        "Print file": os.path.join(outputDirectory, "SNOPT_print.out"),
-        "Summary file": os.path.join(outputDirectory, "SNOPT_summary.out"),
+        "Print file": os.path.join(args.output, "SNOPT_print.out"),
+        "Summary file": os.path.join(args.output, "SNOPT_summary.out"),
         "Major iterations limit": 1000,
     }
-    opt = OPT("snopt", options=optOptions)
+    opt = OPT(args.opt, options=optOptions)
 
 # Run Optimization
-sol = opt(optProb, MP.sens, storeHistory=os.path.join(outputDirectory, "opt.hst"))
+sol = opt(optProb, MP.sens, storeHistory=os.path.join(args.output, "opt.hst"))
 if comm.rank == 0:
     print(sol)
