@@ -7,7 +7,7 @@ options = {
     #   General options
     # ---------------------------
     "inputFile": "wing.cgns",
-    "fileType": "cgns",
+    "fileType": "CGNS",
     "unattachedEdgesAreSymmetry": True,
     "outerFaceBC": "farfield",
     "autoConnect": True,
