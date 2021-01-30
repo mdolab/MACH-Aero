@@ -64,6 +64,8 @@ These source code for these packages are often downloaded and installed to ``$HO
 which will be adopted as convention for the instructions here.
 The environment is adapted for each package by modifying ``$HOME/.bashrc`` or equivalent.
 
+.. _install_openmpi:
+
 OpenMPI
 ~~~~~~~
 
