@@ -269,7 +269,7 @@ Download and unpack the source directory, from your packages directory:
 .. code-block:: bash
 
    cd $HOME/packages
-   wget https://github.com/CGNS/CGNS/archive/<version>.tar.gz
+   wget https://github.com/CGNS/CGNS/archive/v<version>.tar.gz
    tar -xvaf <version>.tar.gz
    cd CGNS-<version>
 
@@ -391,7 +391,7 @@ It is installed with::
 
 On a ``conda``-based system, it is recommended to use ``conda`` to install numpy and scipy::
 
-   conda install numpy==<version>
+   conda install numpy=<version>
 
 SciPy
 ~~~~~
@@ -402,7 +402,7 @@ It is installed with::
 
 On a ``conda``-based system, it is recommended to use ``conda`` to install numpy and scipy::
 
-   conda install scipy==<version>
+   conda install scipy=<version>
 
 .. note::
    On a cluster, most likely numpy and scipy will already be
