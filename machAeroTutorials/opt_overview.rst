@@ -5,7 +5,7 @@ Aerodynamic Optimization
 ########################
 In this part of the tutorial, we will demonstrate how to optimize the design of an aircraft with gradient-based optimization algorithms.
 One of the singular attributes of the AeroOpt framework is that it was specifically designed for the purpose of conducting gradient-based optimization studies.
-(For a simple demonstration of why we use gradient-based optimization, check out `pyGame <http://mdolab.engin.umich.edu/pyGame/>`_.)
+(For a simple demonstration of why we use gradient-based optimization, check out `this optimization game <http://mdolab.engin.umich.edu/assets/optimizationGame/>`_.)
 Each module was developed from the beginning with gradient-based optimization in mind to ensure that accurate gradients could be obtained efficiently.
 The naive approach to gradient-based optimization is generally to use finite difference approximations for derivatives of the functions of interest with respect to the design variables.
 There are many problems with this approach, including prohibitive computational expense and rampant inaccuracy, so as a rule, we don't touch finite difference with a ten foot pole.
