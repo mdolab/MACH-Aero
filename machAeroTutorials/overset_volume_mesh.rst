@@ -6,8 +6,8 @@ Volume Mesh
 
 Introduction
 ============
-In this part, we will extrude the previously generated surface mesh into a volume mesh using pyHyp. As this is an 
-overset mesh, it consists of multiple sub-meshes (``near_wing``, ``near_tip`` and ``far``). After extruding all of them, 
+In this part, we will extrude the previously generated surface mesh into a volume mesh using pyHyp. As this is an
+overset mesh, it consists of multiple sub-meshes (``near_wing``, ``near_tip`` and ``far``). After extruding all of them,
 we will combine them into one single grid, that ADflow can read.
 
 As we said in the previous tutorial, we want differently sized meshes. To accomplish this, we generated the finest and
@@ -21,7 +21,7 @@ wich grid to generate. For example, a ``L1`` mesh would be generated like this:
 Files
 =====
 
-Navigate to the directory ``overset/mesh`` in your tutorial folder and create an empty file called ``run_pyhyp.py``. 
+Navigate to the directory ``overset/mesh`` in your tutorial folder and create an empty file called ``run_pyhyp.py``.
 You will also need to copy the surface meshes from the tutorial folder if you did not generate it in the previous part:
 ::
 
@@ -32,7 +32,7 @@ You will also need to copy the surface meshes from the tutorial folder if you di
 pyHyp Script
 ============
 
-Setup 
+Setup
 -----
 First we have to import some stuff:
 
@@ -46,10 +46,10 @@ Then we need to setup up some libraries:
    :start-after: # rst Init (beg)
    :end-before: # rst Init (end)
 
-The first line makes the processor number, on which this script is running, availabe. (Only used if it is parallelized 
-via MPI). 
+The first line makes the processor number, on which this script is running, availabe. (Only used if it is parallelized
+via MPI).
 
-After that, we setup up the command line parsing with three arguments 
+After that, we setup up the command line parsing with three arguments
 (``--input_dir``, ``--output_dir`` and ``--level``)
 
 Level dependant options
@@ -98,13 +98,13 @@ inputFile
     Since we have different surface meshes, we have to supply the inputfile name individually
 outputFile
     We also want different output names. This way we can inspect the generated mesh separately
-BC 
+BC
     Here we apply the boundary conditions (BC). The integer defines the Domain (starting at 1). The dict key defines
-    which side of the domain the BC applies to. The dict value defines the type of the BC. 
+    which side of the domain the BC applies to. The dict value defines the type of the BC.
 
     As it has been mentioned in the previous tutorial, there is not a reliable way to get this integer, which defines
-    the domain, out of Pointwise. So it is recommended to rotate all domains in such a way, that the BC can be applied on 
-    the same side of all domains. Then they are deleted one by one until no 
+    the domain, out of Pointwise. So it is recommended to rotate all domains in such a way, that the BC can be applied on
+    the same side of all domains. Then they are deleted one by one until no
     more error messages pop up in pyHyp.
 families
     Here we give a unique name to a surface. This lets ADflow calculate the forces seperately and would allow you, for example,
@@ -126,7 +126,7 @@ After the extrusion, we wait for all procs to finish before we continue.
 
 Combine the nearfield
 ---------------------
-The farfield consist of a cartesian part in the middle and a simple Ogrid around it. This cartesian part will 
+The farfield consist of a cartesian part in the middle and a simple Ogrid around it. This cartesian part will
 enclose all the nearfields. Because of that, we have to combine all the nearfields first:
 
 .. literalinclude:: ../tutorial/overset/mesh/run_pyhyp.py
@@ -183,5 +183,5 @@ If you have MPI installed and enough processors available, you can also run it i
 
     $ mpirun -np 4 python run_pyhyp.py --level L1
 
-Since we want 3 differentely sized meshes, you will have to run this script 3 times with the appropriate 
+Since we want 3 meshes of different size, you will have to run this script 3 times with the appropriate
 ``--level`` argument.

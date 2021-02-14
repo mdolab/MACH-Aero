@@ -17,7 +17,7 @@ Here are a few of the items we will cover in the following pages:
 
 * Some theory on overset meshes
 * Create a wing geometry using OpenVSP
-* Surface mesh generationg with Pointwise
+* Surface mesh generation with Pointwise
 * Volume mesh extrusion with pyHyp
 * ADflow analysis for overset meshes
 

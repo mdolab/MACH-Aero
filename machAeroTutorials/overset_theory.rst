@@ -99,7 +99,7 @@ Match the growth ratios of the mesh extrusion.
 
 * Use similar values of initial cell height for all meshes (``s0`` option in pyHyp)
 * Make sure that all meshes have similar growth ratios during the pyHyp extrusion. A variation of +- 0.05 is okay
-* If you want to priorize one mesh, use slightly smaler values for ``s0`` and growth ratio.
+* If you want to prioritize one mesh, use slightly smaller values for ``s0`` and growth ratio.
 
 Debugging an Overset Mesh
 =========================
@@ -117,11 +117,11 @@ The following points indicate a problem.
 
     Bad IHC terminal output.
 
-During the IHC, each cell gets an logical attribute, that defines if it should be calulated as usual, deactivated/blanked or used for interpolation between meshes.
-The basic principle of IHC is to allways use the smaller cell and blank the bigger one.
+During the IHC, each cell gets an logical attribute, that defines if it should be calculated as usual, deactivated/blanked or used for interpolation between meshes.
+The basic principle of IHC is to always use the smaller cell and blank the bigger one.
 If you look at the cells of a farfield mesh that lie behind a body, there are no smaller cells to pick.
 This means, they must be blanked by a different condition.
-This condition is something like: "If a patch of cells is completly surrounded by interpolation cells, the whole patch can be blanked".
+This condition is something like: "If a patch of cells is completely surrounded by interpolation cells, the whole patch can be blanked".
 This is process is called ``flooding``.
 
 An ``orphan cell`` is a cell, that could not find a corresponding cell on a different mesh for interpolation purposes.

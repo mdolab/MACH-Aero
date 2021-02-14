@@ -7,8 +7,8 @@ Geometry Generation
 Introduction
 ============
 
-OpenVSP is a parametric airfcraft geometry tool. It allows the user to quickly generate aircraft geometries. 
-We will use it to generate the ONERA M6 wing. This is not a full blown tutorial, more a walk through. If you 
+OpenVSP is a parametric aircraft geometry tool. It allows the user to quickly generate aircraft geometries.
+We will use it to generate the ONERA M6 wing. This is not a full blown tutorial, more a walk through. If you
 want to learn more about it, you can go to their `tutorial videos <http://openvsp.org/vid_tutorial.shtml>`_
 
 Files
@@ -19,14 +19,14 @@ tutorial folder.
 
     $ cp tutorial/overset/geo/profile_m6.dat .
 
-Geometry Overview 
+Geometry Overview
 =================
-Before we start, we should familiarize ourself with the geometry we are goining to create. 
+Before we start, we should familiarize ourself with the geometry we are going to create.
 The real ONERA M6 experiment looked like this:
 
 .. figure:: images/overset_view-of-ONERA.jpg
     :width: 300
-    :align: center 
+    :align: center
 
     ONERA M6 experiment :cite:`nasaM6real`\.
 
@@ -56,7 +56,7 @@ If you open OpenVSP the first time, it should look like that:
 
 .. figure:: images/overset_vsp_overview.png
     :width: 400
-    :align: center 
+    :align: center
 
     OpenVSP Overview.
 
@@ -71,19 +71,19 @@ Add a new Wing
 
 .. figure:: images/overset_vsp_add_wing.png
     :width: 500
-    :align: center 
+    :align: center
 
     Add a new wing to OpenVSP.
 
-We notice a new geometry in the ``Main View``. This is the wing we just added. It also 
-shows up as ``WingGeom`` in the ``Geom Browser``\. To controll the view, use
+We notice a new geometry in the ``Main View``. This is the wing we just added. It also
+shows up as ``WingGeom`` in the ``Geom Browser``\. To control the view, use
 the following key- and mouse combinations:
 
 zoom
     Press the middle mouse button and move your mouse up and down.
 rotate
     Press the left mouse button and move your mouse.
-move 
+move
     Press the right mouse button and move you mouse.
 
 
@@ -91,7 +91,7 @@ move
 Manipulate the wing geometry
 ------------------------------
 
-Move your view, so you can take a look the whole wing. The first thing we notice, 
+Move your view, so you can take a look the whole wing. The first thing we notice,
 it is a 'full' wing, but we need only half of it. To change this, do the following:
 
 1. Click on ``XForm``
@@ -99,19 +99,19 @@ it is a 'full' wing, but we need only half of it. To change this, do the followi
 
 .. figure:: images/overset_vsp_half_wing.png
     :width: 500
-    :align: center 
+    :align: center
 
     Disable ``XZ`` Symmetry.
 
 Now we change the wing geometry. OpenVSP has no units, but we want to create the mesh in meters and thus
-choose our unitsize to be one meter.
+choose our unit size to be one meter.
 
 1. Click on ``Sect``
 2. Change the values to the values listed in the table above
 
 .. figure:: images/overset_vsp_wing_geo.png
     :width: 500
-    :align: center 
+    :align: center
 
     Adjust the wing geometry.
 
@@ -123,7 +123,7 @@ To make the meshing process easier, we will round the tip:
 
 .. figure:: images/overset_vsp_round_tip.png
     :width: 500
-    :align: center 
+    :align: center
 
     Adjust the wing geometry.
 
@@ -142,7 +142,7 @@ Now, the wing geometry is as it should be, but we still have to change the airfo
 
 .. figure:: images/overset_vsp_change_airfoil.png
     :width: 500
-    :align: center 
+    :align: center
 
     Change the airfoil.
 
@@ -160,6 +160,6 @@ it first.
 
 .. figure:: images/overset_vsp_export.png
     :width: 500
-    :align: center 
+    :align: center
 
     Export the geometry.
