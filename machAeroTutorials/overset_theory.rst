@@ -4,22 +4,25 @@
 Overset Theory
 ########################
 
+The figures the tips below are based off the overset_guide document by Ney Secco.
+
 Overset Mesh
 =============
 
-ADflow can only process multiblock structured meshes.
-For simple geometries, this is fine.
+ADflow uses structured meshes.
+For simple geometries, a valid structured mesh can be obtained by the multiblock structured mesh approach.
 But it can be really hard to generate a single structured mesh for a complex geometry.
 It might even be impossible to achieve the required mesh quality.
 
-To mitigate this problem, the overset approach (also called chimera-patch) was developed. Instead of having one big structured mesh, the fluid domain is split up in different, overlapping meshes.
-The fluid solver then interpolates between those.
+To mitigate this problem, the overset approach (also called chimera-patch) was implemented in ADflow.
+Instead of having one big structured mesh, the fluid domain is split up in different, overlapping meshes.
+The fluid solver then interpolates between these patches.
 Typically, there are one farfield and multiple nearfield meshes:
 
 .. figure:: images/overset_Overview.jpg
     :align: center
 
-    Example of a farfield mesh embedding multiple nearfield meshes for a BLI aircraft configuration model.
+    Example of a farfield mesh embedding multiple nearfield meshes for the CFD mesh of NASA's STARC-ABL concept.
 ..
     src: https://openmdao.org/wp-content/uploads/2018/06/bli_16_9_clean.jpg
 
@@ -37,7 +40,7 @@ This process is called hole cutting.
 For some solvers, the user must set it up in advance.
 ADflow does this implicitly without any additional input.
 It works on the assumption, that the cells closer to a wall, have a smaller volume.
-If there are overlapping meshes, it basically uses the smaller cells and blanks/interpolates the bigger ones.
+If there are overlapping meshes, it basically uses the smaller cells, and the code blanks or interpolates the bigger ones.
 
 .. figure:: images/overset_IHC.png
     :align: center
@@ -69,10 +72,8 @@ Surface Loads Integration on Overset Structured Grids
 <https://www.nas.nasa.gov/assets/pdf/staff/Chan_W_Enhancements_to_the_Hybrid_Mesh_Approach_to_Surface_Loads_Integration_on_Overset_Structured_Grids.pdf>`_\.
 
 
-Useful Tips
-===========
-Overset meshes can be tricky.
-Here are a few tips to help you.
+Tips for Getting a Valid Overset Mesh
+=====================================
 
 Tip #1
 ------
@@ -173,3 +174,12 @@ Orphans with high k: Lack of volume overlap.
 Orphans with small k: Reduce ``nearwalldist`` option in ADflow.
     You have compute cells beneath the surface defined by overlapping meshes.
     The smaller ``nearwalldist`` may flood these unnecessary cells.
+
+
+More Overset Tips from Ney
+==========================
+
+Below is a text file containing several important tips about overset meshes from Ney Secco.
+
+.. include:: ney_overset_tips.txt
+   :literal:
