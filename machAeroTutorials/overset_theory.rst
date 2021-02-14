@@ -4,7 +4,7 @@
 Overset Theory
 ########################
 
-The figures the tips below are based off the overset_guide document by Ney Secco.
+The figures and the tips below are based off of the overset_guide document by Ney Secco.
 
 Overset Mesh
 =============

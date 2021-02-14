@@ -6,10 +6,12 @@ Surface Mesh
 
 Introduction
 ============
-Now that we have a geometry, we can start meshing it. We are using Pointwise to generate the surface mesh.
-This is not a full blown tutorial, more a walk through. If you want to learn more about it, their
-`Youtube channel <https://www.youtube.com/user/CFDMeshing>`_\ is highly recommended. You do not have to use
-Pointwise to generate an overset mesh. ICEM or an other meshing software would work as well.
+Now that we have a geometry, we can start meshing it.
+We are using Pointwise to generate the surface mesh.
+This is not a full blown tutorial, more a walk through.
+If you want to learn more about it, their `Youtube channel <https://www.youtube.com/user/CFDMeshing>`_ is highly recommended.
+You do not have to use Pointwise to generate an overset mesh.
+ICEM or an other meshing software would work as well.
 
 Files
 =====
@@ -440,7 +442,7 @@ Since our tip is rounded, we have to ``project`` the newly created connector on 
 3. Click on ``Layers``
 4. Check layer ``0`` (``Geo``)
 5. Click on ``Project``
-6. Make sure ``Tagged Database Selection`` is checked
+6. Make sure ``Target Database Selection`` is checked
 7. Click ``Begin``
 8. Select the ``upper`` and ``lower`` tip surface (hold down ``ctrl``) (B)
 9. Click ``End``
