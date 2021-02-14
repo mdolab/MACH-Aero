@@ -59,7 +59,7 @@ As seen in the first figure on this page, there can be multiple nearfield meshes
 This makes it hard to correctly integrate the forces and moments acting there.
 For that reason, ADflow uses zipper meshes to provide a watertight surface.
 
-.. figure:: images/overset_zipper.png
+.. figure:: images/overset_zipper.jpg
     :align: center
 
     Overlapped meshes (left), Removed overlaps (mid), Triangulated gaps (right)
