@@ -1,7 +1,5 @@
 _build
 .DS_Store
+*.cgns
 .vscode/*
 make.bat
-
-
-*.gitignore
