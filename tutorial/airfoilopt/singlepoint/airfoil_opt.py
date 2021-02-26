@@ -4,6 +4,8 @@
 # rst Imports (beg)
 import os
 import numpy as np
+import argparse
+import ast
 from mpi4py import MPI
 from baseclasses import AeroProblem
 from adflow import ADFLOW
@@ -13,6 +15,12 @@ from idwarp import USMesh
 from multipoint import multiPointSparse
 
 # rst Imports (end)
+parser = argparse.ArgumentParser()
+parser.add_argument("--output", type=str, default="output")
+parser.add_argument("--opt", type=str, default="SLSQP", choices=["SLSQP", "SNOPT"])
+parser.add_argument("--gridFile", type=str, default="n0012.cgns")
+parser.add_argument("--optOptions", type=ast.literal_eval, default={}, help="additional optimizer options to be added")
+args = parser.parse_args()
 # ======================================================================
 #         Specify parameters for optimization
 # ======================================================================
@@ -33,10 +41,9 @@ alt = 10000
 MP = multiPointSparse(MPI.COMM_WORLD)
 MP.addProcessorSet("cruise", nMembers=1, memberSizes=MPI.COMM_WORLD.size)
 comm, setComm, setFlags, groupFlags, ptID = MP.createCommunicators()
-outputDirectory = "output"
-if not os.path.exists(outputDirectory):
+if not os.path.exists(args.output):
     if comm.rank == 0:
-        os.mkdir(outputDirectory)
+        os.mkdir(args.output)
 else:
     raise OSError("The directory already exists! Please delete it or provide a new path")
 # rst multipoint (end)
@@ -46,8 +53,8 @@ else:
 # rst adflow (beg)
 aeroOptions = {
     # Common Parameters
-    "gridFile": "n0012.cgns",
-    "outputDirectory": outputDirectory,
+    "gridFile": args.gridFile,
+    "outputDirectory": args.output,
     # Physics Parameters
     "equationType": "RANS",
     "smoother": "DADI",
@@ -156,7 +163,7 @@ DVCon.addVolumeConstraint(leList, teList, 2, 100, lower=0.064837137176294343, up
 DVCon.addThicknessConstraints2D(leList, teList, 2, 100, lower=0.1, upper=3.0)
 
 if comm.rank == 0:
-    fileName = os.path.join(outputDirectory, "constraints.dat")
+    fileName = os.path.join(args.output, "constraints.dat")
     DVCon.writeTecplot(fileName)
 # rst dvcon (end)
 # ======================================================================
@@ -240,23 +247,22 @@ optProb.printSparsity()
 # rst optprob (end)
 # rst optimizer
 # Set up optimizer
-optimizer = "SLSQP"
-if optimizer == "SLSQP":
-    optOptions = {"IFILE": os.path.join(outputDirectory, "SLSQP.out")}
-    opt = OPT("slsqp", options=optOptions)
-elif optimizer == "SNOPT":
+if args.opt == "SLSQP":
+    optOptions = {"IFILE": os.path.join(args.output, "SLSQP.out")}
+elif args.opt == "SNOPT":
     optOptions = {
         "Major feasibility tolerance": 1e-4,
         "Major optimality tolerance": 1e-4,
         "Difference interval": 1e-3,
         "Hessian full memory": None,
         "Function precision": 1e-8,
-        "Print file": os.path.join(outputDirectory, "SNOPT_print.out"),
-        "Summary file": os.path.join(outputDirectory, "SNOPT_summary.out"),
+        "Print file": os.path.join(args.output, "SNOPT_print.out"),
+        "Summary file": os.path.join(args.output, "SNOPT_summary.out"),
     }
-    opt = OPT("snopt", options=optOptions)
+optOptions.update(args.optOptions)
+opt = OPT(args.opt, options=optOptions)
 
 # Run Optimization
-sol = opt(optProb, MP.sens, storeHistory=os.path.join(outputDirectory, "opt.hst"))
+sol = opt(optProb, MP.sens, storeHistory=os.path.join(args.output, "opt.hst"))
 if MPI.COMM_WORLD.rank == 0:
     print(sol)
