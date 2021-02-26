@@ -34,8 +34,7 @@ comm, setComm, setFlags, groupFlags, ptID = MP.createCommunicators()
 if not os.path.exists(args.output):
     if comm.rank == 0:
         os.mkdir(args.output)
-else:
-    raise OSError("The directory already exists! Please delete it or provide a new path")
+
 # rst multipoint (end)
 # ======================================================================
 #         ADflow Set-up
