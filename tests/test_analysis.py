@@ -22,6 +22,8 @@ class TestWingAnalysis(unittest.TestCase):
         subprocess.run(["mpirun", "-n", f"{self.NPROCS}", "python", "run_pyhyp.py"], check=True)
         # aero analysis
         os.chdir("../../analysis")
+        shutil.rmtree("output", ignore_errors=True)
+        shutil.rmtree("output_drag_polar", ignore_errors=True)
         subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
         subprocess.run(
             ["mpirun", "-n", f"{self.NPROCS}", "python", "aero_run.py", "--gridFile", "wing_vol_coarsen.cgns"],
@@ -61,11 +63,9 @@ class TestWingOpt(unittest.TestCase):
         subprocess.run(["python", "parametrize.py"], check=True)
         # now run opt
         os.chdir("../aero")
-        shutil.rmtree("output", ignore_errors=True)
         shutil.copy("../ffd/ffd.xyz", ".")
         shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
         shutil.rmtree("output", ignore_errors=True)
-        shutil.rmtree("output_drag_polar", ignore_errors=True)
         subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
         subprocess.run(
             [
