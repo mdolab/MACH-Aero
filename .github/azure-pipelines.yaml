@@ -17,3 +17,5 @@ extends:
   template: azure/azure_template.yaml@azure_template
   parameters:
     REPO_NAME: MACH-Aero
+    IMAGE: private
+
