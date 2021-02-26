@@ -56,6 +56,7 @@ class TestWingOpt(unittest.TestCase):
     def test_wing_opt(self):
         # first generate FFD grids
         os.chdir("ffd")
+        shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
         subprocess.run(["python", "simple_ffd.py"], check=True)
         subprocess.run(["python", "parametrize.py"], check=True)
         # now run opt
