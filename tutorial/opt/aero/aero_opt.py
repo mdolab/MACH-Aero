@@ -18,6 +18,7 @@ from multipoint import multiPointSparse
 parser = argparse.ArgumentParser()
 parser.add_argument("--output", type=str, default="output")
 parser.add_argument("--opt", type=str, default="SLSQP", choices=["SLSQP", "SNOPT"])
+parser.add_argument("--gridFile", type=str, default="wing_vol.cgns")
 args = parser.parse_args()
 # rst args (end)
 # ======================================================================
@@ -38,10 +39,9 @@ else:
 #         ADflow Set-up
 # ======================================================================
 # rst adflow (beg)
-gridFile = "wing_vol.cgns"
 aeroOptions = {
     # I/O Parameters
-    "gridFile": gridFile,
+    "gridFile": args.gridFile,
     "outputDirectory": args.output,
     "monitorvariables": ["resrho", "cl", "cd"],
     "writeTecplotSurfaceSolution": True,
@@ -137,7 +137,7 @@ if comm.rank == 0:
 #         Mesh Warping Set-up
 # ======================================================================
 # rst warp (beg)
-meshOptions = {"gridFile": gridFile}
+meshOptions = {"gridFile": args.gridFile}
 mesh = USMesh(options=meshOptions, comm=comm)
 CFDSolver.setMesh(mesh)
 # rst warp (end)

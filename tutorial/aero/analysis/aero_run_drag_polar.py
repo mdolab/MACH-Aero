@@ -1,14 +1,28 @@
 # rst Imports
 import numpy as np
+import argparse
+import os
 from adflow import ADFLOW
 from baseclasses import AeroProblem
 from mpi4py import MPI
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--output", type=str, default="output_drag_polar")
+parser.add_argument("--gridFile", type=str, default="wing_vol.cgns")
+args = parser.parse_args()
+
+comm = MPI.COMM_WORLD
+if not os.path.exists(args.output):
+    if comm.rank == 0:
+        os.mkdir(args.output)
+else:
+    raise OSError("The directory already exists! Please delete it or provide a new path")
+
 # rst ADflow options
 aeroOptions = {
     # I/O Parameters
-    "gridFile": "wing_vol.cgns",
-    "outputDirectory": ".",
+    "gridFile": args.gridFile,
+    "outputDirectory": args.output,
     "monitorvariables": ["resrho", "cl", "cd"],
     "writeTecplotSurfaceSolution": True,
     # Physics Parameters
@@ -60,7 +74,7 @@ for alpha in alphaList:
 
     # Update the alpha in aero problem and print it to the screen.
     ap.alpha = alpha
-    if MPI.COMM_WORLD.rank == 0:
+    if comm.rank == 0:
         print("current alpha: %f" % ap.alpha)
 
     # rst Run ADflow
@@ -77,7 +91,7 @@ for alpha in alphaList:
 
 # rst Print polar
 # Print the evaluated functions
-if MPI.COMM_WORLD.rank == 0:
+if comm.rank == 0:
     print("Alpha:", alphaList)
     print("CL:", CL)
     print("CD:", CD)

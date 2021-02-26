@@ -35,7 +35,8 @@ MP.addProcessorSet("cruise", nMembers=1, memberSizes=MPI.COMM_WORLD.size)
 comm, setComm, setFlags, groupFlags, ptID = MP.createCommunicators()
 outputDirectory = "output"
 if not os.path.exists(outputDirectory):
-    os.mkdir(outputDirectory)
+    if comm.rank == 0:
+        os.mkdir(outputDirectory)
 else:
     raise OSError("The directory already exists! Please delete it or provide a new path")
 # rst multipoint (end)
