@@ -1,6 +1,11 @@
+# no CI builds
+trigger: none
+
+# but we add a daily build
+# set to 10pm EST, which is 3am UTC
 schedules:
-- cron: "0 0 * * 6"
-  displayName: Weekly test
+- cron: "0 3 * * *"
+  displayName: Nightly test
   branches:
     include:
       - master
