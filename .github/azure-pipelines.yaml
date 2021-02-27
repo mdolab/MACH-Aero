@@ -1,5 +1,6 @@
-# no CI builds
+# no branch or PR builds
 trigger: none
+pr: none
 
 # but we add a daily build
 # set to 10pm EST, which is 3am UTC
