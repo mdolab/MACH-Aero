@@ -6,14 +6,13 @@ introduction to the tutorial. Basically, this script saves you some time making
 a bunch of directories.
 """
 import os
-import fnmatch
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument('writedir', type=str)
+parser.add_argument("writedir", type=str)
 args = parser.parse_args()
 
-tutorial_directory = 'tutorial/'
+tutorial_directory = "tutorial/"
 write_directory = args.writedir
 
 for root, dirnames, filenames in os.walk(tutorial_directory):
@@ -21,4 +20,4 @@ for root, dirnames, filenames in os.walk(tutorial_directory):
         fullpath = os.path.join(root, dirname)
         endpath = fullpath.split(tutorial_directory)[-1]
         newdir = os.path.join(write_directory, endpath)
-        os.system('mkdir -p %s'%newdir)
+        os.system("mkdir -p %s" % newdir)

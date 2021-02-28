@@ -4,6 +4,7 @@
 # rst Imports (beg)
 import os
 import argparse
+import ast
 from mpi4py import MPI
 from baseclasses import AeroProblem
 from adflow import ADFLOW
@@ -18,6 +19,8 @@ from multipoint import multiPointSparse
 parser = argparse.ArgumentParser()
 parser.add_argument("--output", type=str, default="output")
 parser.add_argument("--opt", type=str, default="SLSQP", choices=["SLSQP", "SNOPT"])
+parser.add_argument("--gridFile", type=str, default="wing_vol.cgns")
+parser.add_argument("--optOptions", type=ast.literal_eval, default={}, help="additional optimizer options to be added")
 args = parser.parse_args()
 # rst args (end)
 # ======================================================================
@@ -31,17 +34,15 @@ comm, setComm, setFlags, groupFlags, ptID = MP.createCommunicators()
 if not os.path.exists(args.output):
     if comm.rank == 0:
         os.mkdir(args.output)
-else:
-    raise OSError("The directory already exists! Please delete it or provide a new path")
+
 # rst multipoint (end)
 # ======================================================================
 #         ADflow Set-up
 # ======================================================================
 # rst adflow (beg)
-gridFile = "wing_vol.cgns"
 aeroOptions = {
     # I/O Parameters
-    "gridFile": gridFile,
+    "gridFile": args.gridFile,
     "outputDirectory": args.output,
     "monitorvariables": ["resrho", "cl", "cd"],
     "writeTecplotSurfaceSolution": True,
@@ -137,7 +138,7 @@ if comm.rank == 0:
 #         Mesh Warping Set-up
 # ======================================================================
 # rst warp (beg)
-meshOptions = {"gridFile": gridFile}
+meshOptions = {"gridFile": args.gridFile}
 mesh = USMesh(options=meshOptions, comm=comm)
 CFDSolver.setMesh(mesh)
 # rst warp (end)
@@ -215,7 +216,6 @@ optProb.printSparsity()
 # Set up optimizer
 if args.opt == "SLSQP":
     optOptions = {"IFILE": os.path.join(args.output, "SLSQP.out")}
-    opt = OPT(args.opt, options=optOptions)
 elif args.opt == "SNOPT":
     optOptions = {
         "Major feasibility tolerance": 1e-4,
@@ -227,7 +227,8 @@ elif args.opt == "SNOPT":
         "Summary file": os.path.join(args.output, "SNOPT_summary.out"),
         "Major iterations limit": 1000,
     }
-    opt = OPT(args.opt, options=optOptions)
+optOptions.update(args.optOptions)
+opt = OPT(args.opt, options=optOptions)
 
 # Run Optimization
 sol = opt(optProb, MP.sens, storeHistory=os.path.join(args.output, "opt.hst"))
