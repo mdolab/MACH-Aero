@@ -328,7 +328,7 @@ without specifying the prefix, the default is a system path, which requires sudo
 SWIG (optional)
 ~~~~~~~~~~~~~~~
 
-SWIG is a wrapper for external software written in C or C++. It is an **OPTIONAL** component for MACH-Aero, as it is required by only some of its sub-modules (eg. NSGA2 and NOMAD optimizers used by pyOptSparse, as discussed `here <https://mdolab-pyoptsparse.readthedocs-hosted.com/en/latest/install.html>`_). 
+SWIG is a wrapper for external software written in C or C++. It is an **OPTIONAL** component for MACH-Aero, as it is required by only some of its sub-modules (e.g. NSGA2 and NOMAD optimizers used by pyOptSparse, as discussed `here <https://mdolab-pyoptsparse.readthedocs-hosted.com/en/latest/install.html>`_).
 
 .. WARNING:: 
 
@@ -496,7 +496,7 @@ To run the tests, go to the ``test`` directory, and type::
 
 Other Methods and Notes
 -----------------------
-The build examples described here are all installed *locally* (eg. ``$HOME/...``) rather than system-wide (eg. ``/usr/local/...``).
+The build examples described here are all installed *locally* (e.g. ``$HOME/...``) rather than system-wide (e.g. ``/usr/local/...``).
 Local installations are generally preferred.
 Installing packages system-wide requires root access, which is an increased security risk when downloading packages from the internet.
 Also, it is typically easier to uninstall packages or otherwise revert changes made at a local level.
@@ -509,7 +509,7 @@ This separation adds a level of complexity but is more extensible if multiple pa
 
 When configuring your environment, the examples shown here set environment variables, ``$PATH``, and ``$LD_LIBRARY_PATH`` in ``.bashrc``.
 If multiple versions and dependencies are being used simultaneously,
-for example on a cluster, the paradigm of `environment modules <http://modules.sourceforge.net>` is often used (eg. ``module use petsc``).
+for example on a cluster, the paradigm of `environment modules <http://modules.sourceforge.net>` is often used (e.g. ``module use petsc``).
 A module file is simply a text file containing lines such as::
 
    append-path PATH $HOME/opt/petsc/3.7.7/OpenMPI-1.10.7/GCC-7.3.0/bin
