@@ -244,7 +244,7 @@ CGNS Library
 ~~~~~~~~~~~~
 
 .. IMPORTANT::
-   CGNS depends on a C/Fortran compiler. It can be build using either cmake or GNU make.
+   CGNS depends on a C/Fortran compiler. It can be built using either CMake or GNU make.
    The instructions here use ``make``.
 
 CGNS is a general file format for storing CFD data, and is used by ``ADflow``, ``IDWarp``, ``pyHyp``, and ``cgnsUtilities``.
@@ -262,7 +262,7 @@ Download and unpack the source directory, from your packages directory:
 
    cd $HOME/packages
    wget https://github.com/CGNS/CGNS/archive/v<version>.tar.gz
-   tar -xvaf <version>.tar.gz
+   tar -xvaf v<version>.tar.gz
    cd CGNS-<version>
 
 Next, configure your environment for CGNS by adding the following lines to your ``$HOME/.bashrc`` and ``source``-ing it:
@@ -279,14 +279,14 @@ To configure the package, go into the ``src`` directory and run the configure sc
 .. code-block:: bash
 
    cd src
-   ./configure  --with-fortran --enable-shared --prefix=$CGNS_HOME --disable-cgnstools
+   ./configure --with-fortran --enable-shared --prefix=$CGNS_HOME --disable-cgnstools
 
 If your compilers are not located at ``/usr/bin/gcc``, either because you are on an HPC system or using Intel compilers, you must adjust the configure commands.
 This is done by passing environment variables to the configure script:
 
 .. code-block:: bash
 
-   CC=/path/to/ccompiler FC=/path/to/fcompiler ./configure  <options>
+   CC=/path/to/ccompiler FC=/path/to/fcompiler ./configure <options>
 
 where ``CC`` sets the path to the C compiler, and ``FC`` sets the path to the Fortran compiler.
 If your compilers are on the ``$PATH`` (likely if you are using the module system on a cluster), you can use ``CC=$(which icc)`` and ``FC=$(which ifort)`` for Intel compilers, or correspondingly ``CC=$(which gcc)`` and ``FC=$(which gfortran)`` for GNU compilers.
@@ -316,11 +316,11 @@ Note that the version of these libraries might be different on your machine ::
    # If needed
    $ sudo apt-get install freeglut3-dev
 
-.. warning:: 
+.. warning::
    There is a known bug in CGNS 3.3.0 (fixed in later versions) that crashes the build routine for Ubuntu 18/20 when this CGNS tools option is turned on. You can either turn it off compiling with ``--disable-cgnstools`` or, if you still want to use CGNS tools, you can manually patch the source files using `this PR <https://github.com/CGNS/CGNS/pull/55/files>`_ as a reference.
 
 If you compiled with ``--enable-cgnstools`` you either need to add the binary path to your PATH environmental variable or you can install the binaries system wide.
-By specifying the installation prefix as shown in the example configure commands above, the binary path is in your PATH environmental variables; 
+By specifying the installation prefix as shown in the example configure commands above, the binary path is in your PATH environmental variables;
 without specifying the prefix, the default is a system path, which requires sudo.
 
 .. _install_swig:
@@ -330,7 +330,7 @@ SWIG (optional)
 
 SWIG is a wrapper for external software written in C or C++. It is an **OPTIONAL** component for MACH-Aero, as it is required by only some of its sub-modules (e.g. NSGA2 and NOMAD optimizers used by pyOptSparse, as discussed `here <https://mdolab-pyoptsparse.readthedocs-hosted.com/en/latest/install.html>`_).
 
-.. WARNING:: 
+.. WARNING::
 
    SWIG 2.0.12 is the **ONLY** currently supported version. Other versions are not recommended and are installed at your own risk.
 
