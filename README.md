@@ -1,5 +1,6 @@
 # MACH-Aero
 [![Documentation Status](https://readthedocs.com/projects/mdolab-mach-aero/badge/?version=latest)](https://mdolab-mach-aero.readthedocs-hosted.com/en/latest/?badge=latest)
+[![Build Status](https://dev.azure.com/mdolab/Public/_apis/build/status/mdolab.MACH-Aero?repoName=mdolab%2FMACH-Aero&branchName=master)](https://dev.azure.com/mdolab/Public/_build/latest?definitionId=35&repoName=mdolab%2FMACH-Aero&branchName=master)
 
 MACH-Aero is a framework for performing aerodynamic shape optimization.
 It contains the following core modules:
