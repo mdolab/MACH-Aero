@@ -33,7 +33,7 @@ OpenMPI   3.1     4.0
 mpi4py    3.0     3.0
 PETSc     3.11    3.12
 petsc4py  3.11    3.12
-CGNS      3.3.0   3.3.0
+CGNS      3.3.0   4.1.2
 Python    3.7     3.8
 NumPy     1.16    1.18
 SciPy     1.2     1.4
@@ -244,19 +244,11 @@ CGNS Library
 ~~~~~~~~~~~~
 
 .. IMPORTANT::
-   The version(s) of CGNS tested to work with MDO Lab tools is ``3.3.0``.
-   However, the older ``3.2.1`` should also work.
-
-   CGNS depends on a C/Fortran compiler and requires cmake to build.
+   CGNS depends on a C/Fortran compiler. It can be built using either CMake or GNU make.
+   The instructions here use ``make``.
 
 CGNS is a general file format for storing CFD data, and is used by ``ADflow``, ``IDWarp``, ``pyHyp``, and ``cgnsUtilities``.
 The CGNS Library provides Fortran bindings to read/write files in that format.
-
-.. WARNING::
-   The 3.2.1 version fortran include file contains an error. After
-   extracting the folder, manually edit the ``cgnslib_f.h.in`` file in the ``src``
-   directory and remove all the comment lines at the beginning of the
-   file starting with c. This is fixed in subsequent versions.
 
 .. NOTE::
    CGNS now supports two output types: HDF5 and the Advanced Data Format (ADF) format.
@@ -270,7 +262,7 @@ Download and unpack the source directory, from your packages directory:
 
    cd $HOME/packages
    wget https://github.com/CGNS/CGNS/archive/v<version>.tar.gz
-   tar -xvaf <version>.tar.gz
+   tar -xvaf v<version>.tar.gz
    cd CGNS-<version>
 
 Next, configure your environment for CGNS by adding the following lines to your ``$HOME/.bashrc`` and ``source``-ing it:
@@ -282,27 +274,32 @@ Next, configure your environment for CGNS by adding the following lines to your 
    export PATH=$PATH:$CGNS_HOME/bin
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CGNS_HOME/lib
 
-To configure the package, make a ``build`` directory, and call cmake from there:
+To configure the package, go into the ``src`` directory and run the configure script:
 
 .. code-block:: bash
 
-   mkdir build       # If it exists from a previous build, remove it first
-   cd build
-   cmake .. -DCGNS_ENABLE_FORTRAN=1 -DCMAKE_INSTALL_PREFIX=$CGNS_HOME -DCGNS_BUILD_CGNSTOOLS=0
+   cd src
+   ./configure --with-fortran --enable-shared --prefix=$CGNS_HOME --disable-cgnstools
+
+If your compilers are not located at ``/usr/bin/gcc``, either because you are on an HPC system or using Intel compilers, you must adjust the configure commands.
+This is done by passing environment variables to the configure script:
+
+.. code-block:: bash
+
+   CC=/path/to/ccompiler FC=/path/to/fcompiler ./configure <options>
+
+where ``CC`` sets the path to the C compiler, and ``FC`` sets the path to the Fortran compiler.
+If your compilers are on the ``$PATH`` (likely if you are using the module system on a cluster), you can use ``CC=$(which icc)`` and ``FC=$(which ifort)`` for Intel compilers, or correspondingly ``CC=$(which gcc)`` and ``FC=$(which gfortran)`` for GNU compilers.
+
 
 Finally, build and install::
 
-   $ make all install
-
-.. important::
-   If your compilers are not located at ``/usr/bin/gcc``, either because you are on an HPC system or using Intel compilers, you must adjust the configure commands.
-   In the print out during configuration, check that the correct compiler is being used.
-   If they are incorrect, remove your old install and set the environment variables ``export CC=$(which icc)`` and ``export FC=$(which ifort)``.
+   $ make && make install
 
 Installing CGNS Tools (Optional)
 ********************************
 The CGNS Library comes with a set of tools to view and edit CGNS files manually.
-To install these tools, set ``-DCGNS_BUILD_CGNSTOOLS = 1``.
+To install these tools, use the flag ``--enable-cgnstools`` during the configure step instead.
 Note that these tools should be installed on a local computer and not on a cluster.
 
 To enable this option you may need to install the following packages::
@@ -319,11 +316,11 @@ Note that the version of these libraries might be different on your machine ::
    # If needed
    $ sudo apt-get install freeglut3-dev
 
-.. warning:: 
-   There is a known bug in CGNS 3.3.0 (fixed in later versions) that crashes the build routine for Ubuntu 18/20 when this CGNS tools option is turned on. You can either turn it off compiling with ``-DCGNS_BUILD_CGNSTOOLS = 0`` or, if you still want to use CGNS tools, you can manually patch the source files using `this PR <https://github.com/CGNS/CGNS/pull/55/files>`_ as a reference.
+.. warning::
+   There is a known bug in CGNS 3.3.0 (fixed in later versions) that crashes the build routine for Ubuntu 18/20 when this CGNS tools option is turned on. You can either turn it off compiling with ``--disable-cgnstools`` or, if you still want to use CGNS tools, you can manually patch the source files using `this PR <https://github.com/CGNS/CGNS/pull/55/files>`_ as a reference.
 
-If you compiled with ``-DCGNS_BUILD_CGNSTOOLS = 1`` you either need to add the binary path to your PATH environmental variable or you can install the binaries system wide.
-By specifying the installation prefix as shown in the example configure commands above, the binary path is in your PATH environmental variables; 
+If you compiled with ``--enable-cgnstools`` you either need to add the binary path to your PATH environmental variable or you can install the binaries system wide.
+By specifying the installation prefix as shown in the example configure commands above, the binary path is in your PATH environmental variables;
 without specifying the prefix, the default is a system path, which requires sudo.
 
 .. _install_swig:
@@ -331,9 +328,9 @@ without specifying the prefix, the default is a system path, which requires sudo
 SWIG (optional)
 ~~~~~~~~~~~~~~~
 
-SWIG is a wrapper for external software written in C or C++. It is an **OPTIONAL** component for MACH-Aero, as it is required by only some of its sub-modules (eg. NSGA2 and NOMAD optimizers used by pyOptSparse, as discussed `here <https://mdolab-pyoptsparse.readthedocs-hosted.com/en/latest/install.html>`_). 
+SWIG is a wrapper for external software written in C or C++. It is an **OPTIONAL** component for MACH-Aero, as it is required by only some of its sub-modules (e.g. NSGA2 and NOMAD optimizers used by pyOptSparse, as discussed `here <https://mdolab-pyoptsparse.readthedocs-hosted.com/en/latest/install.html>`_).
 
-.. WARNING:: 
+.. WARNING::
 
    SWIG 2.0.12 is the **ONLY** currently supported version. Other versions are not recommended and are installed at your own risk.
 
@@ -499,7 +496,7 @@ To run the tests, go to the ``test`` directory, and type::
 
 Other Methods and Notes
 -----------------------
-The build examples described here are all installed *locally* (eg. ``$HOME/...``) rather than system-wide (eg. ``/usr/local/...``).
+The build examples described here are all installed *locally* (e.g. ``$HOME/...``) rather than system-wide (e.g. ``/usr/local/...``).
 Local installations are generally preferred.
 Installing packages system-wide requires root access, which is an increased security risk when downloading packages from the internet.
 Also, it is typically easier to uninstall packages or otherwise revert changes made at a local level.
@@ -512,7 +509,7 @@ This separation adds a level of complexity but is more extensible if multiple pa
 
 When configuring your environment, the examples shown here set environment variables, ``$PATH``, and ``$LD_LIBRARY_PATH`` in ``.bashrc``.
 If multiple versions and dependencies are being used simultaneously,
-for example on a cluster, the paradigm of `environment modules <http://modules.sourceforge.net>` is often used (eg. ``module use petsc``).
+for example on a cluster, the paradigm of `environment modules <http://modules.sourceforge.net>` is often used (e.g. ``module use petsc``).
 A module file is simply a text file containing lines such as::
 
    append-path PATH $HOME/opt/petsc/3.7.7/OpenMPI-1.10.7/GCC-7.3.0/bin
