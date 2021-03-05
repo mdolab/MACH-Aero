@@ -37,7 +37,6 @@ CGNS      3.3.0   4.1.2
 Python    3.7     3.8
 NumPy     1.16    1.18
 SciPy     1.2     1.4
-swig      2.0.12  2.0.12
 ========= ======= =======
 
 The supported operating systems are Ubuntu 18.04 and 20.04, together with GNU compiler versions 7 to 9.
@@ -49,7 +48,7 @@ Common Prerequisites
 --------------------
 If they're not available already, common prerequisites can be installed directly from a Debian repository::
 
-   sudo apt-get install python-dev gfortran valgrind cmake libblas-dev liblapack-dev build-essential
+   sudo apt-get install python-dev gfortran valgrind cmake libblas-dev liblapack-dev build-essential swig
 
 The packages are required by many of the packages installed later.
 
@@ -322,45 +321,6 @@ Note that the version of these libraries might be different on your machine ::
 If you compiled with ``--enable-cgnstools`` you either need to add the binary path to your PATH environmental variable or you can install the binaries system wide.
 By specifying the installation prefix as shown in the example configure commands above, the binary path is in your PATH environmental variables;
 without specifying the prefix, the default is a system path, which requires sudo.
-
-.. _install_swig:
-
-SWIG (optional)
-~~~~~~~~~~~~~~~
-
-SWIG is a wrapper for external software written in C or C++. It is an **OPTIONAL** component for MACH-Aero, as it is required by only some of its sub-modules (e.g. NSGA2 and NOMAD optimizers used by pyOptSparse, as discussed `here <https://mdolab-pyoptsparse.readthedocs-hosted.com/en/latest/install.html>`_).
-
-.. WARNING::
-
-   SWIG 2.0.12 is the **ONLY** currently supported version. Other versions are not recommended and are installed at your own risk.
-
-Download and unpack the source files, from your packages directory:
-
-.. code-block:: bash
-
-   cd $HOME/packages
-   wget http://prdownloads.sourceforge.net/swig/swig-2.0.12.tar.gz
-   tar -xzf swig-2.0.12.tar.gz
-   cd ./swig-2.0.12
-
-Configure your environment variables by adding the following lines to your ``.bashrc`` file, remembering to ``source ~/.bashrc`` or opening a new terminal once you saved the changes:
-
-.. code-block:: bash
-
-   export SWIG_HOME=$HOME/packages/swig-2.0.12
-   export PATH=$PATH:$SWIG_HOME/bin
-
-Then configure SWIG and build the binaries using the following commands:
-
-.. code-block:: bash
-
-   ./configure --prefix=$SWIG_HOME
-   make
-   make install
-
-.. NOTE::
-
-   The configuration and build of SWIG requires the `PCRE developer package <https://www.pcre.org/>`_. If not already present on your system, you can install it via ``sudo apt-get install libpcre3 libpcre3-dev``
 
 Python Packages
 ---------------
