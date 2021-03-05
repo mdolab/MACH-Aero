@@ -9,7 +9,7 @@ Introduction
 Although we specialize in optimization, we don't write our own optimization algorithms.
 We like to work a little closer to the applications side, and we figure that the mathematicians have already done an exceptional job developing the algorithms.
 In fact, there are many great optimization algorithms out there, each with different advantages.
-From the user's perspective most of these algorithms have similar inputs and outputs, so we decided to develop a library for optimization algorithms with a common interface: `pyOptSparse <https://github.com/mdolab/pyoptsparse>`_.
+From the user's perspective most of these algorithms have similar inputs and outputs, so we decided to develop a library for optimization algorithms with a common interface: :doc:`pyOptSparse <pyoptsparse:index>`.
 pyOptSparse allows the user to switch between several algorithms by changing a single argument.
 This facilitates comparison between different techniques and allows the user to focus on the other aspects of building an optimization problem.
 

@@ -39,7 +39,7 @@ Import libraries
    :end-before: # rst ADflow options
 
 As in the previous example, we first import ADflow.
-We also need to import `baseclasses <https://github.com/mdolab/baseclasses>`_, which is a library of problem and solver classes used to encourage a common API within the MACH suite.
+We also need to import :doc:`baseclasses <baseclasses:index>`, which is a library of problem and solver classes used to encourage a common API within the MACH suite.
 We will again be using the AeroProblem, which is a container for the flow conditions that we want to analyze.
 However, in this case we will sequentially update the alpha parameter to produce the desired drag polar.
 Again, it is convenient to import the mpi4py library to prevent printing multiple times if we are running on multiple processors.
@@ -51,7 +51,7 @@ ADflow options
    :start-after: # rst ADflow options
    :end-before: # rst Start ADflow
 
-An exhaustive list of the ADflow options and their descriptions can be found in the `docs <https://mdolab-adflow.readthedocs-hosted.com/en/latest/options.html>`_.
+An exhaustive list of the ADflow options and their descriptions can be found in :doc:`ADflow options<adflow:options>`.
 We will not go over every option here, as they are outlined in the previous example.
 However, we will highlight the option that has been changed for this case.
 This option is the "infchangecorrection" option.

@@ -9,7 +9,7 @@ Introduction
 There is no graphical user interface for ADflow.
 The cases are prepared with python scripts and run from the command line.
 In this section of the tutorial, we will explain the nuts and bolts of a basic ADflow runscript.
-You will find a complete introduction to ADflow in the `docs <https://mdolab-adflow.readthedocs-hosted.com/en/latest/introduction.html>`_ .
+You will find a complete introduction to ADflow in the :doc:`docs <adflow:introduction>`.
 
 Files
 =====
@@ -36,7 +36,7 @@ Import libraries
    :end-before: # rst ADflow options
 
 First we import ADflow.
-We also need to import `baseclasses <https://github.com/mdolab/baseclasses>`_, which is a library of problem and solver classes used to encourage a common API within the MACH suite.
+We also need to import ``baseclasses``, which is a library of problem and solver classes used to encourage a common API within the MACH suite.
 In this case we will be using the AeroProblem, which is a container for the flow conditions that we want to analyze.
 Finally, it is convenient to import the mpi4py library to prevent printing multiple times if we are running on multiple processors.
 Importing mpi4py is not entirely necessary in the runscript because ADflow does it internally if necessary.
@@ -53,7 +53,7 @@ The `I/O Parameters` include the mesh file, the output directory, and the variab
 Under `Solver Parameters`, you can choose a basic solver (DADI or Runge Kutta) and set the CFL and multigrid parameters.
 Additionally, the Approximate Newton-Krylov (ANK) and Newton-Krylov (NK) solvers can be used to speed up convergence of the solver.
 Finally, we can terminate the solver based on relative convergence of the norm of the residuals or maximum number of iterations.
-We strongly recommend going over the descriptions and tips on solvers and solver options in the ADflow `solvers docs <https://mdolab-adflow.readthedocs-hosted.com/en/latest/solvers.html>`_.
+We strongly recommend going over the descriptions and tips on solvers and solver options in the ADflow :doc:`solvers docs <adflow:solvers>`.
 
 Create solver
 -------------

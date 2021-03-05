@@ -10,10 +10,17 @@ project = "MACH-Aero Documentation"
 extensions.extend(["sphinxcontrib.bibtex"])
 
 # Specify the baseurls for the projects I want to link to
-intersphinx_mapping = {
-    "pyoptsparse": ("https://mdolab-pyoptsparse.readthedocs-hosted.com/en/latest", None),
-    "pygeo": ("https://mdolab-pygeo.readthedocs-hosted.com/en/latest", None),
-}
+repos = [
+    "pygeo",
+    "pyoptsparse",
+    "baseclasses",
+    "idwarp",
+    "adflow",
+    "pyhyp",
+    "multipoint",
+    "pyspline",
+]
+intersphinx_mapping = {r: (f"https://mdolab-{r}.readthedocs-hosted.com/en/latest", None) for r in repos}
 
 # bibtex
 bibtex_bibfiles = ["machFramework/references.bib"]

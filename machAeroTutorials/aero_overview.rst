@@ -3,7 +3,7 @@
 ####################
 Aerodynamic Analysis
 ####################
-High-fidelity aerodynamic analysis in the MDOlab is done using `ADflow <https://github.com/mdolab/adflow>`_.
+High-fidelity aerodynamic analysis in the MDOlab is done using :doc:`ADflow <adflow:index>`.
 ADflow is a finite-volume CFD solver for cell-centered multiblock and overset meshes.
 ADflow solves the compressible Euler, laminar Navier--Stokes, and RANS equations with a second-order accurate spatial discretization.
 More information on ADflow can be found somewhere (needs link).
