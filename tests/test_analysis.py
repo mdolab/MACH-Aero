@@ -4,6 +4,10 @@ import subprocess
 import shutil
 
 tutorialDir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../tutorial")  # Path to current folder
+try:
+    import pyOCSM
+except ModuleNotFoundError:
+    pyOCSM = None
 
 
 class TestWingAnalysis(unittest.TestCase):
@@ -50,21 +54,26 @@ class TestWingOpt(unittest.TestCase):
         # we are explicitly calling mpirun ourselves
         self.NPROCS = 2
         os.chdir(os.path.join(tutorialDir, "opt"))
+        # Prepare optimization INPUT files
+        # first generate FFD grids
+        os.chdir("ffd")
+        subprocess.run(["python", "simple_ffd.py"], check=True)
+        # now copy files
+        os.chdir("../aero")
+        shutil.copy("../ffd/ffd.xyz", ".")
+        shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
+        # go back to opt dir
+        os.chdir(os.path.join(tutorialDir, "opt"))
+
+    def test_ffd_parameterize(self):
+        os.chdir("ffd")
+        subprocess.run(["python", "parametrize.py"], check=True)
 
     def test_pyoptsparse(self):
         os.chdir("pyoptsparse")
         subprocess.run(["python", "rosenbrock.py"], check=True)
 
-    def test_wing_opt(self):
-        # first generate FFD grids
-        os.chdir("ffd")
-        shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
-        subprocess.run(["python", "simple_ffd.py"], check=True)
-        subprocess.run(["python", "parametrize.py"], check=True)
-        # now run opt
-        os.chdir("../aero")
-        shutil.copy("../ffd/ffd.xyz", ".")
-        shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
+    def test_wing_opt_SNOPT(self):
         shutil.rmtree("output", ignore_errors=True)
         subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
         subprocess.run(
@@ -74,6 +83,48 @@ class TestWingOpt(unittest.TestCase):
                 f"{self.NPROCS}",
                 "python",
                 "aero_opt.py",
+                "--gridFile",
+                "wing_vol_coarsen.cgns",
+                "--opt",
+                "SNOPT",
+                "--optOptions",
+                "{'Major iterations limit': 1}",
+            ],
+            check=True,
+        )
+
+    def test_wing_opt_IPOPT(self):
+        shutil.rmtree("output", ignore_errors=True)
+        subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
+        subprocess.run(
+            [
+                "mpirun",
+                "-n",
+                f"{self.NPROCS}",
+                "python",
+                "aero_opt.py",
+                "--gridFile",
+                "wing_vol_coarsen.cgns",
+                "--opt",
+                "IPOPT",
+                "--optOptions",
+                "{'max_iter': 1}",
+            ],
+            check=True,
+        )
+
+    @unittest.skipUnless(pyOCSM, "pyOCSM is required for ESP tests")
+    def test_wing_opt_ESP_SNOPT(self):
+        shutil.rmtree("output_ESP", ignore_errors=True)
+        subprocess.run(
+            [
+                "mpirun",
+                "-n",
+                f"{self.NPROCS}",
+                "python",
+                "aero_opt_esp.py",
+                "--output",
+                "output_ESP",
                 "--gridFile",
                 "wing_vol_coarsen.cgns",
                 "--opt",
