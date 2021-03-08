@@ -125,7 +125,7 @@ class TestWingOpt(unittest.TestCase):
                 "IPOPT",
                 "--output",
                 "output_IPOPT" "--optOptions",
-                "{'max_iter': 1}",
+                "{'max_iter': 0}",
             ],
             check=True,
         )
