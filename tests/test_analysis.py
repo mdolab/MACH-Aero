@@ -9,6 +9,11 @@ try:
 except ModuleNotFoundError:
     pyOCSM = None
 
+try:
+    from pyoptsparse import SNOPT
+except ModuleNotFoundError:
+    SNOPT = None
+
 
 class TestWingAnalysis(unittest.TestCase):
     def setUp(self):
@@ -73,6 +78,7 @@ class TestWingOpt(unittest.TestCase):
         os.chdir("pyoptsparse")
         subprocess.run(["python", "rosenbrock.py"], check=True)
 
+    @unittest.skipUnless(SNOPT, "SNOPT is required for this test")
     def test_wing_opt_SNOPT(self):
         shutil.rmtree("output", ignore_errors=True)
         subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
@@ -113,7 +119,7 @@ class TestWingOpt(unittest.TestCase):
             check=True,
         )
 
-    @unittest.skipUnless(pyOCSM, "pyOCSM is required for ESP tests")
+    @unittest.skipUnless(pyOCSM and SNOPT, "pyOCSM and SNOPT are required for this test")
     def test_wing_opt_ESP_SNOPT(self):
         shutil.rmtree("output_ESP", ignore_errors=True)
         subprocess.run(
@@ -143,6 +149,7 @@ class TestAirfoilOpt(unittest.TestCase):
         self.NPROCS = 2
         os.chdir(os.path.join(tutorialDir, "airfoilopt"))
 
+    @unittest.skipUnless(SNOPT, "SNOPT is required for this test")
     def test(self):
         # mesh
         os.chdir("mesh")
