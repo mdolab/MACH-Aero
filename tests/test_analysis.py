@@ -112,7 +112,8 @@ class TestWingOpt(unittest.TestCase):
                 "--opt",
                 "IPOPT",
                 "--output",
-                "output_IPOPT" "--optOptions",
+                "output_IPOPT",
+                "--optOptions",
                 "{'max_iter': 0}",
             ],
             check=True,
@@ -124,6 +125,7 @@ class TestWingOpt(unittest.TestCase):
         os.chdir("aero")
         shutil.copy("../ffd/ffd.xyz", ".")
         shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
+        subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
         shutil.rmtree("output_ESP", ignore_errors=True)
         subprocess.run(
             [
@@ -149,6 +151,7 @@ class TestWingOpt(unittest.TestCase):
         os.chdir("aero")
         shutil.copy("../ffd/ffd.xyz", ".")
         shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
+        subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
         shutil.rmtree("output_ESP", ignore_errors=True)
         subprocess.run(
             [
@@ -205,6 +208,7 @@ class TestAirfoilOpt(unittest.TestCase):
             check=True,
         )
 
+    @unittest.skipUnless(has_SNOPT, "SNOPT is required for this test")
     def test_multipoint(self):
         os.chdir("multipoint")
         shutil.copy("../ffd/ffd.xyz", ".")
