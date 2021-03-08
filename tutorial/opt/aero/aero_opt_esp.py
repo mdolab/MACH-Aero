@@ -13,7 +13,7 @@ from pygeo import DVConstraints
 from pyoptsparse import Optimization, OPT
 from idwarp import USMesh
 from multipoint import multiPointSparse
-import numpy as np 
+import numpy as np
 
 # rst Imports (end)
 # rst args (beg)
@@ -85,10 +85,12 @@ ap.addDV("alpha", value=1.5, lower=0, upper=10.0, scale=0.1)
 # ======================================================================
 # rst dvgeo (beg)
 # Create DVGeometry object
-DVGeo = DVGeometryESP('wing_red.csm', suppress_stdout=True, exclude_edge_projections=True)
-DVGeo.addVariable('twist_local', cols=[2,3,4,5,6,7,8], lower=-10*np.ones(7), upper=10*np.ones(7), scale=0.1, dh=0.0001)
-DVGeo.addVariable('cst_u', lower=0.0*np.ones(8*7), upper=1.0*np.ones(8*7), scale=1.0, dh=0.0001)
-DVGeo.addVariable('cst_l', lower=-1.0*np.ones(8*7), upper=0.2*np.ones(8*7), scale=1.0, dh=0.0001)
+DVGeo = DVGeometryESP("wing_red.csm", suppress_stdout=True, exclude_edge_projections=True)
+DVGeo.addVariable(
+    "twist_local", cols=[2, 3, 4, 5, 6, 7, 8], lower=-10 * np.ones(7), upper=10 * np.ones(7), scale=0.1, dh=0.0001
+)
+DVGeo.addVariable("cst_u", lower=0.0 * np.ones(8 * 7), upper=1.0 * np.ones(8 * 7), scale=1.0, dh=0.0001)
+DVGeo.addVariable("cst_l", lower=-1.0 * np.ones(8 * 7), upper=0.2 * np.ones(8 * 7), scale=1.0, dh=0.0001)
 
 
 # Add DVGeo object to CFD solver
@@ -137,7 +139,7 @@ def cruiseFuncs(x):
         print(x)
     # Set design vars
     DVGeo.setDesignVars(x)
-    DVGeo.writeCSMFile('current.csm')
+    DVGeo.writeCSMFile("current.csm")
     ap.setDesignVars(x)
     # Run CFD
     CFDSolver(ap)
@@ -156,8 +158,8 @@ def cruiseFuncsSens(x, funcs):
     DVCon.evalFunctionsSens(funcsSens)
     CFDSolver.evalFunctionsSens(ap, funcsSens)
     CFDSolver.checkAdjointFailure(ap, funcsSens)
-#    if comm.rank == 0:
-#        print(funcsSens)
+    #    if comm.rank == 0:
+    #        print(funcsSens)
     return funcsSens
 
 
@@ -218,9 +220,9 @@ elif args.opt == "IPOPT":
     optOptions = {
         "limited_memory_max_history": 1000,
         "print_level": 5,
-        "tol":1e-6,
-        "acceptable_tol":1e-5,
-        "max_iter":300
+        "tol": 1e-6,
+        "acceptable_tol": 1e-5,
+        "max_iter": 300,
     }
 optOptions.update(args.optOptions)
 opt = OPT(args.opt, options=optOptions)

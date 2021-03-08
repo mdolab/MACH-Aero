@@ -18,7 +18,7 @@ from multipoint import multiPointSparse
 # Use Python's built-in Argument parser to get commandline options
 parser = argparse.ArgumentParser()
 parser.add_argument("--output", type=str, default="output")
-parser.add_argument("--opt", type=str, default="SLSQP", choices=["IPOPT","SLSQP", "SNOPT"])
+parser.add_argument("--opt", type=str, default="SLSQP", choices=["IPOPT", "SLSQP", "SNOPT"])
 parser.add_argument("--gridFile", type=str, default="wing_vol.cgns")
 parser.add_argument("--optOptions", type=ast.literal_eval, default={}, help="additional optimizer options to be added")
 args = parser.parse_args()
@@ -231,10 +231,10 @@ elif args.opt == "IPOPT":
     optOptions = {
         "limited_memory_max_history": 1000,
         "print_level": 5,
-        "tol":1e-6,
-        "acceptable_tol":1e-5,
-        "max_iter":300,
-        "start_with_resto":'yes'
+        "tol": 1e-6,
+        "acceptable_tol": 1e-5,
+        "max_iter": 300,
+        "start_with_resto": "yes",
     }
 optOptions.update(args.optOptions)
 opt = OPT(args.opt, options=optOptions)
