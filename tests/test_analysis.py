@@ -4,20 +4,8 @@ import subprocess
 import shutil
 
 tutorialDir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../tutorial")  # Path to current folder
-
-
-def _import_test(import_cmd):
-    try:
-        # have to test import via subprocess because otherwise we inadvertently import mpi4py
-        # which will cause an obscure subprocess error
-        subprocess.run(["python", "-c", import_cmd], check=True)
-        return True
-    except subprocess.CalledProcessError:
-        return False
-
-
-has_SNOPT = _import_test("from pyoptsparse import SNOPT")
-has_ESP = _import_test("import pyOCSM")
+image = os.environ.get("IMAGE")
+has_SNOPT = image == "PRIVATE"
 
 
 class TestWingAnalysis(unittest.TestCase):
@@ -130,7 +118,7 @@ class TestWingOpt(unittest.TestCase):
             check=True,
         )
 
-    @unittest.skipUnless(has_ESP and has_SNOPT, "pyOCSM and SNOPT are required for this test")
+    @unittest.skipUnless(has_SNOPT, "pyOCSM and SNOPT are required for this test")
     def test_wing_opt_ESP_SNOPT(self):
         # first copy files
         os.chdir("aero")
@@ -156,7 +144,6 @@ class TestWingOpt(unittest.TestCase):
             check=True,
         )
 
-    @unittest.skipUnless(has_ESP, "pyOCSM is required for this test")
     def test_wing_opt_ESP_IPOPT(self):
         # first copy files
         os.chdir("aero")
