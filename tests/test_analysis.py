@@ -132,6 +132,10 @@ class TestWingOpt(unittest.TestCase):
 
     @unittest.skipUnless(has_ESP and has_SNOPT, "pyOCSM and SNOPT are required for this test")
     def test_wing_opt_ESP_SNOPT(self):
+        # first copy files
+        os.chdir("aero")
+        shutil.copy("../ffd/ffd.xyz", ".")
+        shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
         shutil.rmtree("output_ESP", ignore_errors=True)
         subprocess.run(
             [
@@ -148,6 +152,32 @@ class TestWingOpt(unittest.TestCase):
                 "SNOPT",
                 "--optOptions",
                 "{'Major iterations limit': 0}",
+            ],
+            check=True,
+        )
+
+    @unittest.skipUnless(has_ESP, "pyOCSM is required for this test")
+    def test_wing_opt_ESP_IPOPT(self):
+        # first copy files
+        os.chdir("aero")
+        shutil.copy("../ffd/ffd.xyz", ".")
+        shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
+        shutil.rmtree("output_ESP", ignore_errors=True)
+        subprocess.run(
+            [
+                "mpirun",
+                "-n",
+                f"{self.NPROCS}",
+                "python",
+                "aero_opt_esp.py",
+                "--output",
+                "output_ESP",
+                "--gridFile",
+                "wing_vol_coarsen.cgns",
+                "--opt",
+                "IPOPT",
+                "--optOptions",
+                "{'max_iter': 0}",
             ],
             check=True,
         )
