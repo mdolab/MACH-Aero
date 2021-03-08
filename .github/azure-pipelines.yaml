@@ -1,8 +1,8 @@
-# no branch or PR builds
 trigger: none
-pr: none
+pr:
+- master
 
-# but we add a daily build
+# add a daily cron job
 # set to 10pm EST, which is 3am UTC
 schedules:
 - cron: "0 3 * * *"
