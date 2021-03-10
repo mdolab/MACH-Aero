@@ -169,8 +169,6 @@ def cruiseFuncsSens(x, funcs):
     DVCon.evalFunctionsSens(funcsSens)
     CFDSolver.evalFunctionsSens(ap, funcsSens)
     CFDSolver.checkAdjointFailure(ap, funcsSens)
-    # if comm.rank == 0:
-    #     print(funcsSens)
     return funcsSens
 
 
