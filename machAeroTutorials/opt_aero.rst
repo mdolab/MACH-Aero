@@ -105,7 +105,7 @@ We can set up constraints on the geometry with the DVConstraints class, also fou
 There are several built-in constraint functions within the DVConstraints class, including thickness, surface area, volume, location, and general linear constraints.
 The majority of the constraints are defined based on a triangulated-surface representation of the wing obtained from ADflow.
 
-.. note:: The triangulated surface is created by ADflow (or DAfoam) using the wall surfaces defined in the CFD volume mesh. The resolution is similar to the CFD surface mesh, and users do not need to provide this triangulated mesh themselves. Optionally, this can also be defined with an external file, see the details `here <https://github.com/mdolab/pygeo/blob/master/pygeo/DVConstraints.py#L200>`_. This is useful if users want to have a different resolution on the triangulated surface (finer or coarser) compared to the CFD mesh, or if DVConstraints is being used without ADflow (or DAfoam).
+.. note:: The triangulated surface is created by ADflow (or DAfoam) using the wall surfaces defined in the CFD volume mesh. The resolution is similar to the CFD surface mesh, and users do not need to provide this triangulated mesh themselves. Optionally, this can also be defined with an external file, see the docstrings for :meth:`setSurface() <pygeo:pygeo.DVConstraints.setSurface>`. This is useful if users want to have a different resolution on the triangulated surface (finer or coarser) compared to the CFD mesh, or if DVConstraints is being used without ADflow (or DAfoam).
 
 The volume and thickness constraints are set up by creating a uniformly spaced 2D grid of points, which is then projected onto the upper and lower surface of a triangulated-surface representation of the wing.
 The grid is defined by providing four corner points (using ``leList`` and ``teList``) and by specifying the number of spanwise and chordwise points (using ``nSpan`` and ``nChord``).
@@ -124,7 +124,7 @@ Therefore, ``lower=1.0`` in this example means that the lower limits for these c
 For the volume constraint, the volume is computed by adding up the volumes of the prisms that make up the projected grid as illustrated in the following image (only showing a section for clarity).
 For the thickness constraints, the distances between the upper and lower projected points are used, as illustrated in the following image.
 During optimization, these projected points are also moved by the FFD, just like the wing surface, and are used again to calculate the thicknesses and volume for the new designs.
-More information on the options can be found in the `pyGeo docs <https://mdolab-pygeo.readthedocs-hosted.com/>`_ or by looking at the pyGeo source code.
+More information on the options can be found in the :doc:`pyGeo docs <pygeo:index>` or by looking at the pyGeo source code.
 
 .. image:: images/opt_thickness_and_vol_diagram.png
    :scale: 40

@@ -9,7 +9,7 @@ Introduction
 The objective of this section is to create a volume mesh using pyHyp.
 The surface mesh serves as the seed for hyperbolically marching the mesh to the farfield.
 Generating the volume mesh in this way is fast, repeatable, and results in a high-quality mesh.
-More details on pyHyp can be found in the `pyHyp documentation <https://mdolab-pyhyp.readthedocs-hosted.com>`__ or in the code itself.
+More details on pyHyp can be found in the :doc:`pyHyp documentation <pyhyp:index>` or in the code itself.
 
 Files
 =====
@@ -39,7 +39,7 @@ This is the standard way of importing the pyHyp library.
 Options
 -------
 For each module in MACH, we generally pass in options using a dictionary.
-A complete list of definitions of the pyHyp options can be found in the `pyHyp documentation on plot3d usage <https://mdolab-pyhyp.readthedocs-hosted.com/en/latest/usage.html#usage-with-plot3d-files>`_.
+A complete list of definitions of the pyHyp options can be found in the :doc:`pyHyp documentation <pyhyp:options>`.
 Here we will point a few of the more basic options.
 For pyHyp, the options can be organized like so:
 
@@ -83,7 +83,7 @@ Grid parameters:
         Distance of the far-field.
 
 The following options are related to the algorithms that are used to generate the mesh and usually these default values do not need to be modified.
-More information can be found in the `pyHyp documentation <https://mdolab-pyhyp.readthedocs-hosted.com/>`__.
+More information can be found in the :doc:`pyHyp documentation <pyhyp:index>`.
 For example, ``epsE`` may be of interest when dealing with concave corners.
 
 .. literalinclude:: ../tutorial/aero/meshing/volume/run_pyhyp.py

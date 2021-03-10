@@ -5,17 +5,17 @@ MACH-Aero Framework
 MACH-Aero is a framework for performing gradient-based aerodynamic shape optimization.
 It consists of the following core modules:
 
-- `baseClasses <https://mdolab-baseclasses.readthedocs-hosted.com>`_ defines Python classes used by the other packages
-- `pySpline <https://mdolab-pyspline.readthedocs-hosted.com>`_ is a B-spline implementation used by the other packages
-- `pyGeo <https://mdolab-pygeo.readthedocs-hosted.com>`_ is a module for geometry manipulation and constraint formulation
-- `IDWarp <https://mdolab-idwarp.readthedocs-hosted.com>`_ performs mesh warping using an inverse distance method
-- `ADflow <https://mdolab-adflow.readthedocs-hosted.com>`_ is a 2nd-order finite volume CFD solver with an efficient adjoint implementation
-- `pyOptSparse <https://mdolab-pyoptsparse.readthedocs-hosted.com>`_ is an optimization framework which provides a unified interface to several popular optimizers
+- :doc:`baseClasses <baseclasses:index>` defines Python classes used by the other packages
+- :doc:`pySpline <pyspline:index>` is a B-spline implementation used by the other packages
+- :doc:`pyGeo <pygeo:index>` is a module for geometry manipulation and constraint formulation
+- :doc:`IDWarp <idwarp:index>` performs mesh warping using an inverse distance method
+- :doc:`ADflow <adflow:index>` is a 2nd-order finite volume CFD solver with an efficient adjoint implementation
+- :doc:`pyOptSparse <pyoptsparse:index>` is an optimization framework which provides a unified interface to several popular optimizers
 
 And the following optional modules:
 
-- `pyHyp <https://mdolab-pyhyp.readthedocs-hosted.com>`_ is a hyperbolic mesh generation tool used as a preprocessing step
-- `multiPoint <https://mdolab-multipoint.readthedocs-hosted.com>`_ facilitates distributed multipoint optimization and handles the parallel communication using MPI
+- :doc:`pyHyp <pyhyp:index>` is a hyperbolic mesh generation tool used as a preprocessing step
+- :doc:`multiPoint <multipoint:index>` facilitates distributed multipoint optimization and handles the parallel communication using MPI
 - `cgnsUtilities <https://github.com/mdolab/cgnsutilities>`_ is a command-line tool that allows carrying out several simple mesh manipulation operations on CGNS grids
 - `DAFoam <https://dafoam.github.io/>`_ provides efficient adjoint implementations for OpenFOAM to be used for CFD instead of ADflow
 

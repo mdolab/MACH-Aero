@@ -11,7 +11,7 @@ The native geometry file type for ICEM (our meshing software of choice) is a ".t
 You can use any CAD software to generate an ".igs" file and then convert the ".igs" file to a ".tin" file with ICEM or pyGeo.
 However, this tutorial will teach you how to generate a wing surface from airfoil data using pyGeo.
 pyGeo is set up to loft a surface between a set of airfoils distributed along the span of the wing.
-For more details on the options in pyGeo see the `docs <https://mdolab-pygeo.readthedocs-hosted.com/>`_.
+For more details on the options in pyGeo see the :doc:`docs <pygeo:index>`.
 
 Files
 =====
@@ -84,7 +84,7 @@ Call pyGeo
     :start-after: # rst Run pyGeo
     :end-before: # rst Write output files
 
-A detailed explanation of each argument is available in the `pyGeo docs <https://mdolab-pygeo.readthedocs-hosted.com/en/latest/pyGeo.html>`_.
+A detailed explanation of each argument is available in the :doc:`pyGeo docs <pygeo:pyGeo>`.
 The final four options stipulate a rounded wingtip and a blunt trailing edge with a square tip (i.e., a square face at the trailing edge instead of a rounded face) and a thickness of 0.25 inches.
 
 Write output files
