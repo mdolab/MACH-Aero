@@ -1,0 +1,75 @@
+despmtr wing_n_sections  8
+despmtr wing_sweep 28.178590110677
+despmtr wing_taper 0.3
+despmtr wing_span 28.00
+despmtr wing_chord_root 5.00
+despmtr wing_root_z -0.01
+despmtr wing_root_x 0.00
+despmtr wing_root_y 0.00
+despmtr wing_dihedral 0.00
+despmtr wing_twist 0.00
+despmtr wing_inc 0.00
+despmtr cst_class     "0.5;1.0;"
+despmtr cst_te_clip 0.0254/4
+
+set half_span  wing_span/2-wing_root_z
+set dspan  half_span/(wing_n_sections-1)
+
+dimension cst_u      8  7  1
+despmtr   cst_u     "0.1262;0.13890;0.15760;0.17747;0.19366;0.20135;0.19570;\
+                     0.1262;0.13890;0.15760;0.17747;0.19366;0.20135;0.19570;\
+                     0.1262;0.13890;0.15760;0.17747;0.19366;0.20135;0.19570;\
+                     0.1262;0.13890;0.15760;0.17747;0.19366;0.20135;0.19570;\
+                     0.1262;0.13890;0.15760;0.17747;0.19366;0.20135;0.19570;\
+                     0.1262;0.13890;0.15760;0.17747;0.19366;0.20135;0.19570;\
+                     0.1262;0.13890;0.15760;0.17747;0.19366;0.20135;0.19570;\
+                     0.1262;0.13890;0.15760;0.17747;0.19366;0.20135;0.19570;"
+
+dimension cst_l      8  7  1
+despmtr   cst_l     "-0.12350;-0.14850;-0.16454;-0.16175;-0.13026;-0.06020;0.05830;\
+                     -0.12350;-0.14850;-0.16454;-0.16175;-0.13026;-0.06020;0.05830;\
+                     -0.12350;-0.14850;-0.16454;-0.16175;-0.13026;-0.06020;0.05830;\
+                     -0.12350;-0.14850;-0.16454;-0.16175;-0.13026;-0.06020;0.05830;\
+                     -0.12350;-0.14850;-0.16454;-0.16175;-0.13026;-0.06020;0.05830;\
+                     -0.12350;-0.14850;-0.16454;-0.16175;-0.13026;-0.06020;0.05830;\
+                     -0.12350;-0.14850;-0.16454;-0.16175;-0.13026;-0.06020;0.05830;\
+                     -0.12350;-0.14850;-0.16454;-0.16175;-0.13026;-0.06020;0.05830;"
+
+dimension twist_local 1 8 1
+despmtr twist_local "0.0; 0.0; 0.0; 0.0; 0.0; 0.0; 0.0; 0.0;"
+
+dimension class     1  2  1
+dimension ztail     1  2  1
+despmtr   class     "0.5;    1.0;   "
+despmtr   ztail     "0.00126; -.00126;"
+
+dimension cst_u_this 1 7 0
+dimension cst_l_this 1 7 0
+dimension cst_ztail_this 1 2 0
+
+despmtr tipar 0.5
+
+mark
+patbeg    i  wing_n_sections
+    set cst_u_this cst_u[i,1];cst_u[i,2];cst_u[i,3];cst_u[i,4];cst_u[i,5];cst_u[i,6];cst_u[i,7]
+    set cst_l_this cst_l[i,1];cst_l[i,2];cst_l[i,3];cst_l[i,4];cst_l[i,5];cst_l[i,6];cst_l[i,7]
+    
+    set pct_along (i-1)/(wing_n_sections-1)
+    set local_chord wing_chord_root*(1-pct_along*(1-wing_taper))
+    set cst_ztail_this cst_te_clip/2/local_chord;-cst_te_clip/2/local_chord
+
+    set local_bl half_span*pct_along+wing_root_z
+    set section_twist wing_inc+pct_along*wing_twist+twist_local[i]
+    set le_x  wing_root_x+pct_along*half_span*tand(wing_sweep)
+    set le_y  wing_root_y+pct_along*half_span*tand(wing_dihedral)+sind(section_twist)*local_chord/4 
+
+    udparg    kulfan    class     class
+    udparg    kulfan    ztail     cst_ztail_this
+    udparg    kulfan    aupper  cst_u_this
+    udprim    kulfan    alower   cst_l_this
+    rotatez -(section_twist) 0 0 
+    scale     local_chord
+    translate le_x le_y local_bl
+patend
+blend 0 -1;tipar
+end

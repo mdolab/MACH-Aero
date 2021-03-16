@@ -8,17 +8,19 @@ import ast
 from mpi4py import MPI
 from baseclasses import AeroProblem
 from adflow import ADFLOW
-from pygeo import DVGeometry, DVConstraints
+from pygeo.DVGeometryESP import DVGeometryESP
+from pygeo import DVConstraints
 from pyoptsparse import Optimization, OPT
 from idwarp import USMesh
 from multipoint import multiPointSparse
+import numpy as np
 
 # rst Imports (end)
 # rst args (beg)
 # Use Python's built-in Argument parser to get commandline options
 parser = argparse.ArgumentParser()
 parser.add_argument("--output", type=str, default="output")
-parser.add_argument("--opt", type=str, default="SLSQP", choices=["IPOPT", "SLSQP", "SNOPT"])
+parser.add_argument("--opt", type=str, default="IPOPT", choices=["SLSQP", "IPOPT", "SNOPT"])
 parser.add_argument("--gridFile", type=str, default="wing_vol.cgns")
 parser.add_argument("--optOptions", type=ast.literal_eval, default={}, help="additional optimizer options to be added")
 args = parser.parse_args()
@@ -83,23 +85,13 @@ ap.addDV("alpha", value=1.5, lower=0, upper=10.0, scale=0.1)
 # ======================================================================
 # rst dvgeo (beg)
 # Create DVGeometry object
-FFDFile = "ffd.xyz"
-DVGeo = DVGeometry(FFDFile)
+DVGeo = DVGeometryESP("wing.csm", suppress_stdout=True, exclude_edge_projections=True)
+DVGeo.addVariable(
+    "twist_local", cols=[2, 3, 4, 5, 6, 7, 8], lower=-10 * np.ones(7), upper=10 * np.ones(7), scale=0.1, dh=0.0001
+)
+DVGeo.addVariable("cst_u", lower=0.0 * np.ones(8 * 7), upper=1.0 * np.ones(8 * 7), scale=1.0, dh=0.0001)
+DVGeo.addVariable("cst_l", lower=-1.0 * np.ones(8 * 7), upper=0.2 * np.ones(8 * 7), scale=1.0, dh=0.0001)
 
-# Create reference axis
-nRefAxPts = DVGeo.addRefAxis("wing", xFraction=0.25, alignIndex="k")
-nTwist = nRefAxPts - 1
-
-# Set up global design variables
-def twist(val, geo):
-    for i in range(1, nRefAxPts):
-        geo.rot_z["wing"].coef[i] = val[i - 1]
-
-
-DVGeo.addGeoDVGlobal(dvName="twist", value=[0] * nTwist, func=twist, lower=-10, upper=10, scale=0.01)
-
-# Set up local design variables
-DVGeo.addGeoDVLocal("local", lower=-0.5, upper=0.5, axis="y", scale=1)
 
 # Add DVGeo object to CFD solver
 CFDSolver.setDVGeo(DVGeo)
@@ -125,10 +117,6 @@ DVCon.addThicknessConstraints2D(leList, teList, nSpan=10, nChord=10, lower=1.0, 
 # ======================================================================
 #         DVConstraint Setup, and LeTe Constraints
 # ======================================================================
-# rst dvconLeTe (beg)
-# Le/Te constraints
-DVCon.addLeTeConstraints(0, "iLow")
-DVCon.addLeTeConstraints(0, "iHigh")
 
 if comm.rank == 0:
     # Only make one processor do this
@@ -151,6 +139,7 @@ def cruiseFuncs(x):
         print(x)
     # Set design vars
     DVGeo.setDesignVars(x)
+    DVGeo.writeCSMFile("current.csm")
     ap.setDesignVars(x)
     # Run CFD
     CFDSolver(ap)
@@ -169,6 +158,8 @@ def cruiseFuncsSens(x, funcs):
     DVCon.evalFunctionsSens(funcsSens)
     CFDSolver.evalFunctionsSens(ap, funcsSens)
     CFDSolver.checkAdjointFailure(ap, funcsSens)
+    #    if comm.rank == 0:
+    #        print(funcsSens)
     return funcsSens
 
 
@@ -200,7 +191,7 @@ DVGeo.addVariablesPyOpt(optProb)
 
 # Add constraints
 DVCon.addConstraintsPyOpt(optProb)
-optProb.addCon("cl_con_" + ap.name, lower=0.0, scale=10.0)
+optProb.addCon("cl_con_" + ap.name, lower=0.0, upper=0.0, scale=10.0)
 
 # The MP object needs the 'obj' and 'sens' function for each proc set,
 # the optimization problem and what the objcon function is:
@@ -232,7 +223,6 @@ elif args.opt == "IPOPT":
         "tol": 1e-6,
         "acceptable_tol": 1e-5,
         "max_iter": 300,
-        "start_with_resto": "yes",
     }
 optOptions.update(args.optOptions)
 opt = OPT(args.opt, options=optOptions)

@@ -4,6 +4,12 @@ import subprocess
 import shutil
 
 tutorialDir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../tutorial")  # Path to current folder
+image = os.environ.get("IMAGE")
+has_SNOPT = image == "PRIVATE"
+try:
+    from pyOCSM import pyOCSM
+except ImportError:
+    pyOCSM = None
 
 
 class TestWingAnalysis(unittest.TestCase):
@@ -50,19 +56,26 @@ class TestWingOpt(unittest.TestCase):
         # we are explicitly calling mpirun ourselves
         self.NPROCS = 2
         os.chdir(os.path.join(tutorialDir, "opt"))
+        # Prepare optimization INPUT files
+        # first generate FFD grids
+        os.chdir("ffd")
+        subprocess.run(["python", "simple_ffd.py"], check=True)
+        # go back to opt dir
+        os.chdir(os.path.join(tutorialDir, "opt"))
+
+    def test_ffd_parameterize(self):
+        os.chdir("ffd")
+        shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
+        subprocess.run(["python", "parametrize.py"], check=True)
 
     def test_pyoptsparse(self):
         os.chdir("pyoptsparse")
         subprocess.run(["python", "rosenbrock.py"], check=True)
 
-    def test_wing_opt(self):
-        # first generate FFD grids
-        os.chdir("ffd")
-        shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
-        subprocess.run(["python", "simple_ffd.py"], check=True)
-        subprocess.run(["python", "parametrize.py"], check=True)
-        # now run opt
-        os.chdir("../aero")
+    @unittest.skipUnless(has_SNOPT, "SNOPT is required for this test")
+    def test_wing_opt_SNOPT(self):
+        # first copy files
+        os.chdir("aero")
         shutil.copy("../ffd/ffd.xyz", ".")
         shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
         shutil.rmtree("output", ignore_errors=True)
@@ -79,7 +92,87 @@ class TestWingOpt(unittest.TestCase):
                 "--opt",
                 "SNOPT",
                 "--optOptions",
-                "{'Major iterations limit': 1}",
+                "{'Major iterations limit': 0}",
+            ],
+            check=True,
+        )
+
+    def test_wing_opt_IPOPT(self):
+        # first copy files
+        os.chdir("aero")
+        shutil.copy("../ffd/ffd.xyz", ".")
+        shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
+        shutil.rmtree("output_IPOPT", ignore_errors=True)
+        subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
+        subprocess.run(
+            [
+                "mpirun",
+                "-n",
+                f"{self.NPROCS}",
+                "python",
+                "aero_opt.py",
+                "--gridFile",
+                "wing_vol_coarsen.cgns",
+                "--opt",
+                "IPOPT",
+                "--output",
+                "output_IPOPT",
+                "--optOptions",
+                "{'max_iter': 0}",
+            ],
+            check=True,
+        )
+
+    @unittest.skipUnless(has_SNOPT and pyOCSM is not None, "SNOPT and pyOCSM are required for this test")
+    def test_wing_opt_ESP_SNOPT(self):
+        # first copy files
+        os.chdir("aero")
+        shutil.copy("../ffd/ffd.xyz", ".")
+        shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
+        subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
+        shutil.rmtree("output_ESP", ignore_errors=True)
+        subprocess.run(
+            [
+                "mpirun",
+                "-n",
+                f"{self.NPROCS}",
+                "python",
+                "aero_opt_esp.py",
+                "--output",
+                "output_ESP",
+                "--gridFile",
+                "wing_vol_coarsen.cgns",
+                "--opt",
+                "SNOPT",
+                "--optOptions",
+                "{'Major iterations limit': 0}",
+            ],
+            check=True,
+        )
+
+    @unittest.skipIf(pyOCSM is None, "pyOCSM is required for this test")
+    def test_wing_opt_ESP_IPOPT(self):
+        # first copy files
+        os.chdir("aero")
+        shutil.copy("../ffd/ffd.xyz", ".")
+        shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
+        subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
+        shutil.rmtree("output_ESP", ignore_errors=True)
+        subprocess.run(
+            [
+                "mpirun",
+                "-n",
+                f"{self.NPROCS}",
+                "python",
+                "aero_opt_esp.py",
+                "--output",
+                "output_ESP",
+                "--gridFile",
+                "wing_vol_coarsen.cgns",
+                "--opt",
+                "IPOPT",
+                "--optOptions",
+                "{'max_iter': 0}",
             ],
             check=True,
         )
@@ -91,15 +184,17 @@ class TestAirfoilOpt(unittest.TestCase):
         # we are explicitly calling mpirun ourselves
         self.NPROCS = 2
         os.chdir(os.path.join(tutorialDir, "airfoilopt"))
-
-    def test(self):
         # mesh
         os.chdir("mesh")
         subprocess.run(["python", "genMesh.py"], check=True)
         # FFD
         os.chdir("../ffd")
         subprocess.run(["python", "genFFD.py"], check=True)
-        os.chdir("../singlepoint")
+        os.chdir("../")
+
+    @unittest.skipUnless(has_SNOPT, "SNOPT is required for this test")
+    def test_single_point(self):
+        os.chdir("singlepoint")
         shutil.copy("../ffd/ffd.xyz", ".")
         shutil.copy("../mesh/n0012.cgns", ".")
         shutil.rmtree("output", ignore_errors=True)
@@ -113,11 +208,14 @@ class TestAirfoilOpt(unittest.TestCase):
                 "--opt",
                 "SNOPT",
                 "--optOptions",
-                "{'Major iterations limit': 1}",
+                "{'Major iterations limit': 0}",
             ],
             check=True,
         )
-        os.chdir("../multipoint")
+
+    @unittest.skipUnless(has_SNOPT, "SNOPT is required for this test")
+    def test_multipoint(self):
+        os.chdir("multipoint")
         shutil.copy("../ffd/ffd.xyz", ".")
         shutil.copy("../mesh/n0012.cgns", ".")
         shutil.rmtree("output", ignore_errors=True)
@@ -131,7 +229,7 @@ class TestAirfoilOpt(unittest.TestCase):
                 "--opt",
                 "SNOPT",
                 "--optOptions",
-                "{'Major iterations limit': 1}",
+                "{'Major iterations limit': 0}",
             ],
             check=True,
         )
