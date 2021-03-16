@@ -6,6 +6,10 @@ import shutil
 tutorialDir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../tutorial")  # Path to current folder
 image = os.environ.get("IMAGE")
 has_SNOPT = image == "PRIVATE"
+try:
+    from pyOCSM import pyOCSM
+except ImportError:
+    pyOCSM = None
 
 
 class TestWingAnalysis(unittest.TestCase):
@@ -119,7 +123,7 @@ class TestWingOpt(unittest.TestCase):
             check=True,
         )
 
-    @unittest.skipUnless(has_SNOPT, "pyOCSM and SNOPT are required for this test")
+    @unittest.skipUnless(has_SNOPT and pyOCSM is not None, "SNOPT and pyOCSM are required for this test")
     def test_wing_opt_ESP_SNOPT(self):
         # first copy files
         os.chdir("aero")
@@ -146,6 +150,7 @@ class TestWingOpt(unittest.TestCase):
             check=True,
         )
 
+    @unittest.skipIf(pyOCSM is None, "pyOCSM is required for this test")
     def test_wing_opt_ESP_IPOPT(self):
         # first copy files
         os.chdir("aero")
