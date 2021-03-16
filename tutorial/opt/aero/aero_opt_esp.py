@@ -85,7 +85,7 @@ ap.addDV("alpha", value=1.5, lower=0, upper=10.0, scale=0.1)
 # ======================================================================
 # rst dvgeo (beg)
 # Create DVGeometry object
-DVGeo = DVGeometryESP("wing_red.csm", suppress_stdout=True, exclude_edge_projections=True)
+DVGeo = DVGeometryESP("wing.csm", suppress_stdout=True, exclude_edge_projections=True)
 DVGeo.addVariable(
     "twist_local", cols=[2, 3, 4, 5, 6, 7, 8], lower=-10 * np.ones(7), upper=10 * np.ones(7), scale=0.1, dh=0.0001
 )
