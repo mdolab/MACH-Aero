@@ -34,7 +34,9 @@ Here are a few of the items we will cover in the following pages:
 
 About this tutorial
 ===================
-This tutorial was written by David Anderegg, who is employed by `ZHAW <https://www.zhaw.ch/en/university/>`_ in Switzerland.
+This tutorial was written by David Anderegg and Anil Yildirim.
+David Anderegg is employed by `ZHAW <https://www.zhaw.ch/en/university/>`_ in Switzerland at the time this tutorial was published.
+Most of the material in the overset theory section is based on the materials from Ney Secco.
 
 
 References
