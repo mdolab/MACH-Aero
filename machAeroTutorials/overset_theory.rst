@@ -78,7 +78,7 @@ If there are overlapping meshes, it basically uses the smaller cells, and the co
     src: overset_guide.pdf page 7
 
 The ``iBlank`` array indicates the function of each cell.
-ADflow saves this array in the volume or surface CGNS files if you add ``blank`` to the ``surfaceVariables`` 
+ADflow saves this array in the volume or surface CGNS files if you add ``blank`` to the ``surfaceVariables``
 or ``volumeVariables`` respectively.
 
 .. figure:: images/overset_guide_8.jpg
@@ -267,17 +267,17 @@ The background mesh may be too coarse.
 Requirement for a Valid Hole Cutting
 ------------------------------------
 
-In the figure below, the center cell is the cell number 1, and all of the other cubes represent an exploded view of the computational stencil used in ADflow for RANS simulations.
+In the figure below, the center cell is marked with red, and all of the other cubes represent an exploded view of the computational stencil used in ADflow for RANS simulations.
 The stencil of all compute cells should include only other compute or interpolated cells.
 If this is not satisfied, the center cell is tagged as an *orphan* cell.
 We will need to fix all of the orphan cells in the mesh by adjusting the mesh or the options so that every compute cell has a full stencil with either compute or interpolate cells.
 
-.. figure:: images/overset_guide_18.jpg
+.. figure:: images/cubeplot.jpg
     :align: center
 
-    I am not sure what caption should go here?
+    The computational stencil used in ADflow for a second-order accurate finite-volume formulation for RANS equations. The center compute cell (marked with red) needs to access the state in all of the cells included in the figure to compute the residuals.
 ..
-    src: overset_guide.pdf page 18
+    src: ank paper stencil plots
 
 
 Orphans troubleshooting
