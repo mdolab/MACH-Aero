@@ -5,7 +5,7 @@
 from collections import OrderedDict
 from mpi4py import MPI
 from pyhyp import pyHypMulti
-from cgnsutilities.cgnsutilities import *
+from cgnsutilities.cgnsutilities import readGrid, combineGrids
 import argparse
 
 # rst Imports (end)
@@ -34,22 +34,22 @@ args = parser.parse_args()
 s0 = 1.4e-7
 
 # number of Levels in the near-Field
-nNearfield = {"L3": 31, "L2": 61, "L1": 121,}[args.level]
+nNearfield = {"L3": 31, "L2": 61, "L1": 121}[args.level]
 
 
 # Farfield
 # background mesh spacing
-dhStar = {"L3": 0.178, "L2": 0.09, "L1": 0.045,}[args.level]
+dhStar = {"L3": 0.178, "L2": 0.09, "L1": 0.045}[args.level]
 
-nFarfield = {"L3": 13, "L2": 25, "L1": 49,}[args.level]
+nFarfield = {"L3": 13, "L2": 25, "L1": 49}[args.level]
 
 
 # General
 # factor for spacings
-fact = {"L3": 1.0, "L2": 2.0, "L1": 4.0,}[args.level]
+fact = {"L3": 1.0, "L2": 2.0, "L1": 4.0}[args.level]
 
 # levels of coarsening for the surface meshes
-coarsen = {"L1": 1, "L2": 2, "L3": 3,}[args.level]
+coarsen = {"L1": 1, "L2": 2, "L3": 3}[args.level]
 # rst parameters (end)
 
 
