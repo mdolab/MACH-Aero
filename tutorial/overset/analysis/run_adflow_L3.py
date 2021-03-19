@@ -52,7 +52,7 @@ solverOptions = {
     # Physics Parameters
     "equationType": "RANS",
     # RK
-    "smoother": "runge kutta",
+    "smoother": "Runge-Kutta",
     "rkreset": True,
     "nrkreset": 35,
     "CFL": 0.8,

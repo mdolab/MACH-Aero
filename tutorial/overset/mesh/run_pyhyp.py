@@ -64,7 +64,7 @@ commonOptions = {
     "unattachedEdgesAreSymmetry": False,
     "outerFaceBC": "overset",
     "autoConnect": True,
-    "fileType": "cgns",
+    "fileType": "CGNS",
     # ---------------------------
     #        Grid Parameters
     # ---------------------------
@@ -76,8 +76,8 @@ commonOptions = {
     # ---------------------------
     #   Pseudo Grid Parameters
     # ---------------------------
-    "ps0": -1,
-    "pGridRatio": -1,
+    "ps0": -1.0,
+    "pGridRatio": -1.0,
     "cMax": 1.0,
     # ---------------------------
     #   Smoothing parameters

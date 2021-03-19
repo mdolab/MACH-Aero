@@ -52,7 +52,7 @@ via MPI).
 After that, we setup up the command line parsing with three arguments
 (``--input_dir``, ``--output_dir`` and ``--level``)
 
-Level dependant options
+Level Dependent Options
 -----------------------
 Next, we define some basic mesh parameters that depend on the level used:
 
@@ -62,7 +62,7 @@ Next, we define some basic mesh parameters that depend on the level used:
 
 As you can see, for most options, we generate a ``dict`` with the three levels we want to create. Right after the dict,
 an indexing happens (``[args.level]``). This way, we dont actually save the dict in the variables. We actually load the
-value, that correspondes to the current level, to that variable.
+value, that corresponds to the current level, to that variable.
 
 Common pyHyp options
 ---------------------
