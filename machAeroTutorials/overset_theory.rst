@@ -239,8 +239,8 @@ For this, we need to check leaks in the flooding process:
 
 #. Set the ADflow option: ``'nrefine`:1``. This stops the IHC algorithm after one iteartion. You will get error warnings but this is fine, we just want to get an intermediate output for debugging. The ``nrefine`` option controls how many iterations of the IHC algorithm is performed. You can also modify the ``nFloodIter`` option to control how many *flooding* iterations are performed. For example, if ADflow seg-faults in the first overset iteration because the whole mesh floods, then you can stop the flooding iterations early by setting ``nFloodIter`` to 1 or 2. A value of 1 will just determine the flood-seeds, a value of 2 will do a first pass of the flooding process.
 #. Set ADflow option: ``‘usezippermesh’:False`` This skips the zipper mesh generation, which may crash if the hole cutting does not work.
-#. Run the overset check file: ihc_check.py (Note from Anil: I copied Ney's notes as is, I am not aware where this file is now.)
-#. Open the ``fc_-001_vol.cgns`` file in Tecplot
+#. Run the overset check file: ihc_check.py (This can be found under the tutorial/overset/mesh directory in this repo)
+#. Open the output volume file file in Tecplot
 #. Use the blanking option to hide cells with iblank ≥ -1. This will show just the flood seeds (iblank=-3) and flooded cells (iblank=-2).
 #. Check which CGNS blocks are fully flooded and then find the cells that are connecting the side of the mesh that is inside the body to the exterior side of the mesh.
 

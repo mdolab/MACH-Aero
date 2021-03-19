@@ -185,3 +185,13 @@ If you have MPI installed and enough processors available, you can also run it i
 
 Since we want 3 meshes of different size, you will have to run this script 3 times with the appropriate
 ``--level`` argument.
+
+Check the Final Mesh
+====================
+
+Finally, we can use the ``ihc_check.py`` script to check the result of the implicit hole cutting process in ADflow:
+
+.. literalinclude:: ../tutorial/overset/mesh/ihc_check.py
+   :start-after: # rst start
+   :end-before: # rst end
+
