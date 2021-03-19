@@ -108,6 +108,4 @@ ax[1][1].set_ylabel("Cdp & Cdv")
 for ix, iy in np.ndindex(ax.shape):
     ax[ix, iy].grid()
 
-
 plt.show()
-
