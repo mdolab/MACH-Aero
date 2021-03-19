@@ -78,7 +78,8 @@ If there are overlapping meshes, it basically uses the smaller cells, and the co
     src: overset_guide.pdf page 7
 
 The ``iBlank`` array indicates the function of each cell.
-ADflow saves this array in the volume CGNS files.
+ADflow saves this array in the volume or surface CGNS files if you add ``blank`` to the ``surfaceVariables`` 
+or ``volumeVariables`` respectively.
 
 .. figure:: images/overset_guide_8.jpg
     :align: center
@@ -274,7 +275,7 @@ We will need to fix all of the orphan cells in the mesh by adjusting the mesh or
 .. figure:: images/overset_guide_18.jpg
     :align: center
 
-    ADflow terminal output with a successful hole-cutting process. This results in a valid overset mesh in ADflow.
+    I am not sure what caption should go here?
 ..
     src: overset_guide.pdf page 18
 
