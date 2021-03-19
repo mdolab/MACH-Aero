@@ -87,14 +87,16 @@ ADflow saves this array in the volume CGNS files.
 ..
     src: overset_guide.pdf page 8
 
-In the figure above, the red cells represent the compute cells in each mesh.
-The green cells are the interpolate cells, which bring in information from the overlapping compute cells.
-The dark blue are the flood-seeds; these are the cells in the background mesh that overlap with a surface in another mesh (the circle in this case).
-The light blue cells are the flooded cells; these were connected to the flood-seeds so they are marked as flooded.
-The flood-seed and flooded cells have no function in the actual solution, The yellow cells represent the blanked cells.
-These have no function in the actual solution; however, 2 layers of blank or interpolate cells are required to *stop the flooding*.
-Hence the flooded region is limited to the inside of the circle.
-If we did not have enough resolution in the interpolate and blank cells, the flood-seeds would flood the rest of the mesh and the IHC would fail.
+.. note::
+    In the figure above, the red cells represent the compute cells in each mesh.
+    The green cells are the interpolate cells, which bring in information from the overlapping compute cells.
+    The dark blue are the flood-seeds; these are the cells in the background mesh that overlap with a surface in another mesh (the circle in this case).
+    The light blue cells are the flooded cells; these were connected to the flood-seeds so they are marked as flooded.
+    The flood-seed and flooded cells have no function in the actual solution.
+    The yellow cells represent the blanked cells.
+    These have no function in the actual solution; however, 2 layers of blank or interpolate cells are required to *stop the flooding*.
+    Hence the flooded region is limited to the inside of the circle.
+    If we did not have enough resolution in the interpolate and blank cells, the flood-seeds would flood the rest of the mesh and the IHC would fail.
 
 More about IHC can be found here: `Implicit Hole Cutting - A New Approach to Overset Grid Connectivity
 <https://arc.aiaa.org/doi/10.2514/6.2003-4128>`_\.
@@ -147,7 +149,8 @@ Steps to Create an Overset Mesh
 
 Here is a list of commonly used steps to create an overset mesh with the usual workflow in the MDO Lab:
 
-* Generate surface meshes for the main components in ICEM. 􏰀 Extrude surface meshes into volume meshes using pyHyp.
+* Generate surface meshes for the main components in ICEM.
+* Extrude surface meshes into volume meshes using pyHyp.
 * Generate background mesh using cgns utils.
 * Merge blocks in a single file using cgns utils.
 * Check connectivities using ADflow.
@@ -233,12 +236,12 @@ Flood troubleshooting
 If the mesh is flooding (too many flooding iterations, a high number of flooded cells), we need to fist prevent this to get a valid hole cutting.
 For this, we need to check leaks in the flooding process:
 
-# Set the ADflow option: ``'nrefine`:1``. This stops the IHC algorithm after one iteartion. You will get error warnings but this is fine, we just want to get an intermediate output for debugging. The ``nrefine`` option controls how many iterations of the IHC algorithm is performed. You can also modify the ``nFloodIter`` option to control how many *flooding* iterations are performed. For example, if ADflow seg-faults in the first overset iteration because the whole mesh floods, then you can stop the flooding iterations early by setting ``nFloodIter`` to 1 or 2. A value of 1 will just determine the flood-seeds, a value of 2 will do a first pass of the flooding process.
-# Set ADflow option: ``‘usezippermesh’:False`` This skips the zipper mesh generation, which may crash if the hole cutting does not work.
-# Run the overset check file: ihc_check.py (Note from Anil: I copied Ney's notes as is, I am not aware where this file is now.)
-# Open the ``fc_-001_vol.cgns`` file in Tecplot
-# Use the blanking option to hide cells with iblank ≥ -1. This will show just the flood seeds (iblank=-3) and flooded cells (iblank=-2).
-# Check which CGNS blocks are fully flooded and then find the cells that are connecting the side of the mesh that is inside the body to the exterior side of the mesh.
+#. Set the ADflow option: ``'nrefine`:1``. This stops the IHC algorithm after one iteartion. You will get error warnings but this is fine, we just want to get an intermediate output for debugging. The ``nrefine`` option controls how many iterations of the IHC algorithm is performed. You can also modify the ``nFloodIter`` option to control how many *flooding* iterations are performed. For example, if ADflow seg-faults in the first overset iteration because the whole mesh floods, then you can stop the flooding iterations early by setting ``nFloodIter`` to 1 or 2. A value of 1 will just determine the flood-seeds, a value of 2 will do a first pass of the flooding process.
+#. Set ADflow option: ``‘usezippermesh’:False`` This skips the zipper mesh generation, which may crash if the hole cutting does not work.
+#. Run the overset check file: ihc_check.py (Note from Anil: I copied Ney's notes as is, I am not aware where this file is now.)
+#. Open the ``fc_-001_vol.cgns`` file in Tecplot
+#. Use the blanking option to hide cells with iblank ≥ -1. This will show just the flood seeds (iblank=-3) and flooded cells (iblank=-2).
+#. Check which CGNS blocks are fully flooded and then find the cells that are connecting the side of the mesh that is inside the body to the exterior side of the mesh.
 
 The following points might help to fix your flooding issue.
 Check them first.
