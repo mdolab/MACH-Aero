@@ -1,0 +1,117 @@
+Overset Tips
+============
+--------------------------------------------------------------------------------
+General
+--------------------------------------------------------------------------------
+    - all meshes should have same off-wall spacing
+    - intersecting meshes must have mating surfaces (no actual intersections)
+    - once you have a valid hole-cutting, decrease the 'nearwalldist' to the
+        minimum possible value
+    - each compute cell must have at least two donor cells in each orthogonal
+        direction and one cell in each diagonal direction otherwise, it will be
+        flagged as an orphan (see ASCII art below)
+
+                |---|---|---|---|---|   The compute cell in the center would
+                | B | B | D | B | B |   not be flagged as an orphan as long
+                |---|---|---|---|---|   as it maintains the stencil of donor
+                | B | D | D | D | B |   cells (marked with D) in 3D.
+                |---|---|---|---|---|
+                | D | D | C | D | D |   Key:
+                |---|---|---|---|---|       D (donor) - compute or interpolate
+                | B | D | D | D | B |       B (blanked) - blanked, flooded,
+                |---|---|---|---|---|           flood seed or explicitly blanked
+                | B | B | D | B | B |
+                |---|---|---|---|---|
+--------------------------------------------------------------------------------
+Collar meshes
+--------------------------------------------------------------------------------
+    - must be much finer mesh in comparison to overlapping meshes
+
+--------------------------------------------------------------------------------
+How Implicit Hole Cutting Works
+--------------------------------------------------------------------------------
+1) Determine Overlap of N Blocks
+    Create an N x N matrix that tells, for a given block, which other blocks
+    overlap it.
+
+*) Designate Flood Seeds
+    Any cell farther than 'nearwalldist' from a wall in its own block that
+    intersects a wall on another block will be flagged as a flood seed.
+
+m) Flooding
+    In a given block, any compute cells that interface with a flood seed or a
+    flooded cell are converted to flooded cells. The flood is only contained
+    by interpolate cells.
+
+n) Fringe Reduction
+    After the iterative portion of the algorithm is over, excess fringe cells
+    are converted to blanked cells if they do not influence any compute cells.
+
+iBlank Values
+ 1 : Compute
+ 0 : Blanked
+-1 : Fringe (interpolate)
+-2 : Flooded
+-3 : Flood seed
+-4 : Explicitly blanked (cutCallBack)
+
+--------------------------------------------------------------------------------
+Adjusting Implicit Hole Cutting Process
+--------------------------------------------------------------------------------
+There are two related flags in pyADflow to help with this:
+
+    'usezippermesh': False (default=True)
+        Sometimes if your mesh is flooding out, the zipper mesh will fail and
+        the mesh will not be written to file. This is basically impossible to
+        troubleshoot. This can be avoided by setting 'usezippermesh' to False.
+
+    'nrefine': 1 (default=10)
+        You can choose how many cycles to run the hole cutting algorithm. In
+        flood-out cases, you may want to stop after 1 cycle to see where a leak
+        is occurring.
+
+Within each hole cutting cycle, there is a flooding procedure which generally
+takes at least two iterations. If the mesh is flooding out, you can go into the
+Fortran code to limit the number of iterations in this cycle so that you can
+tell where the leak starts.
+
+    > Open adflow/src/overset/floodInteriorCells.F90
+
+    > Insert an additional if statement in the code after line 231.
+
+        231      loopIter = loopIter + 1
+        232
+        233      ! Choose number of flood cycles
+        234      if (loopIter == 2) then
+        235         exit parallelSyncLoop
+        236      end if
+        237
+        238   end do parallelSyncLoop
+
+    > Using 'loopIter == 2' will stop the cycle after one Flood Iteration.
+
+    > Don't forget to recompile the code. (make in hg/adflow)
+
+--------------------------------------------------------------------------------
+Viewing iBlanks in Tecplot
+--------------------------------------------------------------------------------
+1. One Tecplot zone per CGNS/zone solution
+2. Check "Load Cell-centered Directly" (default)
+3. Change Surfaces to "Exposed cell faces"
+4. Change Contour Type to "Primary value flood"
+5. Contour Levels
+    - Minimum = -3
+    - Maximum = 0
+    - N levels = 4
+6. Blanking
+
+--------------------------------------------------------------------------------
+Generating grid families for a grid convergence study
+--------------------------------------------------------------------------------
+Say we have a base grid with level = j.
+Another grid with level "i" should be generated such that:
+    - Number of cells: Ni = Nj / (2**dim)**(i-j)
+    - Number of nodes on an edge: add one to # of cells
+    - Growth ratio: ri = rj**(i+1-j)
+
+For more information, see https://www.grc.nasa.gov/www/wind/valid/tutorial/spatconv.html
