@@ -156,10 +156,6 @@ class TestOverset(unittest.TestCase):
 
     def test_analysis(self):
         os.chdir("analysis")
-        # first we need to install adflow_util
-        subprocess.check_call(
-            [sys.executable, "-m", "pip", "install", "git+https://github.com/DavidAnderegg/adflow_util.git"]
-        )
         cmd = ["python", "run_adflow_L3.py"]
         subprocess.check_call(mpiCmd + cmd)
 
