@@ -11,12 +11,17 @@ try:
 except ImportError:
     pyOCSM = None
 
+# note that this is NOT the testflo directive!
+# we are explicitly calling mpirun ourselves
+NPROCS = 2
+mpiCmd = ["mpirun", "-n", f"{NPROCS}"]
+gridFlag = ["--gridFile", "wing_vol_coarsen.cgns"]
+SNOPT = ["--opt", "SNOPT", "--optOptions", "{'Major iterations limit': 0}"]
+IPOPT = ["--opt", "IPOPT", "--optOptions", "{'max_iter': 0}"]
+
 
 class TestWingAnalysis(unittest.TestCase):
     def setUp(self):
-        # note that this is NOT the testflo directive!
-        # we are explicitly calling mpirun ourselves
-        self.NPROCS = 2
         os.chdir(os.path.join(tutorialDir, "aero"))
 
     def test(self):
@@ -25,29 +30,18 @@ class TestWingAnalysis(unittest.TestCase):
         subprocess.run(["python", "generate_wing.py"], check=True)
         # aero/meshing/volume
         os.chdir("../meshing/volume")
-        subprocess.run(["mpirun", "-n", f"{self.NPROCS}", "python", "run_pyhyp.py"], check=True)
+        cmd = ["python", "run_pyhyp.py"]
+        subprocess.run(mpiCmd + cmd, check=True)
         # aero analysis
         os.chdir("../../analysis")
         shutil.rmtree("output", ignore_errors=True)
         shutil.rmtree("output_drag_polar", ignore_errors=True)
         subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
-        subprocess.run(
-            ["mpirun", "-n", f"{self.NPROCS}", "python", "aero_run.py", "--gridFile", "wing_vol_coarsen.cgns"],
-            check=True,
-        )
+        cmd = ["python", "aero_run.py"]
+        subprocess.run(mpiCmd + cmd + gridFlag, check=True)
         # drag polar
-        subprocess.run(
-            [
-                "mpirun",
-                "-n",
-                f"{self.NPROCS}",
-                "python",
-                "aero_run_drag_polar.py",
-                "--gridFile",
-                "wing_vol_coarsen.cgns",
-            ],
-            check=True,
-        )
+        cmd = ["python", "aero_run_drag_polar.py"]
+        subprocess.run(mpiCmd + cmd + gridFlag, check=True)
 
 
 class TestWingOpt(unittest.TestCase):
@@ -80,22 +74,8 @@ class TestWingOpt(unittest.TestCase):
         shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
         shutil.rmtree("output", ignore_errors=True)
         subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
-        subprocess.run(
-            [
-                "mpirun",
-                "-n",
-                f"{self.NPROCS}",
-                "python",
-                "aero_opt.py",
-                "--gridFile",
-                "wing_vol_coarsen.cgns",
-                "--opt",
-                "SNOPT",
-                "--optOptions",
-                "{'Major iterations limit': 0}",
-            ],
-            check=True,
-        )
+        cmd = ["python", "aero_opt.py"]
+        subprocess.run(mpiCmd + cmd + gridFlag + SNOPT, check=True)
 
     def test_wing_opt_IPOPT(self):
         # first copy files
@@ -104,24 +84,8 @@ class TestWingOpt(unittest.TestCase):
         shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
         shutil.rmtree("output_IPOPT", ignore_errors=True)
         subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
-        subprocess.run(
-            [
-                "mpirun",
-                "-n",
-                f"{self.NPROCS}",
-                "python",
-                "aero_opt.py",
-                "--gridFile",
-                "wing_vol_coarsen.cgns",
-                "--opt",
-                "IPOPT",
-                "--output",
-                "output_IPOPT",
-                "--optOptions",
-                "{'max_iter': 0}",
-            ],
-            check=True,
-        )
+        cmd = ["python", "aero_opt.py", "--output", "output_IPOPT"]
+        subprocess.run(mpiCmd + cmd + gridFlag + IPOPT, check=True)
 
     @unittest.skipUnless(has_SNOPT and pyOCSM is not None, "SNOPT and pyOCSM are required for this test")
     def test_wing_opt_ESP_SNOPT(self):
@@ -131,24 +95,8 @@ class TestWingOpt(unittest.TestCase):
         shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
         subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
         shutil.rmtree("output_ESP", ignore_errors=True)
-        subprocess.run(
-            [
-                "mpirun",
-                "-n",
-                f"{self.NPROCS}",
-                "python",
-                "aero_opt_esp.py",
-                "--output",
-                "output_ESP",
-                "--gridFile",
-                "wing_vol_coarsen.cgns",
-                "--opt",
-                "SNOPT",
-                "--optOptions",
-                "{'Major iterations limit': 0}",
-            ],
-            check=True,
-        )
+        cmd = ["python", "aero_opt_esp.py", "--output", "output_ESP"]
+        subprocess.run(mpiCmd + cmd + gridFlag + SNOPT, check=True)
 
     @unittest.skipIf(pyOCSM is None, "pyOCSM is required for this test")
     def test_wing_opt_ESP_IPOPT(self):
@@ -158,24 +106,8 @@ class TestWingOpt(unittest.TestCase):
         shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
         subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
         shutil.rmtree("output_ESP", ignore_errors=True)
-        subprocess.run(
-            [
-                "mpirun",
-                "-n",
-                f"{self.NPROCS}",
-                "python",
-                "aero_opt_esp.py",
-                "--output",
-                "output_ESP",
-                "--gridFile",
-                "wing_vol_coarsen.cgns",
-                "--opt",
-                "IPOPT",
-                "--optOptions",
-                "{'max_iter': 0}",
-            ],
-            check=True,
-        )
+        cmd = ["python", "aero_opt_esp.py", "--output", "output_ESP"]
+        subprocess.run(mpiCmd + cmd + gridFlag + IPOPT, check=True)
 
 
 class TestAirfoilOpt(unittest.TestCase):
@@ -198,20 +130,8 @@ class TestAirfoilOpt(unittest.TestCase):
         shutil.copy("../ffd/ffd.xyz", ".")
         shutil.copy("../mesh/n0012.cgns", ".")
         shutil.rmtree("output", ignore_errors=True)
-        subprocess.run(
-            [
-                "mpirun",
-                "-n",
-                f"{self.NPROCS}",
-                "python",
-                "airfoil_opt.py",
-                "--opt",
-                "SNOPT",
-                "--optOptions",
-                "{'Major iterations limit': 0}",
-            ],
-            check=True,
-        )
+        cmd = ["python", "airfoil_opt.py"]
+        subprocess.run(mpiCmd + cmd + SNOPT, check=True)
 
     @unittest.skipUnless(has_SNOPT, "SNOPT is required for this test")
     def test_multipoint(self):
@@ -219,20 +139,8 @@ class TestAirfoilOpt(unittest.TestCase):
         shutil.copy("../ffd/ffd.xyz", ".")
         shutil.copy("../mesh/n0012.cgns", ".")
         shutil.rmtree("output", ignore_errors=True)
-        subprocess.run(
-            [
-                "mpirun",
-                "-n",
-                f"{self.NPROCS}",
-                "python",
-                "airfoil_multiopt.py",
-                "--opt",
-                "SNOPT",
-                "--optOptions",
-                "{'Major iterations limit': 0}",
-            ],
-            check=True,
-        )
+        cmd = ["python", "airfoil_multiopt.py"]
+        subprocess.run(mpiCmd + cmd + SNOPT, check=True)
 
 
 if __name__ == "__main__":
