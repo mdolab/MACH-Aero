@@ -22,7 +22,10 @@ IPOPT = ["--opt", "IPOPT", "--optOptions", "{'max_iter': 0}"]
 
 class TestWingAnalysis(unittest.TestCase):
     def setUp(self):
-        os.chdir(os.path.join(tutorialDir, "aero"))
+        os.chdir(os.path.join(tutorialDir, "aero/analysis"))
+        if not os.path.isfile("wing_vol_coarsen.cgns"):
+            subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
+        os.chdir("../")
 
     def test(self):
         # aero/geometry
@@ -36,7 +39,6 @@ class TestWingAnalysis(unittest.TestCase):
         os.chdir("../../analysis")
         shutil.rmtree("output", ignore_errors=True)
         shutil.rmtree("output_drag_polar", ignore_errors=True)
-        subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
         cmd = ["python", "aero_run.py"]
         subprocess.run(mpiCmd + cmd + gridFlag, check=True)
         # drag polar
@@ -54,6 +56,10 @@ class TestWingOpt(unittest.TestCase):
         # first generate FFD grids
         os.chdir("ffd")
         subprocess.run(["python", "simple_ffd.py"], check=True)
+        # then coarsen the grid
+        os.chdir("../../aero/analysis")
+        if not os.path.isfile("wing_vol_coarsen.cgns"):
+            subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
         # go back to opt dir
         os.chdir(os.path.join(tutorialDir, "opt"))
 
@@ -71,9 +77,8 @@ class TestWingOpt(unittest.TestCase):
         # first copy files
         os.chdir("aero")
         shutil.copy("../ffd/ffd.xyz", ".")
-        shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
+        shutil.copy("../../aero/analysis/wing_vol_coarsen.cgns", "wing_vol_coarsen.cgns")
         shutil.rmtree("output", ignore_errors=True)
-        subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
         cmd = ["python", "aero_opt.py"]
         subprocess.run(mpiCmd + cmd + gridFlag + SNOPT, check=True)
 
@@ -81,9 +86,8 @@ class TestWingOpt(unittest.TestCase):
         # first copy files
         os.chdir("aero")
         shutil.copy("../ffd/ffd.xyz", ".")
-        shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
+        shutil.copy("../../aero/analysis/wing_vol_coarsen.cgns", "wing_vol_coarsen.cgns")
         shutil.rmtree("output_IPOPT", ignore_errors=True)
-        subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
         cmd = ["python", "aero_opt.py", "--output", "output_IPOPT"]
         subprocess.run(mpiCmd + cmd + gridFlag + IPOPT, check=True)
 
@@ -92,8 +96,7 @@ class TestWingOpt(unittest.TestCase):
         # first copy files
         os.chdir("aero")
         shutil.copy("../ffd/ffd.xyz", ".")
-        shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
-        subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
+        shutil.copy("../../aero/analysis/wing_vol_coarsen.cgns", "wing_vol_coarsen.cgns")
         shutil.rmtree("output_ESP", ignore_errors=True)
         cmd = ["python", "aero_opt_esp.py", "--output", "output_ESP"]
         subprocess.run(mpiCmd + cmd + gridFlag + SNOPT, check=True)
@@ -103,8 +106,7 @@ class TestWingOpt(unittest.TestCase):
         # first copy files
         os.chdir("aero")
         shutil.copy("../ffd/ffd.xyz", ".")
-        shutil.copy("../../aero/analysis/wing_vol.cgns", "wing_vol.cgns")
-        subprocess.run(["cgns_utils", "coarsen", "wing_vol.cgns", "wing_vol_coarsen.cgns"], check=True)
+        shutil.copy("../../aero/analysis/wing_vol_coarsen.cgns", "wing_vol_coarsen.cgns")
         shutil.rmtree("output_ESP", ignore_errors=True)
         cmd = ["python", "aero_opt_esp.py", "--output", "output_ESP"]
         subprocess.run(mpiCmd + cmd + gridFlag + IPOPT, check=True)
