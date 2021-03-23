@@ -1,4 +1,5 @@
 import os
+import sys
 import unittest
 import subprocess
 import shutil
@@ -48,9 +49,6 @@ class TestWingAnalysis(unittest.TestCase):
 
 class TestWingOpt(unittest.TestCase):
     def setUp(self):
-        # note that this is NOT the testflo directive!
-        # we are explicitly calling mpirun ourselves
-        self.NPROCS = 2
         os.chdir(os.path.join(tutorialDir, "opt"))
         # Prepare optimization INPUT files
         # first generate FFD grids
@@ -114,9 +112,6 @@ class TestWingOpt(unittest.TestCase):
 
 class TestAirfoilOpt(unittest.TestCase):
     def setUp(self):
-        # note that this is NOT the testflo directive!
-        # we are explicitly calling mpirun ourselves
-        self.NPROCS = 2
         os.chdir(os.path.join(tutorialDir, "airfoilopt"))
         # mesh
         os.chdir("mesh")
@@ -143,6 +138,28 @@ class TestAirfoilOpt(unittest.TestCase):
         shutil.rmtree("output", ignore_errors=True)
         cmd = ["python", "airfoil_multiopt.py"]
         subprocess.run(mpiCmd + cmd + SNOPT, check=True)
+
+
+class TestOverset(unittest.TestCase):
+    def setUp(self):
+        os.chdir(os.path.join(tutorialDir, "overset"))
+
+    def test_pyhyp(self):
+        os.chdir("mesh")
+        cmd = ["python", "run_pyhyp.py", "--level", "L3"]
+        subprocess.run(mpiCmd + cmd, check=True)
+
+        # now we test the ihc check script
+        cmd = ["python", "ihc_check.py", "--level", "L3"]
+        subprocess.run(cmd, check=True)
+        self.assertTrue(os.path.isfile("ONERA_M6_L3_IHC.cgns"))
+
+    def test_analysis(self):
+        os.chdir("analysis")
+        # first we need to install adflow_util
+        subprocess.run([sys.executable, "-m", "pip", "install", "git+https://github.com/DavidAnderegg/adflow_util.git"])
+        cmd = ["python", "run_adflow_L3.py"]
+        subprocess.run(mpiCmd + cmd, check=True)
 
 
 if __name__ == "__main__":
