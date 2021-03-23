@@ -1,27 +1,26 @@
 trigger: none
 pr:
-- master
+  - master
 
 # add a daily cron job
 # set to 10pm EST, which is 3am UTC
 schedules:
-- cron: "0 3 * * *"
-  displayName: Nightly test
-  branches:
-    include:
-      - master
-  always: true
+  - cron: "0 3 * * *"
+    displayName: Nightly test
+    branches:
+      include:
+        - master
+    always: true
 
 resources:
   repositories:
-  - repository: azure_template
-    type: github
-    name: mdolab/.github
-    endpoint: mdolab
+    - repository: azure_template
+      type: github
+      name: mdolab/.github
+      endpoint: mdolab
 
 extends:
   template: azure/azure_template.yaml@azure_template
   parameters:
     REPO_NAME: MACH-Aero
     IMAGE: auto
-    BUILD_REAL: None

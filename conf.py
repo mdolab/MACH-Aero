@@ -23,4 +23,7 @@ repos = [
 intersphinx_mapping = {r: (f"https://mdolab-{r}.readthedocs-hosted.com/en/latest", None) for r in repos}
 
 # bibtex
-bibtex_bibfiles = ["machFramework/references.bib"]
+bibtex_bibfiles = [
+    "machFramework/references.bib",
+    "machAeroTutorials/overset.bib",
+]
