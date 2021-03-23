@@ -4,8 +4,7 @@ import subprocess
 import shutil
 
 tutorialDir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../tutorial")  # Path to current folder
-image = os.environ.get("IMAGE")
-has_SNOPT = image == "PRIVATE"
+has_SNOPT = os.environ.get("IMAGE") == "private"
 try:
     from pyOCSM import pyOCSM
 except ImportError:
