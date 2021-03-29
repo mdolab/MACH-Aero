@@ -46,7 +46,9 @@ For the rest of the instructions, we use angled brackets such as ``<version>`` a
 
 Common Prerequisites
 --------------------
-If they're not available already, common prerequisites can be installed directly from a Debian repository::
+If they're not available already, common prerequisites can be installed directly from a Debian repository:
+
+.. prompt:: bash
 
    sudo apt-get install python-dev gfortran valgrind cmake libblas-dev liblapack-dev build-essential swig
 
@@ -503,8 +505,10 @@ This separation adds a level of complexity but is more extensible if multiple pa
 
 When configuring your environment, the examples shown here set environment variables, ``$PATH``, and ``$LD_LIBRARY_PATH`` in ``.bashrc``.
 If multiple versions and dependencies are being used simultaneously,
-for example on a cluster, the paradigm of `environment modules <http://modules.sourceforge.net>` is often used (e.g. ``module use petsc``).
-A module file is simply a text file containing lines such as::
+for example on a cluster, the paradigm of `environment modules <http://modules.sourceforge.net>`__ is often used (e.g. ``module use petsc``).
+A module file is simply a text file containing lines such as:
+
+.. prompt:: bash
 
    append-path PATH $HOME/opt/petsc/3.7.7/OpenMPI-1.10.7/GCC-7.3.0/bin
 
