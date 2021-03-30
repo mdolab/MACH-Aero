@@ -46,7 +46,9 @@ For the rest of the instructions, we use angled brackets such as ``<version>`` a
 
 Common Prerequisites
 --------------------
-If they're not available already, common prerequisites can be installed directly from a Debian repository::
+If they're not available already, common prerequisites can be installed directly from a Debian repository:
+
+.. prompt:: bash
 
    sudo apt-get install python-dev gfortran valgrind cmake libblas-dev liblapack-dev build-essential swig
 
@@ -77,7 +79,7 @@ OpenMPI
 Download from the `OpenMPI <http://www.open-mpi.org/>`__ website and place the tarball in your packages directory (``$HOME/packages``).
 Then, unpack the source code:
 
-.. code-block:: bash
+.. prompt:: bash
 
    cd $HOME/packages
    wget <download URL>
@@ -95,7 +97,7 @@ Add the following lines to ``$HOME/.bashrc`` and ``source`` it:
 
 Finally, configure and build the package:
 
-.. code-block:: bash
+.. prompt:: bash
 
    # export CC=icc CXX=icpc F77=ifort FC=ifort    # Only necessary if using Intel compiler
    ./configure --prefix=$MPI_INSTALL_DIR
@@ -103,7 +105,7 @@ Finally, configure and build the package:
 
 To verify that paths are as expected run
 
-.. code-block:: bash
+.. prompt:: bash
 
    which mpicc
    echo $MPI_INSTALL_DIR/bin/mpicc
@@ -121,7 +123,7 @@ PETSc
 PETSc, the Portable Extensible Toolkit for Scientific Computation is a comprehensive library for helping solve large scale PDE problems.
 Download from the `PETSc <http://www.mcs.anl.gov/petsc/index.html>`__ website and unpack the source directory, from your packages directory:
 
-.. code-block:: bash
+.. prompt:: bash
 
    cd $HOME/packages
    wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-<version>.tar.gz
@@ -143,7 +145,9 @@ It should be set to something representative of the actual architecture.
 
 The next step is to configure PETSc.
 There are a huge number and variety of options.
-To get a list of all available options run::
+To get a list of all available options run:
+
+.. prompt:: bash
 
    ./configure --help
 
@@ -152,7 +156,7 @@ To facilitate installation of PETSc for use with MDO Lab tools, here are some co
 
 * Standard debug build (``PETSC_ARCH=real-debug``):
 
-   .. code-block:: bash
+   .. prompt:: bash
 
       ./configure --PETSC_ARCH=$PETSC_ARCH --with-scalar-type=real --with-debugging=1 --with-mpi-dir=$MPI_INSTALL_DIR \
          --download-metis=yes --download-parmetis=yes --download-superlu_dist=yes \
@@ -160,7 +164,7 @@ To facilitate installation of PETSc for use with MDO Lab tools, here are some co
 
 * Debug complex build (``PETSC_ARCH=complex-debug``):
 
-   .. code-block:: bash
+   .. prompt:: bash
 
       ./configure --PETSC_ARCH=$PETSC_ARCH --with-scalar-type=complex --with-debugging=1 --with-mpi-dir=$MPI_INSTALL_DIR \
          --download-metis=yes --download-parmetis=yes --download-superlu_dist=yes \
@@ -168,7 +172,7 @@ To facilitate installation of PETSc for use with MDO Lab tools, here are some co
 
 * Optimized real build on a cluster with existing MPI (``PETSC_ARCH=real-opt``):
 
-   .. code-block:: bash
+   .. prompt:: bash
 
       ./configure --with-shared-libraries --download-superlu_dist --download-parmetis=yes --download-metis=yes \
          --with-fortran-bindings=1 --with-debugging=0 --with-scalar-type=real --PETSC_ARCH=$PETSC_ARCH --with-cxx-dialect=C++11
@@ -222,11 +226,15 @@ Here is a short overview of some of the options used above.
       --with-shared-libraries --download-superlu_dist=yes --with-fortran-bindings=1 --with-cxx-dialect=C++11
 
 After the configuration step, PETSc must be built. This is accomplished with the command provided at the end of the configure script.
-It will look something like below (the PETSc version should be consistent with the version being installed.)::
+It will look something like below (the PETSc version should be consistent with the version being installed.):
+
+.. prompt:: bash
 
    make PETSC_DIR=$HOME/packages/petsc-<version> PETSC_ARCH=$PETSC_ARCH all
 
-After build, follow the command provided at the end of the print out to test the functionality. It will look something like below::
+After build, follow the command provided at the end of the print out to test the functionality. It will look something like below:
+
+.. prompt:: bash
 
     make PETSC_DIR=$HOME/packages/petsc-<version> PETSC_ARCH=$PETSC_ARCH test
 
@@ -257,7 +265,7 @@ The CGNS Library provides Fortran bindings to read/write files in that format.
 
 Download and unpack the source directory, from your packages directory:
 
-.. code-block:: bash
+.. prompt:: bash
 
    cd $HOME/packages
    wget https://github.com/CGNS/CGNS/archive/v<version>.tar.gz
@@ -275,7 +283,7 @@ Next, configure your environment for CGNS by adding the following lines to your 
 
 To configure the package, go into the ``src`` directory and run the configure script:
 
-.. code-block:: bash
+.. prompt:: bash
 
    cd src
    ./configure --with-fortran --enable-shared --prefix=$CGNS_HOME --disable-cgnstools
@@ -283,7 +291,7 @@ To configure the package, go into the ``src`` directory and run the configure sc
 If your compilers are not located at ``/usr/bin/gcc``, either because you are on an HPC system or using Intel compilers, you must adjust the configure commands.
 This is done by passing environment variables to the configure script:
 
-.. code-block:: bash
+.. prompt:: bash
 
    CC=/path/to/ccompiler FC=/path/to/fcompiler ./configure <options>
 
@@ -291,9 +299,11 @@ where ``CC`` sets the path to the C compiler, and ``FC`` sets the path to the Fo
 If your compilers are on the ``$PATH`` (likely if you are using the module system on a cluster), you can use ``CC=$(which icc)`` and ``FC=$(which ifort)`` for Intel compilers, or correspondingly ``CC=$(which gcc)`` and ``FC=$(which gfortran)`` for GNU compilers.
 
 
-Finally, build and install::
+Finally, build and install:
 
-   $ make && make install
+.. prompt:: bash
+
+   make && make install
 
 Installing CGNS Tools (Optional)
 ********************************
@@ -301,19 +311,23 @@ The CGNS Library comes with a set of tools to view and edit CGNS files manually.
 To install these tools, use the flag ``--enable-cgnstools`` during the configure step instead.
 Note that these tools should be installed on a local computer and not on a cluster.
 
-To enable this option you may need to install the following packages::
+To enable this option you may need to install the following packages:
 
-   $ sudo apt-get install libxmu-dev libxi-dev
+.. prompt:: bash
+
+   sudo apt-get install libxmu-dev libxi-dev
 
 CGNS library sometimes complains about missing includes and libraries
 Most of the time this is either Tk/TCL or OpenGL.
 This can be solved by installing the following packages.
-Note that the version of these libraries might be different on your machine ::
+Note that the version of these libraries might be different on your machine :
 
-   $ sudo apt-get install freeglut3
-   $ sudo apt-get install tk8.6-dev
+.. prompt:: bash
+
+   sudo apt-get install freeglut3
+   sudo apt-get install tk8.6-dev
    # If needed
-   $ sudo apt-get install freeglut3-dev
+   sudo apt-get install freeglut3-dev
 
 .. warning::
    There is a known bug in CGNS 3.3.0 (fixed in later versions) that crashes the build routine for Ubuntu 18/20 when this CGNS tools option is turned on. You can either turn it off compiling with ``--disable-cgnstools`` or, if you still want to use CGNS tools, you can manually patch the source files using `this PR <https://github.com/CGNS/CGNS/pull/55/files>`_ as a reference.
@@ -342,22 +356,30 @@ NumPy
    See :ref:`working_stacks` for numpy versions that are tested.
 
 NumPy is required for all MDO Lab packages.
-It is installed with::
+It is installed with:
+
+.. prompt:: bash
 
    pip install numpy==<version> --user --no-cache
 
-On a ``conda``-based system, it is recommended to use ``conda`` to install numpy and scipy::
+On a ``conda``-based system, it is recommended to use ``conda`` to install numpy and scipy:
+
+.. prompt:: bash
 
    conda install numpy=<version>
 
 SciPy
 ~~~~~
 SciPy is required for several packages including ``pyOptSparse``, ``pyGeo`` and certain functionality in ``pySpline``.
-It is installed with::
+It is installed with:
+
+.. prompt:: bash
 
    pip install scipy==<version> --user --no-cache
 
-On a ``conda``-based system, it is recommended to use ``conda`` to install numpy and scipy::
+On a ``conda``-based system, it is recommended to use ``conda`` to install numpy and scipy:
+
+.. prompt:: bash
 
    conda install scipy=<version>
 
@@ -377,7 +399,9 @@ mpi4py is the Python wrapper for MPI. This is required for **all** parallel MDO 
 
 Simple install with pip
 ***********************
-It is installed with::
+It is installed with:
+
+.. prompt:: bash
 
    pip install mpi4py==<version> --user --no-cache
 
@@ -391,7 +415,9 @@ First, download the source code from `releases <https://github.com/mpi4py/mpi4py
 Then, either run ``pip install .`` or ``python setup.py install`` in the root directory.
 Installing from source has the advantage of having access to the tests, which can be used to verify both the OpenMPI and mpi4py installations.
 
-To run the tests, go to the ``test`` directory, and type::
+To run the tests, go to the ``test`` directory, and type:
+
+.. prompt:: bash
 
    python runtests.py
 
@@ -417,7 +443,9 @@ If you know you will **only** need real PETSc architecture, you can use pip.
 Simple install with pip
 ***********************
 
-It is installed with::
+It is installed with:
+
+.. prompt:: bash
 
    pip install petsc4py==<version> --user --no-cache
 
@@ -427,13 +455,17 @@ Advanced install (For multiple PETSc architectures)
    You must compile a unique petsc4py install for each PETSc architecture.
 
 `Download <https://bitbucket.org/petsc/petsc4py/downloads>`__ the source code and
-extract the correct version matching your PETSc version::
+extract the correct version matching your PETSc version:
 
-   $ tar -xzf petsc4py-<version>.tar.gz
+.. prompt:: bash
 
-From the ``petsc4py`` directory do a user-space install::
+   tar -xzf petsc4py-<version>.tar.gz
 
-$ python setup.py install --user
+From the ``petsc4py`` directory do a user-space install:
+
+.. prompt:: bash
+
+   python setup.py install --user
 
 This will install the package to the ``.local`` directory in your home directory which is suitable for both desktop and cluster accounts.
 You may seen an error warning related to ``python-mpi``, but this should not be a problem.
@@ -444,13 +476,17 @@ You may seen an error warning related to ``python-mpi``, but this should not be 
 
       export PETSC_ARCH=<new_architecture>
 
-   Then install the package::
+   Then install the package:
 
-      $ python setup.py install --user
+   .. prompt:: bash
+
+      python setup.py install --user
 
 Installing from source has the advantage of having access to the tests, which can be used to verify both the PETSc and petsc4py installations.
 
-To run the tests, go to the ``test`` directory, and type::
+To run the tests, go to the ``test`` directory, and type:
+
+.. prompt:: bash
 
    python runtests.py
 
@@ -469,8 +505,10 @@ This separation adds a level of complexity but is more extensible if multiple pa
 
 When configuring your environment, the examples shown here set environment variables, ``$PATH``, and ``$LD_LIBRARY_PATH`` in ``.bashrc``.
 If multiple versions and dependencies are being used simultaneously,
-for example on a cluster, the paradigm of `environment modules <http://modules.sourceforge.net>` is often used (e.g. ``module use petsc``).
-A module file is simply a text file containing lines such as::
+for example on a cluster, the paradigm of `environment modules <http://modules.sourceforge.net>`__ is often used (e.g. ``module use petsc``).
+A module file is simply a text file containing lines such as:
+
+.. prompt:: bash
 
    append-path PATH $HOME/opt/petsc/3.7.7/OpenMPI-1.10.7/GCC-7.3.0/bin
 

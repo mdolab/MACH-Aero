@@ -1,2 +1,1 @@
-sphinxcontrib-bibtex
 sphinx_mdolab_theme

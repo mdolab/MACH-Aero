@@ -35,7 +35,6 @@ optProb.addObj("obj")
 
 # rst Add design variables
 optProb.addVarGroup(name="xvars", nVars=2, type="c", value=[3, -3], lower=-5.12, upper=5.12, scale=1.0)
-optProb.finalizeDesignVariables()
 
 # rst Add constraints
 optProb.addCon("con", upper=0, scale=1.0)
