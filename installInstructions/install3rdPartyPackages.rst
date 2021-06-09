@@ -46,13 +46,13 @@ For the rest of the instructions, we use angled brackets such as ``<version>`` a
 
 Common Prerequisites
 --------------------
-If they're not available already, common prerequisites can be installed directly from a Debian repository:
+If they're not available already, common prerequisites can be installed via ``apt`` under Ubuntu:
 
 .. prompt:: bash
 
-   sudo apt-get install python-dev gfortran valgrind cmake libblas-dev liblapack-dev build-essential swig
+   sudo apt-get install python3-dev gfortran valgrind cmake libblas-dev liblapack-dev build-essential swig
 
-The packages are required by many of the packages installed later.
+These packages are required by many of the packages installed later.
 
 On a cluster, check the output of ``module avail`` to see what has already been installed.
 They can also be installed locally, but they are common enough that they are typically pre-installed.
