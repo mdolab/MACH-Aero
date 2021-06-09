@@ -29,14 +29,14 @@ This section lists out the dependency versions that have been verified to work w
 ========= ======= =======
 Versions  stable  latest
 ========= ======= =======
-OpenMPI   3.1     4.0
-mpi4py    3.0     3.0
-PETSc     3.11    3.12
-petsc4py  3.11    3.12
+OpenMPI   3.1.*   4.0.*
+mpi4py    3.0.3   3.0.3
+PETSc     3.11.*  3.12.*
+petsc4py  3.11.*  3.12.*
 CGNS      3.3.0   4.1.2
-Python    3.7     3.8
-NumPy     1.16    1.18
-SciPy     1.2     1.4
+Python    3.7.*   3.8.*
+NumPy     1.16.*  1.18.*
+SciPy     1.2.*   1.4.*
 ========= ======= =======
 
 The supported operating systems are Ubuntu 18.04 and 20.04, together with GNU compiler versions 7 to 9.
@@ -46,13 +46,13 @@ For the rest of the instructions, we use angled brackets such as ``<version>`` a
 
 Common Prerequisites
 --------------------
-If they're not available already, common prerequisites can be installed directly from a Debian repository:
+If they're not available already, common prerequisites can be installed via ``apt`` under Ubuntu:
 
 .. prompt:: bash
 
-   sudo apt-get install python-dev gfortran valgrind cmake libblas-dev liblapack-dev build-essential swig
+   sudo apt-get install python3-dev gfortran valgrind cmake libblas-dev liblapack-dev build-essential swig
 
-The packages are required by many of the packages installed later.
+These packages are required by many of the packages installed later.
 
 On a cluster, check the output of ``module avail`` to see what has already been installed.
 They can also be installed locally, but they are common enough that they are typically pre-installed.
