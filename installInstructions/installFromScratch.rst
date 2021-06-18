@@ -118,7 +118,3 @@ After installing the above software you should have something similar to the fol
 	export CGNS_HOME=$HOME/packages/CGNS-<x.y.z>/opt-gfortran
 	export PATH=$PATH:$CGNS_HOME/bin
 	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CGNS_HOME/lib
-
-	# -- MDO Lab
-	export PATH=$PATH:$HOME/repos/cgnsutilities/bin
-	# export PYTHONPATH=$PYTHONPATH:$HOME/repos  # only if you are not installing all packages using pip
