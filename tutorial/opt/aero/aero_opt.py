@@ -96,10 +96,10 @@ def twist(val, geo):
         geo.rot_z["wing"].coef[i] = val[i - 1]
 
 
-DVGeo.addGeoDVGlobal(dvName="twist", value=[0] * nTwist, func=twist, lower=-10, upper=10, scale=0.01)
+DVGeo.addGlobalDV(dvName="twist", value=[0] * nTwist, func=twist, lower=-10, upper=10, scale=0.01)
 
 # Set up local design variables
-DVGeo.addGeoDVLocal("local", lower=-0.5, upper=0.5, axis="y", scale=1)
+DVGeo.addLocalDV("local", lower=-0.5, upper=0.5, axis="y", scale=1)
 
 # Add DVGeo object to CFD solver
 CFDSolver.setDVGeo(DVGeo)

@@ -110,7 +110,7 @@ ap.addDV("alpha", value=alpha, lower=0, upper=10.0, scale=1.0)
 FFDFile = "ffd.xyz"
 
 DVGeo = DVGeometry(FFDFile)
-DVGeo.addGeoDVLocal("shape", lower=-0.05, upper=0.05, axis="y", scale=1.0)
+DVGeo.addLocalDV("shape", lower=-0.05, upper=0.05, axis="y", scale=1.0)
 
 span = 1.0
 pos = np.array([0.5]) * span
