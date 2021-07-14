@@ -12,7 +12,7 @@ The user does not need to know Fortran to complete this tutorial, but if Python 
 .. warning:: Please view this tutorial as a *bare-minimum* tutorial and not as a comprehensive tutorial. To gain proficiency and flexibility with the MACH tools, it is necessary to explore the dedicated documentation, source code, docstrings, and code comments of each tool. 
 
 This tutorial starts from scratch and leads the user through the steps necessary to conduct aerodynamic shape optimization of a B717 wing.
-The tutorial files are located on `GitHub <https://github.com/mdolab/MACH-Aero-tutorial/>`__.
+The tutorial files are located on `GitHub <https://github.com/mdolab/MACH-Aero/>`__.
 The scripts referenced in the tutorial can be found in the tutorial directory, organized according to section.
 Although these scripts should be executable without any modifications, **we highly recommend that you create a separate directory and type out the lines of code by yourself.**
 As you do this, ask yourself, "Do I understand why the code is written this way?"
