@@ -56,7 +56,7 @@ This tutorial requires the following software.
 
 Documentation strategy
 ======================
-The tutorial resides on `GitHub <https://github.com/mdolab/MACH-Aero-tutorial/>`__, but it is a living tutorial, which means that it is constantly updated with corrections and improvements.
+The tutorial resides on `GitHub <https://github.com/mdolab/MACH-Aero/>`__, but it is a living tutorial, which means that it is constantly updated with corrections and improvements.
 We invite you, especially as a new user, to take notes of the parts that you find confusing and bring them to the attention of an admin to the tutorial repository so that changes can be made.
 
 The rst files in the doc directory contain direct links to the python scripts in the tutorial directory to avoid code duplication.
