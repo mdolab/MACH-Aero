@@ -34,14 +34,14 @@ def taper(val, geo):
 
 # rst Add global dvs
 nTwist = nRefAxPts - 1
-DVGeo.addGeoDVGlobal(dvName="dihedral", value=[0] * nTwist, func=dihedral, lower=-10, upper=10, scale=1)
-DVGeo.addGeoDVGlobal(dvName="twist", value=[0] * nTwist, func=twist, lower=-10, upper=10, scale=1)
-DVGeo.addGeoDVGlobal(dvName="taper", value=[1] * 2, func=taper, lower=0.5, upper=1.5, scale=1)
+DVGeo.addGlobalDV(dvName="dihedral", value=[0] * nTwist, func=dihedral, lower=-10, upper=10, scale=1)
+DVGeo.addGlobalDV(dvName="twist", value=[0] * nTwist, func=twist, lower=-10, upper=10, scale=1)
+DVGeo.addGlobalDV(dvName="taper", value=[1] * 2, func=taper, lower=0.5, upper=1.5, scale=1)
 
 # rst Add local dvs
 # Comment out one or the other
-DVGeo.addGeoDVLocal("local", lower=-0.5, upper=0.5, axis="y", scale=1)
-DVGeo.addGeoDVSectionLocal("slocal", secIndex="k", axis=1, lower=-0.5, upper=0.5, scale=1)
+DVGeo.addLocalDV("local", lower=-0.5, upper=0.5, axis="y", scale=1)
+DVGeo.addLocalSectionDV("slocal", secIndex="k", axis=1, lower=-0.5, upper=0.5, scale=1)
 
 # rst Embed points
 gridFile = "wing_vol.cgns"

@@ -203,7 +203,7 @@ Additional scaling dictionaries include ``scale_y``, ``scale_z``, and ``scale``,
 Adding global variables
 ~~~~~~~~~~~~~~~~~~~~~~~
 We have now defined the callback functions for the global design variables, but we have yet to add the variables themselves.
-This is done with the call ``addGeoDVGlobal``.
+This is done with the call ``addGlobalDV``.
 
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
     :start-after: # rst Add global dvs
@@ -222,8 +222,8 @@ Only one of these should be used at one time.
     :start-after: # rst Add local dvs
     :end-before: # rst Embed points
 
-The first, ``addGeoDVLocal``, allows displacement along one of the global coordinate axes (x, y, or z).
-The other options, ``addGeoDVSectionLocal``, defines the displacement direction based on the plane of the FFD section to which the given control point belongs.
+The first, ``addLocalDV``, allows displacement along one of the global coordinate axes (x, y, or z).
+The other options, ``addLocalSectionDV``, defines the displacement direction based on the plane of the FFD section to which the given control point belongs.
 On a wing with a winglet, the latter option is more useful because it allow control of the airfoil sections along the axis of the winglet, which has a different orientation than the main wing.
 This function requires the input ``secIndex`` which gives the FFD index along which the section planes should be computed (in this case, that is the same as the direction of the reference axis).
 The user can also choose the axis of the section's local coordinate system along which the points will be translated (``axis=1`` chooses the direction perpendicular to the wing surface).

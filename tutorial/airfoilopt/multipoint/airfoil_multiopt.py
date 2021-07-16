@@ -123,7 +123,7 @@ for i in range(nFlowCases):
 FFDFile = "ffd.xyz"
 
 DVGeo = DVGeometry(FFDFile)  # DVGeo = DVGeometry_FFD(FFDFile)
-DVGeo.addGeoDVLocal("shape", lower=-0.05, upper=0.05, axis="y", scale=1.0)
+DVGeo.addLocalDV("shape", lower=-0.05, upper=0.05, axis="y", scale=1.0)
 
 span = 1.0
 pos = np.array([0.5]) * span
