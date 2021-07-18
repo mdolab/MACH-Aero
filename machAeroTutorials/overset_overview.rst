@@ -16,6 +16,7 @@ Note that an overset mesh might not be needed for a simple geometry like this; h
 Here are a few of the items we will cover in the following pages:
 
 * Some theory on overset meshes
+* General tips and troubleshooting for overset meshes
 * Create a wing geometry using OpenVSP
 * Surface mesh generation with Pointwise
 * Volume mesh extrusion with pyHyp
@@ -26,6 +27,7 @@ Here are a few of the items we will cover in the following pages:
    :caption: Table of Contents
 
    overset_theory
+   overset_tips
    overset_vsp
    overset_surface_mesh
    overset_volume_mesh
@@ -36,7 +38,7 @@ About this tutorial
 ===================
 This tutorial was written by David Anderegg and Anil Yildirim.
 David Anderegg is employed by `ZHAW <https://www.zhaw.ch/en/university/>`_ in Switzerland at the time this tutorial was published.
-Most of the material in the overset theory section is based on the materials from Ney Secco.
+Most of the 'Overset Theory' and 'Tips and Troubleshooting' sections is based on material from Ney Secco.
 
 
 References
