@@ -4,17 +4,6 @@
 Tips and Troubleshooting
 ########################
 
-Steps to Create an Overset Mesh
-===============================
-
-Here is a list of commonly used steps to create an overset mesh with the usual workflow in the MDO Lab:
-
-#. Generate surface meshes for the main components in ICEM.
-#. Extrude surface meshes into volume meshes using pyHyp.
-#. Generate a background mesh using cgnsUtilities.
-#. Merge blocks in a single file using cgnsUtilities.
-#. Check connectivities using ADflow.
-
 Tips for Getting a Valid Overset Mesh
 =====================================
 
