@@ -3,9 +3,12 @@
 Using Docker
 ============
 
-This guide assumes you are working with Ubuntu 20.04 LTS and have Docker installed and running.
-The commands may differ depending on the operating system.
-If you need to install Docker on your machine, you can follow the Docker guide for `Installing the Docker Engine <https://docs.docker.com/engine/install/>`_.
+The MACH framework is packaged within Docker images that can be used to run the software without installing it natively on your machine.
+If you are using MACH for the first time, we encourage you to try Docker to avoid installation issues or other inconveniences caused by natively installing the tools.
+
+This guide assumes you are have Docker installed and running on your machine.
+If you need to install Docker, you can follow the Docker guide for `Installing the Docker Engine <https://docs.docker.com/engine/install/>`_.
+The commands used in this guide may differ depending on your operating system, so refer to the Docker documentation for more details for specific use cases.
 
 Pull MDO Lab Docker Image
 -------------------------
@@ -49,6 +52,10 @@ Replace ``<NAME>`` with the name you would like to give the container, set ``<HO
 Then provide the image tag as ``<IMAGE>``, matching the one downloaded previously: ``mdolab/public:<TAG>``.
 
 When you run this command, you will enter the container and have access to the MACH framework in your specified case directory.
+
+.. note::
+
+    If you are running the MACH tutorials included in this guide using Docker, set the ``<HOST_DIR>`` parameter to the path to the directory where you have cloned the tutorial files.
 
 Exiting and Restarting the Container
 ------------------------------------
