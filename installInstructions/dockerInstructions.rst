@@ -65,7 +65,7 @@ At any point you can exit the container with the command:
 
     $ exit
 
-You can restart the container by running `start` and `exec`, using:
+You can restart the container by running ``start`` and ``exec``, using:
 
 .. code-block:: bash
 
