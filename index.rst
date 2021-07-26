@@ -34,6 +34,7 @@ If you use any of our codes, please :ref:`cite us <cite-us>`.
    :caption: Installation
    :maxdepth: 1
 
+   installInstructions/dockerInstructions
    installInstructions/installFromScratch
    installInstructions/install3rdPartyPackages
 
