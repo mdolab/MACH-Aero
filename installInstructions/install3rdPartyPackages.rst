@@ -15,15 +15,11 @@ Supported dependency versions
 This section lists out the dependency versions that have been verified to work with the latest MDO Lab tools available on GitHub.
 
 .. IMPORTANT::
-   Although the code may work with other dependency versions (for example NumPy and SciPy requirements are not
-   strict), we only test code against the dependency versions listed below. Therefore, if you choose to use
-   a different dependency version, then you are essentially on your own.
-
-   For the package versions listed here, if no bugfix version (the third set of numbers) are provided, then you should use the latest bugfix version available online.
-   If the number is provided, then you MUST use that version.
-   For example, CGNS 3.3.1 will not work.
+   Although the code may work with other dependency versions (for example NumPy and SciPy requirements are not strict), we only test code against the dependency versions listed below.
+   Therefore, if you choose to use a different dependency version, then you are essentially on your own.
 
    If you are doing a clean install, it's probably best to use the versions listed under the ``latest`` column.
+   On the other hand, cluster installs may benefit from the ``stable`` versions.
 
 
 ========= ======= =======
@@ -286,7 +282,7 @@ To configure the package, go into the ``src`` directory and run the configure sc
 .. prompt:: bash
 
    cd src
-   ./configure --with-fortran --enable-shared --prefix=$CGNS_HOME --disable-cgnstools
+   ./configure --with-fortran --enable-shared --prefix=$CGNS_HOME --disable-cgnstools --enable-64bit=no
 
 If your compilers are not located at ``/usr/bin/gcc``, either because you are on an HPC system or using Intel compilers, you must adjust the configure commands.
 This is done by passing environment variables to the configure script:
