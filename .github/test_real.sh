@@ -1,8 +1,9 @@
 #!/bin/bash
 set -e
 
+# files changed by this PR
 CHANGED_FILES=$(git --no-pager diff --name-only FETCH_HEAD $(git merge-base FETCH_HEAD master))
-echo "The following files have changed:"
+echo "The following files were changed in this PR:"
 echo $CHANGED_FILES
 
 # only run MACH tests if any files under tests/ or tutorial/ have changed
