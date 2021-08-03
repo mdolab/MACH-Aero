@@ -6,6 +6,7 @@ echo "The following files have changed:"
 echo $CHANGED_FILES
 
 # only run MACH tests if any files under tests/ or tutorial/ have changed
-if [[ $CH == "tests/"* ]] || [[ $CH == "tutorial/"* ]]; then
+# or if it's not a PR build
+if [[ $BUILD_REASON != "PullRequest" ]] || [[ $CH == *"tests/"* ]] || [[ $CH == *"tutorial/"* ]]; then
     testflo -v -n 1
 fi
