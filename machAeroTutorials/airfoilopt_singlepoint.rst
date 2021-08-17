@@ -40,6 +40,17 @@ Import libraries
     :start-after: # rst Imports (beg)
     :end-before: # rst Imports (end)
 
+Adding command line arguments
+-----------------------------
+This is a convenience feature that allows the user to pass in command line arguments to the script.
+Two options are provided:
+
+-  specifying the output directory
+-  specifying the optimizer to be used
+
+.. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
+    :start-after: # rst args (beg)
+    :end-before: # rst args (end)
 
 Specifying parameters for the optimization
 ------------------------------------------
@@ -207,10 +218,12 @@ Run optimization
 Run it yourself!
 ================
 
-To run the script, use the ``mpirun`` and place the total number of processors after the ``-np`` argument::
+To run the script, use the ``mpirun`` and place the total number of processors after the ``-np`` argument
 
-	$ mkdir output
-	$ mpirun -np 4 python airfoil_opt.py | tee output.txt
+.. prompt:: bash
+
+    mkdir output
+    mpirun -np 4 python airfoil_opt.py | tee output.txt
 
 The command ``tee`` saves the text outputs of the optimization to the specified text file.
 You can follow the progress of the optimization using OptView, as explained in pyOptSparse.

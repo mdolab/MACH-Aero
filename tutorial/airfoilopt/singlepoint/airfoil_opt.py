@@ -15,12 +15,17 @@ from idwarp import USMesh
 from multipoint import multiPointSparse
 
 # rst Imports (end)
+
+# rst args (beg)
+# Use Python's built-in Argument parser to get commandline options
 parser = argparse.ArgumentParser()
 parser.add_argument("--output", type=str, default="output")
 parser.add_argument("--opt", type=str, default="SLSQP", choices=["SLSQP", "SNOPT"])
 parser.add_argument("--gridFile", type=str, default="n0012.cgns")
 parser.add_argument("--optOptions", type=ast.literal_eval, default={}, help="additional optimizer options to be added")
 args = parser.parse_args()
+# rst args (end)
+
 # ======================================================================
 #         Specify parameters for optimization
 # ======================================================================
