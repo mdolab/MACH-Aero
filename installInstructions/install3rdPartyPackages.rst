@@ -445,8 +445,8 @@ It is installed with:
 
    pip install petsc4py==<version> --user --no-cache
 
-Advanced install (For multiple PETSc architectures)
-***************************************************
+Build from source (Required for multiple PETSc architectures)
+*************************************************************
 .. WARNING::
    You must compile a unique petsc4py install for each PETSc architecture.
 
@@ -468,22 +468,24 @@ Then do a user-space install:
 
 .. prompt:: bash
 
-   python setup.py install --user
+   pip install .
 
 This will install the package to the ``.local`` directory in your home directory which is suitable for both desktop and cluster accounts.
 You may seen an error warning related to ``python-mpi``, but this should not be a problem.
 
 .. warning::
    If there is an existing ``build`` directory it must be forcibly removed (``rm -fr build``) before doing another architecture install.
-   To install with a different architecture change the ``PETSC_ARCH`` variable in your ``.bashrc`` file and source it, or just type in your terminal to overwrite the old ``PETSC_ARCH``::
+   To install with multiple architectures change the ``PETSC_ARCH`` variable to contain all the architecture you want to install petsc4py for::
 
-      export PETSC_ARCH=<new_architecture>
+      export PETSC_ARCH=<petsc_arch_1>:<petsc_arch_2>:<petsc_arch_3>:...
 
    Then install the package:
 
    .. prompt:: bash
 
-      python setup.py install --user
+      pip install .
+      
+   Don't forget to switch the ``PETSC_ARCH`` variable back to a single value after installing
 
 Installing from source has the advantage of having access to the tests, which can be used to verify both the PETSc and petsc4py installations.
 
