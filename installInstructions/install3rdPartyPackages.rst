@@ -464,14 +464,11 @@ From 3.14 onwards, petsc4py is included in the PETSc source code, in which case 
 
    cd $PETSC_DIR/src/binding/petsc4py
 
-Then do a user-space install:
+Then install:
 
 .. prompt:: bash
 
    pip install .
-
-This will install the package to the ``.local`` directory in your home directory which is suitable for both desktop and cluster accounts.
-You may seen an error warning related to ``python-mpi``, but this should not be a problem.
 
 .. warning::
    If there is an existing ``build`` directory it must be forcibly removed (``rm -fr build``) before doing another architecture install.
