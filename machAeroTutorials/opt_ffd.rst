@@ -24,13 +24,17 @@ Before diving into the parametrization, however, we need to generate an FFD, whi
 Files
 ================================================================================
 Navigate to the directory ``opt/ffd`` in your tutorial folder.
-Copy the following files from the MACH-Aero repository::
+Copy the following files from the MACH-Aero repository
 
-    $ cp MACH-Aero/tutorial/opt/ffd/simple_ffd.py .
+.. prompt:: bash
 
-Also copy the volume mesh from the MACH-Aero repository::
+    cp MACH-Aero/tutorial/opt/ffd/simple_ffd.py .
 
-    $ cp MACH-Aero/tutorial/aero/analysis/wing_vol.cgns .
+Also copy the volume mesh from the MACH-Aero repository
+
+.. prompt:: bash
+
+    cp MACH-Aero/tutorial/aero/analysis/wing_vol.cgns .
 
 Create the following empty runscript in the current directory:
 
@@ -68,16 +72,18 @@ Here we use a distribution that varies from wider spacing at the root to narrowe
 
 Write to file
 -------------
-Finally we write to file, using the plot3d format.
+Finally we write to file using the plot3d format.
 
 .. literalinclude:: ../tutorial/opt/ffd/simple_ffd.py
     :start-after: # rst Write
 
 Generate the FFD
 ----------------
-Run the script with the command::
+Run the script with the command
 
-    $ python simple_ffd.py
+.. prompt:: bash
+
+    python simple_ffd.py
 
 Visualizing the FFD
 -------------------
@@ -265,9 +271,10 @@ We can also view the updated surface coordinates by calling ``writePointSet``.
 Run it yourself!
 ================
 Once you have generated the FFD with ``simple_ffd.py`` you can try out different design variables by running
-::
 
-    $ python parametrize.py
+.. prompt:: bash
+
+    python parametrize.py
 
 You can view the results in Tecplot.
 

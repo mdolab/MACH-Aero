@@ -73,7 +73,9 @@ Adding the constraints to the optimization problem requires adding them to each 
 Run it yourself!
 ================
 
-The script can be run in the same way::
+The script can be run in the same way
 
-	$ mkdir output
-	$ mpirun -np 4 python airfoil_multiopt.py | tee output.txt
+.. prompt:: bash
+
+	mkdir output
+	mpirun -np 4 python airfoil_multiopt.py | tee output.txt

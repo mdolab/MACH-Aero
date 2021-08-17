@@ -18,9 +18,11 @@ We will perform operations on the file ``wing_vol.cgns``.
 
 cgnsUtilities Operations
 ========================
-To get a list of all of the operations available with cgnsUtilities, run the command::
+To get a list of all of the operations available with cgnsUtilities, run the command
 
-    $ cgns_utils -h
+.. prompt:: bash
+
+    cgns_utils -h
 
 For any cgns_utils operation, you can add the argument ``-h`` to get information about the required and optional parameters (e.g. ``cgns_utils symmzero -h``).
 
@@ -30,17 +32,19 @@ The command ``cgns_utils coarsen`` takes a volume mesh and coarsens it by removi
 Although our volume mesh is already very coarse, we can coarsen it even further.
 This function is more useful in instances where we start with a very fine mesh.
 To coarsen the mesh run the following from the terminal:
-::
 
-    $ cgns_utils coarsen wing_vol.cgns wing_vol_coarsened.cgns
+.. prompt:: bash
+
+    cgns_utils coarsen wing_vol.cgns wing_vol_coarsened.cgns
 
 CGNS Viewer
 ===========
 Bundled with cgnsUtilities is a very barebones mesh viewing software that can be useful for debugging problems with the mesh such as incorrect boundary conditions or missing face-to-face connections.
 CGNS Viewer can be run from the terminal with the command
-::
 
-    $ cgnsview
+.. prompt:: bash
+
+    cgnsview
 
 More details to come later.
 

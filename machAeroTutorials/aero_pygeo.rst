@@ -17,9 +17,10 @@ Files
 =====
 Navigate to the directory ``aero/geometry`` in your tutorial folder.
 Copy the following files from the MACH_Aero_Tutorials repository:
-::
 
-    $ cp MACH_Aero_Tutorials/tutorial/aero/geometry/rae2822.dat .
+.. prompt:: bash
+
+    cp MACH_Aero_Tutorials/tutorial/aero/geometry/rae2822.dat .
 
 Create the following empty runscript in the current directory:
 
@@ -100,8 +101,10 @@ There are three options for writing the geometry surface definition to file.
 
 Run it yourself!
 ================
-After copying ``rae2822.dat`` to your ``aero/geometry`` folder and making the ``generate_wing.py`` script, you can now run the python file with the command::
+After copying ``rae2822.dat`` to your ``aero/geometry`` folder and making the ``generate_wing.py`` script, you can now run the python file with the command
 
-    $ python generate_wing.py
+.. prompt:: bash
+    
+    python generate_wing.py
 
 You can open ``wing.dat`` in Tecplot to view the wing surface.

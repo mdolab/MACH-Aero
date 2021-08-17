@@ -15,9 +15,10 @@ Files
 =====
 Navigate to the directory ``overset/geo`` in your tutorial folder. Copy the file ``profile_m6.dat`` from the
 tutorial folder.
-::
 
-    $ cp tutorial/overset/geo/profile_m6.dat .
+.. prompt:: bash
+
+    cp tutorial/overset/geo/profile_m6.dat .
 
 Geometry Overview
 =================

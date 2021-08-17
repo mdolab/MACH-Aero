@@ -13,9 +13,10 @@ we will combine them into one single grid, that ADflow can read.
 As we said in the previous tutorial, we want differently sized meshes. To accomplish this, we generated the finest and
 will use this script to coarsen it multiple times. We will implement a basic command line parsing to tell the script
 wich grid to generate. For example, a ``L1`` mesh would be generated like this:
-::
 
-    $ python run_pyhyp.py --level L1
+.. prompt:: bash
+
+    python run_pyhyp.py --level L1
 
 
 Files
@@ -23,10 +24,11 @@ Files
 
 Navigate to the directory ``overset/mesh`` in your tutorial folder and create an empty file called ``run_pyhyp.py``.
 You will also need to copy the surface meshes from the tutorial folder if you did not generate it in the previous part:
-::
 
-    $ cp tutorial/overset/mesh/near_tip.cgns .
-    $ cp tutorial/overset/mesh/near_wing.cgns .
+.. prompt:: bash
+
+    cp tutorial/overset/mesh/near_tip.cgns .
+    cp tutorial/overset/mesh/near_wing.cgns .
 
 
 pyHyp Script
@@ -173,15 +175,15 @@ Run the Script
 
 To run the script, simply type this in your console:
 
-::
+.. prompt:: bash
 
-    $ python run_pyhyp.py --level L1
+    python run_pyhyp.py --level L1
 
 If you have MPI installed and enough processors available, you can also run it in parallel:
 
-::
+.. prompt:: bash
 
-    $ mpirun -np 4 python run_pyhyp.py --level L1
+    mpirun -np 4 python run_pyhyp.py --level L1
 
 Since we want 3 meshes of different size, you will have to run this script 3 times with the appropriate
 ``--level`` argument.
