@@ -27,8 +27,8 @@ Versions  stable  latest
 ========= ======= =======
 OpenMPI   3.1.*   4.0.*
 mpi4py    3.0.3   3.0.3
-PETSc     3.11.*  3.12.*
-petsc4py  3.11.*  3.12.*
+PETSc     3.12.*  3.15.*
+petsc4py  3.12.*  3.15.*
 CGNS      4.1.2   4.2.0
 Python    3.7.*   3.8.*
 NumPy     1.17.*  1.18.*
@@ -424,7 +424,7 @@ petsc4py
 ~~~~~~~~
 .. IMPORTANT::
    The MAJOR.MINOR version of petsc4py **MUST** match the MAJOR.MINOR version of petsc,
-   for example PETSc 3.11.X will only work with petsc4py 3.11.Y.
+   for example PETSc 3.12.X will only work with petsc4py 3.12.Y.
    In practice, this means you must request a specific version of petsc4py.
 
    petsc4py depends on PETSc and its dependencies.
@@ -450,14 +450,21 @@ Advanced install (For multiple PETSc architectures)
 .. WARNING::
    You must compile a unique petsc4py install for each PETSc architecture.
 
-`Download <https://bitbucket.org/petsc/petsc4py/downloads>`__ the source code and
+If using PETSc < 3.14, `Download <https://bitbucket.org/petsc/petsc4py/downloads>`__ the source code and
 extract the correct version matching your PETSc version:
 
 .. prompt:: bash
 
    tar -xzf petsc4py-<version>.tar.gz
+   cd petsc4py-<version>
 
-From the ``petsc4py`` directory do a user-space install:
+From 3.14 onwards, petsc4py is included in the PETSc source code, in which case you can skip the above step and simply go straight to the petsc4py source directory:
+
+.. prompt:: bash
+
+   cd $PETSC_DIR/src/binding/petsc4py
+
+Then do a user-space install:
 
 .. prompt:: bash
 
