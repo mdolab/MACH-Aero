@@ -64,7 +64,7 @@ General Options
 
 .. literalinclude:: ../tutorial/airfoilopt/mesh/genMesh.py
     :start-after: # rst GridOptions
-    :end-before: # rst OtherOptions
+    :end-before: # rst Run
 
 Grid Parameters
 ---------------
@@ -76,10 +76,6 @@ Grid Parameters
     Thickness of first off-wall cell layer. 
 ``marchDist``
     Distance of the far-field. 
-
-.. literalinclude:: ../tutorial/airfoilopt/mesh/genMesh.py
-    :start-after: # rst OtherOptions
-    :end-before: # rst Run
 
 
 Running pyHyp and Writing to File
