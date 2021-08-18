@@ -43,22 +43,6 @@ options = {
     "N": 129,
     "s0": 3e-6,
     "marchDist": 100.0,
-    # rst OtherOptions
-    # ---------------------------
-    #   Pseudo Grid Parameters
-    # ---------------------------
-    "ps0": -1.0,
-    "pGridRatio": -1.0,
-    "cMax": 3.0,
-    # ---------------------------
-    #   Smoothing parameters
-    # ---------------------------
-    "epsE": 1.0,
-    "epsI": 2.0,
-    "theta": 3.0,
-    "volCoef": 0.25,
-    "volBlend": 0.0001,
-    "volSmoothIter": 100,
 }
 # rst Run
 hyp = pyHyp(options=options)
