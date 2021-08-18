@@ -4,7 +4,7 @@
 .. _installFromScratch:
 
 
-Installing MACH-Aero from scratch
+Installing MACH-Aero From Scratch
 =================================
 This tutorial is intended to be a step-by-step guide on how to set up the software needed to run ``MACH-Aero``.
 The focus here is on installing common dependencies shared across the various packages.
@@ -56,13 +56,17 @@ The following general instructions apply to all the packages and repos maintaine
 
 Compilation
 ~~~~~~~~~~~
-To start, find a configuration file close to your current setup in::
+To start, find a configuration file close to your current setup in
 
-    $ config/defaults
+:: 
 
-and copy it to ``config/config.mk``. For example::
+    config/defaults
 
-    $ cp config/defaults/config.LINUX_GFORTRAN.mk config/config.mk
+and copy it to ``config/config.mk``. For example
+
+.. prompt:: bash
+
+    cp config/defaults/config.LINUX_GFORTRAN.mk config/config.mk
 
 If you are a beginner user installing the packages on a Linux desktop, you should use the ``config.LINUX_GFORTRAN.mk`` versions of the configuration files.
 The ``config.LINUX_INTEL.mk`` versions are usually used on HPC systems, in conjunction with Intel compilers.
@@ -75,9 +79,11 @@ Our codes can be successfully compiled on Linux with either ``ifort`` or ``gfort
 
 .. _compilers: https://software.intel.com/en-us/mpi-developer-reference-linux-compilation-commands
 
-Once you have copied the config file, compile the module by running::
+Once you have copied the config file, compile the module by running
 
-    $ make
+.. prompt:: bash
+
+    make
 
 in the package's root directory.
 If everything was successful, the following lines will be printed to the screen (near the end)::
@@ -91,7 +97,9 @@ Remember to type ``make clean`` to remove outdated build files, before building 
 
 Installation
 ~~~~~~~~~~~~
-To install the Python package, type::
+To install the Python package, type
+
+.. prompt:: bash
 
    pip install .
 

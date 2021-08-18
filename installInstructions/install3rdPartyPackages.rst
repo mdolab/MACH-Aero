@@ -72,17 +72,19 @@ OpenMPI
    On a cluster, the system administrator will have already compiled various versions of MPI on the system already.
    Do not build/install OpenMPI in this case, and simply load the correct MPI module.
 
-Download from the `OpenMPI <http://www.open-mpi.org/>`__ website and place the tarball in your packages directory (``$HOME/packages``).
-Then, unpack the source code:
+Download the desired version from the `OpenMPI <http://www.open-mpi.org/>`__ website and place the tarball in your packages directory, ``$HOME/packages``:
 
 .. prompt:: bash
 
-   cd $HOME/packages
-   wget <download URL>
-   tar -xvaf openmpi-<version>.tar.gz
-   cd openmpi-<version>
+   wget https://download.open-mpi.org/release/open-mpi/<version>/openmpi-<version>.tar.gz
 
-Add the following lines to ``$HOME/.bashrc`` and ``source`` it:
+Then, unpack the source code:
+
+.. prompt:: bash
+   
+   tar -xvaf openmpi-<version>.tar.gz
+
+Add the following lines to ``$HOME/.bashrc``:
 
 .. code-block:: bash
 
@@ -91,12 +93,26 @@ Add the following lines to ``$HOME/.bashrc`` and ``source`` it:
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$MPI_INSTALL_DIR/lib
    export PATH=$MPI_INSTALL_DIR/bin:$PATH
 
+After saving the file, source ``$HOME/.bashrc``:
+
+.. prompt:: bash
+
+   source ~/.bashrc
+
+ONLY IF using an Intel compiler, run:
+
+.. prompt:: bash
+
+   export CC=icc CXX=icpc F77=ifort FC=ifort 
+
 Finally, configure and build the package:
 
 .. prompt:: bash
 
-   # export CC=icc CXX=icpc F77=ifort FC=ifort    # Only necessary if using Intel compiler
    ./configure --prefix=$MPI_INSTALL_DIR
+
+.. prompt:: bash
+
    make all install
 
 To verify that paths are as expected run
@@ -104,6 +120,11 @@ To verify that paths are as expected run
 .. prompt:: bash
 
    which mpicc
+
+and
+
+.. prompt:: bash
+
    echo $MPI_INSTALL_DIR/bin/mpicc
 
 The above should print out the same path for both.
@@ -117,17 +138,20 @@ PETSc
    PETSc depends on OpenMPI, a C/Fortran compiler, and it requires ``cmake`` to build.
 
 PETSc, the Portable Extensible Toolkit for Scientific Computation is a comprehensive library for helping solve large scale PDE problems.
-Download from the `PETSc <http://www.mcs.anl.gov/petsc/index.html>`__ website and unpack the source directory, from your packages directory:
+
+Download the desired version from the `PETSc <http://www.mcs.anl.gov/petsc/index.html>`__ website and place the tarball in your packages directory, ``$HOME/packages``:
 
 .. prompt:: bash
 
-   cd $HOME/packages
    wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-<version>.tar.gz
-   tar -xvaf petsc-<version>.tar.gz
-   cd petsc-<version>
 
-The lite version of the package is smaller but contains no documentation.
-Next, configure your environment for PETSc by adding the following lines to your ``$HOME/.bashrc`` and ``source``-ing it:
+Unpack the source directory in your packages directory:
+
+.. prompt:: bash
+
+   tar -xvaf petsc-<version>.tar.gz
+
+Next, configure your environment for PETSc by adding the following lines to your ``$HOME/.bashrc``:
 
 .. code-block:: bash
 
@@ -135,6 +159,12 @@ Next, configure your environment for PETSc by adding the following lines to your
    export PETSC_ARCH=real-debug
    export PETSC_DIR=$HOME/packages/petsc-<version>/
 
+After saving the file, source ``$HOME/.bashrc``:
+
+.. prompt:: bash
+   
+   source ~/.bashrc
+   
 
 The ``PETSC_ARCH`` variable is any user-specified string.
 It should be set to something representative of the actual architecture.
@@ -259,16 +289,19 @@ The CGNS Library provides Fortran bindings to read/write files in that format.
    Therefore, for using MDO Lab codes, the ADF format is recommended.
    The rest of the instructions use ADF and not HDF5.
 
-Download and unpack the source directory, from your packages directory:
+Download the desired version from the `CGNS <https://cgns.github.io/download.html>`__ website and place the tarball in your packages directory, ``$HOME/packages``:
 
 .. prompt:: bash
 
-   cd $HOME/packages
-   wget https://github.com/CGNS/CGNS/archive/v<version>.tar.gz
-   tar -xvaf v<version>.tar.gz
-   cd CGNS-<version>
+   wget https://github.com/CGNS/CGNS/archive/refs/tags/<version>.tar.gz
 
-Next, configure your environment for CGNS by adding the following lines to your ``$HOME/.bashrc`` and ``source``-ing it:
+Unpack the source directory in your packages directory:
+
+.. prompt:: bash
+
+   tar -xvaf v<version>.tar.gz
+
+Next, configure your environment for CGNS by adding the following lines to your ``$HOME/.bashrc``:
 
 .. code-block:: bash
 
@@ -277,6 +310,12 @@ Next, configure your environment for CGNS by adding the following lines to your 
    export PATH=$PATH:$CGNS_HOME/bin
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CGNS_HOME/lib
 
+After saving the file, source ``$HOME/.bashrc``:
+
+.. prompt:: bash
+   
+   source ~/.bashrc
+      
 To configure the package, go into the ``src`` directory and run the configure script:
 
 .. prompt:: bash
@@ -321,8 +360,15 @@ Note that the version of these libraries might be different on your machine :
 .. prompt:: bash
 
    sudo apt-get install freeglut3
+
+.. prompt:: bash
+   
    sudo apt-get install tk8.6-dev
-   # If needed
+
+If needed, install the following package as well:
+
+.. prompt:: bash
+
    sudo apt-get install freeglut3-dev
 
 .. warning::
@@ -510,7 +556,7 @@ If multiple versions and dependencies are being used simultaneously,
 for example on a cluster, the paradigm of `environment modules <http://modules.sourceforge.net>`__ is often used (e.g. ``module use petsc``).
 A module file is simply a text file containing lines such as:
 
-.. prompt:: bash
+.. code-block:: bash
 
    append-path PATH $HOME/opt/petsc/3.7.7/OpenMPI-1.10.7/GCC-7.3.0/bin
 
