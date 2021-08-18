@@ -16,11 +16,11 @@ For more details on the options in pyGeo see the :doc:`docs <pygeo:index>`.
 Files
 =====
 Navigate to the directory ``aero/geometry`` in your tutorial folder.
-Copy the following files from the MACH_Aero_Tutorials repository:
+Copy the following file from the ``tutorial`` directory:
 
 .. prompt:: bash
 
-    cp MACH_Aero_Tutorials/tutorial/aero/geometry/rae2822.dat .
+    cp ../../../tutorial/aero/geometry/rae2822.dat .
 
 Create the following empty runscript in the current directory:
 
