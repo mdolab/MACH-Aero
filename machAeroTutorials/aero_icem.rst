@@ -18,7 +18,7 @@ For more theoretical background of mesh generation, refer to "Thompson, et.al. H
 Files
 =====
 Navigate to the directory ``aero/meshing/surface`` in your tutorial folder.
-Copy the following files from the the ``geometry`` directory:
+Copy the following file from the the ``geometry`` directory:
 
 .. prompt:: bash
 

@@ -19,7 +19,8 @@ As you do this, ask yourself, "Do I understand why the code is written this way?
 This will result in a much deeper understanding of how to use the tools and eventually will help you develop code in a consistent manner.
 To make this easier for you, we provide a basic script that will create the directory structure in your desired location so that all you have to do is create the files themselves.
 To run this script, go to the mach_aero_tutorials root folder and run the following:
-::
+
+.. prompt:: bash
 
     python make_tutorial_directory.py my_tutorial
 

@@ -14,7 +14,7 @@ You will find a complete introduction to ADflow in the :doc:`docs <adflow:introd
 Files
 =====
 Navigate to the directory ``aero/analysis`` in your tutorial folder.
-Copy the following files from the volume meshing directory:
+Copy the following file from the volume meshing directory:
 
 .. prompt:: bash
 

@@ -19,7 +19,7 @@ Navigate to the directory ``overset/mesh`` in your tutorial folder. Either use t
 
 .. prompt:: bash
 
-    cp tutorial/overset/geo/onera_m6.igs .
+    cp ../../../tutorial/overset/geo/onera_m6.igs .
 
 It is possible to script Pointwise. In order to use it, we have to download the script first. You can either
 `download <https://raw.githubusercontent.com/pointwise/Semicircle/master/Semicircle.glf>`_ it here or copy it
@@ -27,7 +27,7 @@ from the tutorial folder.
 
 .. prompt:: bash
 
-    cp tutorial/overset/mesh/Semicircle.glf .
+    cp ../../../tutorial/overset/mesh/Semicircle.glf .
 
 Meshing strategy
 ================

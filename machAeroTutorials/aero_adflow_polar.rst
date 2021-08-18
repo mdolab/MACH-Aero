@@ -17,7 +17,7 @@ previous case.
 Files
 =====
 Navigate to the directory ``aero/analysis`` in your tutorial folder.
-If you haven't already done so, copy the following files from the volume meshing directory:
+If you haven't already done so, copy the following file from the volume meshing directory:
 
 .. prompt:: bash
 

@@ -40,7 +40,7 @@ copy the mesh file:
 
 .. prompt:: bash
 
-    cp tutorial/overset/analysis/ONERA_M6_L3.cgns .
+    cp ../../../tutorial/overset/analysis/ONERA_M6_L3.cgns .
 
 If you want to use ``adflow_util`` download and install it:
 

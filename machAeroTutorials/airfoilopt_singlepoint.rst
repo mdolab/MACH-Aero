@@ -22,7 +22,13 @@ The shape variables are controlled by the FFD points specified in the FFD file.
 Files
 =====
 
-Copy the FFD file, ``ffd.xyz``, and the CGNS mesh file, ``n0012.cgns``, generated previously, into the directory.
+Navigate to the directory ``airfoilopt/singlepoint`` in your tutorial folder. 
+Copy the FFD file, ``ffd.xyz``, and the CGNS mesh file, ``n0012.cgns``, generated previously, into the directory:
+
+.. prompt:: bash
+
+    cp ../mesh/n0012.cgns . 
+    cp ../ffd/ffd.xyz . 
 
 Create the following empty runscript in the current directory:
 
@@ -226,4 +232,4 @@ To run the script, use the ``mpirun`` and place the total number of processors a
     mpirun -np 4 python airfoil_opt.py | tee output.txt
 
 The command ``tee`` saves the text outputs of the optimization to the specified text file.
-You can follow the progress of the optimization using OptView, as explained in pyOptSparse.
+You can follow the progress of the optimization using OptView, as explained in :ref:`pyOptSparse <opt_pyopt>`.

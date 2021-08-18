@@ -14,7 +14,7 @@ More details on pyHyp can be found in the :doc:`pyHyp documentation <pyhyp:index
 Files
 =====
 Navigate to the directory ``aero/meshing/volume`` in your tutorial folder.
-Copy the following files from the surface meshing directory:
+Copy the following file from the surface meshing directory:
 
 .. prompt:: bash
 

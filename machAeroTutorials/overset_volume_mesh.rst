@@ -27,8 +27,8 @@ You will also need to copy the surface meshes from the tutorial folder if you di
 
 .. prompt:: bash
 
-    cp tutorial/overset/mesh/near_tip.cgns .
-    cp tutorial/overset/mesh/near_wing.cgns .
+    cp ../../../tutorial/overset/mesh/near_tip.cgns .
+    cp ../../../tutorial/overset/mesh/near_wing.cgns .
 
 
 pyHyp Script

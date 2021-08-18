@@ -15,17 +15,25 @@ Instead of rewriting the code from scratch, the differences in code will be poin
 Files
 =====
 
-Copy the FFD file, ``ffd.xyz``, and the CGNS mesh file, ``n0012.cgns``, generated previously, into the directory.
+Navigate to the directory ``airfoilopt/multipoint`` in your tutorial folder. 
+Copy the FFD file, ``ffd.xyz``, and the CGNS mesh file, ``n0012.cgns``, generated previously, into the directory:
 
-Create the following empty runscript in the current directory:
+.. prompt:: bash
 
-- ``airfoil_multiopt.py``
+    cp ../mesh/n0012.cgns . 
+    cp ../ffd/ffd.xyz . 
+
+Copy the singlepoint script from the previous section to a new file in this directory:
+
+.. prompt:: bash
+
+    cp ../singlepoint/airfoil_opt.py airfoil_multiopt.py
 
 
 Highlighting the changes required in the multipoint optimization script
 =======================================================================
 Open the file ``airfoil_multiopt.py`` in your favorite text editor.
-Copy the script from ``airfoil_opt.py`` and change the following sections for multipoint optimization.
+Change the following sections for multipoint optimization.
 
 Specifying parameters for the optimization
 ------------------------------------------

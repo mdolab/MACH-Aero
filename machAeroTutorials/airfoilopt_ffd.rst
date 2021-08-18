@@ -11,6 +11,12 @@ These are control points that are fitted to the airfoil using B-splines, which a
 
 The coordinates for the NACA0012 airfoil are in the file ``n0012.dat``. 
 
+Navigate to the directory ``airfoilopt/ffd`` in your tutorial folder. Copy the airfoil data from ``airfoilopt/mesh``:
+
+.. prompt:: bash
+
+    cp ../mesh/n0012.dat . 
+
 Create the following empty runscript in the current directory. 
 
 - ``genFFD.py``
@@ -65,6 +71,14 @@ Writing to File
 
 .. literalinclude:: ../tutorial/airfoilopt/ffd/genFFD.py
     :start-after: # rst WriteFile
+
+Run it yourself!
+================
+You can now run the python file with the command:
+
+.. prompt:: bash
+
+    python genFFD.py
 
 
 The above script writes the FFD coordinates to a PLOT3D ``.xyz`` file, which will be used for optimization.

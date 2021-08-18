@@ -9,6 +9,12 @@ In this tutorial, we will use pyHyp to generate a 3D mesh in CGNS format.
 The coordinates for the NACA0012 airfoil are in the file ``n0012.dat``. 
 Coordinates for most airfoils can be obtained from the `UIUC Data site <http://m-selig.ae.illinois.edu/ads/coord_database.html>`_. 
 
+Navigate to the directory ``airfoilopt/mesh`` in your tutorial folder. Copy the airfoil data from the ``tutorial`` directory:
+
+.. prompt:: bash
+
+    cp ../../../tutorial/airfoilopt/mesh/n0012.dat . 
+
 Create the following empty runscript in the current directory. 
 
 - ``genMesh.py``
@@ -85,3 +91,11 @@ The following three lines of code extrude the surface mesh and write the resulti
 
 .. literalinclude:: ../tutorial/airfoilopt/mesh/genMesh.py
     :start-after: # rst Run
+
+Run it yourself!
+================
+You can now run the python file with the command:
+
+.. prompt:: bash
+
+    python run_pyhyp.py
