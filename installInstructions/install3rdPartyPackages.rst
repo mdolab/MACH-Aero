@@ -325,6 +325,14 @@ Note that the version of these libraries might be different on your machine :
    # If needed
    sudo apt-get install freeglut3-dev
 
+If the tk library is install but not found, you may need to add the inlude library to the CFLAGS used by make. 
+Likewise, if during compilation the linker cannot find definitions for sin and cos, you will also need to include the missing math library by passing ``-lm``.
+The ./configure script in CGNS looks at the environment variables to add user flags, so the final call to ./configure should look like: 
+
+.. prompt:: bash
+   
+   CFLAGS="-I/usr/include/tk -lm" LIBS="-lm" ./configure <....the rest>
+
 .. warning::
    There is a known bug in CGNS 3.3.0 (fixed in later versions) that crashes the build routine for Ubuntu 18/20 when this CGNS tools option is turned on. You can either turn it off compiling with ``--disable-cgnstools`` or, if you still want to use CGNS tools, you can manually patch the source files using `this PR <https://github.com/CGNS/CGNS/pull/55/files>`_ as a reference.
 
