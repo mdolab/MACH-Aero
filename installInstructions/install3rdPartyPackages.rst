@@ -325,7 +325,7 @@ Note that the version of these libraries might be different on your machine :
    # If needed
    sudo apt-get install freeglut3-dev
 
-If the tk library is install but not found, you may need to add the inlude library to the CFLAGS used by make. 
+If the tk library is install but not found, you may need to add the include library to the CFLAGS used by make. 
 Likewise, if during compilation the linker cannot find definitions for sin and cos, you will also need to include the missing math library by passing ``-lm``.
 The ./configure script in CGNS looks at the environment variables to add user flags, so the final call to ./configure should look like: 
 
