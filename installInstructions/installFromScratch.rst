@@ -113,16 +113,16 @@ After installing the above software you should have something similar to the fol
 
 .. code-block:: bash
 
-	# -- PETSc
-	export PETSC_DIR=$HOME/packages/petsc-<x.y.z>
-	export PETSC_ARCH=real-debug
+    # -- PETSc
+    export PETSC_DIR=$HOME/packages/petsc-<x.y.z>
+    export PETSC_ARCH=real-debug
 
-	# -- OpenMPI Installation
-	export MPI_INSTALL_DIR=$HOME/packages/openmpi-<x.y.z>/opt-gfortran
-	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$MPI_INSTALL_DIR/lib
-	export PATH=$MPI_INSTALL_DIR/bin:$PATH
+    # -- OpenMPI Installation
+    export MPI_INSTALL_DIR=$HOME/packages/openmpi-<x.y.z>/opt-gfortran
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$MPI_INSTALL_DIR/lib
+    export PATH=$MPI_INSTALL_DIR/bin:$PATH
 
-	# -- CGNS
-	export CGNS_HOME=$HOME/packages/CGNS-<x.y.z>/opt-gfortran
-	export PATH=$PATH:$CGNS_HOME/bin
-	export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CGNS_HOME/lib
+    # -- CGNS
+    export CGNS_HOME=$HOME/packages/CGNS-<x.y.z>/opt-gfortran
+    export PATH=$PATH:$CGNS_HOME/bin
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CGNS_HOME/lib
