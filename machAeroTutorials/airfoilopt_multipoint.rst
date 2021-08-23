@@ -66,7 +66,7 @@ The lines that require a call to the an AeroProblem is now put into a for-loop t
     :start-after: # rst funcs (beg)
     :end-before: # rst funcs (end)
 
-In the ``objCon`` function, the $c_L$ constraint is also placed into the for-loop.
+In the ``objCon`` function, the :math:`c_L` constraint is also placed into the for-loop.
 
 Optimization problem
 --------------------
