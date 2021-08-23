@@ -42,4 +42,9 @@ If you use any of our codes, please :ref:`cite us <cite-us>`.
    :caption: Tutorials
    :maxdepth: 2
 
-   machAeroTutorials/index
+   machAeroTutorials/intro
+   machAeroTutorials/aero_overview
+   machAeroTutorials/opt_overview
+   machAeroTutorials/airfoilopt_overview
+   machAeroTutorials/overset_overview
+   machAeroTutorials/faq
