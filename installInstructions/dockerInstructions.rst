@@ -65,9 +65,14 @@ At any point you can exit the container with the command:
 
     exit
 
-You can restart the container by running ``start`` and ``exec``, using:
+You can restart the container by running ``start``:
 
 .. prompt:: bash
 
     docker start <NAME>
+
+Run ``exec`` to enter the container:
+
+.. prompt:: bash
+
     docker exec -it <NAME> /bin/bash
