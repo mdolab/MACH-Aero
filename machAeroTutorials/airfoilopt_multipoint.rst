@@ -85,5 +85,5 @@ The script can be run in the same way
 
 .. prompt:: bash
 
-	mkdir output
-	mpirun -np 4 python airfoil_multiopt.py | tee output.txt
+    mkdir output
+    mpirun -np 4 python airfoil_multiopt.py | tee output.txt

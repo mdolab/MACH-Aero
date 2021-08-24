@@ -93,17 +93,17 @@ The ADflow set-up looks similar to the aerodynamic analysis script.
 As it is, the options specified above allow for a good convergence of NACA0012 airfoil analysis, but may not converge for other airfoils. 
 Some useful options to adjust are:
 
-	``nCycles``
-		If the analysis doesn't converge, this can be increased.
+``nCycles``
+    If the analysis doesn't converge, this can be increased.
 
-	``nkswitchtol``
-		If the analysis stops converging during NK (Newton-Krylov), this might mean that it is still outside of the radius of convergence of the NK method. The parameter should then be lowered.
+``nkswitchtol``
+    If the analysis stops converging during NK (Newton-Krylov), this might mean that it is still outside of the radius of convergence of the NK method. The parameter should then be lowered.
 
-	``NKSubSpaceSize``
-		Decreasing this parameter will decrease memory usage when in the NK range. Only change this if there are memory issues when dealing with larger meshes.
+``NKSubSpaceSize``
+    Decreasing this parameter will decrease memory usage when in the NK range. Only change this if there are memory issues when dealing with larger meshes.
 
-	``writeSurfaceSolution`` and ``writeVolumeSolution``
-		If you want to view the surface or volume solutions at the end of each analysis, these parameters can be set to True.
+``writeSurfaceSolution`` and ``writeVolumeSolution``
+    If you want to view the surface or volume solutions at the end of each analysis, these parameters can be set to True.
 
 We also add a single lift distribution with 200 sampling points using ``addLiftDistribution``, meaning that these values are written to a text file after every iteration. 
 Similarly, ``addSlices`` writes the airfoil coordinates of the specified slice to a text file.
