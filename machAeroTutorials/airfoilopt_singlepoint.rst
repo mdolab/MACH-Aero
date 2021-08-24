@@ -49,10 +49,12 @@ Import libraries
 Adding command line arguments
 -----------------------------
 This is a convenience feature that allows the user to pass in command line arguments to the script.
-Two options are provided:
+Four options are provided:
 
--  specifying the output directory
--  specifying the optimizer to be used
+-  Output directory
+-  Optimizer to be used
+-  Grid file to be used
+-  Optimizer options
 
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
     :start-after: # rst args (beg)

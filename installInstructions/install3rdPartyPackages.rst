@@ -76,7 +76,7 @@ Download the desired version from the `OpenMPI <http://www.open-mpi.org/>`__ web
 
 .. prompt:: bash
 
-   wget https://download.open-mpi.org/release/open-mpi/<version>/openmpi-<version>.tar.gz
+   wget <download URL>
 
 Then, unpack the source code:
 
@@ -98,6 +98,12 @@ After saving the file, source ``$HOME/.bashrc``:
 .. prompt:: bash
 
    source ~/.bashrc
+
+Go to the OpenMPI directory:
+
+.. prompt:: bash
+
+   cd $HOME/packages/openmpi-<version>
 
 ONLY IF using an Intel compiler, run:
 
@@ -143,7 +149,7 @@ Download the desired version from the `PETSc <http://www.mcs.anl.gov/petsc/index
 
 .. prompt:: bash
 
-   wget http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-<version>.tar.gz
+   wget <download URL>
 
 Unpack the source directory in your packages directory:
 
@@ -166,6 +172,12 @@ After saving the file, source ``$HOME/.bashrc``:
    source ~/.bashrc
    
 
+Go to the PETSc directory:
+
+.. prompt:: bash
+
+   cd $HOME/packages/petsc-<version>
+      
 The ``PETSC_ARCH`` variable is any user-specified string.
 It should be set to something representative of the actual architecture.
 
@@ -293,7 +305,7 @@ Download the desired version from the `CGNS <https://cgns.github.io/download.htm
 
 .. prompt:: bash
 
-   wget https://github.com/CGNS/CGNS/archive/refs/tags/<version>.tar.gz
+   wget <download URL>
 
 Unpack the source directory in your packages directory:
 
@@ -316,11 +328,17 @@ After saving the file, source ``$HOME/.bashrc``:
    
    source ~/.bashrc
       
-To configure the package, go into the ``src`` directory and run the configure script:
+
+Go to the CGNS ``src`` directory:
 
 .. prompt:: bash
 
-   cd src
+   cd $HOME/packages/CGNS-<version>/src
+
+Run the configure script:
+
+.. prompt:: bash
+
    ./configure --with-fortran --enable-shared --prefix=$CGNS_HOME --disable-cgnstools --enable-64bit=no
 
 If your compilers are not located at ``/usr/bin/gcc``, either because you are on an HPC system or using Intel compilers, you must adjust the configure commands.

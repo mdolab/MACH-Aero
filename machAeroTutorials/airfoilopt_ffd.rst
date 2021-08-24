@@ -11,7 +11,8 @@ These are control points that are fitted to the airfoil using B-splines, which a
 
 The coordinates for the NACA0012 airfoil are in the file ``n0012.dat``. 
 
-Navigate to the directory ``airfoilopt/ffd`` in your tutorial folder. Copy the airfoil data from ``airfoilopt/mesh``:
+Navigate to the directory ``airfoilopt/ffd`` in your tutorial folder. 
+Copy the airfoil data from ``airfoilopt/mesh``:
 
 .. prompt:: bash
 

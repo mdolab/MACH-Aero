@@ -21,7 +21,7 @@ The optimization problem is defined as
 Files
 =====
 Navigate to the directory ``opt/aero`` in your tutorial folder.
-Copy the following files from the ``tutorial`` directory:
+Copy the following files to this directory:
 
 .. prompt:: bash
 
