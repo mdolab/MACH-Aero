@@ -248,7 +248,7 @@ CGNS Library
 
 .. IMPORTANT::
    CGNS depends on a C/Fortran compiler. It can be built using either CMake or GNU make.
-   The instructions here use ``make``.
+   The instructions here use CMake.
 
 CGNS is a general file format for storing CFD data, and is used by ``ADflow``, ``IDWarp``, ``pyHyp``, and ``cgnsUtilities``.
 The CGNS Library provides Fortran bindings to read/write files in that format.
@@ -277,34 +277,33 @@ Next, configure your environment for CGNS by adding the following lines to your 
    export PATH=$PATH:$CGNS_HOME/bin
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CGNS_HOME/lib
 
-To configure the package, go into the ``src`` directory and run the configure script:
+To configure the package, run:
 
 .. prompt:: bash
 
-   cd src
-   ./configure --with-fortran --enable-shared --prefix=$CGNS_HOME --disable-cgnstools --enable-64bit=no
+   cmake -D CGNS_ENABLE_FORTRAN=ON -D CMAKE_INSTALL_PREFIX=$CGNS_HOME -D CGNS_ENABLE_64BIT=OFF -D CGNS_BUILD_CGNSTOOLS=OFF .
 
-If your compilers are not located at ``/usr/bin/gcc``, either because you are on an HPC system or using Intel compilers, you must adjust the configure commands.
-This is done by passing environment variables to the configure script:
+If your compilers are not located at ``/usr/bin/gcc``, either because you are on an HPC system or using Intel compilers, you must adjust the configure command.
+This is done by passing additional variables to ``cmake``:
 
 .. prompt:: bash
 
-   CC=/path/to/ccompiler FC=/path/to/fcompiler ./configure <options>
+   cmake <options> -D CMAKE_C_COMPILER=/path/to/ccompiler -D CMAKE_Fortran_COMPILER=/path/to/fcompiler .
 
-where ``CC`` sets the path to the C compiler, and ``FC`` sets the path to the Fortran compiler.
-If your compilers are on the ``$PATH`` (likely if you are using the module system on a cluster), you can use ``CC=$(which icc)`` and ``FC=$(which ifort)`` for Intel compilers, or correspondingly ``CC=$(which gcc)`` and ``FC=$(which gfortran)`` for GNU compilers.
+where ``CMAKE_C_COMPILER`` sets the path to the C compiler, and ``CMAKE_Fortran_COMPILER`` sets the path to the Fortran compiler.
+If your compilers are on the ``$PATH`` (likely if you are using the module system on a cluster), you can use ``CMAKE_C_COMPILER=$(which icc)`` and ``CMAKE_Fortran_COMPILER=$(which ifort)`` for Intel compilers, or correspondingly ``CMAKE_C_COMPILER=$(which gcc)`` and ``CMAKE_Fortran_COMPILER=$(which gfortran)`` for GNU compilers.
 
 
 Finally, build and install:
 
 .. prompt:: bash
 
-   make && make install
+   make install
 
 Installing CGNS Tools (Optional)
 ********************************
 The CGNS Library comes with a set of tools to view and edit CGNS files manually.
-To install these tools, use the flag ``--enable-cgnstools`` during the configure step instead.
+To install these tools, use the flag ``-D CGNS_BUILD_CGNSTOOLS=ON`` during the configure step.
 Note that these tools should be installed on a local computer and not on a cluster.
 
 To enable this option you may need to install the following packages:
@@ -313,7 +312,7 @@ To enable this option you may need to install the following packages:
 
    sudo apt-get install libxmu-dev libxi-dev
 
-CGNS library sometimes complains about missing includes and libraries
+CGNS library sometimes complains about missing includes and libraries.
 Most of the time this is either Tk/TCL or OpenGL.
 This can be solved by installing the following packages.
 Note that the version of these libraries might be different on your machine :
@@ -325,18 +324,7 @@ Note that the version of these libraries might be different on your machine :
    # If needed
    sudo apt-get install freeglut3-dev
 
-If the tk library is install but not found, you may need to add the include library to the CFLAGS used by make. 
-Likewise, if during compilation the linker cannot find definitions for sin and cos, you will also need to include the missing math library by passing ``-lm``.
-The ./configure script in CGNS looks at the environment variables to add user flags, so the final call to ./configure should look like: 
-
-.. prompt:: bash
-   
-   CFLAGS="-I/usr/include/tk -lm" LIBS="-lm" ./configure <....the rest>
-
-.. warning::
-   There is a known bug in CGNS 3.3.0 (fixed in later versions) that crashes the build routine for Ubuntu 18/20 when this CGNS tools option is turned on. You can either turn it off compiling with ``--disable-cgnstools`` or, if you still want to use CGNS tools, you can manually patch the source files using `this PR <https://github.com/CGNS/CGNS/pull/55/files>`_ as a reference.
-
-If you compiled with ``--enable-cgnstools`` you either need to add the binary path to your PATH environmental variable or you can install the binaries system wide.
+If you compiled with ``-D CGNS_BUILD_CGNSTOOLS=ON``, you either need to add the binary path to your PATH environmental variable or you can install the binaries system wide.
 By specifying the installation prefix as shown in the example configure commands above, the binary path is in your PATH environmental variables;
 without specifying the prefix, the default is a system path, which requires sudo.
 
