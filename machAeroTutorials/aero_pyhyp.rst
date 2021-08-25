@@ -14,10 +14,11 @@ More details on pyHyp can be found in the :doc:`pyHyp documentation <pyhyp:index
 Files
 =====
 Navigate to the directory ``aero/meshing/volume`` in your tutorial folder.
-Copy the following files from the surface meshing directory:
-::
+Copy the following file from the surface meshing directory:
 
-    $ cp ../surface/wing.cgns .
+.. prompt:: bash
+
+    cp ../surface/wing.cgns .
 
 Create the following empty runscript in the current directory:
 
@@ -108,15 +109,16 @@ Run it yourself!
 ================
 You can now run the python file with the command:
 
-::
+.. prompt:: bash
 
-    $ python run_pyhyp.py
+    python run_pyhyp.py
 
 For larger meshes, you will want to run pyHyp as a parallel process.
 This can be done with the command:
-::
 
-    $ mpirun -np 4 python run_pyhyp.py
+.. prompt:: bash
+
+    mpirun -np 4 python run_pyhyp.py
 
 where the number of processors is given after ``-np``.
 You can open ``wing_vol.cgns`` in Tecplot to view the volume mesh.

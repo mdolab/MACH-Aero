@@ -27,16 +27,16 @@ tacc-u18-gcc-impi-stable Ubuntu 18.04
 
 To pull an image, use the ``docker pull`` command:
 
-.. code-block:: bash
+.. prompt:: bash
 
-    $ docker pull mdolab/public:<TAG>
+    docker pull mdolab/public:<TAG>
 
 
 Check that the Docker image is pulled successfully by running:
 
-.. code-block:: bash
+.. prompt:: bash
 
-    $ docker image ls
+    docker image ls
 
 You should see the image you just pulled.
 
@@ -44,9 +44,9 @@ Initialize Docker Container
 ---------------------------
 Navigate to the directory containing the case you would like to run and initialize the Docker image you downloaded into a container, running interactively:
 
-.. code-block:: bash
+.. prompt:: bash
 
-    $ docker run -it --name <NAME> --mount "type=bind,src=<HOST_DIR>,target=<MOUNT_DIR>" <IMAGE> /bin/bash
+    docker run -it --name <NAME> --mount "type=bind,src=<HOST_DIR>,target=<MOUNT_DIR>" <IMAGE> /bin/bash
 
 Replace ``<NAME>`` with the name you would like to give the container, set ``<HOST_DIR>`` to the absolute path to the current directory, and set ``<MOUNT_DIR>`` to ``/home/mdolabuser/mount/``.
 Then provide the image tag as ``<IMAGE>``, matching the one downloaded previously: ``mdolab/public:<TAG>``.
@@ -61,13 +61,18 @@ Exiting and Restarting the Container
 ------------------------------------
 At any point you can exit the container with the command:
 
-.. code-block:: bash
+.. prompt:: bash
 
-    $ exit
+    exit
 
-You can restart the container by running ``start`` and ``exec``, using:
+You can restart the container by running ``start``:
 
-.. code-block:: bash
+.. prompt:: bash
 
-    $ docker start <NAME>
-    $ docker exec -it --name <NAME> /bin/bash
+    docker start <NAME>
+
+Run ``exec`` to enter the container:
+
+.. prompt:: bash
+
+    docker exec -it <NAME> /bin/bash

@@ -187,17 +187,22 @@ The ``sens`` keyword also accepts ``'FD'`` to indicate that the user wants to us
 Run it yourself!
 ================================================================================
 Try running the optimization.
-::
 
-    $ python rosenbrock.py
+.. prompt:: bash
+
+    python rosenbrock.py
 
 Visualization with OptView
 ================================================================================
 pyOptSparse comes with a simple GUI to view the optimization history called OptView.
-You can run it with the command::
+You can run it with the command
 
-    $ python <path-to-pyoptsparse>/postprocessing/OptView.py opt.hst
+.. prompt:: bash
 
-or if you've properly installed PyOptSparse::
+    python <path-to-pyoptsparse>/postprocessing/OptView.py opt.hst
 
-    $ optview opt.hst
+or if you've properly installed PyOptSparse
+
+.. prompt:: bash
+
+    optview opt.hst

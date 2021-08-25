@@ -14,10 +14,11 @@ want to learn more about it, you can go to their `tutorial videos <http://openvs
 Files
 =====
 Navigate to the directory ``overset/geo`` in your tutorial folder. Copy the file ``profile_m6.dat`` from the
-tutorial folder.
-::
+``tutorial`` directory:
 
-    $ cp tutorial/overset/geo/profile_m6.dat .
+.. prompt:: bash
+
+    cp ../../../tutorial/overset/geo/profile_m6.dat .
 
 Geometry Overview
 =================

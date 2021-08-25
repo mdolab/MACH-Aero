@@ -17,10 +17,11 @@ previous case.
 Files
 =====
 Navigate to the directory ``aero/analysis`` in your tutorial folder.
-If you haven't already done so, copy the following files from the volume meshing directory:
-::
+If you haven't already done so, copy the following file from the volume meshing directory:
 
-    $ cp ../meshing/volume/wing_vol.cgns .
+.. prompt:: bash
+
+    cp ../meshing/volume/wing_vol.cgns .
 
 Create the following empty runscript in the current directory:
 
@@ -132,7 +133,9 @@ Once we complete the loop and evaluate all of the desired flow conditions, we ca
 
 Run it yourself!
 ================
-First make the output directory and then run the script::
+First make the output directory and then run the script
 
-    $ mkdir output
-    $ mpirun -np 4 python aero_run_drag_polar.py
+.. prompt:: bash
+
+    mkdir output
+    mpirun -np 4 python aero_run_drag_polar.py

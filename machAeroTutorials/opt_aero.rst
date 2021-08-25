@@ -21,11 +21,12 @@ The optimization problem is defined as
 Files
 =====
 Navigate to the directory ``opt/aero`` in your tutorial folder.
-Copy the following files from the MACH_Aero_Tutorials repository:
-::
+Copy the following files to this directory:
 
-    $ cp MACH-Aero/<your_tutorial_name>/opt/ffd/ffd.xyz .
-    $ cp MACH-Aero/<your_tutorial_name>/aero/meshing/volume/wing_vol.cgns .
+.. prompt:: bash
+
+    cp ../ffd/ffd.xyz .
+    cp ../../aero/meshing/volume/wing_vol.cgns .
 
 Create the following empty runscript in the current directory:
 
@@ -228,8 +229,10 @@ To finish up, we choose the optimizer and then run the optimization.
 
 Run it yourself!
 ================
-To run the script, use the ``mpirun`` and place the total number of processors after the ``-np`` argument::
+To run the script, use the ``mpirun`` and place the total number of processors after the ``-np`` argument
 
-    $ mpirun -np 4 python aero_opt.py
+.. prompt:: bash
+
+    mpirun -np 4 python aero_opt.py
 
 You can follow the progress of the optimization using OptView, as explained in :ref:`opt_pyopt`.

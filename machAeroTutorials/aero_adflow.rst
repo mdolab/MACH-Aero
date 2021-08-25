@@ -14,10 +14,11 @@ You will find a complete introduction to ADflow in the :doc:`docs <adflow:introd
 Files
 =====
 Navigate to the directory ``aero/analysis`` in your tutorial folder.
-Copy the following files from the volume meshing directory:
-::
+Copy the following file from the volume meshing directory:
 
-    $ cp ../meshing/volume/wing_vol.cgns .
+.. prompt:: bash
+
+    cp ../meshing/volume/wing_vol.cgns .
 
 Create the following empty runscript in the current directory:
 
@@ -99,8 +100,10 @@ Finally we print out the requested functions on the root proc.
 
 Run it yourself!
 ================
-First make the output directory and then run the script (you may have to change your outputDirectory in aeroOptions)::
+First make the output directory and then run the script (you may have to change your outputDirectory in aeroOptions)
 
-    $ mkdir output
-    $ mpirun -np 4 python aero_run.py
+.. prompt:: bash
+
+    mkdir output
+    mpirun -np 4 python aero_run.py
 

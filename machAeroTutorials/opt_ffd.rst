@@ -18,19 +18,18 @@ Since both our CFD meshes and finite element models are point-based, we can embe
    :align: center
 
 The actual implementation of the FFD method is housed in the pyGeo repository, which we were already introduced to in the very beginning of the tutorial.
-The specific file to look for is ``pygeo/DVGeometry.py``.
+The specific class to look for is :doc:`DVGeometry <pygeo:DVGeometry>`.
 Before diving into the parametrization, however, we need to generate an FFD, which is basically a 3D grid in the plot3d format.
 
 Files
 ================================================================================
 Navigate to the directory ``opt/ffd`` in your tutorial folder.
-Copy the following files from the MACH-Aero repository::
+Copy the following files from the ``tutorial`` directory:
 
-    $ cp MACH-Aero/tutorial/opt/ffd/simple_ffd.py .
+.. prompt:: bash
 
-Also copy the volume mesh from the MACH-Aero repository::
-
-    $ cp MACH-Aero/tutorial/aero/analysis/wing_vol.cgns .
+    cp ../../../tutorial/opt/ffd/simple_ffd.py .
+    cp ../../../tutorial/aero/analysis/wing_vol.cgns .
 
 Create the following empty runscript in the current directory:
 
@@ -40,8 +39,8 @@ Creating an FFD volume
 ======================
 As mentioned above, the actual definition of an FFD volume is simply a 3D grid of points.
 We can create this by hand in a meshing software like ICEM, or for very simple cases, we can generate it with a script.
-There is also a function `write_wing_FFD_file` in `pygeo/geo_utils.py` that you can use to generate a simple FFD by specifying slices and point distributions.
-For this tutorial, we are dealing with a relatively simple wing geometry---straight edges, no kink, no dihedral---so we will just use the script approach.
+There is also a function in pyGeo, :doc:`write_wing_FFD_file <pygeo:geo_utils>`, that can be used to generate a simple FFD by specifying slices and point distributions.
+For this tutorial, we are dealing with a relatively simple wing geometry - straight edges, no kink, no dihedral - so we will just use the script approach.
 This script is not very generalizable though, so it is not part of the MACH library.
 I will explain briefly how it works, but I won't give it the same attention as the other scripts we use in this tutorial.
 
@@ -68,16 +67,18 @@ Here we use a distribution that varies from wider spacing at the root to narrowe
 
 Write to file
 -------------
-Finally we write to file, using the plot3d format.
+Finally we write to file using the plot3d format.
 
 .. literalinclude:: ../tutorial/opt/ffd/simple_ffd.py
     :start-after: # rst Write
 
 Generate the FFD
 ----------------
-Run the script with the command::
+Run the script with the command
 
-    $ python simple_ffd.py
+.. prompt:: bash
+
+    python simple_ffd.py
 
 Visualizing the FFD
 -------------------
@@ -265,9 +266,10 @@ We can also view the updated surface coordinates by calling ``writePointSet``.
 Run it yourself!
 ================
 Once you have generated the FFD with ``simple_ffd.py`` you can try out different design variables by running
-::
 
-    $ python parametrize.py
+.. prompt:: bash
+
+    python parametrize.py
 
 You can view the results in Tecplot.
 

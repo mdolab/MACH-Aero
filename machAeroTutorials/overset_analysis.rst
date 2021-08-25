@@ -37,14 +37,16 @@ Files
 Navigate to the directory ``overset/analysis`` in your tutorial folder and create an empty file called
 ``run_adflow_L3.py``. If you did not create the volume mesh on the previous page, you will also have to
 copy the mesh file:
-::
 
-    $ cp tutorial/overset/analysis/ONERA_M6_L3.cgns .
+.. prompt:: bash
+
+    cp ../../../tutorial/overset/analysis/ONERA_M6_L3.cgns .
 
 If you want to use ``adflow_util`` download and install it:
-::
 
-    $ pip install git+https://github.com/DavidAnderegg/adflow_util.git
+.. prompt:: bash
+
+    pip install git+https://github.com/DavidAnderegg/adflow_util.git
 
 
 ADflow
@@ -124,28 +126,32 @@ And lastly, we plug everything into ``adflow_util``:
 Simply Run the Script
 ---------------------
 To run the script, proceed as usual:
-::
 
-    $ python run_adflow_L3.py
+.. prompt:: bash
 
-If you want to run in parallel, start it with mpi
-::
+    python run_adflow_L3.py
 
-    $ mpirun -np 4 python run_adflow_L3.py
+If you want to run in parallel, start it with MPI:
+
+.. prompt:: bash
+
+    mpirun -np 4 python run_adflow_L3.py
 
 
 Plot the Iterations in realtime
 -------------------------------
 If you want to have a graphical representation of all the ADflow variables, ``adflow_util`` comes in handy as well.
 It has an additional package called ``adflow_plot``. If you installed it using pip, you can simply start it this way:
-::
 
-    $ adflow_plot -i run_adflow_L3.py
+.. prompt:: bash
+
+    adflow_plot -i run_adflow_L3.py
 
 If you want to run in parallel:
-::
 
-    $ adflow_plot -i run_adflow_L3.py -np 4
+.. prompt:: bash
+
+    adflow_plot -i run_adflow_L3.py -np 4
 
 This is simply an overlay, which starts the adflow script in the background and parses it's ``stdout``. At startup
 you will see the regular adflow-ouput. But as soon as the calculation starts, you'll see a plot of ``resRho``:

@@ -29,6 +29,6 @@ This repository contains the following:
 - Installation instructions which are shared across the various repositories
 - Tutorials for using MACH-Aero to perform aerodynamic shape optimization
 
-These documentation can be accessed online at https://mdolab-mach-aero.readthedocs-hosted.com/.
-To run the tutorials yourself, you need to follow the installation instructions to install all the modules, then clone this repository to access the tutorial scripts.
+This documentation can be accessed online [here](https://mdolab-mach-aero.readthedocs-hosted.com/).
+To run the tutorials, follow the installation instructions to install all the modules, then clone this repository to access the tutorial scripts.
 To compile the doc locally, first install dependencies via ``pip install -r requirements.txt``, then build locally with ``make html``.

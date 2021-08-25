@@ -22,7 +22,13 @@ The shape variables are controlled by the FFD points specified in the FFD file.
 Files
 =====
 
-Copy the FFD file, ``ffd.xyz``, and the CGNS mesh file, ``n0012.cgns``, generated previously, into the directory.
+Navigate to the directory ``airfoilopt/singlepoint`` in your tutorial folder. 
+Copy the FFD file, ``ffd.xyz``, and the CGNS mesh file, ``n0012.cgns``, generated previously, into the directory:
+
+.. prompt:: bash
+
+    cp ../mesh/n0012.cgns . 
+    cp ../ffd/ffd.xyz . 
 
 Create the following empty runscript in the current directory:
 
@@ -40,6 +46,19 @@ Import libraries
     :start-after: # rst Imports (beg)
     :end-before: # rst Imports (end)
 
+Adding command line arguments
+-----------------------------
+This is a convenience feature that allows the user to pass in command line arguments to the script.
+Four options are provided:
+
+-  Output directory
+-  Optimizer to be used
+-  Grid file to be used
+-  Optimizer options
+
+.. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
+    :start-after: # rst args (beg)
+    :end-before: # rst args (end)
 
 Specifying parameters for the optimization
 ------------------------------------------
@@ -74,17 +93,17 @@ The ADflow set-up looks similar to the aerodynamic analysis script.
 As it is, the options specified above allow for a good convergence of NACA0012 airfoil analysis, but may not converge for other airfoils. 
 Some useful options to adjust are:
 
-	``nCycles``
-		If the analysis doesn't converge, this can be increased.
+``nCycles``
+    If the analysis doesn't converge, this can be increased.
 
-	``nkswitchtol``
-		If the analysis stops converging during NK (Newton-Krylov), this might mean that it is still outside of the radius of convergence of the NK method. The parameter should then be lowered.
+``nkswitchtol``
+    If the analysis stops converging during NK (Newton-Krylov), this might mean that it is still outside of the radius of convergence of the NK method. The parameter should then be lowered.
 
-	``NKSubSpaceSize``
-		Decreasing this parameter will decrease memory usage when in the NK range. Only change this if there are memory issues when dealing with larger meshes.
+``NKSubSpaceSize``
+    Decreasing this parameter will decrease memory usage when in the NK range. Only change this if there are memory issues when dealing with larger meshes.
 
-	``writeSurfaceSolution`` and ``writeVolumeSolution``
-		If you want to view the surface or volume solutions at the end of each analysis, these parameters can be set to True.
+``writeSurfaceSolution`` and ``writeVolumeSolution``
+    If you want to view the surface or volume solutions at the end of each analysis, these parameters can be set to True.
 
 We also add a single lift distribution with 200 sampling points using ``addLiftDistribution``, meaning that these values are written to a text file after every iteration. 
 Similarly, ``addSlices`` writes the airfoil coordinates of the specified slice to a text file.
@@ -207,10 +226,12 @@ Run optimization
 Run it yourself!
 ================
 
-To run the script, use the ``mpirun`` and place the total number of processors after the ``-np`` argument::
+To run the script, use the ``mpirun`` and place the total number of processors after the ``-np`` argument
 
-	$ mkdir output
-	$ mpirun -np 4 python airfoil_opt.py | tee output.txt
+.. prompt:: bash
+
+    mkdir output
+    mpirun -np 4 python airfoil_opt.py | tee output.txt
 
 The command ``tee`` saves the text outputs of the optimization to the specified text file.
-You can follow the progress of the optimization using OptView, as explained in pyOptSparse.
+You can follow the progress of the optimization using OptView, as explained in :ref:`pyOptSparse <opt_pyopt>`.

@@ -18,10 +18,11 @@ For more theoretical background of mesh generation, refer to "Thompson, et.al. H
 Files
 =====
 Navigate to the directory ``aero/meshing/surface`` in your tutorial folder.
-Copy the following files from the the ``geometry`` directory:
-::
+Copy the following file from the the ``geometry`` directory:
 
-    $ cp ../../geometry/wing.tin .
+.. prompt:: bash
+
+    cp ../../geometry/wing.tin .
 
 Basic ICEM Usage
 ================
@@ -30,14 +31,21 @@ The actual tutorial starts with :ref:`surface_meshing`.
 
 Opening ICEM
 ------------
-First determine where the ICEM executable is located::
+First, determine where the ICEM executable is located.
 
-    $ which icemcfd
+.. prompt:: bash
+
+    which icemcfd
+
+The output should look like the following, where <your-version> is the version you installed. ::
+
     /usr/ansys_inc/<your-version>/icemcfd/linux64_amd/bin/icemcfd
 
-Then run the executable with superuser privileges::
+Then run the executable with superuser privileges, replacing the path with the results of the previous command.  
 
-    $ sudo /usr/ansys_inc/<your-version>/icemcfd/linux64_amd/bin/icemcfd
+.. prompt:: bash
+
+    sudo /usr/ansys_inc/<your-version>/icemcfd/linux64_amd/bin/icemcfd
 
 File Types
 ----------
@@ -56,9 +64,12 @@ Navigating in ICEM
 ------------------
 To adjust your view of the geometry in ICEM the following functions are possible with the mouse:
 
-- Hold down left button while dragging mouse: Rotate the view in 3D space
-- Hold down middle button while dragging mouse: Translate view in viewing plane
-- Scroll middle button: Slow zoom in/out
+- Hold down left button while dragging mouse: 
+    - Rotate the view in 3D space
+- Hold down middle button while dragging mouse: 
+    - Translate view in viewing plane
+- Scroll middle button: 
+    - Slow zoom in/out
 - Hold down right button
     - Drag mouse up/down: Fast zoom
     - Drag mouse left/right: Rotate view in viewing plane
