@@ -18,7 +18,7 @@ Since both our CFD meshes and finite element models are point-based, we can embe
    :align: center
 
 The actual implementation of the FFD method is housed in the pyGeo repository, which we were already introduced to in the very beginning of the tutorial.
-The specific file to look for is ``pygeo/parameterization/DVGeo.py``.
+The specific class to look for is :doc:`DVGeometry <pygeo:DVGeometry>`.
 Before diving into the parametrization, however, we need to generate an FFD, which is basically a 3D grid in the plot3d format.
 
 Files
@@ -39,8 +39,8 @@ Creating an FFD volume
 ======================
 As mentioned above, the actual definition of an FFD volume is simply a 3D grid of points.
 We can create this by hand in a meshing software like ICEM, or for very simple cases, we can generate it with a script.
-There is also a function, ``write_wing_FFD_file``, in ``pygeo/geo_utils/file_io.py`` that can be used to generate a simple FFD by specifying slices and point distributions.
-For this tutorial, we are dealing with a relatively simple wing geometry---straight edges, no kink, no dihedral---so we will just use the script approach.
+There is also a function in pyGeo, :doc:`write_wing_FFD_file <pygeo:geo_utils>`, that can be used to generate a simple FFD by specifying slices and point distributions.
+For this tutorial, we are dealing with a relatively simple wing geometry - straight edges, no kink, no dihedral - so we will just use the script approach.
 This script is not very generalizable though, so it is not part of the MACH library.
 I will explain briefly how it works, but I won't give it the same attention as the other scripts we use in this tutorial.
 
