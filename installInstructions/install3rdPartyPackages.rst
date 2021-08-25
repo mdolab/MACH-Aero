@@ -328,11 +328,11 @@ After saving the file, source ``$HOME/.bashrc``:
    
    source ~/.bashrc
       
-Go to the CGNS ``src`` directory:
+Go to the CGNS directory:
 
 .. prompt:: bash
 
-   cd $HOME/packages/CGNS-<version>/src
+   cd $HOME/packages/CGNS-<version>
 
 To configure the package, run:
 
