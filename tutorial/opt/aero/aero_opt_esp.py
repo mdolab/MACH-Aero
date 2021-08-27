@@ -8,8 +8,7 @@ import ast
 from mpi4py import MPI
 from baseclasses import AeroProblem
 from adflow import ADFLOW
-from pygeo.DVGeometryESP import DVGeometryESP
-from pygeo import DVConstraints
+from pygeo import DVConstraints, DVGeometryESP
 from pyoptsparse import Optimization, OPT
 from idwarp import USMesh
 from multipoint import multiPointSparse
