@@ -19,7 +19,7 @@ fsam = open("new.xyz", "w")
 fsam.write(str(1) + "\n")
 fsam.write(str(ndim) + " " + str(2) + " " + str(1) + "\n")
 for ell in range(3):
-    for k in range(1):
+    for _k in range(1):
         for j in range(2):
             for i in range(ndim):
                 fsam.write("%.15f\n" % (airfoil3d[i, j, ell]))

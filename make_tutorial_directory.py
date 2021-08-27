@@ -15,7 +15,7 @@ args = parser.parse_args()
 tutorial_directory = "tutorial/"
 write_directory = args.writedir
 
-for root, dirnames, filenames in os.walk(tutorial_directory):
+for root, dirnames, _filenames in os.walk(tutorial_directory):
     for dirname in dirnames:
         fullpath = os.path.join(root, dirname)
         endpath = fullpath.split(tutorial_directory)[-1]
