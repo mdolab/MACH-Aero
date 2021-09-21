@@ -9,7 +9,7 @@ This tutorial was written to help new users become familiar with the tools and w
 Most of the tools in the MACH framework are written with Python, although many of the tools incorporate Fortran code to handle operations that require speed.
 The user does not need to know Fortran to complete this tutorial, but if Python is not your strong suit, we recommend a refresher with one of the many online Python tutorials.
 
-.. warning:: Please view this tutorial as a *bare-minimum* tutorial and not as a comprehensive tutorial. To gain proficiency and flexibility with the MACH tools, it is necessary to explore the dedicated documentation, source code, docstrings, and code comments of each tool. 
+.. warning:: Please view this tutorial as a *bare-minimum* tutorial and not as a comprehensive tutorial. To gain proficiency and flexibility with the MACH tools, it is necessary to explore the dedicated documentation, source code, docstrings, and code comments of each tool.
 
 This tutorial starts from scratch and leads the user through the steps necessary to conduct aerodynamic shape optimization of a B717 wing.
 The tutorial files are located on `GitHub <https://github.com/mdolab/MACH-Aero/>`__.
@@ -18,7 +18,7 @@ Although these scripts should be executable without any modifications, **we high
 As you do this, ask yourself, "Do I understand why the code is written this way?"
 This will result in a much deeper understanding of how to use the tools and eventually will help you develop code in a consistent manner.
 To make this easier for you, we provide a basic script that will create the directory structure in your desired location so that all you have to do is create the files themselves.
-To run this script, go to the mach_aero_tutorials root folder and run the following:
+To run this script, go to the MACH-Aero root folder and run the following:
 
 .. prompt:: bash
 

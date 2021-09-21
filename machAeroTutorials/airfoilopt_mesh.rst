@@ -5,17 +5,17 @@
 Mesh Generation
 ***************
 
-In this tutorial, we will use pyHyp to generate a 3D mesh in CGNS format. 
-The coordinates for the NACA0012 airfoil are in the file ``n0012.dat``. 
-Coordinates for most airfoils can be obtained from the `UIUC Data site <http://m-selig.ae.illinois.edu/ads/coord_database.html>`_. 
+In this tutorial, we will use pyHyp to generate a 3D mesh in CGNS format.
+The coordinates for the NACA0012 airfoil are in the file ``n0012.dat``.
+Coordinates for most airfoils can be obtained from the `UIUC Data site <http://m-selig.ae.illinois.edu/ads/coord_database.html>`_.
 
 Navigate to the directory ``airfoilopt/mesh`` in your tutorial folder. Copy the airfoil data from the ``tutorial`` directory:
 
 .. prompt:: bash
 
-    cp ../../../tutorial/airfoilopt/mesh/n0012.dat . 
+    cp ../../../tutorial/airfoilopt/mesh/n0012.dat .
 
-Create the following empty runscript in the current directory. 
+Create the following empty runscript in the current directory.
 
 - ``genMesh.py``
 
@@ -37,9 +37,9 @@ Surface Mesh Generation
     :start-after: # rst SurfMesh
     :end-before: # rst GenOptions
 
-pyHyp requires a surface mesh input before it can create a 3D mesh. 
-A 2D surface mesh can be created using the code above, which produces a PLOT3D file with extension ``.xyz``. 
-This meshes only the airfoil surface, and is used as the input file for pyHyp, which marches the existing mesh to the farfield. 
+pyHyp requires a surface mesh input before it can create a 3D mesh.
+A 2D surface mesh can be created using the code above, which produces a PLOT3D file with extension ``.xyz``.
+This meshes only the airfoil surface, and is used as the input file for pyHyp, which marches the existing mesh to the farfield.
 By performing this intermediate step, the volume mesh generation is faster and higher-quality.
 
 
@@ -63,8 +63,8 @@ General Options
 ``BC``
     Tells pyHyp that, since it is a 2D problem, both sides of the domain ``jLow`` and ``jHigh``  are set to be symmetry boundary conditions. The input surface is automatically assigned to be a wall boundary.
 ``families``
-    Name given to wall surfaces. 
-    If a dictionary is submitted, each wall patch can have a different name. 
+    Name given to wall surfaces.
+    If a dictionary is submitted, each wall patch can have a different name.
     This can help the user to apply certain operations to specific wall patches in ADflow.
 
 
@@ -76,18 +76,18 @@ Grid Parameters
 ---------------
 
 ``N``
-    Number of nodes in off-wall direction. 
-    If multigrid will be used this number should be 2\ :sup:`m-1`\ (n+1), where m is the number of multigrid levels and n is the number of layers on the coarsest mesh. 
+    Number of nodes in off-wall direction.
+    If multigrid will be used this number should be 2\ :sup:`m-1`\ (n+1), where m is the number of multigrid levels and n is the number of layers on the coarsest mesh.
 ``s0``
-    Thickness of first off-wall cell layer. 
+    Thickness of first off-wall cell layer.
 ``marchDist``
-    Distance of the far-field. 
+    Distance of the far-field.
 
 
 Running pyHyp and Writing to File
 =================================
 
-The following three lines of code extrude the surface mesh and write the resulting volume mesh to a ``.cgns`` file. 
+The following three lines of code extrude the surface mesh and write the resulting volume mesh to a ``.cgns`` file.
 
 .. literalinclude:: ../tutorial/airfoilopt/mesh/genMesh.py
     :start-after: # rst Run
@@ -98,4 +98,4 @@ You can now run the python file with the command:
 
 .. prompt:: bash
 
-    python run_pyhyp.py
+    python genMesh.py
