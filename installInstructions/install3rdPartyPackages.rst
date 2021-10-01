@@ -361,10 +361,11 @@ Finally, build and install:
 .. NOTE::
    If the compilation fails with a message similar to this:
    ``relocation R_X86_64_32 against `.rodata' can not be used when making a shared object;``
-   ``recompile with -fPIC``,  use the following two-step approach:
+   ``recompile with -fPIC``, you need to pass that flag to the compiler:
 
-      #. edit the ``src/make.defs.in`` by replacing ``FFLAGS = @FFLAGS@ @SYSFFLAGS@`` with ``FFLAGS = -fPIC``
-      #. when configuring with CMake, add the ``-D CMAKE_Fortran_FLAGS="-fPIC"`` flag
+      * with ``CMake`` (recommended approach): add the ``-D CMAKE_Fortran_FLAGS="-fPIC"`` flag to the configure command;
+      * with ``make``: edit ``src/make.defs.in`` by replacing ``FFLAGS = @FFLAGS@ @SYSFFLAGS@`` with ``FFLAGS = -fPIC``.
+      
 
 
 Installing CGNS Tools (Optional)
