@@ -338,7 +338,7 @@ To configure the package, run:
 
 .. prompt:: bash
 
-   cmake -D CGNS_ENABLE_FORTRAN=ON -D CMAKE_INSTALL_PREFIX=$CGNS_HOME -D CGNS_ENABLE_64BIT=OFF -D CGNS_BUILD_CGNSTOOLS=OFF .
+   cmake -D CGNS_ENABLE_FORTRAN=ON -D CMAKE_INSTALL_PREFIX=$CGNS_HOME -D CGNS_ENABLE_64BIT=OFF -D CGNS_BUILD_CGNSTOOLS=OFF -D CMAKE_Fortran_FLAGS="-fPIC" .
 
 If your compilers are not located at ``/usr/bin/gcc``, either because you are on an HPC system or using Intel compilers, you must adjust the configure command.
 This is done by passing additional variables to ``cmake``:
@@ -356,6 +356,8 @@ Finally, build and install:
 .. prompt:: bash
 
    make install
+     
+
 
 Installing CGNS Tools (Optional)
 ********************************
