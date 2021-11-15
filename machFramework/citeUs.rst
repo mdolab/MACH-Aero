@@ -4,7 +4,7 @@ Cite Us
 =======
 See the following papers for technical background of the above modules. **If you use these modules for publications, please cite the corresponding papers**.
 
-- **pyOptSparse** :cite:`Perez2012a`
+- **pyOptSparse** :cite:`Wu2020a`
 
 - **pyGeo** :cite:`Kenway2010b`
 
