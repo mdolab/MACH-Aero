@@ -2,7 +2,6 @@ import os
 import unittest
 import subprocess
 import shutil
-from pyoptsparse.pyOpt_error import Error
 
 tutorialDir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../tutorial")  # Path to current folder
 has_SNOPT = os.environ.get("IMAGE") == "private"
