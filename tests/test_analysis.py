@@ -10,6 +10,11 @@ try:
 except ImportError:
     pyOCSM = None
 
+try:
+    from pyoptsparse.pyIPOPT import pyipoptcore
+except ImportError:
+    pyipoptcore = None
+
 # note that this is NOT the testflo directive!
 # we are explicitly calling mpirun ourselves
 NPROCS = 2
@@ -78,6 +83,7 @@ class TestWingOpt(unittest.TestCase):
         cmd = ["python", "aero_opt.py"]
         subprocess.check_call(mpiCmd + cmd + gridFlag + SNOPT)
 
+    @unittest.skipIf(pyipoptcore is None, "temporarily skipping IPOPT tests on the intel image")
     def test_wing_opt_IPOPT(self):
         # first copy files
         os.chdir("aero")
