@@ -398,11 +398,13 @@ Python Packages
 ---------------
 In this guide, python packages are installed using ``pip``.
 Other methods, such as from source or using ``conda``, will also work.
-Local installations (with ``--user``) are also recommended but not required.
+
+.. note::
+   A dedicated Python virtual environment, for example generated using ``venv``, is highly recommended.
 
 When installing the same package multiple times with different dependencies,
 for example ``petsc4py`` with different petsc builds, the pip cache can become incorrect.
-Therefore, we recommend the ``--no-cache`` flag when installing python packages with pip.
+Therefore, we recommend the ``--no-cache`` flag when installing python packages with ``pip``.
 
 .. _install_numpy:
 
@@ -418,13 +420,7 @@ It is installed with:
 
 .. prompt:: bash
 
-   pip install numpy==<version> --user --no-cache
-
-On a ``conda``-based system, it is recommended to use ``conda`` to install numpy and scipy:
-
-.. prompt:: bash
-
-   conda install numpy=<version>
+   pip install numpy==<version>
 
 SciPy
 ~~~~~
@@ -433,17 +429,12 @@ It is installed with:
 
 .. prompt:: bash
 
-   pip install scipy==<version> --user --no-cache
+   pip install scipy==<version>
 
-On a ``conda``-based system, it is recommended to use ``conda`` to install numpy and scipy:
-
-.. prompt:: bash
-
-   conda install scipy=<version>
 
 .. note::
-   On a cluster, most likely numpy and scipy will already be
-   installed. Unless the version is invalid, use the system-provided installation.
+   On a cluster, most likely numpy and scipy will already be installed.
+   Unless the version is invalid, use the system-provided installation which should offer better performance.
 
 .. _install_mpi4py:
 
@@ -461,7 +452,7 @@ It is installed with:
 
 .. prompt:: bash
 
-   pip install mpi4py==<version> --user --no-cache
+   pip install mpi4py==<version>
 
 .. NOTE::
    Some function usages have changed in newer versions of mpi4py. Check the `release <https://github.com/mpi4py/mpi4py/blob/master/CHANGES.rst>`_ to see the modifications that might be requried in the code.
@@ -505,7 +496,7 @@ It is installed with:
 
 .. prompt:: bash
 
-   pip install petsc4py==<version> --user --no-cache
+   pip install petsc4py==<version> --no-cache
 
 Build from source (Required for multiple PETSc architectures)
 *************************************************************
