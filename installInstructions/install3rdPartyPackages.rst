@@ -422,12 +422,6 @@ It is installed with:
 
    pip install numpy==<version>
 
-On a ``conda``-based system, it is recommended to use ``conda`` to install numpy and scipy:
-
-.. prompt:: bash
-
-   conda install numpy=<version>
-
 SciPy
 ~~~~~
 SciPy is required for several packages including ``pyOptSparse``, ``pyGeo`` and certain functionality in ``pySpline``.
@@ -437,15 +431,10 @@ It is installed with:
 
    pip install scipy==<version>
 
-On a ``conda``-based system, it is recommended to use ``conda`` to install numpy and scipy:
-
-.. prompt:: bash
-
-   conda install scipy=<version>
 
 .. note::
-   On a cluster, most likely numpy and scipy will already be
-   installed. Unless the version is invalid, use the system-provided installation.
+   On a cluster, most likely numpy and scipy will already be installed.
+   Unless the version is invalid, use the system-provided installation which should offer better performance.
 
 .. _install_mpi4py:
 
