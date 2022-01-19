@@ -2,6 +2,7 @@ import os
 import unittest
 import subprocess
 import shutil
+from pyoptsparse.pyOpt_error import Error
 
 tutorialDir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../tutorial")  # Path to current folder
 has_SNOPT = os.environ.get("IMAGE") == "private"
@@ -10,10 +11,6 @@ try:
 except ImportError:
     pyOCSM = None
 
-try:
-    from pyoptsparse.pyIPOPT import pyipoptcore
-except ImportError:
-    pyipoptcore = None
 
 # note that this is NOT the testflo directive!
 # we are explicitly calling mpirun ourselves
@@ -83,7 +80,6 @@ class TestWingOpt(unittest.TestCase):
         cmd = ["python", "aero_opt.py"]
         subprocess.check_call(mpiCmd + cmd + gridFlag + SNOPT)
 
-    @unittest.skipIf(pyipoptcore is None, "temporarily skipping IPOPT tests on the intel image")
     def test_wing_opt_IPOPT(self):
         # first copy files
         os.chdir("aero")
@@ -91,7 +87,10 @@ class TestWingOpt(unittest.TestCase):
         shutil.copy("../../aero/analysis/wing_vol_coarsen.cgns", "wing_vol_coarsen.cgns")
         shutil.rmtree("output_IPOPT", ignore_errors=True)
         cmd = ["python", "aero_opt.py", "--output", "output_IPOPT"]
-        subprocess.check_call(mpiCmd + cmd + gridFlag + IPOPT)
+        try:
+            subprocess.check_call(mpiCmd + cmd + gridFlag + IPOPT)
+        except Error:
+            unittest.SkipTest("temporarily skipping IPOPT tests on the intel image")
 
     @unittest.skipUnless(has_SNOPT and pyOCSM is not None, "SNOPT and pyOCSM are required for this test")
     def test_wing_opt_ESP_SNOPT(self):
