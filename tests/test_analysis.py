@@ -5,7 +5,7 @@ import shutil
 
 tutorialDir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../tutorial")  # Path to current folder
 has_SNOPT = os.environ.get("IMAGE") == "private"
-has_IPOPT = os.environ.get("OS") == "centos" and os.environ.get("COMPILERS") == "intel"
+has_not_IPOPT = os.environ.get("OS") == "centos" and os.environ.get("COMPILERS") == "intel"
 try:
     from pyOCSM import pyOCSM
 except ImportError:
@@ -80,7 +80,7 @@ class TestWingOpt(unittest.TestCase):
         cmd = ["python", "aero_opt.py"]
         subprocess.check_call(mpiCmd + cmd + gridFlag + SNOPT)
 
-    @unittest.skipUnless(has_IPOPT, "temporarily skipping IPOPT tests on the intel image")
+    @unittest.skipIf(has_not_IPOPT, "temporarily skipping IPOPT tests on the intel image")
     def test_wing_opt_IPOPT(self):
         # first copy files
         os.chdir("aero")
