@@ -122,3 +122,10 @@ This can be done with the command:
 
 where the number of processors is given after ``-np``.
 You can open ``wing_vol.cgns`` in Tecplot to view the volume mesh.
+The expected mesh output is shown below.
+
+.. figure:: images/aero_wing_volume_mesh.png
+    :scale: 20
+    :align: center
+    :alt: Wing volume mesh
+    :figclass: align-center

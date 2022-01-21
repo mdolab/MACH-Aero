@@ -104,7 +104,14 @@ Run it yourself!
 After copying ``rae2822.dat`` to your ``aero/geometry`` folder and making the ``generate_wing.py`` script, you can now run the python file with the command
 
 .. prompt:: bash
-    
+
     python generate_wing.py
 
 You can open ``wing.dat`` in Tecplot to view the wing surface.
+The expected geometry output is shown below.
+
+.. figure:: images/aero_wing_geometry.png
+    :scale: 30
+    :align: center
+    :alt: Wing geometry
+    :figclass: align-center

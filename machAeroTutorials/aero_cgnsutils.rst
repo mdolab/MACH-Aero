@@ -37,6 +37,14 @@ To coarsen the mesh run the following from the terminal:
 
     cgns_utils coarsen wing_vol.cgns wing_vol_coarsened.cgns
 
+The original and the coarsened meshes are shown below.
+
+.. figure:: images/aero_wing_volume_mesh_coarsened.png
+    :scale: 20
+    :align: center
+    :alt: Wing volume mesh coarsened
+    :figclass: align-center
+
 CGNS Viewer
 ===========
 Bundled with cgnsUtilities is a very barebones mesh viewing software that can be useful for debugging problems with the mesh such as incorrect boundary conditions or missing face-to-face connections.
