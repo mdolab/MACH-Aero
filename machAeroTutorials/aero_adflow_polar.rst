@@ -121,7 +121,7 @@ Running the solver is identical to the simple single point example.
 We simply call the ``CFDSolver`` instance with the current AeroProblem.
 This causes the CFD solver to be updated with the values of that AeroProblem prior to solving the flow.
 We then use the same ``EvalFunctions`` call to integrate the surface forces to get the lift and drag coefficients.
-The difference is that here, we append the coefficients from ``funcs`` into the ``CL`` and ``CD`` list, so that they can be used later.
+The difference is that here, we append the coefficients from ``funcs`` into the ``CLList`` and ``CDList`` variables, so that they can be used later.
 
 Print Drag Polar
 ----------------
@@ -138,3 +138,17 @@ Run the script:
 .. prompt:: bash
 
     mpirun -np 4 python aero_run_drag_polar.py
+
+Terminal output
+---------------
+
+The final table should look something like::
+
+     Alpha       CL       CD
+    ========================
+       0.0   0.2272   0.0111
+       1.0   0.3550   0.0143
+       2.0   0.4760   0.0201
+       3.0   0.5695   0.0284
+       4.0   0.6330   0.0385
+       5.0   0.6805   0.0509

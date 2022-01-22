@@ -37,7 +37,7 @@ aeroOptions = {
     "useNKSolver": True,
     "nkswitchtol": 1e-4,
     # Termination Criteria
-    "L2Convergence": 1e-6,
+    "L2Convergence": 1e-8,
     "L2ConvergenceCoarse": 1e-2,
     "nCycles": 1000,
 }
@@ -59,8 +59,8 @@ ap = AeroProblem(name="wing", mach=0.8, altitude=10000, alpha=1.5, areaRef=45.5,
 alphaList = np.linspace(0, 5, 6)
 
 # Create storage for the evaluated lift and drag coefficients
-CL = []
-CD = []
+CLList = []
+CDList = []
 # rst Start loop
 # Loop over the alpha values and evaluate the polar
 for alpha in alphaList:
@@ -84,12 +84,13 @@ for alpha in alphaList:
     CFDSolver.evalFunctions(ap, funcs)
 
     # Store the function values in the output list
-    CL.append(funcs[f"{ap.name}_cl"])
-    CD.append(funcs[f"{ap.name}_cd"])
+    CLList.append(funcs[f"{ap.name}_cl"])
+    CDList.append(funcs[f"{ap.name}_cd"])
 
 # rst Print polar
-# Print the evaluated functions
+# Print the evaluated functions in a table
 if comm.rank == 0:
-    print("Alpha:", alphaList)
-    print("CL:", CL)
-    print("CD:", CD)
+    print("{:>6} {:>8} {:>8}".format("Alpha", "CL", "CD"))
+    print("=" * 24)
+    for (alpha, cl, cd) in zip(alphaList, CLList, CDList):
+        print(f"{alpha:6.1f} {cl:8.4f} {cd:8.4f}")
