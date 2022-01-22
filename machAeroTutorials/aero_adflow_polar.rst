@@ -42,9 +42,9 @@ Import libraries
 As in the previous example, we first import ADflow.
 We also need to import :doc:`baseclasses <baseclasses:index>`, which is a library of problem and solver classes used to encourage a common API within the MACH suite.
 We will again be using the AeroProblem, which is a container for the flow conditions that we want to analyze.
-However, in this case we will sequentially update the alpha parameter to produce the desired drag polar.
-Again, it is convenient to import the mpi4py library to prevent printing multiple times if we are running on multiple processors.
-Importing mpi4py is not entirely necessary in the runscript because ADflow does it internally if necessary.
+However, in this case we will sequentially update the :math:`\alpha` parameter to produce the desired drag polar.
+Again, it is convenient to import the ``mpi4py`` library to prevent printing multiple times if we are running on multiple processors.
+Importing ``mpi4py`` is not entirely necessary in the runscript because ADflow does it internally if necessary.
 
 ADflow options
 --------------
@@ -55,8 +55,8 @@ ADflow options
 An exhaustive list of the ADflow options and their descriptions can be found in :doc:`ADflow options<adflow:options>`.
 We will not go over every option here, as they are outlined in the previous example.
 However, we will highlight the option that has been changed for this case.
-This option is the "infchangecorrection" option.
-This option causes the change in the freestream velocity to be added to every cell in the mesh whenever alpha is updated.
+This option is the ``infchangecorrection`` option.
+This option causes the change in the freestream velocity to be added to every cell in the mesh whenever ``alpha`` is updated.
 This produces a significant improvement in the convergence of the implicit solver algorithms in the code, in particular the full Newton-Krylov algorithm.
 
 Create solver
@@ -87,7 +87,7 @@ Create Drag Polar Arrays
 
 This is where the major differences between a single point run and the drag polar become evident.
 We start by creating an array of the angle of attack values that we wish to simulate.
-In this case we use the numpy.linspace function to create a uniformly space array with six whole number entries from 0 - 5.
+In this case we use the ``numpy.linspace`` function to create a uniformly-spaced array with six whole number entries from 0 - 5.
 We also create the empty lists for storing the lift and drag coefficients. 
 The lift and drag data will be appended to these lists as the flow solutions are completed.
 
@@ -98,7 +98,7 @@ Loop over the Angle of Attack Input Arrays
     :end-before: # rst update AP
 
 Having created the input array and data storage lists, we can now loop over the desired angles of attack to evaluate the polar.
-We accomplish this by using the builtin "for" loop structure in python.
+We accomplish this by using the builtin ``for`` loop structure in python.
 
 Update the AeroProblem
 ----------------------
@@ -118,10 +118,10 @@ Run solver and Accumulate Drag Polar
     :end-before: # rst Print polar
 
 Running the solver is identical to the simple single point example. 
-We simply call the CFDSolver instance with the current AeroProblem. 
+We simply call the ``CFDSolver`` instance with the current AeroProblem.
 This causes the CFD solver to be updated with the values of that AeroProblem prior to solving the flow.
-We then use the same EvalFunctions call to integrate the surface forces to get the lift and drag coefficients.
-The difference is that here, we append the coefficients from "funcs" into the "CL" and "CD" list, so that they can be used later.
+We then use the same ``EvalFunctions`` call to integrate the surface forces to get the lift and drag coefficients.
+The difference is that here, we append the coefficients from ``funcs`` into the ``CL`` and ``CD`` list, so that they can be used later.
 
 Print Drag Polar
 ----------------
@@ -133,9 +133,8 @@ Once we complete the loop and evaluate all of the desired flow conditions, we ca
 
 Run it yourself!
 ================
-First make the output directory and then run the script
+Run the script:
 
 .. prompt:: bash
 
-    mkdir output
     mpirun -np 4 python aero_run_drag_polar.py

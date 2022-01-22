@@ -68,12 +68,12 @@ for alpha in alphaList:
     # rst update AP
     # Update the name in the AeroProblem. This allows us to modify the
     # output file names with the current alpha.
-    ap.name = "wing_%4.2f" % alpha
+    ap.name = f"wing_{alpha:4.2f}"
 
     # Update the alpha in aero problem and print it to the screen.
     ap.alpha = alpha
     if comm.rank == 0:
-        print("current alpha: %f" % ap.alpha)
+        print(f"current alpha: {ap.alpha}")
 
     # rst Run ADflow
     # Solve the flow
@@ -84,8 +84,8 @@ for alpha in alphaList:
     CFDSolver.evalFunctions(ap, funcs)
 
     # Store the function values in the output list
-    CL.append(funcs["%s_cl" % ap.name])
-    CD.append(funcs["%s_cd" % ap.name])
+    CL.append(funcs[f"{ap.name}_cl"])
+    CD.append(funcs[f"{ap.name}_cd"])
 
 # rst Print polar
 # Print the evaluated functions
