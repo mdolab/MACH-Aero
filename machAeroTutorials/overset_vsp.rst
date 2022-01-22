@@ -23,13 +23,13 @@ Navigate to the directory ``overset/geo`` in your tutorial folder. Copy the file
 Geometry Overview
 =================
 Before we start, we should familiarize ourself with the geometry we are going to create.
-The real ONERA M6 experiment looked like this:
+The real ONERA M6 experiment looked like this :cite:`nasaM6real`:
 
 .. figure:: images/overset_view-of-ONERA.jpg
     :width: 300
     :align: center
 
-    ONERA M6 experiment :cite:`nasaM6real`\.
+    ONERA M6 experiment.
 
 As we are not the first to simulate this wing, we can grab the geometry data and the airfoil from :cite:`nasaM6sim`\.
 Here is a short summary:
