@@ -135,13 +135,36 @@ The solver terminates either by reaching the maximum number of iterations or a r
         1      50    370       NK     ----    1.00  0.233   0.1234849430743969E-01   0.4183997561758928E+00   0.1672837063506830E-01   0.2236421105321589E+02
         1      51    416       NK     ----    1.00  0.100   0.2859429789094894E-02   0.4177585676352084E+00   0.1680250566621767E-01   0.3480878888188400E+01
 
-Solution output
----------------
-The output surface solution file can be viewed in the Tecplot.
-A contour plot of the pressure coefficient is shown below.
+
+A the end of the terminal output the functions defined in ``evalFuncs``  are printed to the screen::
+
+    {'wing_cd': 0.016801751358107225, 'wing_cl': 0.4177636397905002}
+
+Postprocessing the solution output
+==================================
+All output is found in the ``output`` directory.
+The solutions file (``.dat``, ``.cgns`` or ``.plt``) can be viewed in the Tecplot.
+A contour plot of the pressure coefficient using the surface ``.plt`` is shown below.
 
 .. figure:: images/aero_wing_analysis_cp_contour.png
     :scale: 20
     :align: center
     :alt: Pressure coefficient
+    :figclass: align-center
+
+The lift and slice files (``.dat``) can also be viewed in tecplot or parsed directly and plotted e.g. matplotlib.
+From the lift file we show the spanwise normalized lift, compared to elliptical lift, as well as the twist distribution and t/c.
+
+.. figure:: images/aero_wing_analysis_lift.png
+    :scale: 50
+    :align: center
+    :alt: Lift file
+    :figclass: align-center
+
+For the slice file, here the normalized airfoil shape and pressure coefficient are shown.
+
+.. figure:: images/aero_wing_analysis_slices.png
+    :scale: 50
+    :align: center
+    :alt: Slice file
     :figclass: align-center

@@ -5,6 +5,7 @@
 import os
 import argparse
 import ast
+import numpy as np
 from mpi4py import MPI
 from baseclasses import AeroProblem
 from adflow import ADFLOW
@@ -67,13 +68,14 @@ aeroOptions = {
 
 # Create solver
 CFDSolver = ADFLOW(options=aeroOptions, comm=comm)
-CFDSolver.addLiftDistribution(200, "z")
+CFDSolver.addLiftDistribution(150, "z")
+CFDSolver.addSlices("z", np.linspace(0.1, 14, 10))
 # rst adflow (end)
 # ======================================================================
 #         Set up flow conditions with AeroProblem
 # ======================================================================
 # rst aeroproblem (beg)
-ap = AeroProblem(name="fc", alpha=1.5, mach=0.8, altitude=10000, areaRef=45.5, chordRef=3.25, evalFuncs=["cl", "cd"])
+ap = AeroProblem(name="wing", alpha=1.5, mach=0.8, altitude=10000, areaRef=45.5, chordRef=3.25, evalFuncs=["cl", "cd"])
 
 # Add angle of attack variable
 ap.addDV("alpha", value=1.5, lower=0, upper=10.0, scale=0.1)
