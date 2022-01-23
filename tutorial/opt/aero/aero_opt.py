@@ -218,7 +218,6 @@ elif args.opt == "SNOPT":
     optOptions = {
         "Major feasibility tolerance": 1e-4,
         "Major optimality tolerance": 1e-4,
-        "Difference interval": 1e-3,
         "Hessian full memory": None,
         "Function precision": 1e-8,
         "Print file": os.path.join(args.output, "SNOPT_print.out"),
