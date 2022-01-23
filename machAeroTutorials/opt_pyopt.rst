@@ -46,7 +46,7 @@ Import libraries
     :end-before: # rst Command line arguments
 
 First we import everything from pyOptSparse.
-Additionally we import argparse to enable the use of command line arguments.
+Additionally we import ``argparse`` to enable the use of command line arguments.
 
 Command line arguments
 ----------------------
@@ -105,37 +105,7 @@ Add design variables
     :start-after: # rst Add design variables
     :end-before: # rst Add constraints
 
-Now we need to add the design variables to the problem.
-The `addVarGroup` function requires the following parameters:
-
-    ``name``
-        Name of the design variable group.
-
-    ``nVars``
-        Number of variables in the group.
-
-    ``type``
-        ``'c'`` for continuous, ``'i'`` for integer, ``'d'`` for discrete
-
-    ``value``
-        Starting value for design variables.
-        If it is a a scalar, the same value is applied to all ``nVars`` variables.
-        Otherwise, it must be iterable object with length equal to ``nVars``.
-
-    ``lower``
-        Lower bound of variables.
-        Scalar/array usage is the same as ``value`` keyword.
-
-    ``upper``
-        Upper bound of variables.
-        Scalar/array usage is the same as ``value`` keyword.
-
-    ``scale``
-        Scaling factor for the design variables.
-        The optimizer sees the unscaled value multiplied by this scaling factor.
-        Scalar/array usage is the same as ``value`` keyword.
-
-Once all design variables have been added, a call to ``finalizeDesignVariables`` tells pyOptSparse to do any final processing of the design variable information.
+Now we need to add the design variables to the problem, which is done with a call to :meth:`addVarGroup() <pyoptsparse:pyoptsparse.pyOpt_optimization.Optimization.addVarGroup>`.
 
 Add constraints
 ---------------
@@ -143,27 +113,7 @@ Add constraints
     :start-after: # rst Add constraints
     :end-before: # rst Instantiate optimizer
 
-We complete the optimization problem set-up by adding the constraints.
-The following basic options are available:
-
-    ``name``
-        Constraint name. All names given to constraints must be unique
-
-    ``nCon``
-        The number of constraints in this group
-
-    ``lower``
-        The lower bound(s) for the constraint.
-        If it is a scalar, it is applied to all nCon constraints.
-        If it is an array, the array must be the same length as nCon.
-
-    ``upper``
-        The upper bound(s) for the constraint.
-        Scalar/array usage is the same as `lower` keyword.
-
-    ``scale``
-        A scaling factor for the constraint.
-        It is generally advisable to have most optimization constraint around the same order of magnitude.
+We complete the optimization problem set-up by adding the constraints, using the function :meth:`addCon() <pyoptsparse:pyoptsparse.pyOpt_optimization.Optimization.addCon>`.
 
 Set up the optimizer
 --------------------
@@ -185,24 +135,58 @@ The ``sens`` keyword also accepts ``'FD'`` to indicate that the user wants to us
     :start-after: # rst Solve
 
 Run it yourself!
-================================================================================
+================
 Try running the optimization.
 
 .. prompt:: bash
 
     python rosenbrock.py
 
+Terminal output
+---------------
+::
+
+    Optimization Problem -- Rosenbrock function
+    ================================================================================
+        Objective Function: userfunc
+
+        Solution: 
+    --------------------------------------------------------------------------------
+        Total Time:                    0.0516
+        User Objective Time :       0.0002
+        User Sensitivity Time :     0.0002
+        Interface Time :            0.0476
+        Opt Solver Time:            0.0035
+        Calls to Objective Function :      31
+        Calls to Sens Function :           26
+
+
+    Objectives
+        Index  Name            Value
+            0  obj     2.371563E-03
+
+    Variables (c - continuous, i - integer, d - discrete)
+        Index  Name      Type      Lower Bound            Value      Upper Bound     Status
+            0  xvars_0      c    -5.120000E+00     1.048645E+00     5.120000E+00           
+            1  xvars_1      c    -5.120000E+00     1.099885E+00     5.120000E+00           
+
+    Constraints (i - inequality, e - equality)
+        Index  Name Type          Lower           Value           Upper    Status  Lagrange Multiplier (N/A)
+            0  con    i  -1.000000E+20   -5.669922E-08    0.000000E+00         u    9.00000E+100
+
+    --------------------------------------------------------------------------------
+
+The optimizer (SLSQP) also writes out an output file ``SLSQP.out`` that contains additional information.
+
 Visualization with OptView
-================================================================================
+--------------------------
 pyOptSparse comes with a simple GUI to view the optimization history called OptView.
 You can run it with the command
 
 .. prompt:: bash
 
-    python <path-to-pyoptsparse>/postprocessing/OptView.py opt.hst
-
-or if you've properly installed PyOptSparse
-
-.. prompt:: bash
-
     optview opt.hst
+
+.. figure:: images/opt_optview.png
+    :width: 500
+    :align: center
