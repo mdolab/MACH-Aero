@@ -47,6 +47,15 @@ For multipoint optimization, the parameters have to be specified in lists of the
     :start-after: # rst parameters (beg)
     :end-before: # rst parameters (end)
 
+Creating processor sets
+-----------------------
+This is largely unchanged from the single-point case, since we use a very similar parallelization scheme.
+The only difference is in defining the variable ``nGroup`` which is used later on to distinguish between the two AeroProblems.
+
+.. literalinclude:: ../tutorial/airfoilopt/multipoint/airfoil_multiopt.py
+    :start-after: # rst multipoint (beg)
+    :end-before: # rst multipoint (end)
+
 
 Set the AeroProblem
 -------------------

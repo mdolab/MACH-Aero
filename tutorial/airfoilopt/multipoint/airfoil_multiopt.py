@@ -37,8 +37,11 @@ nFlowCases = len(mach)
 #         Create multipoint communication object
 # ======================================================================
 # rst multipoint (beg)
+# assign number of processors
+nGroup = 1
+nProcPerGroup = MPI.COMM_WORLD.size
 MP = multiPointSparse(MPI.COMM_WORLD)
-MP.addProcessorSet("cruise", nMembers=1, memberSizes=MPI.COMM_WORLD.size)
+MP.addProcessorSet("cruise", nMembers=nGroup, memberSizes=nProcPerGroup)
 comm, setComm, setFlags, groupFlags, ptID = MP.createCommunicators()
 if not os.path.exists(args.output):
     if comm.rank == 0:
@@ -58,7 +61,7 @@ aeroOptions = {
     "smoother": "DADI",
     "MGCycle": "sg",
     "nCycles": 20000,
-    "monitorvariables": ["resrho", "cl", "cd", "cmz", "yplus"],
+    "monitorvariables": ["resrho", "cl", "cd"],
     "useNKSolver": True,
     "useanksolver": True,
     "nsubiterturb": 10,

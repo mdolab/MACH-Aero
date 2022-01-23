@@ -64,7 +64,7 @@ aeroOptions = {
     "smoother": "DADI",
     "MGCycle": "sg",
     "nCycles": 20000,
-    "monitorvariables": ["resrho", "cl", "cd", "cmz", "yplus"],
+    "monitorvariables": ["resrho", "cl", "cd"],
     "useNKSolver": True,
     "useanksolver": True,
     "nsubiterturb": 10,
