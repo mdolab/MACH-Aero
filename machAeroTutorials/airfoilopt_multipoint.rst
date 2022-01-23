@@ -11,10 +11,14 @@ Optimization does not have to be limited to a single flight condition.
 This section goes through the same optimization as the single point case, except with one more flight condition. 
 Instead of rewriting the code from scratch, the differences in code will be pointed out.
 
+.. note::
+    Different parallelizations are possible with multipoint optimizations.
+    In this tutorial, all of the processors will be used to solve the first AeroProblem, then they will all switch and solve the second AeroProblem.
+    Alternatively, it's possible to solve both simultaneously by using twice the number of processors, but load balancing becomes an issue.
+
 
 Files
 =====
-
 Navigate to the directory ``airfoilopt/multipoint`` in your tutorial folder. 
 Copy the FFD file, ``ffd.xyz``, and the CGNS mesh file, ``n0012.cgns``, generated previously, into the directory:
 
@@ -37,7 +41,6 @@ Change the following sections for multipoint optimization.
 
 Specifying parameters for the optimization
 ------------------------------------------
-
 For multipoint optimization, the parameters have to be specified in lists of the same size.
 
 .. literalinclude:: ../tutorial/airfoilopt/multipoint/airfoil_multiopt.py
@@ -47,7 +50,6 @@ For multipoint optimization, the parameters have to be specified in lists of the
 
 Set the AeroProblem
 -------------------
-
 For more than one AeroProblem, a list needs to be created. 
 Each AeroProblem is created with the respective optimization point and appended to the list.
 
@@ -66,12 +68,12 @@ The lines that require a call to the an AeroProblem is now put into a for-loop t
     :start-after: # rst funcs (beg)
     :end-before: # rst funcs (end)
 
-In the ``objCon`` function, the :math:`c_L` constraint is also placed into the for-loop.
+In the ``objCon`` function, the :math:`c_l` constraint is also placed into the for-loop.
 
 Optimization problem
 --------------------
-
-Adding the constraints to the optimization problem requires adding them to each AeroProblem.
+The only difference here is that we now have two different :math:`c_l` constraints, one for each point.
+These are added in a loop.
 
 .. literalinclude:: ../tutorial/airfoilopt/multipoint/airfoil_multiopt.py
     :start-after: # rst optprob (beg)
@@ -80,7 +82,6 @@ Adding the constraints to the optimization problem requires adding them to each 
 
 Run it yourself!
 ================
-
 The script can be run in the same way
 
 .. prompt:: bash
