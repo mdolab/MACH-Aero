@@ -32,7 +32,7 @@ aeroOptions = {
     "useANKSolver": True,
     # NK Solver Parameters
     "useNKSolver": True,
-    "nkswitchtol": 1e-4,
+    "NKSwitchTol": 1e-4,
     # Termination Criteria
     "L2Convergence": 1e-6,
     "L2ConvergenceCoarse": 1e-2,

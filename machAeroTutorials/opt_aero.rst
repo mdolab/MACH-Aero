@@ -15,6 +15,7 @@ The optimization problem is defined as
 | *with respect to*
 |    7 twist variables
 |    96 shape variables
+|    1 angle of attack
 | *subject to*
 |    :math:`C_L = 0.5`
 
@@ -236,3 +237,63 @@ To run the script, use the ``mpirun`` and place the total number of processors a
     mpirun -np 4 python aero_opt.py
 
 You can follow the progress of the optimization using OptView, as explained in :ref:`opt_pyopt`.
+
+
+Terminal output
+---------------
+An important step of verifyting the optimization setup is to check the sparsity structure of the constraint Jacobian::
+
+    +-------------------------------------------------------------------------------+
+    |                   Sparsity structure of constraint Jacobian                   |
+    +-------------------------------------------------------------------------------+
+                                             alpha_wing (1)   twist (7)   local (96)
+                                            +---------------------------------------+
+             DVCon1_volume_constraint_0 (1) |              |     X     |      X     |
+                                            -----------------------------------------
+       DVCon1_thickness_constraints_0 (100) |              |     X     |      X     |
+                                            -----------------------------------------
+      DVCon1_lete_constraint_0_local(L) (8) |              |           |      X     |
+                                            -----------------------------------------
+      DVCon1_lete_constraint_1_local(L) (8) |              |           |      X     |
+                                            -----------------------------------------
+                            cl_con_wing (1) |       X      |     X     |      X     |
+                                            +---------------------------------------+
+
+Postprocessing the solution output
+==================================
+All output is found in the ``output`` directory.
+The naming scheme of the files follows in general ``<name>_<iter>_<type>.<ext>``, where the ``<name>`` is aeroproblem, ``<iter>`` is the function evaluation number, ``<type>`` is the solution type (surface, volume, lift, slices, ect.), and ``<ext>`` is the file extension.
+The solution files (``.dat``, ``.cgns`` or ``.plt``) can be viewed in the Tecplot.
+A contour plot of the pressure coefficient compared with the surface solution from the :ref:`aero_adflow` is shown below.
+
+.. figure:: images/aero_wing_opt_cp_contour_compare.png
+    :scale: 20
+    :align: center
+    :alt: Pressure coefficient
+    :figclass: align-center
+
+Similarly, as done in :ref:`aero_adflow`, the lift and slice files (``.dat``) are used to compare the spanwise normalized lift, compared to elliptical lift, the twist distribution, and t/c.
+For the slice file, here the normalized airfoil shape and pressure coefficient are shown.
+The optimized design achieves an elliptical lift distribution, and shows a more even and gradual pressure distribution as shown by the contour and section plots.
+Further, the optimized twist distribution, as expected, demonstrates higher lift in the outboard section of the wing.
+
+.. figure:: images/aero_wing_opt_lift_compare.png
+    :scale: 50
+    :align: center
+    :alt: Lift file
+    :figclass: align-center
+
+.. figure:: images/aero_wing_opt_slices_compare.png
+    :scale: 50
+    :align: center
+    :alt: Slice file
+    :figclass: align-center
+
+Finally the optimization history can be viewed either by parsing the database or using OptView.
+Here the former is done showing the major iterations of the history, objective, and some of the design variables and constraints.
+
+.. figure:: images/aero_wing_opt_hist.png
+    :scale: 45
+    :align: center
+    :alt: Optimization history
+    :figclass: align-center
