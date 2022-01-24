@@ -16,6 +16,18 @@ Instead of rewriting the code from scratch, the differences in code will be poin
     In this tutorial, all of the processors will be used to solve the first AeroProblem, then they will all switch and solve the second AeroProblem.
     Alternatively, it's possible to solve both simultaneously by using twice the number of processors, but load balancing becomes an issue.
 
+The optimization problem is defined as:
+
+| *minimize*
+|    average drag: :math:`\frac{1}{2} \left(C_{D,0} + C_{D,1}\right)`
+| *with respect to*
+|    10 shape variables
+| *subject to*
+|    :math:`C_{L,0} = 0.5`
+|    :math:`C_{L,1} = 0.7`
+|    :math:`V \ge V_0`
+|    :math:`t \ge 0.1t_0`
+|    :math:`\Delta z_{LETE, upper} = -\Delta z_{LETE, lower}`
 
 Files
 =====
@@ -83,6 +95,8 @@ Optimization problem
 --------------------
 The only difference here is that we now have two different :math:`c_l` constraints, one for each point.
 These are added in a loop.
+In addition, we use the ``wrt`` keyword to specify the variables that affect each lift constraint.
+In this case, the ``alpha`` from the other flight conditions do not impact the lift constraint, so they are set to zero.
 
 .. literalinclude:: ../tutorial/airfoilopt/multipoint/airfoil_multiopt.py
     :start-after: # rst optprob (beg)
@@ -97,3 +111,9 @@ The script can be run in the same way
 
     mkdir output
     mpirun -np 4 python airfoil_multiopt.py | tee output.txt
+
+
+.. figure::
+    images/airfoil_multi_opt.png
+    :width: 600
+    :align: center

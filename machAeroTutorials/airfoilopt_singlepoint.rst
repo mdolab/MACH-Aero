@@ -16,6 +16,9 @@ The optimization problem is defined as:
 |    10 shape variables
 | *subject to*
 |    :math:`C_L = 0.5`
+|    :math:`V \ge V_0`
+|    :math:`t \ge 0.1t_0`
+|    :math:`\Delta z_{LETE, upper} = -\Delta z_{LETE, lower}`
 
 The shape variables are controlled by the FFD points specified in the FFD file.
 
@@ -105,7 +108,8 @@ Some useful options to adjust are:
 ``writeSurfaceSolution`` and ``writeVolumeSolution``
     If you want to view the surface or volume solutions at the end of each analysis, these parameters can be set to True.
 
-We also use ``addSlices``to write the airfoil coordinates and :math:`c_p` distribution to a text file.
+
+We also use ``addSlices`` to write the airfoil coordinates and :math:`c_p` distribution to a text file.
 
 Set the AeroProblem
 -------------------
@@ -234,3 +238,8 @@ To run the script, use the ``mpirun`` and place the total number of processors a
 
 The command ``tee`` saves the text outputs of the optimization to the specified text file.
 You can follow the progress of the optimization using OptView, as explained in :ref:`pyOptSparse <opt_pyopt>`.
+
+.. figure::
+    images/airfoil_single_opt.png
+    :width: 600
+    :align: center

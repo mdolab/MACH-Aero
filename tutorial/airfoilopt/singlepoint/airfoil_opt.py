@@ -162,7 +162,7 @@ le = 0.0001
 leList = [[le, 0, le], [le, 0, 1.0 - le]]
 teList = [[1.0 - le, 0, le], [1.0 - le, 0, 1.0 - le]]
 
-DVCon.addVolumeConstraint(leList, teList, 2, 100, lower=0.064837137176294343, upper=0.07, scaled=False)
+DVCon.addVolumeConstraint(leList, teList, 2, 100, lower=1, scaled=True)
 DVCon.addThicknessConstraints2D(leList, teList, 2, 100, lower=0.1, upper=3.0)
 
 if comm.rank == 0:
