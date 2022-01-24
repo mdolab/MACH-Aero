@@ -190,3 +190,12 @@ You can run it with the command
 .. figure:: images/opt_optview.png
     :width: 500
     :align: center
+
+You can also load the history file in python to make your own plots, such as the one below, showing the path the optimiser took to the solution:
+
+.. literalinclude:: ../tutorial/opt/pyoptsparse/rosenbrock.py
+    :start-after: # rst Plot
+
+.. figure:: images/opt_optpath.png
+    :width: 500
+    :align: center
