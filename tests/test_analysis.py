@@ -119,6 +119,7 @@ class TestAirfoilOpt(unittest.TestCase):
         subprocess.check_call(["python", "genMesh.py"])
         # FFD
         os.chdir("../ffd")
+        shutil.copy("../mesh/n0012.dat", ".")
         subprocess.check_call(["python", "genFFD.py"])
         os.chdir("../")
 
