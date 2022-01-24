@@ -105,8 +105,7 @@ Some useful options to adjust are:
 ``writeSurfaceSolution`` and ``writeVolumeSolution``
     If you want to view the surface or volume solutions at the end of each analysis, these parameters can be set to True.
 
-We also add a single lift distribution with 200 sampling points using ``addLiftDistribution``, meaning that these values are written to a text file after every iteration. 
-Similarly, ``addSlices`` writes the airfoil coordinates of the specified slice to a text file.
+We also use ``addSlices``to write the airfoil coordinates and :math:`c_p` distribution to a text file.
 
 Set the AeroProblem
 -------------------

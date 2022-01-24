@@ -94,7 +94,6 @@ aeroOptions = {
 
 # Create solver
 CFDSolver = ADFLOW(options=aeroOptions, comm=comm)
-CFDSolver.addLiftDistribution(200, "z")
 # rst adflow (end)
 # ======================================================================
 #         Set up flow conditions with AeroProblem
