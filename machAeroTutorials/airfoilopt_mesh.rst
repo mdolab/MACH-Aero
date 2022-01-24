@@ -9,6 +9,13 @@ In this tutorial, we will use pyHyp to generate a 3D mesh in CGNS format.
 The coordinates for the NACA0012 airfoil are in the file ``n0012.dat``.
 Coordinates for most airfoils can be obtained from the `UIUC Data site <http://m-selig.ae.illinois.edu/ads/coord_database.html>`_.
 
+The initial mesh (``n0012.dat``) can be visualized in Tecplot.
+
+.. figure::
+    images/airfoil_surface_mesh.png
+    :width: 500
+    :align: center
+
 Navigate to the directory ``airfoilopt/mesh`` in your tutorial folder. Copy the airfoil data from the ``tutorial`` directory:
 
 .. prompt:: bash
@@ -42,6 +49,12 @@ A 2D surface mesh can be created using the code above, which produces a PLOT3D f
 This meshes only the airfoil surface, and is used as the input file for pyHyp, which marches the existing mesh to the farfield.
 By performing this intermediate step, the volume mesh generation is faster and higher-quality.
 
+The intermediate mesh (``new.xyz``) can be visualized in Tecplot.
+
+.. figure::
+    images/airfoil_p3d_mesh.png
+    :width: 500
+    :align: center
 
 Options
 =======
