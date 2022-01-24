@@ -133,6 +133,7 @@ The ``sens`` keyword also accepts ``'FD'`` to indicate that the user wants to us
 
 .. literalinclude:: ../tutorial/opt/pyoptsparse/rosenbrock.py
     :start-after: # rst Solve
+    :end-before: # rst Plot
 
 Run it yourself!
 ================
@@ -150,7 +151,7 @@ Terminal output
     ================================================================================
         Objective Function: userfunc
 
-        Solution: 
+        Solution:
     --------------------------------------------------------------------------------
         Total Time:                    0.0516
         User Objective Time :       0.0002
@@ -167,8 +168,8 @@ Terminal output
 
     Variables (c - continuous, i - integer, d - discrete)
         Index  Name      Type      Lower Bound            Value      Upper Bound     Status
-            0  xvars_0      c    -5.120000E+00     1.048645E+00     5.120000E+00           
-            1  xvars_1      c    -5.120000E+00     1.099885E+00     5.120000E+00           
+            0  xvars_0      c    -5.120000E+00     1.048645E+00     5.120000E+00
+            1  xvars_1      c    -5.120000E+00     1.099885E+00     5.120000E+00
 
     Constraints (i - inequality, e - equality)
         Index  Name Type          Lower           Value           Upper    Status  Lagrange Multiplier (N/A)
