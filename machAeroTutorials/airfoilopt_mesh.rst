@@ -5,6 +5,11 @@
 Mesh Generation
 ***************
 
+.. note::
+    Remember that ADflow is a 3D finite volume solver.
+    Therefore, 3D meshes are needed even for 2D problems such as airfoil simulations.
+    To do this, we generate a 3D mesh which is one cell wide, and apply symmetry boundary conditions on those two faces.
+
 In this tutorial, we will use pyHyp to generate a 3D mesh in CGNS format.
 The coordinates for the NACA0012 airfoil are in the file ``n0012.dat``.
 Coordinates for most airfoils can be obtained from the `UIUC Data site <http://m-selig.ae.illinois.edu/ads/coord_database.html>`_.
@@ -45,7 +50,7 @@ Surface Mesh Generation
     :end-before: # rst GenOptions
 
 pyHyp requires a surface mesh input before it can create a 3D mesh.
-A 2D surface mesh can be created using the code above, which produces a PLOT3D file with extension ``.xyz``.
+An "extruded" surface mesh can be created using the code above, which produces a PLOT3D file with extension ``.xyz``.
 This meshes only the airfoil surface, and is used as the input file for pyHyp, which marches the existing mesh to the farfield.
 By performing this intermediate step, the volume mesh generation is faster and higher-quality.
 
@@ -112,3 +117,17 @@ You can now run the python file with the command:
 .. prompt:: bash
 
     python genMesh.py
+
+The generated airfoil mesh should look like the following.
+
+.. figure::
+    images/airfoil_mesh.png
+    :width: 300
+    :align: center
+
+with a zoomed-in view:
+
+.. figure::
+    images/airfoil_mesh_zoom.png
+    :width: 300
+    :align: center
