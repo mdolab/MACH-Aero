@@ -107,7 +107,7 @@ After copying ``rae2822.dat`` to your ``aero/geometry`` folder and making the ``
 
     python generate_wing.py
 
-You can open ``wing.dat`` in Tecplot to view the wing surface.
+You can open ``wing.dat`` in Tecplot. To view the wing surface, hide all zones called ``control_pts``.
 The expected geometry output is shown below.
 
 .. figure:: images/aero_wing_geometry.png
