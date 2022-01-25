@@ -26,7 +26,6 @@ aeroOptions = {
     # Physics Parameters
     "equationType": "RANS",
     # Solver Parameters
-    "smoother": "DADI",
     "MGCycle": "sg",
     # ANK Solver Parameters
     "useANKSolver": True,
@@ -35,7 +34,6 @@ aeroOptions = {
     "NKSwitchTol": 1e-4,
     # Termination Criteria
     "L2Convergence": 1e-8,
-    "L2ConvergenceCoarse": 1e-2,
     "nCycles": 1000,
 }
 # rst Start ADflow
