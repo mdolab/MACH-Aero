@@ -25,17 +25,14 @@ aeroOptions = {
     "writeTecplotSurfaceSolution": True,
     # Physics Parameters
     "equationType": "RANS",
-    "infchangecorrection": True,
     # Solver Parameters
     "smoother": "DADI",
     "MGCycle": "sg",
-    "MGStartLevel": -1,
-    "nCyclesCoarse": 250,
     # ANK Solver Parameters
     "useANKSolver": True,
     # NK Solver Parameters
     "useNKSolver": True,
-    "nkswitchtol": 1e-4,
+    "NKSwitchTol": 1e-4,
     # Termination Criteria
     "L2Convergence": 1e-8,
     "L2ConvergenceCoarse": 1e-2,
