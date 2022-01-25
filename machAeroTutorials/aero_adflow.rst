@@ -112,7 +112,7 @@ First make the output directory and then run the script (you may have to change 
 Terminal output
 ---------------
 ADflow will print to the terminal various information during the initialization stages before starting the solution process.
-Once the solution process starts the terminal should shows information about the convergence history of the variables specified in ``monitorvariables``, in addition to the total residual.
+Once the solution process starts the terminal should show information about the convergence history of the variables specified in ``monitorvariables``, in addition to the total residual.
 The solver terminates either by reaching the maximum number of iterations or a reduction in the total residual is specified by the ``L2Convergence`` option::
 
     #
