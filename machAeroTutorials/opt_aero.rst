@@ -294,6 +294,11 @@ Further, the optimized twist distribution, as expected, demonstrates higher lift
 
 Finally the optimization history can be viewed either by parsing the database or using OptView.
 Here the former is done showing the major iterations of the history, objective, and some of the design variables and constraints.
+To produce the figure, run the accompanying postprocessing script as shown below.
+
+.. prompt:: bash
+
+    python plot_optHist.py --histFile output/opt.hst --outputDir output/
 
 .. figure:: images/aero_wing_opt_hist.png
     :scale: 45
