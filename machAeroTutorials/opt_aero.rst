@@ -20,7 +20,7 @@ The optimization problem is defined as
 |    :math:`C_L = 0.5`
 |    :math:`V \ge V_0`
 |    :math:`t \ge t_0`
-|    :math:`\Delta z_\text{LETE, upper} = -\Delta z_\text{LETE, lower}`
+|    :math:`\Delta z_\text{LETE, upper} = -\Delta z_{LETE, lower}`
 
 Files
 =====

@@ -27,7 +27,7 @@ The optimization problem is defined as:
 |    :math:`C_{L,1} = 0.7`
 |    :math:`V \ge V_0`
 |    :math:`t \ge 0.1t_0`
-|    :math:`\Delta z_\text{LETE, upper} = -\Delta z_\text{LETE, lower}`
+|    :math:`\Delta z_\text{LETE, upper} = -\Delta z_{LETE, lower}`
 
 Files
 =====
@@ -109,7 +109,6 @@ The script can be run in the same way
 
 .. prompt:: bash
 
-    mkdir output
     mpirun -np 4 python airfoil_multiopt.py | tee output.txt
 
 

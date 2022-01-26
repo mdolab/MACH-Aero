@@ -18,7 +18,7 @@ The optimization problem is defined as:
 |    :math:`C_L = 0.5`
 |    :math:`V \ge V_0`
 |    :math:`t \ge 0.1t_0`
-|    :math:`\Delta z_\text{LETE, upper} = -\Delta z_\text{LETE, lower}`
+|    :math:`\Delta z_\text{LETE, upper} = -\Delta z_{LETE, lower}`
 
 The shape variables are controlled by the FFD points specified in the FFD file.
 
@@ -125,6 +125,10 @@ Geometric parametrization
 -------------------------
 
 The set-up for DVGeometry is simpler for an airfoil since it doesn't involve span-wise variables such as twist, dihedral, or taper.
+As a result, we also don't need to set up a reference axis.
+The only DVs we have are local shape variables that control the vertical movements of each individual FFD node.
+Note that since we have to work with a 3D problem, this in fact has twice as many DVs as we'd like---the shape of the two airfoil sections should remain the same.
+This is addressed by adding linear constraints in the following section.
 
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
     :start-after: # rst dvgeo (beg)
@@ -134,28 +138,15 @@ The local design variable ``shape`` is added.
 
 Geometric constraints
 ---------------------
+This section is very similar to the corresponding section for the wing optimization.
+The only difference is that, we must add a set of linear constraints such that the shape deformations on one side of the airfoil mirrors that of the other.
+This is accomplished with a call to ``addLinearConstraintsShape``.
 
-Note: This section is also the same as the corresponding section in aircraft optimization.
-
-We can set up constraints on the geometry with the DVConstraints class, also found in the pyGeo module. 
-There are several built-in constraint functions within the DVConstraints class, including thickness, surface area, volume, location, and general linear constraints. 
-The majority of the constraints are defined based on a triangulated surface representation of the wing obtained from ADflow.
-
-The volume and thickness constraints are set up by creating a 2D grid of points which is projected through the planform of the wing. 
-For the volume constraint, the 2D grid is transformed into a 3D grid bounded by the surface of the wing. 
-The volume is computed by adding up the volumes of the cells that make up the 3D grid. For the thickness constraints, the nodes of the 2D grid are projected to the upper and lower surface of the wing. 
-The thickness for a given node is the difference between its upper and lower projections.
-
-The LeTe constraints (short for Leading edge/Trailing edge) are linear constraints based on the FFD control points. 
-When we have both twist and local shape variables, we want to prevent the local shape variables from creating a shearing twist. 
-This is done by constraining that the upper and lower nodes on the leading and trailing edges must move in opposite directions.
 
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
     :start-after: # rst dvcon (beg)
     :end-before: # rst dvcon (end)
 
-The parameters ``lower`` and ``upper`` are thickness or volume bounds relative to the original airfoil. 
-For example, the lower bound of 0.1 in the thickness constraint means that the optimized airfoil can be no thinner than 10% of the original airfoil.
 
 Mesh warping set-up
 -------------------
@@ -166,55 +157,15 @@ Mesh warping set-up
 
 Optimization callback functions
 -------------------------------
-
-Note: This section is also the same as the corresponding section in aircraft optimization.
-
-First we must set up a callback function and a sensitivity function for each processor set.
-In this case cruiseFuncs and cruiseFuncsSens belong to the cruise processor set.
-Then we need to set up an objCon function, which is used to create abstract functions of other functions.
-This should be similar for all single-point optimizations.
+This section is also the same as the corresponding section in aircraft optimization.
 
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
     :start-after: # rst funcs (beg)
     :end-before: # rst funcs (end)
 
-cruiseFuncs
-~~~~~~~~~~~
-The input to ``cruiseFuncs`` is the dictionary of design variables.
-First, we pass this dictionary to DVGeometry and AeroProblem to set their respective design variables.
-Then we solve the flow solution given by the AeroProblem with ADflow.
-Finally, we fill the ``funcs`` dictionary with the function values computed by DVConstraints and ADflow.
-The call ``checkSolutionFailure`` checks ADflow to see if there was a failure in the solution (could be due to negative volumes or something more sinister).
-If there was a failure it changes the ``fail`` flag in ``funcs`` to ``True``.
-The ``funcs`` dictionary is the required return.
-
-cruiseFuncsSens
-~~~~~~~~~~~~~~~
-The inputs to ``cruiseFuncsSens`` are the design variable and function dictionaries.
-Inside ``cruiseFuncsSens`` we populate the ``funcsSens`` dictionary with the derivatives of each of the functions in ``cruiseFuncs`` with respect to all of its dependence variables.
-
-objCon
-~~~~~~
-The main input to the ``objCon`` callback function is the dictionary of functions (which is a compilation of all the ``funcs`` dictionaries from each of the design points).
-Inside ``objCon``, the user can define functionals (or functions of other functions).
-
-
 Optimization problem
 --------------------
-
-Note: This section is also the same as the corresponding section in aircraft optimization.
-
-To set up the optimization problem, we incorporate multiPointSparse. 
-When creating the instance of the Optimization problem, ``MP.obj`` is given as the objective function. 
-multiPointSparse will take care of calling both ``cruiseFuncs`` and ``objCon`` to provide the full funcs dictionary to pyOptSparse.
-
-Both AeroProblem and DVGeometry have built-in functions to add all of their respective design variables to the optimization problem. 
-DVConstraints also has a built-in function to add all constraints to the optimization problem. 
-The user must manually add any constraints that were defined in objCon.
-
-Finally, we need to tell multiPointSparse which callback functions belong to which processor set. 
-We also need to provide it with the objCon and the optProb. 
-The call optProb.printSparsity() prints out the constraint Jacobian at the beginning of the optimization.
+This section is also the same as the corresponding section in aircraft optimization.
 
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
     :start-after: # rst optprob (beg)
@@ -233,7 +184,6 @@ To run the script, use the ``mpirun`` and place the total number of processors a
 
 .. prompt:: bash
 
-    mkdir output
     mpirun -np 4 python airfoil_opt.py | tee output.txt
 
 The command ``tee`` saves the text outputs of the optimization to the specified text file.
