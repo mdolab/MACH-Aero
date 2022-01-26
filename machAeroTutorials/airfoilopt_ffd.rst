@@ -83,3 +83,17 @@ You can now run the python file with the command:
 
 
 The above script writes the FFD coordinates to a PLOT3D ``.xyz`` file, which will be used for optimization.
+
+.. figure::
+    images/airfoil_ffd.png
+    :width: 400
+    :align: center
+
+    3D view of the FFD volumes
+
+.. figure::
+    images/airfoil_ffd_side.png
+    :width: 400
+    :align: center
+
+    2D view of the FFD volume, together with the embedded airfoil

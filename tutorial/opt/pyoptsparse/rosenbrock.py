@@ -1,6 +1,8 @@
 # rst Imports
-from pyoptsparse import OPT, Optimization
+from pyoptsparse import OPT, Optimization, History
+import numpy as np
 import argparse
+import matplotlib.pyplot as plt
 
 # rst Command line arguments
 parser = argparse.ArgumentParser()
@@ -46,3 +48,27 @@ opt = OPT(args.opt, options=optOptions)
 # rst Solve
 sol = opt(optProb, sens=userfuncsens, storeHistory="opt.hst")
 print(sol)
+
+# rst Plot
+
+# Load the history file
+optHist = History("opt.hst")
+values = optHist.getValues()
+
+# Plot contours of the objective and the constraint boundary
+x = np.linspace(-5.12, 5.12, 201)
+X, Y = np.meshgrid(x, x)
+objFunc = 100 * (Y - X ** 2) ** 2 + (1 - X) ** 2
+conFunc = 0.1 - (X - 1) ** 3 - (Y - 1)
+
+fig, ax = plt.subplots()
+ax.contour(X, Y, objFunc, levels=40)
+ax.contour(X, Y, conFunc, levels=[0.0], colors="r")
+ax.contourf(X, Y, conFunc, levels=[0.0, np.inf], colors="r", alpha=0.3)
+
+# Plot the path of the optimizer
+ax.plot(values["xvars"][:, 0], values["xvars"][:, 1], "-o", markersize=6, clip_on=False)
+ax.plot(values["xvars"][0, 0], values["xvars"][0, 1], "s", markersize=8, clip_on=False)
+ax.plot(values["xvars"][-1, 0], values["xvars"][-1, 1], "^", markersize=8, clip_on=False)
+
+fig.savefig("OptimizerPath.png")

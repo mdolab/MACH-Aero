@@ -62,13 +62,12 @@ FFDbox[:, :, 0, 2] = 0.0
 FFDbox[:, :, 1, 2] = 1.0
 
 # rst WriteFile
-f = open("ffd.xyz", "w")
-f.write("1\n")
-f.write(str(nffd) + " 2 2\n")
-for ell in range(3):
-    for k in range(2):
-        for j in range(2):
-            for i in range(nffd):
-                f.write("%.15f " % (FFDbox[i, j, k, ell]))
-            f.write("\n")
-f.close()
+with open("ffd.xyz", "w") as f:
+    f.write("1\n")
+    f.write(str(nffd) + " 2 2\n")
+    for ell in range(3):
+        for k in range(2):
+            for j in range(2):
+                for i in range(nffd):
+                    f.write("%.15f " % (FFDbox[i, j, k, ell]))
+                f.write("\n")

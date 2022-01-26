@@ -3,9 +3,9 @@
 # ======================================================================
 # rst Imports (beg)
 import os
+import numpy as np
 import argparse
 import ast
-import numpy as np
 from mpi4py import MPI
 from baseclasses import AeroProblem
 from adflow import ADFLOW
@@ -26,24 +26,23 @@ args = parser.parse_args()
 # ======================================================================
 # rst parameters (beg)
 # specify flight conditions and constraints
-mach = [0.4, 0.5]
-alt = [10000, 10000]
-alpha = [1, 1]
-mycl = [0.5, 0.5]
+mach = [0.75, 0.5]
+alt = [10000, 5000]
+alpha = [1.5, 5]
+mycl = [0.5, 0.7]
 # number of points in multipoint optimization
 nFlowCases = len(mach)
-# assign number of processors
-nGroup = 1
-nProcPerGroup = MPI.COMM_WORLD.size
 # rst parameters (end)
 # ======================================================================
 #         Create multipoint communication object
 # ======================================================================
 # rst multipoint (beg)
+# assign number of processors
+nGroup = 1
+nProcPerGroup = MPI.COMM_WORLD.size
 MP = multiPointSparse(MPI.COMM_WORLD)
 MP.addProcessorSet("cruise", nMembers=nGroup, memberSizes=nProcPerGroup)
 comm, setComm, setFlags, groupFlags, ptID = MP.createCommunicators()
-
 if not os.path.exists(args.output):
     if comm.rank == 0:
         os.mkdir(args.output)
@@ -62,7 +61,7 @@ aeroOptions = {
     "smoother": "DADI",
     "MGCycle": "sg",
     "nCycles": 20000,
-    "monitorvariables": ["resrho", "cl", "cd", "cmz", "yplus"],
+    "monitorvariables": ["resrho", "cl", "cd"],
     "useNKSolver": True,
     "useanksolver": True,
     "nsubiterturb": 10,
@@ -92,9 +91,9 @@ aeroOptions = {
     "frozenTurbulence": False,
     "restartADjoint": False,
 }
+
 # Create solver
 CFDSolver = ADFLOW(options=aeroOptions, comm=comm)
-CFDSolver.addLiftDistribution(200, "z")
 # rst adflow (end)
 # ======================================================================
 #         Set up flow conditions with AeroProblem
@@ -122,7 +121,7 @@ for i in range(nFlowCases):
 # Create DVGeometry object
 FFDFile = "ffd.xyz"
 
-DVGeo = DVGeometry(FFDFile)  # DVGeo = DVGeometry_FFD(FFDFile)
+DVGeo = DVGeometry(FFDFile)
 DVGeo.addLocalDV("shape", lower=-0.05, upper=0.05, axis="y", scale=1.0)
 
 span = 1.0
@@ -136,7 +135,8 @@ CFDSolver.setDVGeo(DVGeo)
 #         DVConstraint Setup
 # ======================================================================
 # rst dvcon (beg)
-DVCon = DVConstraints()  # DVCon = DVConstraints_FFD_data()
+
+DVCon = DVConstraints()
 DVCon.setDVGeo(DVGeo)
 
 # Only ADflow has the getTriangulatedSurface Function
@@ -146,14 +146,12 @@ DVCon.setSurface(CFDSolver.getTriangulatedMeshSurface())
 lIndex = DVGeo.getLocalIndex(0)
 indSetA = []
 indSetB = []
-# print('lIndex.shape[0]',lIndex.shape[0])
 for k in range(0, 1):
     indSetA.append(lIndex[0, 0, k])  # all DV for upper and lower should be same but different sign
     indSetB.append(lIndex[0, 1, k])
 for k in range(0, 1):
     indSetA.append(lIndex[-1, 0, k])
     indSetB.append(lIndex[-1, 1, k])
-# print(indSetA)
 DVCon.addLeTeConstraints(0, indSetA=indSetA, indSetB=indSetB)
 
 # DV should be same along spanwise
@@ -168,20 +166,16 @@ for i in range(lIndex.shape[0]):
     indSetB.append(lIndex[i, 1, 1])
 DVCon.addLinearConstraintsShape(indSetA, indSetB, factorA=1.0, factorB=-1.0, lower=0, upper=0)
 
-
 le = 0.0001
 leList = [[le, 0, le], [le, 0, 1.0 - le]]
 teList = [[1.0 - le, 0, le], [1.0 - le, 0, 1.0 - le]]
 
-
-DVCon.addVolumeConstraint(leList, teList, 2, 100, lower=0.064837137176294343, upper=0.07, scaled=False)
-DVCon.addThicknessConstraints2D(leList, teList, 2, 100, lower=0.1, upper=3.0)  # lower=0.01, upper=3.0)
-
+DVCon.addVolumeConstraint(leList, teList, 2, 100, lower=1, scaled=True)
+DVCon.addThicknessConstraints2D(leList, teList, 2, 100, lower=0.1, upper=3.0)
 
 if comm.rank == 0:
     fileName = os.path.join(args.output, "constraints.dat")
     DVCon.writeTecplot(fileName)
-
 # rst dvcon (end)
 # ======================================================================
 #         Mesh Warping Set-up
@@ -252,16 +246,16 @@ optProb = Optimization("opt", MP.obj, comm=MPI.COMM_WORLD)
 optProb.addObj("obj", scale=1e4)
 
 # Add variables from the AeroProblem
-ap.addVariablesPyOpt(optProb)
+for ap in aeroProblems:
+    ap.addVariablesPyOpt(optProb)
 
 # Add DVGeo variables
 DVGeo.addVariablesPyOpt(optProb)
 
 # Add constraints
 DVCon.addConstraintsPyOpt(optProb)
-for i in range(nFlowCases):
-    ap = aeroProblems[i]
-    optProb.addCon("cl_con_" + ap.name, lower=0.0, upper=0.0, scale=1.0)
+for ap in aeroProblems:
+    optProb.addCon(f"cl_con_{ap.name}", lower=0.0, upper=0.0, scale=1.0, wrt=[f"alpha_{ap.name}", "shape"])
 
 # The MP object needs the 'obj' and 'sens' function for each proc set,
 # the optimization problem and what the objcon function is:
@@ -273,14 +267,12 @@ optProb.printSparsity()
 # rst optprob (end)
 # rst optimizer
 # Set up optimizer
-
 if args.opt == "SLSQP":
     optOptions = {"IFILE": os.path.join(args.output, "SLSQP.out")}
 elif args.opt == "SNOPT":
     optOptions = {
         "Major feasibility tolerance": 1e-4,
         "Major optimality tolerance": 1e-4,
-        "Difference interval": 1e-3,
         "Hessian full memory": None,
         "Function precision": 1e-8,
         "Print file": os.path.join(args.output, "SNOPT_print.out"),

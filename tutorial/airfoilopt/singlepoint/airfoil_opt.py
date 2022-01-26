@@ -64,7 +64,7 @@ aeroOptions = {
     "smoother": "DADI",
     "MGCycle": "sg",
     "nCycles": 20000,
-    "monitorvariables": ["resrho", "cl", "cd", "cmz", "yplus"],
+    "monitorvariables": ["resrho", "cl", "cd"],
     "useNKSolver": True,
     "useanksolver": True,
     "nsubiterturb": 10,
@@ -97,7 +97,6 @@ aeroOptions = {
 
 # Create solver
 CFDSolver = ADFLOW(options=aeroOptions, comm=comm)
-CFDSolver.addLiftDistribution(200, "z")
 # rst adflow (end)
 # ======================================================================
 #         Set up flow conditions with AeroProblem
@@ -163,7 +162,7 @@ le = 0.0001
 leList = [[le, 0, le], [le, 0, 1.0 - le]]
 teList = [[1.0 - le, 0, le], [1.0 - le, 0, 1.0 - le]]
 
-DVCon.addVolumeConstraint(leList, teList, 2, 100, lower=0.064837137176294343, upper=0.07, scaled=False)
+DVCon.addVolumeConstraint(leList, teList, 2, 100, lower=1, scaled=True)
 DVCon.addThicknessConstraints2D(leList, teList, 2, 100, lower=0.1, upper=3.0)
 
 if comm.rank == 0:
@@ -257,7 +256,6 @@ elif args.opt == "SNOPT":
     optOptions = {
         "Major feasibility tolerance": 1e-4,
         "Major optimality tolerance": 1e-4,
-        "Difference interval": 1e-3,
         "Hessian full memory": None,
         "Function precision": 1e-8,
         "Print file": os.path.join(args.output, "SNOPT_print.out"),

@@ -30,6 +30,4 @@ In order to analyze a geometry with ADflow, we need to take the following steps:
    aero_pyhyp
    aero_cgnsutils
    aero_adflow
-   aero_adflow_polar
    aero_gridRefinementStudy
-

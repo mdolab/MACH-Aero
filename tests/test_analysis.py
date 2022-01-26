@@ -43,7 +43,7 @@ class TestWingAnalysis(unittest.TestCase):
         cmd = ["python", "aero_run.py"]
         subprocess.check_call(mpiCmd + cmd + gridFlag)
         # drag polar
-        cmd = ["python", "aero_run_drag_polar.py"]
+        cmd = ["python", "aero_run.py", "--task", "polar", "--output", "output_drag_polar"]
         subprocess.check_call(mpiCmd + cmd + gridFlag)
 
 
@@ -119,6 +119,7 @@ class TestAirfoilOpt(unittest.TestCase):
         subprocess.check_call(["python", "genMesh.py"])
         # FFD
         os.chdir("../ffd")
+        shutil.copy("../mesh/n0012.dat", ".")
         subprocess.check_call(["python", "genFFD.py"])
         os.chdir("../")
 

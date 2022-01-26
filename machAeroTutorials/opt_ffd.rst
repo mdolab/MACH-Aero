@@ -113,8 +113,8 @@ Usually we call the DVGeometry instance ``DVGeo``.
     :start-after: # rst Create DVGeometry object
     :end-before: # rst Create reference axis
 
-Define the variables
---------------------
+Define geometric design variables
+---------------------------------
 As explained in the introduction, the shape embedded inside the FFD is controlled by the movement of the control points which define the FFD volume.
 Although the most general parametrization would give the optimizer complete control over the x, y, and z coordinates of the FFD control points, in practice this is currently impractical.
 There are an infinite number of shapes that could be created by adjusting the positions of all the control points, but the majority of these shapes are nonphysical or bad designs.
@@ -126,6 +126,12 @@ On the other hand, the global definition of the wing would be in terms of parame
 These parameters can be controlled by moving groups of FFD control points simultaneously in a certain fashion.
 DVGeometry gives us the flexibility to maintain both global and local control over the design shape.
 First we will explain the global variables and then the local variables.
+
+
+.. figure::
+    https://raw.githubusercontent.com/mdolab/pygeo/master/doc/images/DPW4_FFD-27745.gif
+
+    Demonstration of some global and local design variables.
 
 Reference Axis
 ~~~~~~~~~~~~~~
