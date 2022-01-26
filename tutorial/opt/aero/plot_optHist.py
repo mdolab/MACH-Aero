@@ -3,7 +3,7 @@ import argparse
 import matplotlib.pyplot as plt
 from pyoptsparse import History
 
-plt.rcParams["text.usetex"] = True # Comment out if latex installation is not present
+plt.rcParams["text.usetex"] = True  # Comment out if latex installation is not present
 plt.rcParams["font.family"] = "serif"
 plt.rcParams["font.size"] = 20
 plt.rcParams["xtick.labelsize"] = 16
@@ -41,11 +41,11 @@ axes[4].plot("nMajor", "cl_con_fc", data=histValues, label="cl_con")
 axes[4].set_ylabel("Lift constraint", rotation="horizontal", ha="right", fontsize=24)
 
 for ax in axes:
-    ax.spines['right'].set_visible(False)
-    ax.spines['top'].set_visible(False)
+    ax.spines["right"].set_visible(False)
+    ax.spines["top"].set_visible(False)
 
     # Drop the rest of the spines
-    ax.spines['left'].set_position(('outward', 12))
-    ax.spines['bottom'].set_position(('outward', 12))
+    ax.spines["left"].set_position(("outward", 12))
+    ax.spines["bottom"].set_position(("outward", 12))
 
-plt.savefig(os.path.join(args.outputDir, 'aero_wing_opt_hist.png'))
+plt.savefig(os.path.join(args.outputDir, "aero_wing_opt_hist.png"))
