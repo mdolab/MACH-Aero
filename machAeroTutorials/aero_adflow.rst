@@ -42,6 +42,11 @@ In this case we will be using the AeroProblem, which is a container for the flow
 Finally, it is convenient to import the mpi4py library to prevent printing multiple times if we are running on multiple processors.
 Importing mpi4py is not entirely necessary in the runscript because ADflow does it internally if necessary.
 
+We also set up some command line arguments to easily specify certain parameters without having to modify the script.
+These include options for specifying the output directory, the grid file used, and a ``task`` option that will be used to switch between several pre-defined tasks.
+The ``analysis`` option here will simply run a single ADflow analysis, and the ``polar`` option will sweep through a range of angles of attack, and produce a table of :math:`C_L` and :math:`C_D` values.
+
+
 ADflow options
 --------------
 .. literalinclude:: ../tutorial/aero/analysis/aero_run.py
@@ -79,38 +84,79 @@ The ``alpha`` parameter is used to rotate the flow in the far-field to simulate 
 The ``evalFuncs`` parameter stipulates which functions the user would like to compute from the converged flow solution.
 Some available functions include ``'cl'``, ``'cd'``, ``'cmz'``, ``'lift'``, and ``'drag'``.
 
-Run solver
-----------
+Single analysis
+---------------
 .. literalinclude:: ../tutorial/aero/analysis/aero_run.py
     :start-after: # rst Run ADflow
-    :end-before: # rst Evaluate and print
+    :end-before: # rst Create polar arrays
 
-Running the solver is very simple.
-It only requires an AeroProblem to run.
-
-Evaluate functions
-------------------
-.. literalinclude:: ../tutorial/aero/analysis/aero_run.py
-    :start-after: # rst Evaluate and print
-
+Running the solver is very simple, it only requires an AeroProblem to run.
 The function evaluation is done separately from the solution.
 We pass a dictionary to ADflow and it will populate it with the prescribed functions.
 We can request additional functions with the ``evalFuncs`` parameter.
 Finally we print out the requested functions on the root proc.
 
+Generating Drag Polars
+----------------------
+The other task is to generate a drag polar, which shares the same ADflow setup as the previous task.
+The only difference is that the analysis is now done within a loop.
+
+
+.. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+    :start-after: # rst Create polar arrays
+    :end-before: # rst Start loop
+
+We start by creating a list of the angle of attack values that we wish to analyze.
+In this case we use the ``numpy.linspace`` function to create a uniformly-spaced array with six whole number entries from 0 -- 5.
+We also create the empty lists for storing the lift and drag coefficients. 
+The lift and drag data will be appended to these lists as the flow solutions are completed.
+
+
+.. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+    :start-after: # rst Start loop
+    :end-before: # rst update AP
+
+Having created the input array and data storage lists, we can now loop over the desired angles of attack to evaluate the polar.
+We accomplish this by using the builtin ``for`` loop structure in python.
+
+
+.. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+    :start-after: # rst update AP
+    :end-before: # rst Run ADflow polar
+
+Now for each angle of attack, we update two attributes of the aero problem.
+We update the name to include the current angle of attack.
+This allow the filenames of the lift distribution, slices, volume solution and surface solution to be updated with the current angle of attack, making it easier to keep track of the output files.
+We also update the alpha parameter, which is the attribute of the AeroProblem that represents the angle of attack.
+
+
+.. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+    :start-after: # rst Run ADflow polar
+    :end-before: # rst Print polar
+
+Running the solver is identical to the simple single point example. 
+We simply call the ``CFDSolver`` instance with the current AeroProblem.
+This causes the CFD solver to be updated with the values of that AeroProblem prior to solving the flow.
+We then use the same ``EvalFunctions`` call to integrate the surface forces to get the lift and drag coefficients.
+The difference is that here, we append the coefficients from ``funcs`` into the ``CLList`` and ``CDList`` variables, so that they can be used later.
+
+
+.. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+    :start-after: # rst Print polar
+
+Once we complete the loop and evaluate all of the desired flow conditions, we can print the completed data set to the screen.
+
+
+
 Run it yourself!
 ================
-First make the output directory and then run the script (you may have to change your outputDirectory in aeroOptions)
+First we run the analysis task, which is the default ``task``:
 
 .. prompt:: bash
 
-    mkdir output
     mpirun -np 4 python aero_run.py
 
 
-
-Terminal output
----------------
 ADflow will print to the terminal various information during the initialization stages before starting the solution process.
 Once the solution process starts the terminal should show information about the convergence history of the variables specified in ``monitorvariables``, in addition to the total residual.
 The solver terminates either by reaching the maximum number of iterations or a reduction in the total residual is specified by the ``L2Convergence`` option::
@@ -139,6 +185,25 @@ The solver terminates either by reaching the maximum number of iterations or a r
 A the end of the terminal output the functions defined in ``evalFuncs``  are printed to the screen::
 
     {'wing_cd': 0.016801751358107225, 'wing_cl': 0.4177636397905002}
+
+Next, run the ``polar`` task:
+
+.. prompt:: bash
+
+    mpirun -np 4 python aero_run.py --task polar --output polar
+
+
+The final table should look something like::
+
+     Alpha       CL       CD
+    ========================
+       0.0   0.2272   0.0111
+       1.0   0.3550   0.0143
+       2.0   0.4760   0.0201
+       3.0   0.5695   0.0284
+       4.0   0.6330   0.0385
+       5.0   0.6805   0.0509
+
 
 Postprocessing the solution output
 ==================================
