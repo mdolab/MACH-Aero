@@ -18,6 +18,9 @@ The optimization problem is defined as
 |    1 angle of attack
 | *subject to*
 |    :math:`C_L = 0.5`
+|    :math:`V \ge V_0`
+|    :math:`t \ge t_0`
+|    :math:`\Delta z_\text{LETE, upper} = -\Delta z_\text{LETE, lower}`
 
 Files
 =====
