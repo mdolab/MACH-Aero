@@ -3,8 +3,8 @@
 
 .. _gridRefinementStudy:
 
-Grid Refinement Study
-=====================
+1. Grid Refinement Study
+==========================
 
 Theory
 ------
@@ -65,6 +65,112 @@ An example of grid convergence plot for a family of RAE 2822 Airfoil meshes is i
     :figclass: align-center
 
     Figure 1: Grid convergence plot for RAE 2822 Transonic Airfoil.
+
+
+
+2. Grid Refinement Study on Airfoils
+======================================
+
+Instead of using the :code:`cgns_utils coarsen` feature, we can easily make the finer or coarsen meshes with the help of  :code:`prefoil` package.
+The main reason behind this idea is to generate the meshes without changing the :code:`growth rate` of the off wall layers.
+If you use :code:`cgns_utils coarsen` feature, you will be able to increase the first off wall spacing  :code:`s0` uniformly; however, the grow ratio is going to change and the off wall layers will have too much distance between each other.
+
+In order to avoid this, we can use the :code:`prefoil` packages easily and still be able to coarsen or refine the meshes. 
+The example code is given below. You can either upload a :code:`.dat` file or create the NACA 4 digit airfoils. 
+Then, you can manipulate the meshing parameters and get mesh grids with different levels.
+
+.. code-block:: python
+        
+    from pyhyp import pyHyp
+    from prefoil.preFoil import Airfoil, readCoordFile,generateNACA
+    from prefoil import sampling
+
+
+    # L2 layer mesh grid initilization
+    # We will refine the mesh from this starting grid
+    nTE_cells_L2 = 5
+    nSurfPts_L2 = 200
+    nLayers_L2 = 80
+    s0_L2 = 4e-6
+
+    # Increaing the mesh sizes 
+    refinement=[1,2,4]
+    level =['L2','L1','L0']
+
+    for i in range(len(refinement)):
+
+        # number of points on the airfoil surface
+        nSurfPts = refinement[i]*nSurfPts_L2
+
+        # number of points on the TE.
+        nTEPts = refinement[i]*nTE_cells_L2 
+
+
+        # number of extrusion layers
+        nExtPts = refinement[i]*nLayers_L2 
+
+        # first off wall spacing
+        s0 = s0_L2/ refinement[i]
+
+        #### We can either import our desired airfoil .dat file and continue the meshing proces ####
+        #### Or we can generate the NACA airfoils if our baseline is a 4 series NACA airfoil    ####
+
+        # Read the Coordinate file
+        # filename = "n0012_old.dat"
+        # coords = readCoordFile(filename, headerlines=1)
+
+        # We can also  generate NACA 4 series airfoils
+        code='0012'
+        nPts=150
+        coords=generateNACA(code, nPts, spacingFunc=sampling.polynomial, func_args={"order": 8})
+        # print('yes',coords)
+        airfoil = coords
+
+        coords = airfoil.getSampledPts(
+        nSurfPts,
+        spacingFunc=sampling.polynomial, func_args={"order": 8},
+ 
+        nTEPts=nTEPts,
+        )
+        # print(coords)
+        # Write surface mesh
+        airfoil.writeCoords("./input/naca0012_%s" % level[i], file_format="plot3d")
+
+
+
+        options = {
+            # ---------------------------
+            #        Input Parameters
+            # ---------------------------
+            "inputFile": "./input/naca0012_%s.xyz" % level[i],
+            "unattachedEdgesAreSymmetry": False,
+            "outerFaceBC": "farfield",
+            "autoConnect": True,
+            "BC": {1: {"jLow": "zSymm", "jHigh": "zSymm"}},
+            "families": "wall",
+            # ---------------------------m
+            #        Grid Parameters
+            # ---------------------------
+            "N": nExtPts,
+            "s0": s0,
+            "marchDist": 100.0,
+
+        }
+        hyp = pyHyp(options=options)
+        hyp.run()
+        hyp.writeCGNS("./input/naca0012_%s.cgns" % level[i])
+
+
+
+As an example, the tecplot of both cases are shown. As we can see, when we coarsen through :code:`cgns_utils`, the distance between each layers become higher and the growth ratio is not the same as :code:`prefoil` mesh.
+
+.. figure:: images/meshexample.png
+    :scale: 40
+    :align: center
+    :alt: Mesh comparison
+    :figclass: align-center
+
+    Figure 2: Mesh comparison.
 
 External Links
 --------------
