@@ -27,8 +27,8 @@ Versions  stable  latest
 ========= ======= =======
 OpenMPI   3.1.*   4.0.*
 mpi4py    3.1.3   3.1.3
-PETSc     3.12.*  3.15.*
-petsc4py  3.12.*  3.15.*
+PETSc     3.14.*  3.15.*
+petsc4py  3.14.*  3.15.*
 CGNS      4.1.2   4.2.0
 Python    3.8.*   3.9.*
 NumPy     1.19.*  1.21.*
