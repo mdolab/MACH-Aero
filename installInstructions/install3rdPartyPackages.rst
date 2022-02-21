@@ -27,8 +27,7 @@ Versions  stable  latest
 ========= ======= =======
 OpenMPI   3.1.*   4.0.*
 mpi4py    3.1.3   3.1.3
-PETSc     3.12.*  3.15.*
-petsc4py  3.12.*  3.15.*
+PETSc     3.14.*  3.15.*
 CGNS      4.1.2   4.2.0
 Python    3.8.*   3.9.*
 NumPy     1.19.*  1.21.*
@@ -476,8 +475,8 @@ To run the tests, go to the ``test`` directory, and type:
 petsc4py
 ~~~~~~~~
 .. IMPORTANT::
-   The MAJOR.MINOR version of petsc4py **MUST** match the MAJOR.MINOR version of petsc,
-   for example PETSc 3.12.X will only work with petsc4py 3.12.Y.
+   The MAJOR.MINOR version of petsc4py **MUST** match the MAJOR.MINOR version of PETSc.
+   For example, PETSc 3.14.X will only work with petsc4py 3.14.Y.
    In practice, this means you must request a specific version of petsc4py.
 
    petsc4py depends on PETSc and its dependencies.
