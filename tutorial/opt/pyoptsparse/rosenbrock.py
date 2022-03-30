@@ -58,7 +58,7 @@ values = optHist.getValues()
 # Plot contours of the objective and the constraint boundary
 x = np.linspace(-5.12, 5.12, 201)
 X, Y = np.meshgrid(x, x)
-objFunc = 100 * (Y - X ** 2) ** 2 + (1 - X) ** 2
+objFunc = 100 * (Y - X**2) ** 2 + (1 - X) ** 2
 conFunc = 0.1 - (X - 1) ** 3 - (Y - 1)
 
 fig, ax = plt.subplots()
