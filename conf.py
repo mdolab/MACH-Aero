@@ -4,18 +4,11 @@ from sphinx_mdolab_theme.config import *
 project = "MACH-Aero Documentation"
 
 # -- General configuration -----------------------------------------------------
-# Specify the baseurls for the projects I want to link to
-repos = [
-    "pygeo",
-    "pyoptsparse",
-    "baseclasses",
-    "idwarp",
-    "adflow",
-    "pyhyp",
-    "multipoint",
-    "pyspline",
-]
-intersphinx_mapping = {r: (f"https://mdolab-{r}.readthedocs-hosted.com/en/latest", None) for r in repos}
+# autolink
+extensions.extend(["sphinx_codeautolink"])
+codeautolink_concat_default = True
+codeautolink_warn_on_missing_inventory = True
+codeautolink_warn_on_failed_resolve = True
 
 # bibtex
 bibtex_bibfiles = [

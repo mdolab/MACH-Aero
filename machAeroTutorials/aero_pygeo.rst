@@ -38,12 +38,14 @@ We need to import the pyGeo library in order to use its functions.
 The pyGeo library, along with all other MACH libraries, should be importable because its code is located in a directory which is exposed to the system environment variable PYTHON_PATH.
 
 .. literalinclude:: ../tutorial/aero/geometry/generate_wing.py
+    :language: py
     :start-after: # rst Imports
     :end-before: # rst Airfoil file
 
 Wing Definition
 ---------------
 .. literalinclude:: ../tutorial/aero/geometry/generate_wing.py
+    :language: py
     :start-after: # rst Airfoil file
     :end-before: # rst Wing definition
 
@@ -76,12 +78,14 @@ An offset in the x-y plane can be added to this position with the ``offset`` arr
 In this case, we don't want to apply any rotation (the rotation options shown below would be for rotation about the airfoil leading edge points and the units are degrees) or offset.
 
 .. literalinclude:: ../tutorial/aero/geometry/generate_wing.py
+    :language: py
     :start-after: # rst Wing definition
     :end-before: # rst Run pyGeo
 
 Call pyGeo
 ----------
 .. literalinclude:: ../tutorial/aero/geometry/generate_wing.py
+    :language: py
     :start-after: # rst Run pyGeo
     :end-before: # rst Write output files
 
@@ -92,11 +96,12 @@ Write output files
 ------------------
 There are three options for writing the geometry surface definition to file.
 
-    1. Write a dat file to view wing in Tecplot.
-    2. Write an IGES file. This can be converted to a TIN file in ICEM.
-    3. Write a TIN file directly from pyGeo.
+    #. Write a dat file to view wing in Tecplot.
+    #. Write an IGES file. This can be converted to a TIN file in ICEM.
+    #. Write a TIN file directly from pyGeo.
 
 .. literalinclude:: ../tutorial/aero/geometry/generate_wing.py
+   :language: py
    :start-after: # rst Write output files
 
 Run it yourself!
