@@ -39,12 +39,14 @@ Setup
 First we have to import some stuff:
 
 .. literalinclude:: ../tutorial/overset/mesh/run_pyhyp.py
+   :language: py
    :start-after: # rst Imports (beg)
    :end-before: # rst Imports (end)
 
 Then we need to setup up some libraries:
 
 .. literalinclude:: ../tutorial/overset/mesh/run_pyhyp.py
+   :language: py
    :start-after: # rst Init (beg)
    :end-before: # rst Init (end)
 
@@ -59,6 +61,7 @@ Level Dependent Options
 Next, we define some basic mesh parameters that depend on the level used:
 
 .. literalinclude:: ../tutorial/overset/mesh/run_pyhyp.py
+   :language: py
    :start-after: # rst parameters (beg)
    :end-before: # rst parameters (end)
 
@@ -72,6 +75,7 @@ We extrude multiple nearfield meshes with pyHyp. As there are a lot of options u
 common `options <https://mdolab-pyhyp.readthedocs-hosted.com/en/latest/options.html>`_\:
 
 .. literalinclude:: ../tutorial/overset/mesh/run_pyhyp.py
+   :language: py
    :start-after: # rst common_options (beg)
    :end-before: # rst common_options (end)
 
@@ -90,6 +94,7 @@ Individual pyHyp options
 Lets define some individual `options <https://mdolab-pyhyp.readthedocs-hosted.com/en/latest/options.html>`_\:
 
 .. literalinclude:: ../tutorial/overset/mesh/run_pyhyp.py
+   :language: py
    :start-after: # rst individual_options (beg)
    :end-before: # rst individual_options (end)
 
@@ -119,6 +124,7 @@ Extrude the nearfield
 Now we extrude the nearfield:
 
 .. literalinclude:: ../tutorial/overset/mesh/run_pyhyp.py
+   :language: py
    :start-after: # rst near_field (beg)
    :end-before: # rst near_field (end)
 
@@ -132,6 +138,7 @@ The farfield consist of a cartesian part in the middle and a simple Ogrid around
 enclose all the nearfields. Because of that, we have to combine all the nearfields first:
 
 .. literalinclude:: ../tutorial/overset/mesh/run_pyhyp.py
+   :language: py
    :start-after: # rst combine_near_field (beg)
    :end-before: # rst combine_near_field (end)
 
@@ -143,6 +150,7 @@ Generate the farfield
 Now we can generate the farfield:
 
 .. literalinclude:: ../tutorial/overset/mesh/run_pyhyp.py
+   :language: py
    :start-after: # rst far_field (beg)
    :end-before: # rst far_field (end)
 
@@ -166,6 +174,7 @@ Combine everything
 Here we combine all the meshes into one. We do this only on the root processor if we run it in parallel.
 
 .. literalinclude:: ../tutorial/overset/mesh/run_pyhyp.py
+   :language: py
    :start-after: # rst combine (beg)
    :end-before: # rst combine (end)
 
@@ -194,6 +203,7 @@ Check the Final Mesh
 Finally, we can use the ``ihc_check.py`` script to check the result of the implicit hole cutting process in ADflow:
 
 .. literalinclude:: ../tutorial/overset/mesh/ihc_check.py
+   :language: py
    :start-after: # rst start
    :end-before: # rst end
 

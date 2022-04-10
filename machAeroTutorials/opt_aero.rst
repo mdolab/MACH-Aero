@@ -44,6 +44,7 @@ Then copy the code from each of the following sections into this file.
 Import libraries
 ----------------
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
+    :language: py
     :start-after: # rst Imports (beg)
     :end-before: # rst Imports (end)
 
@@ -58,6 +59,7 @@ Two options are provided:
 -  specifying the optimizer to be used
 
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
+    :language: py
     :start-after: # rst args (beg)
     :end-before: # rst args (end)
 
@@ -68,6 +70,7 @@ This can be helpful if we want to consider multiple design points, each with a d
 In this case, we create a processor set for cruise cases, but we only add one point.
 
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
+    :language: py
     :start-after: # rst multipoint (beg)
     :end-before: # rst multipoint (end)
 
@@ -82,12 +85,14 @@ The set-up for adflow should look the same as for the aerodynamic analysis scrip
 We add a single lift distribution with 200 sampling points.
 
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
+    :language: py
     :start-after: # rst adflow (beg)
     :end-before: # rst adflow (end)
 
 Set the AeroProblem
 -------------------
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
+    :language: py
     :start-after: # rst aeroproblem (beg)
     :end-before: # rst aeroproblem (end)
 
@@ -101,6 +106,7 @@ We include twist and local variables in the optimization.
 After setting up the DVGeometry instance we have to provide it to ADflow with the call ``setDVGeo``.
 
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
+    :language: py
     :start-after: # rst dvgeo (beg)
     :end-before: # rst dvgeo (end)
 
@@ -123,6 +129,7 @@ Therefore, ``lower=1.0`` in this example means that the lower limits for these c
 .. warning:: The ``leList`` and ``teList`` points must lie completely inside the wing.
 
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
+    :language: py
     :start-after: # rst dvconVolThick (beg)
     :end-before: # rst dvconVolThick (end)
 
@@ -141,6 +148,7 @@ This is done by constraining the upper and lower FFD control points on the leadi
 Note that the LeTe constraint is not related to the ``leList`` and ``teList`` points discussed above.
 
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
+    :language: py
     :start-after: # rst dvconLeTe (beg)
     :end-before: # rst dvconLeTe (end)
 
@@ -156,6 +164,7 @@ This command can also be added at the end of the script to visualize the final c
 Mesh warping set-up
 -------------------
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
+    :language: py
     :start-after: # rst warp (beg)
     :end-before: # rst warp (end)
 
@@ -166,6 +175,7 @@ In this case ``cruiseFuncs`` and ``cruiseFuncsSens`` belong to the ``cruise`` pr
 Then we need to set up an objCon function, which is used to create abstract functions of other functions.
 
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
+    :language: py
     :start-after: # rst funcs (beg)
     :end-before: # rst funcs (end)
 
@@ -213,6 +223,7 @@ We also need to provide it with the objCon and the optProb.
 The call ``optProb.printSparsity()`` prints out the constraint Jacobian at the beginning of the optimization.
 
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
+    :language: py
     :start-after: # rst optprob (beg)
     :end-before: # rst optprob (end)
 
@@ -221,6 +232,7 @@ Run optimization
 To finish up, we choose the optimizer and then run the optimization.
 
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
+    :language: py
     :start-after: # rst optimizer
 
 .. note::

@@ -38,6 +38,7 @@ pyHyp runscript
 Import the pyHyp libraries and numpy.
 
 .. literalinclude:: ../tutorial/airfoilopt/mesh/genMesh.py
+    :language: py
     :start-after: # rst Import
     :end-before: # rst SurfMesh
 
@@ -46,6 +47,7 @@ Surface Mesh Generation
 =======================
 
 .. literalinclude:: ../tutorial/airfoilopt/mesh/genMesh.py
+    :language: py
     :start-after: # rst SurfMesh
     :end-before: # rst GenOptions
 
@@ -65,6 +67,7 @@ Options
 =======
 
 .. literalinclude:: ../tutorial/airfoilopt/mesh/genMesh.py
+    :language: py
     :start-after: # rst GenOptions
     :end-before: # rst GridOptions
 
@@ -87,6 +90,7 @@ General Options
 
 
 .. literalinclude:: ../tutorial/airfoilopt/mesh/genMesh.py
+    :language: py
     :start-after: # rst GridOptions
     :end-before: # rst Run
 
@@ -108,6 +112,7 @@ Running pyHyp and Writing to File
 The following three lines of code extrude the surface mesh and write the resulting volume mesh to a ``.cgns`` file.
 
 .. literalinclude:: ../tutorial/airfoilopt/mesh/genMesh.py
+    :language: py
     :start-after: # rst Run
 
 Run it yourself!

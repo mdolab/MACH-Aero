@@ -33,6 +33,7 @@ Then copy the code from each of the following sections into this file.
 Import libraries
 ----------------
 .. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+   :language: py
    :start-after: # rst Imports
    :end-before: # rst ADflow options
 
@@ -50,6 +51,7 @@ The ``analysis`` option here will simply run a single ADflow analysis, and the `
 ADflow options
 --------------
 .. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+   :language: py
    :start-after: # rst ADflow options
    :end-before: # rst Start ADflow
 
@@ -64,6 +66,7 @@ We strongly recommend going over the descriptions and tips on solvers and solver
 Create solver
 -------------
 .. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+   :language: py
    :start-after: # rst Start ADflow
    :end-before: # rst Create AeroProblem
 
@@ -75,6 +78,7 @@ Also, ADflow can write airfoil data for a given set of slices along the wing usi
 Set flow conditions
 -------------------
 .. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+    :language: py
     :start-after: # rst Create AeroProblem
     :end-before: # rst Run ADflow
 
@@ -87,6 +91,7 @@ Some available functions include ``'cl'``, ``'cd'``, ``'cmz'``, ``'lift'``, and 
 Single analysis
 ---------------
 .. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+    :language: py
     :start-after: # rst Run ADflow
     :end-before: # rst Create polar arrays
 
@@ -103,38 +108,30 @@ The only difference is that the analysis is now done within a loop.
 
 
 .. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+    :language: py
     :start-after: # rst Create polar arrays
     :end-before: # rst Start loop
 
 We start by creating a list of the angle of attack values that we wish to analyze.
 In this case we use the ``numpy.linspace`` function to create a uniformly-spaced array with six whole number entries from 0 -- 5.
-We also create the empty lists for storing the lift and drag coefficients. 
+We also create the empty lists for storing the lift and drag coefficients.
 The lift and drag data will be appended to these lists as the flow solutions are completed.
 
 
 .. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+    :language: py
     :start-after: # rst Start loop
-    :end-before: # rst update AP
+    :end-before: # rst Print polar
 
 Having created the input array and data storage lists, we can now loop over the desired angles of attack to evaluate the polar.
 We accomplish this by using the builtin ``for`` loop structure in python.
-
-
-.. literalinclude:: ../tutorial/aero/analysis/aero_run.py
-    :start-after: # rst update AP
-    :end-before: # rst Run ADflow polar
 
 Now for each angle of attack, we update two attributes of the aero problem.
 We update the name to include the current angle of attack.
 This allow the filenames of the lift distribution, slices, volume solution and surface solution to be updated with the current angle of attack, making it easier to keep track of the output files.
 We also update the alpha parameter, which is the attribute of the AeroProblem that represents the angle of attack.
 
-
-.. literalinclude:: ../tutorial/aero/analysis/aero_run.py
-    :start-after: # rst Run ADflow polar
-    :end-before: # rst Print polar
-
-Running the solver is identical to the simple single point example. 
+Running the solver is identical to the simple single point example.
 We simply call the ``CFDSolver`` instance with the current AeroProblem.
 This causes the CFD solver to be updated with the values of that AeroProblem prior to solving the flow.
 We then use the same ``EvalFunctions`` call to integrate the surface forces to get the lift and drag coefficients.
@@ -142,6 +139,7 @@ The difference is that here, we append the coefficients from ``funcs`` into the 
 
 
 .. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+    :language: py
     :start-after: # rst Print polar
 
 Once we complete the loop and evaluate all of the desired flow conditions, we can print the completed data set to the screen.

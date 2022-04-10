@@ -52,6 +52,7 @@ We need to define the dimensions of the grid at the root and the tip, and the sc
 We also need to specify the number of control points we want along each dimension of the FFD grid.
 
 .. literalinclude:: ../tutorial/opt/ffd/simple_ffd.py
+    :language: py
     :start-after: # rst Dimensions
     :end-before: # rst Compute
 
@@ -62,6 +63,7 @@ The vector ``span_dist`` gives the spanwise distribution of the FFD sections, wh
 Here we use a distribution that varies from wider spacing at the root to narrower spacing at the tip.
 
 .. literalinclude:: ../tutorial/opt/ffd/simple_ffd.py
+    :language: py
     :start-after: # rst Compute
     :end-before: # rst Write
 
@@ -70,6 +72,7 @@ Write to file
 Finally we write to file using the plot3d format.
 
 .. literalinclude:: ../tutorial/opt/ffd/simple_ffd.py
+    :language: py
     :start-after: # rst Write
 
 Generate the FFD
@@ -97,6 +100,7 @@ Then copy the code from each of the following sections into this file.
 Import libraries
 ----------------
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+    :language: py
     :start-after: # rst Import libraries
     :end-before: # rst Create DVGeometry object
 
@@ -110,6 +114,7 @@ All that is needed to create an instance of the DVGeometry class is an FFD file 
 Usually we call the DVGeometry instance ``DVGeo``.
 
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+    :language: py
     :start-after: # rst Create DVGeometry object
     :end-before: # rst Create reference axis
 
@@ -140,6 +145,7 @@ The reference axis is a B-spline embedded in the FFD volume.
 For a wing, we can generate this reference axis simply by stating the fraction of the chord length at which it should be placed and the index of the FFD volume along which it should extend.
 
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+    :language: py
     :start-after: # rst Create reference axis
     :end-before: # rst Dihedral
 
@@ -162,6 +168,7 @@ We will go through a few examples.
 Dihedral
 ~~~~~~~~
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+    :language: py
     :start-after: # rst Dihedral
     :end-before: # rst Twist
 
@@ -174,6 +181,7 @@ Finally, we restore the new control point coordinates to DVGeo with the call ``r
 Twist
 ~~~~~
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+    :language: py
     :start-after: # rst Twist
     :end-before: # rst Taper
 
@@ -186,6 +194,7 @@ Twisting about the x and y axes is provided through the ``rot_x`` and ``rot_y`` 
 Taper
 ~~~~~
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+    :language: py
     :start-after: # rst Taper
     :end-before: # rst Add global dvs
 
@@ -213,6 +222,7 @@ We have now defined the callback functions for the global design variables, but 
 This is done with the call ``addGlobalDV``.
 
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+    :language: py
     :start-after: # rst Add global dvs
     :end-before: # rst Add local dvs
 
@@ -226,6 +236,7 @@ There are two options for defining local design variables.
 Only one of these should be used at one time.
 
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+    :language: py
     :start-after: # rst Add local dvs
     :end-before: # rst Embed points
 
@@ -247,6 +258,7 @@ First we have to embed at least one point set in the FFD.
 Normally, ADflow automatically embeds the surface mesh nodes in the FFD, but here we will embed surface coordinates obtained using IDWarp's ``getSurfaceCoordinates`` function (just for this example without ADflow).
 
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+    :language: py
     :start-after: # rst Embed points
     :end-before: # rst Change dvs
 
@@ -257,6 +269,7 @@ To adjust the variables, simply change the values in each variable array.
 Once this is done, you can return the new values with the call ``setDesignVars``.
 
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+    :language: py
     :start-after: # rst Change dvs
     :end-before: # rst Update
 
@@ -267,6 +280,7 @@ We can view the current shape of the FFD by calling ``writePlot3d``.
 We can also view the updated surface coordinates by calling ``writePointSet``.
 
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+    :language: py
     :start-after: # rst Update
 
 Run it yourself!
