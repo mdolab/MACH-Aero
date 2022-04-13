@@ -31,6 +31,7 @@ Coarsening a volume mesh
 The command ``cgns_utils coarsen`` takes a volume mesh and coarsens it by removing every other node in all three dimensions.
 Although our volume mesh is already very coarse, we can coarsen it even further.
 This function is more useful in instances where we start with a very fine mesh.
+If you are doing a mesh convergence study, coarsen the surface mesh and apply the extrusion to the coarsened surface mesh.
 To coarsen the mesh run the following from the terminal:
 
 .. prompt:: bash
