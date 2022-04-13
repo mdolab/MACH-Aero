@@ -51,7 +51,7 @@ Grid refinement study with ADflow
 ---------------------------------
 
 1. Generate fine grid (L0) with :math:`N=2^n m + 1` nodes along each edge.
-2. Coarsen the L0 grid :math:`n-1` times using :code:`cgns_utils coarsen`.
+2. Coarsen the L0 grid :math:`n-1` times using :code:`cgns_utils coarsen`. This may entail coarsening a surface mesh and extruding the family of surface meshes with :code:`pyhyp`.
 3. Use :code:`solveCL` or :code:`solveTrimCL` in ADflow to obtain :math:`C_D` for a given :math:`C_L`.
 4. Compute the Richardson extrapolation using the L0 and L1 grids.
 5. Plot :math:`h^p` vs :math:`C_D`. For ADflow, use :math:`p=2` to indicate a second-order method.
