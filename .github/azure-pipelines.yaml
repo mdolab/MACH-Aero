@@ -1,15 +1,15 @@
 trigger: none
 pr:
-  - master
+  - main
 
 # add a daily cron job
-# set to 10pm EST, which is 3am UTC
+# set to 5am EST, which is 10am UTC
 schedules:
-  - cron: "0 3 * * *"
+  - cron: "0 10 * * *"
     displayName: Nightly test
     branches:
       include:
-        - master
+        - main
     always: true
 
 resources:

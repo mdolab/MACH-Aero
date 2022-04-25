@@ -129,7 +129,7 @@ First we will explain the global variables and then the local variables.
 
 
 .. figure::
-    https://raw.githubusercontent.com/mdolab/pygeo/master/doc/images/DPW4_FFD-27745.gif
+    https://raw.githubusercontent.com/mdolab/pygeo/main/doc/images/DPW4_FFD-27745.gif
 
     Demonstration of some global and local design variables.
 
