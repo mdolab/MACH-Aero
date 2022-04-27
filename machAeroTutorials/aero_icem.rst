@@ -60,6 +60,8 @@ ICEM uses several native file types with the following extensions:
 .blk
     Blocking file. Contains the definition of the geometry and parameters used to generate the mesh.
 
+.. _icem_navigating:
+
 Navigating in ICEM
 ------------------
 To adjust your view of the geometry in ICEM the following functions are possible with the mouse:
@@ -75,6 +77,7 @@ To adjust your view of the geometry in ICEM the following functions are possible
     - Drag mouse left/right: Rotate view in viewing plane
 - ``x`` on the keyboard: fit the complete geometry to the window
 - ``z`` on the keyboard: allows creating a zoom-in box on the viewing pane with the left mouse button
+- ``F9`` on the keyboard: switches the view in/out of Dynamic Mode so the above mouse operations can be used without affecting selections
 
 .. _icem_appearance:
 
@@ -442,20 +445,22 @@ For this case, we will define properties for the edges of the blocks which will 
 10. Ensure correct block orientation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We now have a pre-mesh defined over the surface of the wing.
-Before proceeding, we need to check the orientation of the blocking.
-For pyHyp to correctly extrude the mesh and for the boundary conditions to be applied properly, it is essential that the blocking is correctly oriented.
-The orientation of the blocking can be checked in the ``Edit Block`` (fourth button under the ``Blocking`` tab) menu.
-Within that menu, select the button with ``ijk`` and ``kji`` in the icon.
-That will open the ``Change Block IJK`` sub menu, as shown below.
+    We now have a pre-mesh defined over the surface of the wing.
+    Before proceeding, we need to check the orientation of the blocking.
+    For pyHyp to correctly extrude the mesh and for the boundary conditions to be applied properly, it is essential that the blocking is correctly oriented.
+    The orientation of the blocking can be checked in the ``Edit Block`` (fourth button under the ``Blocking`` tab) menu.
+    Within that menu, select the button with ``ijk`` and ``kji`` in the icon.
+    That will open the ``Change Block IJK`` sub menu, as shown below.
 
-.. image:: images/icem_BlockOrientation.png
-    :scale: 80
+    .. image:: images/icem_BlockOrientation.png
+        :scale: 80
 
-If the blocking faces are not shown, turn them on in the hierarchy tree.
-When they are enabled and the ``Change Block IJK`` button is selected, the faces of the blocking should be red and green.
-If the blocking is properly oriented, all of the green sides of the faces will be outward facing.
-If any of the faces have red facing outward, select the icon in the ``Change Block IJK`` and select the face to flip.
+    If the blocking faces are not shown, turn them on in the hierarchy tree.
+    When they are enabled and the ``Change Block IJK`` button is selected, the faces of the blocking should be red and green.
+    If the blocking is properly oriented, all of the green sides of the faces will be outward facing.
+    If any of the faces have red facing outward, select the icon in the ``Change Block IJK`` and select the face to flip.
+
+    .. note:: To see the colors of the faces while moving the model, use Dynamic Mode (see :ref:`icem_navigating`).
 
 Convert to MultiBlock Mesh
 --------------------------
