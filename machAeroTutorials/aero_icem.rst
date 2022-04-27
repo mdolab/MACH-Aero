@@ -70,6 +70,8 @@ To adjust your view of the geometry in ICEM the following functions are possible
     - Rotate the view in 3D space
 - Hold down middle button while dragging mouse: 
     - Translate view in viewing plane
+- Hold down right button while dragging mouse:
+    - Planar rotation of the viewing plane
 - Scroll middle button: 
     - Slow zoom in/out
 - Hold down right button
