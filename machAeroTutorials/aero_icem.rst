@@ -442,8 +442,8 @@ For this case, we will define properties for the edges of the blocks which will 
     .. image:: images/icem_BetterMeshQuality.png
         :scale: 80
 
-    
-    .. note:: To improve the mesh quality further, the vertical edge at the leading edge can also be disassociated from its curve and associated with a surface instead using ``Disassociate from Geometry`` and ``Associate edge to Surface`` like the other edges. 
+
+    .. note:: To improve the mesh quality further, the vertical edge of the wing tip at the leading edge can also be disassociated from its curve and associated with a surface instead using ``Disassociate from Geometry`` and ``Associate edge to Surface`` like the other edges. 
 
 10. Ensure correct block orientation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
