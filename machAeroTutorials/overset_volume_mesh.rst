@@ -146,20 +146,8 @@ Now we can generate the farfield:
    :start-after: # rst far_field (beg)
    :end-before: # rst far_field (end)
 
-These are the arguments for a ``simpleOCart``:
+The arguments are explained in the pyHyp docs for :meth:`simpleOCart <pyhyp:pyhyp.utils.simpleOCart>`.
 
-dhStar
-    The spacing in the cartesian part
-40\.
-    The extend of the farfield. Measured in the longest diagonal lenght in the cartesian part
-nFarfield
-    How many layers the Ogrid part should have
-'y'
-    On which axis the symmetry lies
-1
-    How many MultiGrid-Cicles are enforced during the generation
-farfield
-    The outputfile name for the farfield
 
 Combine everything
 ------------------
