@@ -5,6 +5,7 @@
 from collections import OrderedDict
 from mpi4py import MPI
 from pyhyp import pyHypMulti
+from pyhyp.utils import simpleOCart
 from cgnsutilities.cgnsutilities import readGrid, combineGrids
 import argparse
 
@@ -147,6 +148,14 @@ combinedGrid = combineGrids(gridList)
 
 # move to y=0
 combinedGrid.symmZero("y")
+
+# Write nearfield mesh
+nearfield = "%s/near_%s.cgns" % (args.output_dir, args.level)
+if rank == 0:
+    combinedGrid.writeToCGNS(nearfield)
+
+MPI.COMM_WORLD.barrier()
+
 # rst combine_near_field (end)
 
 
@@ -155,7 +164,7 @@ combinedGrid.symmZero("y")
 # ======================================================================
 # rst far_field (beg)
 farfield = "%s/far_%s.cgns" % (args.output_dir, args.level)
-combinedGrid.simpleOCart(dhStar, 40.0, nFarfield, "y", 1, farfield)
+simpleOCart(nearfield, dhStar, 40.0, nFarfield, "y", 1, farfield)
 # rst far_field (end)
 
 
