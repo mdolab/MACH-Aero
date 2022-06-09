@@ -3,7 +3,7 @@
 
 .. _gridRefinementStudy:
 
-1. Grid Refinement Study
+Grid Refinement Study
 ==========================
 
 Theory
@@ -47,14 +47,28 @@ It is computed using the solutions from the L0 and L1 grids with the equation
 .. math::
     f_{h=0} = f_{L0} + \frac{f_{L0}-f_{L1}}{r^{\hat{p}} - 1}
 
-Grid refinement study with ADflow
----------------------------------
+Grid Refinement Study on Airfoils
+======================================
+
+There are two methods for performing grid refinement: 
+1) coarsening the volume mesh and 
+2) coarsening the surface mesh and extruding the family of surface meshes
+We discuss the pros and cons of each method and underlying theory;
+it is up to the user to choose the method.
+
+Option 1: Coarsening volume meshes
+----------------------------------
 
 1. Generate fine grid (L0) with :math:`N=2^n m + 1` nodes along each edge.
-2. Coarsen the L0 grid :math:`n-1` times using :code:`cgns_utils coarsen`.
-3. Use :code:`solveCL` or :code:`solveTrimCL` in ADflow to obtain :math:`C_D` for a given :math:`C_L`.
+2. Coarsen the L0 grid :math:`n-1` times using ``cgns_utils coarsen``.
+3. Use ``solveCL`` or ``solveTrimCL`` in ADflow to obtain :math:`C_D` for a given :math:`C_L`.
 4. Compute the Richardson extrapolation using the L0 and L1 grids.
 5. Plot :math:`h^p` vs :math:`C_D`. For ADflow, use :math:`p=2` to indicate a second-order method.
+
+This method is the original mesh refinement Richardson Extrapolation theory relies on since there is a uniform coarsening between meshes.
+If the plotted dots are in a straight line, your mesh is in the asymptotic regime.
+You want the Richardson Extrapolation to lie on the line or lead to a slight concave up shape, which indicates convergence to the exact numerical solution.
+The slope of the line is the coefficient of the leading truncation error term.
 
 An example of grid convergence plot for a family of RAE 2822 Airfoil meshes is illustrated below:
 
@@ -66,17 +80,23 @@ An example of grid convergence plot for a family of RAE 2822 Airfoil meshes is i
 
     Figure 1: Grid convergence plot for RAE 2822 Transonic Airfoil.
 
+Pros:
+    - The grid is coarsened uniformly, giving the most mathematically rigorous convergence study, which is important for justifying solutions in your scholarly articles.
 
+Cons:
+    - To generate enough points to make a line (at least three), the finest mesh (L0) has to be extremely fine for 3D meshes to have a coarse mesh that is still in the asymptotic regime since for the ``n``th level, it needs to have :math:`(2^3)^n` fewer cells assuming a refinement ratio of 2.
+    - Growth ratio is changing, so be wary of the off-wall cell resolution and boundary layer accuracy.
 
-2. Grid Refinement Study on Airfoils
-======================================
+Option 2: Coarsening surface meshes and extruding a family of volume meshes
+---------------------------------------------------------------------------
 
-Instead of using the :code:`cgns_utils coarsen` feature, we can easily make the finer or coarsen meshes with the help of  :code:`prefoil` package.
-The main reason behind this idea is to generate the meshes without changing the :code:`growth rate` of the off wall layers.
-If you use :code:`cgns_utils coarsen` feature, you will be able to increase the first off wall spacing  :code:`s0` uniformly; however, the grow ratio is going to change and the off wall layers will have too much distance between each other.
+Instead of using the ``cgns_utils coarsen`` feature, we can easily make the finer or coarsen meshes with the help of ``prefoil`` package.
+The main reason behind this idea is to generate the meshes without changing the ``growth rate`` of the off wall layers.
+If you use ``cgns_utils coarsen`` feature (i.e. ``Option 1``), you will be able to increase the first off-wall spacing ``s0`` uniformly; 
+however, the grow ratio is going to change and the off-wall layers will have too much distance between each other.
 
-In order to avoid this, we can use the :code:`prefoil` packages easily and still be able to coarsen or refine the meshes. 
-The example code is given below. You can either upload a :code:`.dat` file or create the NACA 4 digit airfoils. 
+In order to avoid this, we can use the ``prefoil`` packages easily and still be able to coarsen or refine the meshes. 
+The example code is given below. You can either upload a ``.dat`` file or create the NACA 4 digit airfoils. 
 Then, you can manipulate the meshing parameters and get mesh grids with different levels.
 
 .. code-block:: python
@@ -93,7 +113,7 @@ Then, you can manipulate the meshing parameters and get mesh grids with differen
     nLayers_L2 = 80
     s0_L2 = 4e-6
 
-    # Increaing the mesh sizes 
+    # Increasing the mesh sizes 
     refinement=[1,2,4]
     level =['L2','L1','L0']
 
@@ -162,7 +182,7 @@ Then, you can manipulate the meshing parameters and get mesh grids with differen
 
 
 
-As an example, the tecplot of both cases are shown. As we can see, when we coarsen through :code:`cgns_utils`, the distance between each layers become higher and the growth ratio is not the same as :code:`prefoil` mesh.
+As an example, the Tecplot of both cases are shown. As we can see, when we coarsen through ``cgns_utils``, the distance between each layers become higher and the growth ratio is not the same as ``prefoil`` mesh.
 
 .. figure:: images/meshexample.png
     :scale: 40
@@ -171,6 +191,16 @@ As an example, the tecplot of both cases are shown. As we can see, when we coars
     :figclass: align-center
 
     Figure 2: Mesh comparison.
+
+TODO: add mesh refinement plot using this method
+
+Pros:
+    - It is more practical for 3D meshes since the refinement ratio is not as aggressive as ``Option 1``. This places the points on the refinement plot closer to each other  on the :math:`x`-axis so it is more likely that your coarsest volume mesh is in the asymptotic regime, which you can then use for coarse optimizations.
+    - It is easier to generate the 0.5 level family of meshes (e.g., L0.5, L1.5, L2.5) using the ``scaleBlkFile`` procedure in the postprocessing repository to scale the surface meshes by a factor of :math:`1/\sqrt{2}`.
+
+Cons:
+    - It is harder to be mathematically rigorous (and therefore justifiable in a scholarly article) using this method because all options from the surface mesh extrusion have to be scaled accordingly and even then, there may be variations in volume cell scaling from the procedure.
+    - Your mesh refinement results might not follow a perfectly straight line compared to ``Option 1`` even if they are in the asymptotic regime since it is not a uniform refinement (but it should be close to linear)
 
 External Links
 --------------
