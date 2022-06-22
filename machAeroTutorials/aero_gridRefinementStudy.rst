@@ -56,10 +56,12 @@ There are two methods for performing grid refinement:
 We discuss the pros and cons of each method and underlying theory;
 it is up to the user to choose the method.
 
+.. _option-1:
+
 Option 1: Coarsening volume meshes
 ----------------------------------
 
-1. Generate fine grid (L0) with :math:`N=2^n m + 1` nodes along each edge.
+1. Generate fine grid (L0) with :math:`N=(2^n) (m) + 1` nodes along each edge.
 2. Coarsen the L0 grid :math:`n-1` times using ``cgns_utils coarsen``.
 3. Use ``solveCL`` or ``solveTrimCL`` in ADflow to obtain :math:`C_D` for a given :math:`C_L`.
 4. Compute the Richardson extrapolation using the L0 and L1 grids.
@@ -92,7 +94,7 @@ Option 2: Coarsening surface meshes and extruding a family of volume meshes
 
 Instead of using the ``cgns_utils coarsen`` feature, we can easily make the finer or coarsen meshes with the help of ``prefoil`` package.
 The main reason behind this idea is to generate the meshes without changing the ``growth rate`` of the off wall layers.
-If you use ``cgns_utils coarsen`` feature (i.e. ``Option 1``), you will be able to increase the first off-wall spacing ``s0`` uniformly; 
+If you use ``cgns_utils coarsen`` feature (i.e. :ref:`option-1`), you will be able to increase the first off-wall spacing ``s0`` uniformly; 
 however, the grow ratio is going to change and the off-wall layers will have too much distance between each other.
 
 In order to avoid this, we can use the ``prefoil`` packages easily and still be able to coarsen or refine the meshes. 
@@ -100,7 +102,7 @@ The example code is given below. You can either upload a ``.dat`` file or create
 Then, you can manipulate the meshing parameters and get mesh grids with different levels.
 
 .. code-block:: python
-        
+
     from pyhyp import pyHyp
     from prefoil.preFoil import Airfoil, readCoordFile,generateNACA
     from prefoil import sampling
@@ -192,7 +194,7 @@ As an example, the Tecplot of both cases are shown. As we can see, when we coars
 
     Figure 2: Mesh comparison.
 
-TODO: add mesh refinement plot using this method
+.. TODO: add mesh refinement plot using this method that's similar to the RAE one
 
 Pros:
     - It is more practical for 3D meshes since the refinement ratio is not as aggressive as ``Option 1``. This places the points on the refinement plot closer to each other  on the :math:`x`-axis so it is more likely that your coarsest volume mesh is in the asymptotic regime, which you can then use for coarse optimizations.
