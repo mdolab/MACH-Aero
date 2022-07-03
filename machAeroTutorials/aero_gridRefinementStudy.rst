@@ -56,6 +56,14 @@ There are two methods for performing grid refinement:
 We discuss the pros and cons of each method and underlying theory;
 it is up to the user to choose the method.
 
+A few general notes first:
+   - With regards to aerodynamic shape optimization, being in the asymptotic regime is not always necessary since the objective function like drag is just offset by the truncation error.
+     This is not as simple with a coupled structural model.
+     As long as the CFD mesh is fine enough to capture the correct physical trends, then the design space will be accurate enough such that coarse mesh optimizations will get you close enough to the optimal solution;
+     subsequently, one can use finer meshes using the design variables from the coarser optimizations, thus decreasing overall computational cost.
+   - Redo your mesh convergence study on the optimized result to double check everything is behaving as expected
+   - Plotting contours of :math:`y^+`, shocks, and wake can help with debugging
+
 .. _option-1:
 
 Option 1: Coarsening volume meshes
@@ -202,7 +210,7 @@ Pros:
 
 Cons:
     - It is harder to be mathematically rigorous (and therefore justifiable in a scholarly article) using this method because all options from the surface mesh extrusion have to be scaled accordingly and even then, there may be variations in volume cell scaling from the procedure.
-    - Your mesh refinement results might not follow a perfectly straight line compared to ``Option 1`` even if they are in the asymptotic regime since it is not a uniform refinement (but it should be close to linear)
+    - Your mesh refinement results might not follow a perfectly straight line compared to ``Option 1`` even if they are in the asymptotic regime since it is not a uniform refinement (but it should be close to linear). Improper scaling of the off-wall and far-field cells may add to discretization error
 
 External Links
 --------------
