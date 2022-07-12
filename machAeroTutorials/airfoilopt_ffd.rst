@@ -51,7 +51,10 @@ The FFD box can now be set up.
     :end-before: # rst FFDBox2
 
 
-``nffd`` signifies the number of chordwise points. An empty FFD box is created.
+``nffd`` signifies the number of chordwise slices.
+The `2`'s in `(nffd, 2, 2, 3)` are the number of slices in the "spanwise" and "thickness" directions.
+The '3' in `(nffd, 2, 2, 3)` is the number of dimensions for each point (e.g. (x,y,z)).
+ An empty FFD box is created.
 ``xmargin`` and ``ymargin`` specify the closest distance from the airfoil to place the FFD box.
 ``xslice``, ``yupper``, and ``ylower`` store the x- and y- coordinates of the control points for each slice along the chord, taking into account the margins from the airfoil. 
 

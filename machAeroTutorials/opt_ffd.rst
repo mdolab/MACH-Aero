@@ -12,6 +12,7 @@ The FFD is a mapping of a region in 2D or 3D that is bounded by a set of B-splin
 Every point with the region is mapped to a new location based on the deformation of the bounding B-spline curves.
 The B-splines themselves are defined by control points, so by adjusting the positions of these control points, we can have a great deal of control over any points embedded in the FFD volume (as shown in the figure below).
 Since both our CFD meshes and finite element models are point-based, we can embed them in the FFD and give the optimizer control over their shape.
+For more detail on the mathematical principles and implementation, refer to the following article: https://dafoam.github.io/docs/FFD/main.pdf
 
 .. image:: images/ffd_demo.png
    :scale: 50
@@ -19,6 +20,7 @@ Since both our CFD meshes and finite element models are point-based, we can embe
 
 The actual implementation of the FFD method is housed in the pyGeo repository, which we were already introduced to in the very beginning of the tutorial.
 The specific class to look for is :doc:`DVGeometry <pygeo:DVGeometry>`.
+Navigate to the DVGeometry repository to explore its capabilities
 Before diving into the parametrization, however, we need to generate an FFD, which is basically a 3D grid in the plot3d format.
 
 Files
@@ -93,6 +95,7 @@ Setting up a geometric parametrization with DVGeometry
 ======================================================
 Open the file ``parametrize.py`` in your favorite text editor.
 Then copy the code from each of the following sections into this file.
+The DVGeo functions used in the following sections are defined in pygeo/pygeo/parameterization/DVGeo.py.
 
 Import libraries
 ----------------

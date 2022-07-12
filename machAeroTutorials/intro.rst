@@ -45,9 +45,10 @@ This tutorial requires the following software.
 - `ADflow <https://github.com/mdolab/adflow>`_
 - `pyOptSparse <https://github.com/mdolab/pyoptsparse>`_
 - `multipoint <https://github.com/mdolab/multipoint.git>`_
+- `prefoil <https://github.com/mdolab/prefoil>`_
 
 .. note:: These links take you to the GitHub repositories.
-   To see their documentation, follow the link in the README for each GitHub repository.
+   To see their documentation, follow the link in the README for each GitHub repository. As you complete this tutorial, reference this documentation to understand the functionality of each repository.
 
 
 **External Software**

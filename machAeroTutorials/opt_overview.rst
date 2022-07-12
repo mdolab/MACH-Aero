@@ -12,6 +12,14 @@ There are many problems with this approach, including prohibitive computational 
 Instead, we use a combination of analytic gradients, automatic differentiation, and the complex-step method to compute accurate gradients for our optimizations.
 We have spent a great deal of effort to make optimization a fairly straightforward and seamless process for the end user, so we hope you enjoy learning to use our tools!
 
+Overview of framework
+---------------------
+An optimizer is used via `pyOptSparse` to select the design variables for a cannidate design. 
+`pyGeo` warps the surface mesh according to the geometric design variables. 
+To create a volume mesh, `idwarp` propagates the deformation of the surface mesh into the volume mesh.
+ADflow then solves for the performance of the design using that volume mesh. The variables using to define the aerodynamic analysis can also be selected by the optimizer (e.g. Mach number, AoA, etc.).
+Based on the outputs of the aerodynamic analysis and the setup of the optimization problem, the optimizer will continue to generate a new candidate designs until it converges.
+
 Here are a few of the items we will cover in the following pages:
 
     - Set up an optimization script using pyOptSparse

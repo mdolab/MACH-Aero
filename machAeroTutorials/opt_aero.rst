@@ -8,6 +8,7 @@ Introduction
 ============
 We will now demonstrate how to optimize the aerodynamic shape of a wing.
 We will be combining aspects of all of the following sections: :ref:`aero_adflow`, :ref:`opt_pyopt`, and :ref:`opt_ffd`.
+Again reference a high level explanation of how these fit together - aero problem, optimization problem, geometry.
 The optimization problem is defined as
 
 | *minimize*
