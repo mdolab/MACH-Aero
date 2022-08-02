@@ -48,21 +48,20 @@ It is computed using the solutions from the L0 and L1 grids with the equation
     f_{h=0} = f_{L0} + \frac{f_{L0}-f_{L1}}{r^{\hat{p}} - 1}
 
 Grid Refinement Study on Airfoils
-======================================
+-----------------------------------
 
 There are two methods for performing grid refinement: 
-1) coarsening the volume mesh and 
-2) coarsening the surface mesh and extruding the family of surface meshes
+1) coarsening the volume mesh or 
+2) coarsening the surface mesh and extruding the family of surface meshes.
 We discuss the pros and cons of each method and underlying theory;
 it is up to the user to choose the method.
 
 A few general notes first:
-   - With regards to aerodynamic shape optimization, being in the asymptotic regime is not always necessary since the objective function like drag is just offset by the truncation error.
-     This is not as simple with a coupled structural model.
+   - With regards to aerodynamic shape optimization, being in the asymptotic regime is not always necessary since the objective function like drag is just offset by the truncation error. This is not as simple with a coupled structural model.
      As long as the CFD mesh is fine enough to capture the correct physical trends, then the design space will be accurate enough such that coarse mesh optimizations will get you close enough to the optimal solution;
      subsequently, one can use finer meshes using the design variables from the coarser optimizations, thus decreasing overall computational cost.
    - Redo your mesh convergence study on the optimized result to double check everything is behaving as expected
-   - Plotting contours of :math:`y^+`, shocks, and wake can help with debugging
+   - Plotting contours of :math:`y^+` can help with debugging
 
 .. _option-1:
 
@@ -75,8 +74,8 @@ Option 1: Coarsening volume meshes
 4. Compute the Richardson extrapolation using the L0 and L1 grids.
 5. Plot :math:`h^p` vs :math:`C_D`. For ADflow, use :math:`p=2` to indicate a second-order method.
 
-This method is the original mesh refinement Richardson Extrapolation theory relies on since there is a uniform coarsening between meshes.
-If the plotted dots are in a straight line, your mesh is in the asymptotic regime.
+This mesh refinement method is consistent with the original Richardson Extrapolation theory, which relies on uniform coarsening between meshes.
+If the plotted dots are in a straight line, your mesh is in the asymptotic regime. The points must also line up with the extrapolated value. In other words, a mesh is in the asymptotic range if it lies on the line connecting the extrapolated value and the finest mesh value. If you do not get this despite using fine meshes, this usually means the output you are looking at is not second-order accurate (which is rather common)
 You want the Richardson Extrapolation to lie on the line or lead to a slight concave up shape, which indicates convergence to the exact numerical solution.
 The slope of the line is the coefficient of the leading truncation error term.
 
@@ -94,18 +93,17 @@ Pros:
     - The grid is coarsened uniformly, giving the most mathematically rigorous convergence study, which is important for justifying solutions in your scholarly articles.
 
 Cons:
-    - To generate enough points to make a line (at least three), the finest mesh (L0) has to be extremely fine for 3D meshes to have a coarse mesh that is still in the asymptotic regime since for the ``n``th level, it needs to have :math:`(2^3)^n` fewer cells assuming a refinement ratio of 2.
+    - To generate enough points to make a line (at least three), the finest mesh (L0) has to be extremely fine for 3D meshes to have a coarse mesh that is still in the asymptotic regime since for the ``n^(th)`` level, it needs to have :math:`(2^3)^n` fewer cells assuming a refinement ratio of 2.
     - Growth ratio is changing, so be wary of the off-wall cell resolution and boundary layer accuracy.
 
 Option 2: Coarsening surface meshes and extruding a family of volume meshes
 ---------------------------------------------------------------------------
 
 Instead of using the ``cgns_utils coarsen`` feature, we can easily make the finer or coarsen meshes with the help of ``prefoil`` package.
-The main reason behind this idea is to generate the meshes without changing the ``growth rate`` of the off wall layers.
-If you use ``cgns_utils coarsen`` feature (i.e. :ref:`option-1`), you will be able to increase the first off-wall spacing ``s0`` uniformly; 
-however, the grow ratio is going to change and the off-wall layers will have too much distance between each other.
+The main reason behind this idea is to generate the meshes without changing the ``growth rate`` of the off wall layers (mainly but it's beneficial in all directions).
+If you use ``cgns_utils coarsen`` feature (i.e. :ref:`option-1`), you will be able to increase the first off-wall spacing ``s0`` uniformly. However, the grow ratio is going to change and the off-wall layers will have too much distance between each other.
 
-In order to avoid this, we can use the ``prefoil`` packages easily and still be able to coarsen or refine the meshes. 
+In order to avoid this, we can use the ``prefoil`` package easily and still be able to coarsen or refine the meshes. 
 The example code is given below. You can either upload a ``.dat`` file or create the NACA 4 digit airfoils. 
 Then, you can manipulate the meshing parameters and get mesh grids with different levels.
 
