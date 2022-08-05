@@ -76,8 +76,9 @@ Option 1: Coarsening volume meshes
 5. Plot :math:`h^p` vs :math:`C_D`. For ADflow, use :math:`p=2` to indicate a second-order method.
 
 This mesh refinement method is consistent with the original Richardson Extrapolation theory, which relies on uniform coarsening between meshes.
-If the plotted dots are in a straight line, your mesh is in the asymptotic regime. The points must also line up with the extrapolated value. In other words, a mesh is in the asymptotic range if it lies on the line connecting the extrapolated value and the finest mesh value. If you do not get this despite using fine meshes, this usually means the output you are looking at is not second-order accurate (which is rather common)
-You want the Richardson Extrapolation to lie on the line or lead to a slight concave up shape, which indicates convergence to the exact numerical solution.
+A mesh is in the asymptotic range if it lies on the line connecting the extrapolated value and the finest mesh value. 
+If you do not get this despite using fine meshes, this usually means the output you are looking at is not second-order accurate (which is rather common).
+In this case, we redo the extrapolation after determining the correct order.
 The slope of the line is the coefficient of the leading truncation error term.
 
 An example of grid convergence plot for a family of RAE 2822 Airfoil meshes is illustrated below:
@@ -109,90 +110,11 @@ In order to avoid this, we can use the ``prefoil`` package easily and still be a
 The example code is given below. You can either upload a ``.dat`` file or create the NACA 4 digit airfoils. 
 Then, you can manipulate the meshing parameters and get mesh grids with different levels.
 
-.. code-block:: python
-
-    from pyhyp import pyHyp
-    from prefoil.preFoil import Airfoil, readCoordFile,generateNACA
-    from prefoil import sampling
+.. literalinclude:: ../tutorial/refinement/prefoilMeshRefine.py
 
 
-    # L2 layer mesh grid initilization
-    # We will refine the mesh from this starting grid
-    nTE_cells_L2 = 5
-    nSurfPts_L2 = 200
-    nLayers_L2 = 80
-    s0_L2 = 4e-6
-
-    # Increasing the mesh sizes 
-    refinement=[1,2,4]
-    level =['L2','L1','L0']
-
-    for i in range(len(refinement)):
-
-        # number of points on the airfoil surface
-        nSurfPts = refinement[i]*nSurfPts_L2
-
-        # number of points on the TE.
-        nTEPts = refinement[i]*nTE_cells_L2 
-
-
-        # number of extrusion layers
-        nExtPts = refinement[i]*nLayers_L2 
-
-        # first off wall spacing
-        s0 = s0_L2/ refinement[i]
-
-        #### We can either import our desired airfoil .dat file and continue the meshing proces ####
-        #### Or we can generate the NACA airfoils if our baseline is a 4 series NACA airfoil    ####
-
-        # Read the Coordinate file
-        # filename = "n0012_old.dat"
-        # coords = readCoordFile(filename, headerlines=1)
-
-        # We can also  generate NACA 4 series airfoils
-        code='0012'
-        nPts=150
-        coords=generateNACA(code, nPts, spacingFunc=sampling.polynomial, func_args={"order": 8})
-        # print('yes',coords)
-        airfoil = coords
-
-        coords = airfoil.getSampledPts(
-        nSurfPts,
-        spacingFunc=sampling.polynomial, func_args={"order": 8},
- 
-        nTEPts=nTEPts,
-        )
-        # print(coords)
-        # Write surface mesh
-        airfoil.writeCoords("./input/naca0012_%s" % level[i], file_format="plot3d")
-
-
-
-        options = {
-            # ---------------------------
-            #        Input Parameters
-            # ---------------------------
-            "inputFile": "./input/naca0012_%s.xyz" % level[i],
-            "unattachedEdgesAreSymmetry": False,
-            "outerFaceBC": "farfield",
-            "autoConnect": True,
-            "BC": {1: {"jLow": "zSymm", "jHigh": "zSymm"}},
-            "families": "wall",
-            # ---------------------------m
-            #        Grid Parameters
-            # ---------------------------
-            "N": nExtPts,
-            "s0": s0,
-            "marchDist": 100.0,
-
-        }
-        hyp = pyHyp(options=options)
-        hyp.run()
-        hyp.writeCGNS("./input/naca0012_%s.cgns" % level[i])
-
-
-
-As an example, the Tecplot of both cases are shown. As we can see, when we coarsen through ``cgns_utils``, the distance between each layers become higher and the growth ratio is not the same as ``prefoil`` mesh.
+As an example, Figure 2 shows the mesh for both cases. 
+As we can see, when we coarsen through ``cgns_utils``, the distance between each layers become higher and the growth ratio is not the same as ``prefoil`` mesh.
 
 .. figure:: images/meshexample.png
     :scale: 40
