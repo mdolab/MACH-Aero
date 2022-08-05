@@ -4,7 +4,7 @@
 .. _gridRefinementStudy:
 
 Grid Refinement Study
-==========================
+=====================
 
 Theory
 ------
@@ -47,8 +47,8 @@ It is computed using the solutions from the L0 and L1 grids with the equation
 .. math::
     f_{h=0} = f_{L0} + \frac{f_{L0}-f_{L1}}{r^{\hat{p}} - 1}
 
-Grid Refinement Study on Airfoils
------------------------------------
+Grid Refinement Study
+---------------------
 
 There are two methods for performing grid refinement: 
 1) coarsening the volume mesh or 
@@ -58,8 +58,8 @@ it is up to the user to choose the method.
 
 A few general notes first:
    - With regards to aerodynamic shape optimization, being in the asymptotic regime is not always necessary since the objective function like drag is just offset by the truncation error. This is not as simple with a coupled structural model.
-     As long as the CFD mesh is fine enough to capture the correct physical trends, then the design space will be accurate enough such that coarse mesh optimizations will get you close enough to the optimal solution;
-     subsequently, one can use finer meshes using the design variables from the coarser optimizations, thus decreasing overall computational cost.
+     As long as the CFD mesh is fine enough to capture the correct physical trends, then the design space will be accurate enough such that coarse mesh optimizations will get you close enough to the optimal solution.
+     Subsequently, one can use finer meshes using the design variables from the coarser optimizations, thus decreasing overall computational cost.
    - Redo your mesh convergence study on the optimized result to double check everything is behaving as expected
    - Plotting contours of :math:`y^+` can help with debugging
 
@@ -93,15 +93,17 @@ Pros:
     - The grid is coarsened uniformly, giving the most mathematically rigorous convergence study, which is important for justifying solutions in your scholarly articles.
 
 Cons:
-    - To generate enough points to make a line (at least three), the finest mesh (L0) has to be extremely fine for 3D meshes to have a coarse mesh that is still in the asymptotic regime since for the ``n^(th)`` level, it needs to have :math:`(2^3)^n` fewer cells assuming a refinement ratio of 2.
+    - To generate enough points to make a line (at least three), the finest mesh (L0) has to be extremely fine for 3D meshes to have a coarse mesh that is still in the asymptotic regime since for the :math:`n`:sup:`th` level, it needs to have :math:`(2^3)^n` fewer cells assuming a refinement ratio of 2.
     - Growth ratio is changing, so be wary of the off-wall cell resolution and boundary layer accuracy.
 
 Option 2: Coarsening surface meshes and extruding a family of volume meshes
 ---------------------------------------------------------------------------
 
-Instead of using the ``cgns_utils coarsen`` feature, we can easily make the finer or coarsen meshes with the help of ``prefoil`` package.
-The main reason behind this idea is to generate the meshes without changing the ``growth rate`` of the off wall layers (mainly but it's beneficial in all directions).
-If you use ``cgns_utils coarsen`` feature (i.e. :ref:`option-1`), you will be able to increase the first off-wall spacing ``s0`` uniformly. However, the grow ratio is going to change and the off-wall layers will have too much distance between each other.
+For 2D and 3D geometries, one can coarsen the surface meshes and then extrude these.
+
+For a 2D example, instead of using the ``cgns_utils coarsen`` feature, we can easily make the finer or coarsen meshes with the help of ``prefoil`` package.
+The idea is to generate the meshes without changing the ``growth rate`` of the off wall layers (mainly but it's beneficial in all directions).
+For 3D, if you use ``cgns_utils coarsen`` feature (i.e. :ref:`option-1`), you will be able to increase the first off-wall spacing ``s0`` uniformly. However, the grow ratio is going to change and the off-wall layers will have too much distance between each other.
 
 In order to avoid this, we can use the ``prefoil`` package easily and still be able to coarsen or refine the meshes. 
 The example code is given below. You can either upload a ``.dat`` file or create the NACA 4 digit airfoils. 
