@@ -57,7 +57,8 @@ We discuss the pros and cons of each method and underlying theory;
 it is up to the user to choose the method.
 
 A few general notes first:
-   - With regards to aerodynamic shape optimization, being in the asymptotic regime is not always necessary since the objective function like drag is just offset by the truncation error. This is not as simple with a coupled structural model.
+   - With regards to aerodynamic shape optimization, being in the asymptotic regime is not always necessary since the objective function like drag is just offset by the truncation error. 
+     This is not as simple with a coupled structural model because, depending on the structural model, there are likely differences in order of the method (TACS has linear finite elements) and truncation error constants, all of which will affect the observed order of accuracy.
      As long as the CFD mesh is fine enough to capture the correct physical trends, then the design space will be accurate enough such that coarse mesh optimizations will get you close enough to the optimal solution.
      Subsequently, one can use finer meshes using the design variables from the coarser optimizations, thus decreasing overall computational cost.
    - Redo your mesh convergence study on the optimized result to double check everything is behaving as expected
@@ -103,7 +104,6 @@ For 2D and 3D geometries, one can coarsen the surface meshes and then extrude th
 
 For a 2D example, instead of using the ``cgns_utils coarsen`` feature, we can easily make the finer or coarsen meshes with the help of ``prefoil`` package.
 The idea is to generate the meshes without changing the ``growth rate`` of the off wall layers (mainly but it's beneficial in all directions).
-For 3D, if you use ``cgns_utils coarsen`` feature (i.e. :ref:`option-1`), you will be able to increase the first off-wall spacing ``s0`` uniformly. However, the grow ratio is going to change and the off-wall layers will have too much distance between each other.
 
 In order to avoid this, we can use the ``prefoil`` package easily and still be able to coarsen or refine the meshes. 
 The example code is given below. You can either upload a ``.dat`` file or create the NACA 4 digit airfoils. 
@@ -204,9 +204,13 @@ As an example, the Tecplot of both cases are shown. As we can see, when we coars
 
 .. TODO: add mesh refinement plot using this method that's similar to the RAE one
 
+For 3D, you could use ``cgns_utils coarsen`` feature (i.e. :ref:`option-1`), you will be able to increase the first off-wall spacing ``s0`` uniformly. However, the grow ratio is going to change and the off-wall layers will have too much distance between each other.
+You can also directly tweak the surface mesh discretization in your meshing software (e.g., ICEM/Pointwise).
+
 Pros:
-    - It is more practical for 3D meshes since the refinement ratio is not as aggressive as ``Option 1``. This places the points on the refinement plot closer to each other  on the :math:`x`-axis so it is more likely that your coarsest volume mesh is in the asymptotic regime, which you can then use for coarse optimizations.
-    - It is easier to generate the 0.5 level family of meshes (e.g., L0.5, L1.5, L2.5) using the ``scaleBlkFile`` procedure in the postprocessing repository to scale the surface meshes by a factor of :math:`1/\sqrt{2}`.
+    - It is more practical for 3D meshes since you could make refinement ratio less aggressive compared to ``Option 1`` (i.e., :math:`r < 2`). 
+      This places the points on the refinement plot closer to each other  on the :math:`x`-axis so it is more likely that your coarsest volume mesh is in the asymptotic regime, which you can then use for coarse optimizations.
+    - It is the only way to generate the 0.5 level family of meshes (e.g., L0.5, L1.5, L2.5) using the ``scaleBlkFile`` procedure in the postprocessing repository to scale the surface meshes by a factor of :math:`1/\sqrt{2}`.
 
 Cons:
     - It is harder to be mathematically rigorous (and therefore justifiable in a scholarly article) using this method because all options from the surface mesh extrusion have to be scaled accordingly and even then, there may be variations in volume cell scaling from the procedure.
