@@ -14,10 +14,10 @@ We have spent a great deal of effort to make optimization a fairly straightforwa
 
 Overview of framework
 ---------------------
-An optimizer is used via `pyOptSparse` to select the design variables for a cannidate design. 
+An optimizer is used via `pyOptSparse` to select the design variables for a candidate design. 
 `pyGeo` warps the surface mesh according to the geometric design variables. 
-To create a volume mesh, `idwarp` propagates the deformation of the surface mesh into the volume mesh.
-ADflow then solves for the performance of the design using that volume mesh. The variables using to define the aerodynamic analysis can also be selected by the optimizer (e.g. Mach number, AoA, etc.).
+`idwarp` propagates the deformation of the surface mesh into the volume mesh.
+ADflow then solves for the performance of the design using that volume mesh. The variables used to define the aerodynamic analysis can also be modified by the optimizer (e.g. Mach number, AoA, etc.).
 Based on the outputs of the aerodynamic analysis and the setup of the optimization problem, the optimizer will continue to generate a new candidate designs until it converges.
 
 Here are a few of the items we will cover in the following pages:
