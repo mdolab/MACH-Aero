@@ -47,19 +47,20 @@ It is computed using the solutions from the L0 and L1 grids with the equation
 .. math::
     f_{h=0} = f_{L0} + \frac{f_{L0}-f_{L1}}{r^{\hat{p}} - 1}
 
-Grid Refinement Study
----------------------
+Approaches to Grid Refinement
+-----------------------------
 
-There are two methods for performing grid refinement: 
+There are two methods we use for performing grid refinement: 
 1) coarsening the volume mesh or 
 2) coarsening the surface mesh and extruding the family of surface meshes.
 We discuss the pros and cons of each method and underlying theory;
 it is up to the user to choose the method.
 
 A few general notes first:
-   - With regards to aerodynamic shape optimization, being in the asymptotic regime is not always necessary since the objective function like drag is just offset by the truncation error. 
-     This is not as simple with a coupled structural model because, depending on the structural model, there are likely differences in order of the method (TACS has linear finite elements) and truncation error constants, all of which will affect the observed order of accuracy.
-     As long as the CFD mesh is fine enough to capture the correct physical trends, then the design space will be accurate enough such that coarse mesh optimizations will get you close enough to the optimal solution.
+   - With regards to aerodynamic shape optimization, being in the asymptotic regime is not always necessary since the objective function like drag is offset by the truncation error;
+     however, being able to use meshes outside of the asymptotic regime does require that the truncation error offset is mostly constant throughout an optimization, which is not always true.
+     It is also not as simple with a coupled structural model because, depending on the structural model, there are likely differences in order of the method (TACS has linear finite elements) and truncation error constants, all of which will affect the observed order of accuracy.
+     The bottom line is as long as the CFD mesh is fine enough to capture the correct physical trends, then the design space will be accurate enough such that coarse mesh optimizations will get you close enough to the optimal solution.
      Subsequently, one can use finer meshes using the design variables from the coarser optimizations, thus decreasing overall computational cost.
    - Redo your mesh convergence study on the optimized result to double check everything is behaving as expected
    - Plotting contours of :math:`y^+` can help with debugging
@@ -67,13 +68,12 @@ A few general notes first:
 .. _option-1:
 
 Option 1: Coarsening volume meshes
-----------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Generate fine grid (L0) with :math:`N=(2^n) (m) + 1` nodes along each edge.
 2. Coarsen the L0 grid :math:`n-1` times using ``cgns_utils coarsen``.
-3. Use ``solveCL`` or ``solveTrimCL`` in ADflow to obtain :math:`C_D` for a given :math:`C_L`.
-4. Compute the Richardson extrapolation using the L0 and L1 grids.
-5. Plot :math:`h^p` vs :math:`C_D`. For ADflow, use :math:`p=2` to indicate a second-order method.
+3. Compute the Richardson extrapolation using the L0 and L1 grids keeping all flow setups the same.
+4. Plot :math:`h^p` vs :math:`C_D`. For ADflow, use :math:`p=2` to indicate a second-order method.
 
 This mesh refinement method is consistent with the original Richardson Extrapolation theory, which relies on uniform coarsening between meshes.
 A mesh is in the asymptotic range if it lies on the line connecting the extrapolated value and the finest mesh value. 
@@ -99,22 +99,102 @@ Cons:
     - Growth ratio is changing, so be wary of the off-wall cell resolution and boundary layer accuracy.
 
 Option 2: Coarsening surface meshes and extruding a family of volume meshes
----------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For 2D and 3D geometries, one can coarsen the surface meshes and then extrude these.
-
-For a 2D example, instead of using the ``cgns_utils coarsen`` feature, we can easily make the finer or coarsen meshes with the help of ``prefoil`` package.
-The idea is to generate the meshes without changing the ``growth rate`` of the off wall layers (mainly but it's beneficial in all directions).
+Instead of using the ``cgns_utils coarsen`` feature, we can easily make the finer or coarser meshes with the help of the ``prefoil`` package.
+The main reason behind this idea is to generate the meshes without changing the ``growth rate`` of the off-wall layers.
+By maintaining the growth rate, extrusion in all directions is better and node clustering is then smoother with this method.
+If you use ``cgns_utils coarsen`` feature (i.e. :ref:`option-1`), you will be able to increase the first off-wall spacing ``s0`` uniformly; 
+however, the grow ratio is going to change and the off-wall layers will have too much distance between each other.
 
 In order to avoid this, we can use the ``prefoil`` package easily and still be able to coarsen or refine the meshes. 
 The example code is given below. You can either upload a ``.dat`` file or create the NACA 4 digit airfoils. 
 Then, you can manipulate the meshing parameters and get mesh grids with different levels.
 
-.. literalinclude:: ../tutorial/refinement/prefoilMeshRefine.py
+.. code-block:: python
+
+    from pyhyp import pyHyp
+    from prefoil.preFoil import Airfoil, readCoordFile,generateNACA
+    from prefoil import sampling
 
 
-As an example, Figure 2 shows the mesh for both cases. 
-As we can see, when we coarsen through ``cgns_utils``, the distance between each layers become higher and the growth ratio is not the same as ``prefoil`` mesh.
+    # L2 layer mesh grid initilization
+    # We will refine the mesh from this starting grid
+    nTE_cells_L2 = 5
+    nSurfPts_L2 = 200
+    nLayers_L2 = 80
+    s0_L2 = 4e-6
+
+    # Increasing the mesh sizes 
+    refinement=[1,2,4]
+    level =['L2','L1','L0']
+
+    for i in range(len(refinement)):
+
+        # number of points on the airfoil surface
+        nSurfPts = refinement[i]*nSurfPts_L2
+
+        # number of points on the TE.
+        nTEPts = refinement[i]*nTE_cells_L2 
+
+
+        # number of extrusion layers
+        nExtPts = refinement[i]*nLayers_L2 
+
+        # first off wall spacing
+        s0 = s0_L2/ refinement[i]
+
+        #### We can either import our desired airfoil .dat file and continue the meshing proces ####
+        #### Or we can generate the NACA airfoils if our baseline is a 4 series NACA airfoil    ####
+
+        # Read the Coordinate file
+        # filename = "n0012_old.dat"
+        # coords = readCoordFile(filename, headerlines=1)
+
+        # We can also  generate NACA 4 series airfoils
+        code='0012'
+        nPts=150
+        coords=generateNACA(code, nPts, spacingFunc=sampling.polynomial, func_args={"order": 8})
+        # print('yes',coords)
+        airfoil = coords
+
+        coords = airfoil.getSampledPts(
+        nSurfPts,
+        spacingFunc=sampling.polynomial, func_args={"order": 8},
+ 
+        nTEPts=nTEPts,
+        )
+        # print(coords)
+        # Write surface mesh
+        airfoil.writeCoords("./input/naca0012_%s" % level[i], file_format="plot3d")
+
+
+
+        options = {
+            # ---------------------------
+            #        Input Parameters
+            # ---------------------------
+            "inputFile": "./input/naca0012_%s.xyz" % level[i],
+            "unattachedEdgesAreSymmetry": False,
+            "outerFaceBC": "farfield",
+            "autoConnect": True,
+            "BC": {1: {"jLow": "zSymm", "jHigh": "zSymm"}},
+            "families": "wall",
+            # ---------------------------m
+            #        Grid Parameters
+            # ---------------------------
+            "N": nExtPts,
+            "s0": s0,
+            "marchDist": 100.0,
+
+        }
+        hyp = pyHyp(options=options)
+        hyp.run()
+        hyp.writeCGNS("./input/naca0012_%s.cgns" % level[i])
+
+
+
+As an example, the Tecplot of both cases are shown. As we can see, when we coarsen through ``cgns_utils``, the distance between each layers become higher and the growth ratio is not the same as ``prefoil`` mesh.
 
 .. figure:: images/meshexample.png
     :scale: 40
