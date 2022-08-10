@@ -73,10 +73,11 @@ Option 1: Coarsening volume meshes
 1. Generate fine grid (L0) with :math:`N=(2^n) (m) + 1` nodes along each edge.
 2. Coarsen the L0 grid :math:`n-1` times using ``cgns_utils coarsen``.
 3. Compute the Richardson extrapolation using the L0 and L1 grids keeping all flow setups the same.
-4. Plot :math:`h^p` vs :math:`C_D`. For ADflow, use :math:`p=2` to indicate a second-order method.
+4. Plot :math:`h^p` vs :math:`C_D`.
+   For ADflow, use :math:`p=2` to indicate a second-order method.
 
 This mesh refinement method is consistent with the original Richardson Extrapolation theory, which relies on uniform coarsening between meshes.
-A mesh is in the asymptotic range if it lies on the line connecting the extrapolated value and the finest mesh value. 
+A mesh is in the asymptotic range if it lies on the line connecting the extrapolated value and the finest mesh value.
 If you do not get this despite using fine meshes, this usually means the output you are looking at is not second-order accurate (which is rather common).
 In this case, we redo the extrapolation after determining the correct order.
 The slope of the line is the coefficient of the leading truncation error term.
@@ -101,14 +102,15 @@ Cons:
 Option 2: Coarsening surface meshes and extruding a family of volume meshes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Instead of using the ``cgns_utils coarsen`` feature, we can easily make the finer or coarser meshes with the help of the ``prefoil`` package.
+Instead of using the ``cgns_utils coarsen`` feature, we can easily make the finer or coarser meshes with the ``prefoil`` package.
 The main reason behind this idea is to generate the meshes without changing the ``growth rate`` of the off-wall layers.
 By maintaining the growth rate, extrusion in all directions is better and node clustering is then smoother with this method.
 If you use ``cgns_utils coarsen`` feature (i.e. :ref:`option-1`), you will be able to increase the first off-wall spacing ``s0`` uniformly; 
 however, the grow ratio is going to change and the off-wall layers will have too much distance between each other.
 
-In order to avoid this, we can use the ``prefoil`` package easily and still be able to coarsen or refine the meshes. 
-The example code is given below. You can either upload a ``.dat`` file or create the NACA 4 digit airfoils. 
+In order to avoid this, we can use the ``prefoil`` package easily and still be able to coarsen or refine the meshes.
+The example code is given below.
+You can either upload a ``.dat`` file or create the NACA 4 digit airfoils.
 Then, you can manipulate the meshing parameters and get mesh grids with different levels.
 
 .. code-block:: python
@@ -194,7 +196,8 @@ Then, you can manipulate the meshing parameters and get mesh grids with differen
 
 
 
-As an example, the Tecplot of both cases are shown. As we can see, when we coarsen through ``cgns_utils``, the distance between each layers become higher and the growth ratio is not the same as ``prefoil`` mesh.
+As an example, the Tecplot of both cases are shown.
+As we can see, when we coarsen through ``cgns_utils``, the distance between each layers become higher and the growth ratio is not the same as the ``prefoil`` mesh.
 
 .. figure:: images/meshexample.png
     :scale: 40
@@ -206,17 +209,19 @@ As an example, the Tecplot of both cases are shown. As we can see, when we coars
 
 .. TODO: add mesh refinement plot using this method that's similar to the RAE one
 
-For 3D, you could use ``cgns_utils coarsen`` feature (i.e. :ref:`option-1`), you will be able to increase the first off-wall spacing ``s0`` uniformly. However, the grow ratio is going to change and the off-wall layers will have too much distance between each other.
+For 3D, you could use ``cgns_utils coarsen`` feature (i.e. :ref:`option-1`), you will be able to increase the first off-wall spacing ``s0`` uniformly.
+However, the grow ratio is going to change and the off-wall layers will have too much distance between each other.
 You can also directly tweak the surface mesh discretization in your meshing software (e.g., ICEM/Pointwise).
 
 Pros:
-    - It is more practical for 3D meshes since you could make refinement ratio less aggressive compared to ``Option 1`` (i.e., :math:`r < 2`). 
+    - It is more practical for 3D meshes since you could make refinement ratio less aggressive compared to ``Option 1`` (i.e., :math:`r < 2`).
       This places the points on the refinement plot closer to each other  on the :math:`x`-axis so it is more likely that your coarsest volume mesh is in the asymptotic regime, which you can then use for coarse optimizations.
     - It is the only way to generate the 0.5 level family of meshes (e.g., L0.5, L1.5, L2.5) using the ``scaleBlkFile`` procedure in the postprocessing repository to scale the surface meshes by a factor of :math:`1/\sqrt{2}`.
 
 Cons:
-    - It is harder to be mathematically rigorous (and therefore justifiable in a scholarly article) using this method because all options from the surface mesh extrusion have to be scaled accordingly and even then, there may be variations in volume cell scaling from the procedure.
-    - Your mesh refinement results might not follow a perfectly straight line compared to ``Option 1`` even if they are in the asymptotic regime since it is not a uniform refinement (but it should be close to linear). Improper scaling of the off-wall and far-field cells may add to discretization error
+    - It is harder to be mathematically rigorous (and therefore justifiable in a scholarly article) using this method because all options from the surface mesh extrusion have to be scaled accordingly, and even then, there may be variations in volume cell scaling from the procedure.
+    - Your mesh refinement results might not follow a perfectly straight line compared to ``Option 1`` even if they are in the asymptotic regime since it is not a uniform refinement (but it should be close to linear).
+      Improper scaling of the off-wall and far-field cells may add to discretization error.
 
 External Links
 --------------
