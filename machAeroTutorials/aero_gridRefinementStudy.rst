@@ -57,13 +57,11 @@ We discuss the pros and cons of each method and underlying theory;
 it is up to the user to choose the method.
 
 A few general notes first:
-   - With regards to aerodynamic shape optimization, being in the asymptotic regime is not always necessary since the objective function like drag is offset by the truncation error;
-     however, being able to use meshes outside of the asymptotic regime does require that the truncation error offset is mostly constant throughout an optimization, which is not always true.
-     It is also not as simple with a coupled structural model because, depending on the structural model, there are likely differences in order of the method (TACS has linear finite elements) and truncation error constants, all of which will affect the observed order of accuracy.
-     The bottom line is as long as the CFD mesh is fine enough to capture the correct physical trends, then the design space will be accurate enough such that coarse mesh optimizations will get you close enough to the optimal solution.
+   - The bottom line is as long as the CFD mesh is fine enough to capture the correct physical trends, then the design space will be accurate enough such that coarse mesh optimizations will get you close enough to the optimal solution.
      Subsequently, one can use finer meshes using the design variables from the coarser optimizations, thus decreasing overall computational cost.
    - Redo your mesh convergence study on the optimized result to double check everything is behaving as expected
    - Plotting contours of :math:`y^+` can help with debugging
+   - This whole refinement study is also not as simple with a coupled structural model because, depending on the structural model, there are likely differences in order of the method (TACS has linear finite elements) and truncation error constants, all of which will affect the observed order of accuracy.
 
 .. _option-1:
 
