@@ -6,6 +6,8 @@
 Grid Refinement Study
 =====================
 
+.. _theory:
+
 Theory
 ------
 Computational physics models generally use discretized physical domains (grids) to transform physical laws into systems of equations that can be solved by numerical methods.
@@ -63,23 +65,23 @@ A few general notes first:
      The bottom line is as long as the CFD mesh is fine enough to capture the correct physical trends, then the design space will be accurate enough such that coarse mesh optimizations will get you close enough to the optimal solution.
      Subsequently, one can use finer meshes using the design variables from the coarser optimizations, thus decreasing overall computational cost.
    - Redo your mesh convergence study on the optimized result to double check everything is behaving as expected
-   - Plotting contours of :math:`y^+` can help with debugging
+   - Plotting contours of :math:`y^+` can help with debugging inaccurate results
 
 .. _option-1:
 
 Option 1: Coarsening volume meshes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. Generate fine grid (L0) with :math:`N=(2^n) (m) + 1` nodes along each edge.
+1. Generate a fine grid (L0) with :math:`N=(2^n) (m) + 1` nodes along each edge.
 2. Coarsen the L0 grid :math:`n-1` times using ``cgns_utils coarsen``.
-3. Compute the Richardson extrapolation using the L0 and L1 grids keeping all flow setups the same.
+3. Compute the Richardson extrapolation using the L0 and L1 grid solutions.
 4. Plot :math:`h^p` vs :math:`C_D`.
-   For ADflow, use :math:`p=2` to indicate a second-order method.
+   For ADflow, start by assuming :math:`p=2`.
 
 This mesh refinement method is consistent with the original Richardson Extrapolation theory, which relies on uniform coarsening between meshes.
 A mesh is in the asymptotic range if it lies on the line connecting the extrapolated value and the finest mesh value.
 If you do not get this despite using fine meshes, this usually means the output you are looking at is not second-order accurate (which is rather common).
-In this case, we redo the extrapolation after determining the correct order.
+In this case, redo the extrapolation after determining the achieved rate of convergence as described in :ref:`theory`.
 The slope of the line is the coefficient of the leading truncation error term.
 
 An example of grid convergence plot for a family of RAE 2822 Airfoil meshes is illustrated below:
@@ -96,27 +98,29 @@ Pros:
     - The grid is coarsened uniformly, giving the most mathematically rigorous convergence study, which is important for justifying solutions in your scholarly articles.
 
 Cons:
-    - To generate enough points to make a line (at least three), the finest mesh (L0) has to be extremely fine for 3D meshes to have a coarse mesh that is still in the asymptotic regime since for the :math:`n`:sup:`th` level, it needs to have :math:`(2^3)^n` fewer cells assuming a refinement ratio of 2.
-    - Growth ratio is changing, so be wary of the off-wall cell resolution and boundary layer accuracy.
+    - For 3D meshes, the finest mesh (L0) has to be extremely fine for the L2 mesh to still be in the asymptotic regime.
+      This is because the :math:`n`:sup:`th` level will have :math:`2^{3n}` fewer cells for a refinement ratio of 2.
+      This can be a problem if you want to conduct a refinement study using the L0, L1, and L2 meshes.
+    - The growth ratios change, so be wary of the off-wall cell resolution and boundary layer accuracy.
 
 Option 2: Coarsening surface meshes and extruding a family of volume meshes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Instead of using the ``cgns_utils coarsen`` feature, we can easily make the finer or coarser meshes with the ``prefoil`` package.
-The main reason behind this idea is to generate the meshes without changing the ``growth rate`` of the off-wall layers.
-By maintaining the growth rate, extrusion in all directions is better and node clustering is then smoother with this method.
-If you use ``cgns_utils coarsen`` feature (i.e. :ref:`option-1`), you will be able to increase the first off-wall spacing ``s0`` uniformly; 
-however, the grow ratio is going to change and the off-wall layers will have too much distance between each other.
+An alternative to using ``cgns_utils coarsen`` is to coarsen the surface mesh and re-extrude the volume meshes.
+The main motivation for this is to generate meshes without changing the ``growth rate`` of the off-wall layers.
+In addition, node clustering in all directions is better with this method.
+If you use ``cgns_utils coarsen`` (i.e. :ref:`option-1`), you will be able to increase the first off-wall spacing ``s0`` uniformly.
+However, the growth ratio is going to change, and the off-wall layers may have too much distance between each other.
 
-In order to avoid this, we can use the ``prefoil`` package easily and still be able to coarsen or refine the meshes.
-The example code is given below.
+For airfoils, we can use the ``prefoil`` package to coarsen or refine the surface meshes.
+An example script is given below.
 You can either upload a ``.dat`` file or create the NACA 4 digit airfoils.
-Then, you can manipulate the meshing parameters and get mesh grids with different levels.
+Then, you can manipulate the meshing parameters and get different mesh levels.
 
 .. literalinclude:: ../tutorial/refinement/prefoilMeshRefine.py
 
-As an example, the Tecplot of both cases are shown.
-As we can see, when we coarsen through ``cgns_utils``, the distance between each layers become higher and the growth ratio is not the same as the ``prefoil`` mesh.
+The figure below shows a comparison between coarsening a mesh with ``cgns_utils`` and ``prefoil``.
+When we coarsen with ``cgns_utils``, the distance between each layer is higher and the growth ratio is not the same as the ``prefoil`` mesh.
 
 .. figure:: images/meshexample.png
     :scale: 40
@@ -128,13 +132,11 @@ As we can see, when we coarsen through ``cgns_utils``, the distance between each
 
 .. TODO: add mesh refinement plot using this method that's similar to the RAE one
 
-For 3D, you could use ``cgns_utils coarsen`` feature (i.e. :ref:`option-1`), you will be able to increase the first off-wall spacing ``s0`` uniformly.
-However, the grow ratio is going to change and the off-wall layers will have too much distance between each other.
-You can also directly tweak the surface mesh discretization in your meshing software (e.g., ICEM/Pointwise).
+For 3D, you will have to modify the surface mesh discretization in your meshing software (e.g., ICEM/Pointwise).
 
 Pros:
-    - It is more practical for 3D meshes since you could make refinement ratio less aggressive compared to ``Option 1`` (i.e., :math:`r < 2`).
-      This places the points on the refinement plot closer to each other  on the :math:`x`-axis so it is more likely that your coarsest volume mesh is in the asymptotic regime, which you can then use for coarse optimizations.
+    - It is more practical for 3D meshes because you can use a less aggressive refinement ratio compared to ``Option 1`` (i.e., :math:`r < 2`).
+      This places the points on the refinement plot closer to each other on the :math:`x`-axis, so it is more likely that your coarsest volume mesh is in the asymptotic regime, which you can then use for coarse optimizations.
     - It is the only way to generate the 0.5 level family of meshes (e.g., L0.5, L1.5, L2.5) using the ``scaleBlkFile`` procedure in the postprocessing repository to scale the surface meshes by a factor of :math:`1/\sqrt{2}`.
 
 Cons:
