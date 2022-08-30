@@ -1,5 +1,5 @@
 from pyhyp import pyHyp
-from prefoil.preFoil import Airfoil, readCoordFile, generateNACA
+from prefoil.preFoil import generateNACA
 from prefoil import sampling
 
 
