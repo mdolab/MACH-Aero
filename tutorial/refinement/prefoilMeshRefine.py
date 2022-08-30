@@ -1,5 +1,5 @@
 from pyhyp import pyHyp
-from prefoil.preFoil import Airfoil, readCoordFile,generateNACA
+from prefoil.preFoil import Airfoil, readCoordFile, generateNACA
 from prefoil import sampling
 
 
@@ -10,45 +10,42 @@ nSurfPts_L2 = 200
 nLayers_L2 = 80
 s0_L2 = 4e-6
 
-# Increasing the mesh sizes 
-refinement=[1,2,4]
-level =['L2','L1','L0']
+# Increasing the mesh sizes
+refinement = [1, 2, 4]
+level = ["L2", "L1", "L0"]
 
 for i in range(len(refinement)):
 
     # number of points on the airfoil surface
-    nSurfPts = refinement[i]*nSurfPts_L2
+    nSurfPts = refinement[i] * nSurfPts_L2
 
     # number of points on the TE.
-    nTEPts = refinement[i]*nTE_cells_L2 
-
+    nTEPts = refinement[i] * nTE_cells_L2
 
     # number of extrusion layers
-    nExtPts = refinement[i]*nLayers_L2 
+    nExtPts = refinement[i] * nLayers_L2
 
     # first off wall spacing
-    s0 = s0_L2/ refinement[i]
+    s0 = s0_L2 / refinement[i]
 
     #### We can either import our desired airfoil .dat file and continue the meshing proces ####
     #### Or we can generate the NACA airfoils if our baseline is a 4 series NACA airfoil    ####
 
     # We can also  generate NACA 4 series airfoils
-    code='0012'
-    nPts=150
-    coords=generateNACA(code, nPts, spacingFunc=sampling.polynomial, func_args={"order": 8})
+    code = "0012"
+    nPts = 150
+    coords = generateNACA(code, nPts, spacingFunc=sampling.polynomial, func_args={"order": 8})
     airfoil = coords
 
     coords = airfoil.getSampledPts(
-    nSurfPts,
-    spacingFunc=sampling.polynomial, func_args={"order": 8},
-
-    nTEPts=nTEPts,
+        nSurfPts,
+        spacingFunc=sampling.polynomial,
+        func_args={"order": 8},
+        nTEPts=nTEPts,
     )
 
     # Write surface mesh
     airfoil.writeCoords("./input/naca0012_%s" % level[i], file_format="plot3d")
-
-
 
     options = {
         # ---------------------------
@@ -66,9 +63,8 @@ for i in range(len(refinement)):
         "N": nExtPts,
         "s0": s0,
         "marchDist": 100.0,
-
     }
-    
+
     hyp = pyHyp(options=options)
     hyp.run()
     hyp.writeCGNS("./input/naca0012_%s.cgns" % level[i])
