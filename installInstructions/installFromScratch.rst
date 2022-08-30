@@ -133,7 +133,8 @@ If you are installing complex versions of code (like IDWarp or ADflow) using a d
 Then, during compilation of the code, you would do something like
 
 .. code-block:: bash
+
     make -f Makefile_CS PETSC_ARCH=$PETSC_ARCH_COMPLEX
 
-that way the compiled code refers to the correct PETSc architecture.
+This ensures that the compiled code refers to the correct PETSc architecture.
 You can then proceed to the normal pip installation as usual.
