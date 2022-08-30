@@ -126,3 +126,14 @@ After installing the above software you should have something similar to the fol
     export CGNS_HOME=$HOME/packages/CGNS-<x.y.z>/opt-gfortran
     export PATH=$PATH:$CGNS_HOME/bin
     export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CGNS_HOME/lib
+
+Complex type installations
+--------------------------
+If you are installing complex versions of code (like IDWarp or ADflow) using a different PETSc architecture on the same machine, you may want to add a different environmental variable, for example ``PETSC_ARCH_COMPLEX=complex-debug`` into your ``.bashrc``.
+Then, during compilation of the code, you would do something like
+
+.. code-block:: bash
+    make -f Makefile_CS PETSC_ARCH=$PETSC_ARCH_COMPLEX
+
+that way the compiled code refers to the correct PETSc architecture.
+You can then proceed to the normal pip installation as usual.
