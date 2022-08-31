@@ -29,6 +29,7 @@ If you use any of our codes, please :ref:`cite us <cite-us>`.
 
    machFramework/MACH-Aero.rst
    machFramework/citeUs.rst
+   machFramework/contribute.rst
 
 .. toctree::
    :caption: Installation
