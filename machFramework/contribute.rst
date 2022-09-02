@@ -58,7 +58,7 @@ Please install it following its documentation and run at the project root with:
 
     clang-format
 
-The configuration file for ``ClangFormat`` is a combination of `this .clang-format file <https://github.com/mdolab/.github/blob/main/.clang-format>`_ and the one at the root of the respective repo
+The configuration file for ``ClangFormat`` is a combination of `this .clang-format file <https://github.com/mdolab/.github/blob/main/.clang-format>`_ and the one at the root of the respective repository.
 
 .. warning::
     For a PR to be accepted it must pass formatting checks with the relevant formatter and/or linter.
@@ -70,13 +70,13 @@ This should be done in code via docstrings and comments as well as in the Sphinx
 Look at the ``.rst`` files in the ``doc`` section of each repo.
 
 Building the documentation requires ``sphinx`` and ``numpydoc``, as well as the Sphinx RTD theme.
-To install these dependencies, type
+To install these dependencies, type:
 
 .. prompt:: bash
 
     pip install sphinx numpydoc sphinx-rtd-theme
 
-To build documentation locally, go to the ``doc`` folder and type 
+To build documentation locally, go to the ``doc`` folder and type: 
 
 .. prompt:: bash
 
