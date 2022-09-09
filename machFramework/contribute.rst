@@ -88,17 +88,17 @@ If there isn't a repo-specific config, `this global clang-format config <https:/
 Documentation
 -------------
 When you add or modify code, make sure to provide relevant documentation that explains the new code.
-This should be done in code via docstrings and comments as well in the Sphinx documentation if you add a new feature or capability.
+This should be done in code via docstrings and comments as well as in the Sphinx documentation if you add a new feature or capability.
 Look at the ``.rst`` files in the ``doc`` section of each repo.
 
 Building the documentation requires ``sphinx`` and ``numpydoc``, as well as the Sphinx RTD theme.
-To install these dependencies, type
+To install these dependencies, type:
 
 .. prompt:: bash
 
     pip install sphinx numpydoc sphinx-rtd-theme sphinx-mdolab-theme
 
-To build documentation locally, go to the ``doc`` folder and type 
+To build documentation locally, go to the ``doc`` folder and type: 
 
 .. prompt:: bash
 
