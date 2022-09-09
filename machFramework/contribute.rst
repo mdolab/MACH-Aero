@@ -18,7 +18,13 @@ Python
 ^^^^^^
 
 We use `black <https://github.com/psf/black>`_ for formatting Python codes.
-Please install it following its documentation and run it at the project root with:
+The version we use can be installed with:
+
+.. prompt:: bash
+
+    pip install black==22.3.0
+
+``black`` can then be run at the project root with:
 
 .. prompt:: bash
 
@@ -27,38 +33,54 @@ Please install it following its documentation and run it at the project root wit
 This will automatically format all Python files.
 
 We use `flake8 <https://flake8.pycqa.org/en/latest/>`_ for linting in Python.
-Please install it following its instructions and run it at the project root with:
+The recommended version and any necessary dependencies are in `this file <https://github.com/mdolab/.github/blob/main/flake8-requirements.txt>`_.
+You can install them by calling ``pip install`` for each individually or copying the contents of that file into one on your machine and typing:
+
+.. prompt:: bash
+
+    pip install flake8-requirements.txt
+
+The configuration file we use for ``flake8`` is a combination of `this .flake8 file <https://github.com/mdolab/.github/blob/main/.flake8>`__ and the one at the root of the respective repository.
+``flake8`` can then be run at the project root with:
 
 .. prompt:: bash
 
     flake8 .
 
-The configuration file we use for ``flake8`` is a combination of `this .flake8 file <https://github.com/mdolab/.github/blob/main/.flake8>`__ and the one at the root of the respective repository.
 If there are any PEP-8 violations, ``flake8`` will print out the nature of the violation.
 
 Fortran
 ^^^^^^^
 
 We use `fprettify <https://github.com/pseewald/fprettify>`_ for formatting Fortran codes. 
-Please install it following its documentation and run it at the project root with:
+The version we use can be installed with:
+
+.. prompt:: bash 
+
+    pip install fprettify==0.3.7
+
+The configuration file for ``fprettify`` is at the root of the respective repository.
+If there isn't a repo-specific config, `this global fprettify config <https://github.com/mdolab/.github/blob/main/.fprettify.rc>`_ is used.
+``fprettify`` can then be run at the project root using `this fprettify bash script <https://github.com/mdolab/.github/blob/main/azure/fprettify.sh>`_ with:
 
 .. prompt:: bash
 
-    fprettify -i=4 -l=120 --whitespace-multdiv=True --strict-indent
-
-The configuration file for ``fprettify`` is a combination of `this .fprettify.rc file <https://github.com/mdolab/.github/blob/main/.fprettify.rc>`_ and the one at the root of the respective repository.
+    ./fprettify.sh
 
 C/C++
 ^^^^^
 
-We use `ClangFormat <https://clang.llvm.org/>`_ to format C/C++ codes. 
-Please install it following its documentation and run at the project root with:
+We use `clang-format <https://clang.llvm.org/>`_ to format C/C++ codes. 
+Please install **version 10** following its documentation.
+
+The configuration file for ``clang-format`` is at the root of the respective repository.
+If there isn't a repo-specific config, `this global clang-format config <https://github.com/mdolab/.github/blob/main/.clang-format>`_ is used.
+``clang-format`` can then be run at the project root using `this clang-format bash script <https://github.com/mdolab/.github/blob/main/azure/clang-format.sh>`_ with:
 
 .. prompt:: bash
 
-    clang-format
+    ./clang-format.sh
 
-The configuration file for ``ClangFormat`` is a combination of `this .clang-format file <https://github.com/mdolab/.github/blob/main/.clang-format>`_ and the one at the root of the respective repo
 
 .. warning::
     For a PR to be accepted it must pass formatting checks with the relevant formatter and/or linter.
@@ -66,7 +88,7 @@ The configuration file for ``ClangFormat`` is a combination of `this .clang-form
 Documentation
 -------------
 When you add or modify code, make sure to provide relevant documentation that explains the new code.
-This should be done in code via docstrings and comments as well as in the Sphinx documentation if you add a new feature or capability.
+This should be done in code via docstrings and comments as well in the Sphinx documentation if you add a new feature or capability.
 Look at the ``.rst`` files in the ``doc`` section of each repo.
 
 Building the documentation requires ``sphinx`` and ``numpydoc``, as well as the Sphinx RTD theme.
@@ -74,7 +96,7 @@ To install these dependencies, type
 
 .. prompt:: bash
 
-    pip install sphinx numpydoc sphinx-rtd-theme
+    pip install sphinx numpydoc sphinx-rtd-theme sphinx-mdolab-theme
 
 To build documentation locally, go to the ``doc`` folder and type 
 
@@ -88,7 +110,7 @@ Testing
 -------
 When you add code or functionality, add tests that cover the new or modified code.
 These may be units tests for individual components or regression tests for entire models that use the new functionality.
-All the existing tests can be found under the ``test`` folder.
+All the existing tests can be found under the ``tests`` folder.
 Running tests requires additional packages in some repos, to install these you can go to the root of that repo and type:
 
 .. prompt:: bash 
@@ -99,7 +121,7 @@ We use `Codecov <https://about.codecov.io/>`_ to monitor the percentage of the c
 Coverage can be difficult to determine locally, so it is recommended to look for the check automatically run in the pull request. 
 
 .. warning::
-    For a PR to be accepted all existing tests must pass and new code should meet coverage requirements.
+    For a PR to be accepted, all existing tests must pass and new code should meet coverage requirements.
 
 Pull requests
 -------------
