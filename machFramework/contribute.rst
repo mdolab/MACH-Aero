@@ -1,6 +1,8 @@
 How to Contribute to MACH-Aero
 ==============================
 The codes in the MACH-Aero framework are open-source tools, so we welcome users to submit additions or fixes to improve them for everyone.
+This page contains general information on how to contribute to MACH-Aero codes.
+If a repo has additional instructions they will be in that repo's documentation, which can be found from its GitHub page. 
 
 Issues
 ------
