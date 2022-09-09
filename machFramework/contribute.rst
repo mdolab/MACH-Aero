@@ -40,7 +40,7 @@ You can install them by calling ``pip install`` for each individually or copying
 
 .. prompt:: bash
 
-    pip install flake8-requirements.txt
+    pip install -r flake8-requirements.txt
 
 The configuration file we use for ``flake8`` is a combination of `this .flake8 file <https://github.com/mdolab/.github/blob/main/.flake8>`__ and the one at the root of the respective repository.
 ``flake8`` can then be run at the project root with:
@@ -93,12 +93,12 @@ When you add or modify code, make sure to provide relevant documentation that ex
 This should be done in code via docstrings and comments as well as in the Sphinx documentation if you add a new feature or capability.
 Look at the ``.rst`` files in the ``doc`` section of each repo.
 
-Building the documentation requires ``sphinx`` and ``numpydoc``, as well as the Sphinx RTD theme.
-To install these dependencies, type:
+Building the documentation requires our custom Sphinx theme.
+To install the MDO Lab theme and its dependencies, type:
 
 .. prompt:: bash
 
-    pip install sphinx numpydoc sphinx-rtd-theme sphinx-mdolab-theme
+    pip install sphinx-mdolab-theme
 
 To build documentation locally, go to the ``doc`` folder and type: 
 
@@ -113,7 +113,8 @@ Testing
 When you add code or functionality, add tests that cover the new or modified code.
 These may be units tests for individual components or regression tests for entire models that use the new functionality.
 All the existing tests can be found under the ``tests`` folder.
-Running tests requires additional packages in some repos, to install these you can go to the root of that repo and type:
+Running tests requires additional packages in some repos.
+To install these, go to the root of that repo and type:
 
 .. prompt:: bash 
 
