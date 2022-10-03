@@ -13,8 +13,10 @@ Theory
 Computational physics models generally use discretized physical domains (grids) to transform physical laws into systems of equations that can be solved by numerical methods.
 The discretization of a physical domain introduces discretization error, which can be reduced in two ways:
 
-- h-refinement: Increasing the resolution of the grid.
-- p-refinement: Increasing the order of the numerical approximation at each cell.
+:math:`h`-refinement
+    Increasing the resolution of the grid.
+:math:`p`-refinement
+    Increasing the order of the numerical approximation at each cell.
 
 In a grid refinement study, we demonstrate that iterative h-refinement converges to the exact solution.
 For a given grid/mesh, the grid spacing is
@@ -52,31 +54,35 @@ It is computed using the solutions from the L0 and L1 grids with the equation
 Approaches to Grid Refinement
 -----------------------------
 
-There are two methods we use for performing grid refinement: 
-1) coarsening the volume mesh or 
-2) coarsening the surface mesh and extruding the family of surface meshes.
+There are two methods we use for performing grid refinement:
+
+#. coarsening the volume mesh or 
+#. coarsening the surface mesh and extruding the family of surface meshes.
+
 We discuss the pros and cons of each method and underlying theory;
 it is up to the user to choose the method.
 
 A few general notes first:
-   - The bottom line is as long as the CFD mesh is fine enough to capture the correct physical trends, then the design space will be accurate enough such that coarse mesh optimizations will get you close enough to the optimal solution.
-     Subsequently, one can use finer meshes using the design variables from the coarser optimizations, thus decreasing overall computational cost.
-   - Redo your mesh convergence study on the optimized result to double check everything is behaving as expected
-   - Plotting contours of :math:`y^+` can help with debugging
-   - This whole refinement study is also not as simple with a coupled structural model because, depending on the structural model, there are likely differences in order of the method (TACS has linear finite elements) and truncation error constants, all of which will affect the observed order of accuracy.
+
+- The bottom line is as long as the CFD mesh is fine enough to capture the correct physical trends, then the design space will be accurate enough such that coarse mesh optimizations will get you close enough to the optimal solution.
+  Subsequently, one can use finer meshes using the design variables from the coarser optimizations, thus decreasing overall computational cost.
+- Redo your mesh convergence study on the optimized result to double check everything is behaving as expected
+- Plotting contours of :math:`y^+` can help with debugging
+- This whole refinement study is also not as simple with a coupled structural model because, depending on the structural model, there are likely differences in order of the method (TACS has linear finite elements) and truncation error constants, all of which will affect the observed order of accuracy.
+
 
 .. _option-1:
 
 Option 1: Coarsening volume meshes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. Generate a fine grid (L0) with :math:`N=(2^n) (m) + 1` nodes along each edge.
-2. Coarsen the L0 grid :math:`n-1` times using ``cgns_utils coarsen``.
-3. Compute the Richardson extrapolation using the L0 and L1 grid solutions.
-4. Plot :math:`h^p` vs :math:`C_D`.
+#. Generate a fine grid (L0) with :math:`N=(2^n) (m) + 1` nodes along each edge.
+#. Coarsen the L0 grid :math:`n-1` times using ``cgns_utils coarsen``.
+#. Compute the Richardson extrapolation using the L0 and L1 grid solutions.
+#. Plot :math:`h^p` vs :math:`C_D`.
    For ADflow, start by assuming :math:`p=2`.
 
-This mesh refinement method is consistent with the original Richardson Extrapolation theory, which relies on uniform coarsening between meshes.
+This mesh refinement method is consistent with the original Richardson extrapolation theory, which relies on uniform coarsening between meshes.
 A mesh is in the asymptotic range if it lies on the line connecting the extrapolated value and the finest mesh value.
 If you do not get this despite using fine meshes, this usually means the output you are looking at is not second-order accurate (which is rather common).
 In this case, redo the extrapolation after determining the achieved rate of convergence as described in :ref:`theory`.
@@ -105,14 +111,14 @@ Option 2: Coarsening surface meshes and extruding a family of volume meshes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 An alternative to using ``cgns_utils coarsen`` is to coarsen the surface mesh and re-extrude the volume meshes.
-The main motivation for this is to generate meshes without changing the ``growth rate`` of the off-wall layers.
+The main motivation for this is to generate meshes without changing the `growth rate` of the off-wall layers.
 In addition, node clustering in all directions is better with this method.
 If you use ``cgns_utils coarsen`` (i.e. :ref:`option-1`), you will be able to increase the first off-wall spacing ``s0`` uniformly.
 However, the growth ratio is going to change, and the off-wall layers may have too much distance between each other.
 
 For airfoils, we can use the ``prefoil`` package to coarsen or refine the surface meshes.
 An example script is given below.
-You can either upload a ``.dat`` file or create the NACA 4 digit airfoils.
+You can either provide a ``.dat`` file or create the NACA 4 digit airfoils.
 Then, you can manipulate the meshing parameters and get different mesh levels.
 
 .. literalinclude:: ../tutorial/refinement/prefoilMeshRefine.py
