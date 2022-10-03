@@ -1,4 +1,3 @@
-import os
 from pyhyp import pyHyp
 from prefoil import sampling, Airfoil
 from prefoil.utils import generateNACA
