@@ -1,6 +1,7 @@
+import os
 from pyhyp import pyHyp
-from prefoil.preFoil import generateNACA
-from prefoil import sampling
+from prefoil import sampling, Airfoil
+from prefoil.utils import generateNACA
 
 
 # L2 layer mesh grid initilization
@@ -34,8 +35,8 @@ for i in range(len(refinement)):
     # We can also  generate NACA 4 series airfoils
     code = "0012"
     nPts = 150
-    coords = generateNACA(code, nPts, spacingFunc=sampling.polynomial, func_args={"order": 8})
-    airfoil = coords
+    initCoords = generateNACA(code, nPts, spacingFunc=sampling.polynomial, func_args={"order": 8})
+    airfoil = Airfoil(initCoords)
 
     coords = airfoil.getSampledPts(
         nSurfPts,
@@ -45,13 +46,13 @@ for i in range(len(refinement)):
     )
 
     # Write surface mesh
-    airfoil.writeCoords("./input/naca0012_%s" % level[i], file_format="plot3d")
+    airfoil.writeCoords(f"./input/naca0012_{level[i]}", file_format="plot3d")
 
     options = {
         # ---------------------------
         #        Input Parameters
         # ---------------------------
-        "inputFile": "./input/naca0012_%s.xyz" % level[i],
+        "inputFile": f"./input/naca0012_{level[i]}.xyz",
         "unattachedEdgesAreSymmetry": False,
         "outerFaceBC": "farfield",
         "autoConnect": True,
@@ -67,4 +68,4 @@ for i in range(len(refinement)):
 
     hyp = pyHyp(options=options)
     hyp.run()
-    hyp.writeCGNS("./input/naca0012_%s.cgns" % level[i])
+    hyp.writeCGNS(f"./input/naca0012_{level[i]}.cgns")
