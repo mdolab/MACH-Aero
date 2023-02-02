@@ -35,7 +35,6 @@ SciPy     1.5.*   1.7.*
 ========= ======= =======
 
 The supported operating systems are Ubuntu 20.04 and 22.04 together with GNU compiler versions 9 and 11, respectively.
-Other operating systems, compiler, or dependency version may however work.
 For the rest of the instructions, we use angled brackets such as ``<version>`` as placeholders, where you should enter values specific to your installation such as package versions.
 
 .. _install_prereq:
