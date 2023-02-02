@@ -25,16 +25,16 @@ This section lists out the dependency versions that have been verified to work w
 ========= ======= =======
 Versions  stable  latest
 ========= ======= =======
-OpenMPI   3.1.*   4.0.*
-mpi4py    3.1.3   3.1.3
-PETSc     3.14.*  3.15.*
-CGNS      4.1.2   4.2.0
+OpenMPI   3.1.*   4.1.*
+mpi4py    3.1.4   3.1.4
+PETSc     3.15.*  3.18.*
+CGNS      4.2.0   4.3.0
 Python    3.8.*   3.9.*
 NumPy     1.19.*  1.21.*
 SciPy     1.5.*   1.7.*
 ========= ======= =======
 
-The supported operating systems are Ubuntu 18.04 and 20.04, together with GNU compiler versions 7 to 9.
+The supported operating systems are Ubuntu 20.04 and 22.04 together with GNU compiler versions 9 and 11, respectively.
 For the rest of the instructions, we use angled brackets such as ``<version>`` as placeholders, where you should enter values specific to your installation such as package versions.
 
 .. _install_prereq:
@@ -80,7 +80,7 @@ Download the desired version from the `OpenMPI <http://www.open-mpi.org/>`__ web
 Then, unpack the source code:
 
 .. prompt:: bash
-   
+
    tar -xvaf openmpi-<version>.tar.gz
 
 Add the following lines to ``$HOME/.bashrc``:
@@ -108,7 +108,7 @@ ONLY IF using an Intel compiler, run:
 
 .. prompt:: bash
 
-   export CC=icc CXX=icpc F77=ifort FC=ifort 
+   export CC=icc CXX=icpc F77=ifort FC=ifort
 
 Finally, configure and build the package:
 
@@ -167,16 +167,16 @@ Next, configure your environment for PETSc by adding the following lines to your
 After saving the file, source ``$HOME/.bashrc``:
 
 .. prompt:: bash
-   
+
    source ~/.bashrc
-   
+
 
 Go to the PETSc directory:
 
 .. prompt:: bash
 
    cd $HOME/packages/petsc-<version>
-      
+
 The ``PETSC_ARCH`` variable is any user-specified string.
 It should be set to something representative of the actual architecture.
 
@@ -324,9 +324,9 @@ Next, configure your environment for CGNS by adding the following lines to your 
 After saving the file, source ``$HOME/.bashrc``:
 
 .. prompt:: bash
-   
+
    source ~/.bashrc
-      
+
 Go to the CGNS directory:
 
 .. prompt:: bash
@@ -355,7 +355,7 @@ Finally, build and install:
 .. prompt:: bash
 
    make install
-     
+
 
 
 Installing CGNS Tools (Optional)
@@ -380,7 +380,7 @@ Note that the version of these libraries might be different on your machine:
    sudo apt-get install freeglut3
 
 .. prompt:: bash
-   
+
    sudo apt-get install tk8.6-dev
 
 If needed, install the following package as well:
@@ -533,7 +533,7 @@ Then install:
    .. prompt:: bash
 
       pip install .
-      
+
    Don't forget to switch the ``PETSC_ARCH`` variable back to a single value after installing
 
 Installing from source has the advantage of having access to the tests, which can be used to verify both the PETSc and petsc4py installations.

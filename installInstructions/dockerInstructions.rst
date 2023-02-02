@@ -20,9 +20,11 @@ The available images are listed in the table below:
 Tag                      Operating System
 ======================== ================
 c7-intel-impi-latest     CentOS 7
+tacc-u18-gcc-impi-stable Ubuntu 18.04
 u20-gcc-ompi-latest      Ubuntu 20.04
 u20-gcc-ompi-stable      Ubuntu 20.04
-tacc-u18-gcc-impi-stable Ubuntu 18.04
+u22-gcc-ompi-latest      Ubuntu 22.04
+u22-gcc-ompi-stable      Ubuntu 22.04
 ======================== ================
 
 To pull an image, use the ``docker pull`` command:
