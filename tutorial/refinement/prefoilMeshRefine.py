@@ -15,7 +15,6 @@ refinement = [1, 2, 4]
 level = ["L2", "L1", "L0"]
 
 for i in range(len(refinement)):
-
     # number of points on the airfoil surface
     nSurfPts = refinement[i] * nSurfPts_L2
 

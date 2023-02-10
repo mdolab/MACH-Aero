@@ -92,6 +92,7 @@ DVGeo = DVGeometry(FFDFile)
 nRefAxPts = DVGeo.addRefAxis("wing", xFraction=0.25, alignIndex="k")
 nTwist = nRefAxPts - 1
 
+
 # Set up global design variables
 def twist(val, geo):
     for i in range(1, nRefAxPts):
@@ -143,6 +144,8 @@ if comm.rank == 0:
 meshOptions = {"gridFile": args.gridFile}
 mesh = USMesh(options=meshOptions, comm=comm)
 CFDSolver.setMesh(mesh)
+
+
 # rst warp (end)
 # ======================================================================
 #         Functions:

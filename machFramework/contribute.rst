@@ -24,7 +24,7 @@ The version we use can be installed with:
 
 .. prompt:: bash
 
-    pip install black==22.3.0
+    pip install black==23.1.0
 
 ``black`` can then be run at the project root with:
 
