@@ -9,6 +9,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--opt", type=str, default="slsqp")
 args = parser.parse_args()
 
+
 # rst Callback function
 def userfunc(xdict):
     x = xdict["xvars"]  # Extract array

@@ -8,6 +8,7 @@ airfoil = np.loadtxt("n0012.dat")
 npts = airfoil.shape[0]
 nmid = (npts + 1) // 2
 
+
 # rst UpperLower
 def getupper(xtemp):
     myairfoil = np.ones(npts)

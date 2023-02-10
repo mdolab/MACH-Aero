@@ -177,6 +177,8 @@ meshOptions = {"gridFile": args.gridFile}
 
 mesh = USMesh(options=meshOptions, comm=comm)
 CFDSolver.setMesh(mesh)
+
+
 # rst warp (end)
 # ======================================================================
 #         Functions:
