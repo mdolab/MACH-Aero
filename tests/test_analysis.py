@@ -5,7 +5,7 @@ import shutil
 
 tutorialDir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../tutorial")  # Path to current folder
 has_SNOPT = os.environ.get("IMAGE") == "private"
-has_not_IPOPT = os.environ.get("OS") == "centos" and os.environ.get("COMPILERS") == "intel"
+has_not_IPOPT = os.environ.get("COMPILERS") == "intel"
 try:
     from pyOCSM import ocsm
 except ImportError:
