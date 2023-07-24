@@ -138,7 +138,7 @@ Zipper Mesh
 As seen in the STARC-ABL figure on this page, there can be multiple nearfield meshes that overlap on a surface.
 This makes it difficult to correctly integrate the forces and moments acting there.
 For that reason, ADflow uses zipper meshes to provide a watertight surface.
-More about zipper meshes can be found `this paper <https://www.nas.nasa.gov/assets/pdf/staff/Chan_W_Enhancements_to_the_Hybrid_Mesh_Approach_to_Surface_Loads_Integration_on_Overset_Structured_Grids.pdf>`__.
+More about zipper meshes can be found `this paper <https://www.nas.nasa.gov/assets/nas/pdf/staff/Chan_W_Enhancements_to_the_Hybrid_Mesh_Approach_to_Surface_Loads_Integration_on_Overset_Structured_Grids.pdf>`__.
 
 .. figure:: images/overset_zipper.jpg
     :align: center
