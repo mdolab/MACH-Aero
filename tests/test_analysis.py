@@ -12,8 +12,7 @@ except ImportError:
     ocsm = None
 
 
-# note that this is NOT the testflo directive!
-# we are explicitly calling mpirun ourselves
+# note that this is NOT the testflo directive! We are explicitly calling mpirun ourselves
 NPROCS = 2
 mpiCmd = ["mpirun", "-n", f"{NPROCS}"]
 gridFlag = ["--gridFile", "wing_vol_coarsen.cgns"]
