@@ -30,8 +30,8 @@ mpi4py    3.1.4   3.1.4
 PETSc     3.15.*  3.18.*
 CGNS      4.2.0   4.3.0
 Python    3.9.*   3.10.*
-NumPy     1.21.*  1.24.3+
-SciPy     1.7.*   1.10.*
+NumPy     1.21.*  1.25.*
+SciPy     1.7.*   1.11.*
 ========= ======= =======
 
 The supported operating systems are Ubuntu 20.04 and 22.04 together with GNU compiler versions 9 and 11, respectively.
