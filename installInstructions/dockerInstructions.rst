@@ -82,4 +82,4 @@ Run ``exec`` to enter the container:
 
 .. note::
     Running system commands or installing system software inside the container, e.g. using ``apt-get`` requires running ``sudo``, followed by a password.
-    The following password can be used in all images, ``********``.
+    The following password can be used in all images, ``temppass``.
