@@ -1,5 +1,5 @@
 #! /bin/sh
-version= # TODO: PUT THE VERSION OF PETSC YOU WANT TO BUILD HERE (e.g 4.3.0)
+version= # TODO: PUT THE VERSION OF CGNS YOU WANT TO BUILD HERE (e.g 4.3.0)
 
 # If the user doesn't have an OPT_FLAGS environment variable, define the optimization flags here
 if [[ ! -v OPT_FLAGS ]]; then
