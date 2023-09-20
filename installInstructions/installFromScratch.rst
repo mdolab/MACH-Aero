@@ -44,9 +44,9 @@ The packages needed are:
 
 Optional packages are:
 
+#. `cgnsUtilities <https://github.com/mdolab/cgnsutilities>`_ 
 #. `pyHyp <https://github.com/mdolab/pyhyp>`_
 #. `multipoint <https://github.com/mdolab/multipoint>`_
-#. `cgnsUtilities <https://github.com/mdolab/cgnsutilities>`_ 
 #. `DAFoam <https://github.com/mdolab/dafoam>`_
 
 Standard MDO Lab Build Procedure
