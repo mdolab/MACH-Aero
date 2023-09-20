@@ -281,6 +281,10 @@ After build, follow the command provided at the end of the print out to test the
    #. Add ``--with-mpi-dir=$MPI_INSTALL_DIR`` when you configure PETSc
    #. Check your ``LD_LIBRARY_PATH`` order. If you have PyTecplot, try moving the entry for PyTecplot in the ``LD_LIBRARY_PATH`` to the end, by modifying your ``.bashrc``.
 
+The shell script below will configure and build all 4 combinations of real/complex and debug/optimized PETSc architectures. The script should be placed in the same directory as the PETSc directory, **not in the PETSc directory itself**
+
+.. literalinclude:: buildPETSc.sh
+   :language: bash
 
 .. _install_cgns:
 
@@ -356,7 +360,10 @@ Finally, build and install:
 
    make install
 
+Similar to the PETSc build script above, the shell script below will configure and build CGNS a given version of CGNS using the configuration options just described. Again, the script should be placed in the same directory as the CGNS directory, **not in the CGNS directory itself**
 
+.. literalinclude:: buildCGNS.sh
+   :language: bash
 
 Installing CGNS Tools (Optional)
 ********************************
