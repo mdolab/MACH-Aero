@@ -3,7 +3,7 @@ version= # TODO: PUT THE VERSION OF CGNS YOU WANT TO BUILD HERE (e.g 4.3.0)
 
 # If the user doesn't have an OPT_FLAGS environment variable, define the optimization flags here
 if [[ ! -v OPT_FLAGS ]]; then
-    OPT_FLAGS="-O3 -xCORE-AVX2" # TODO: PUT YOUR DESIRED OPTIMIZATION FLAGS HERE OR SAVE THEM IN AN ENVIRONMENT VARIABLE CALLED OPT_FLAGS
+    OPT_FLAGS="-O3 -march=native -mtune=native" # TODO: PUT YOUR DESIRED OPTIMIZATION FLAGS HERE OR SAVE THEM IN AN ENVIRONMENT VARIABLE CALLED OPT_FLAGS
     echo "================================================================================="
     echo "OPT_FLAGS environment variable not defined. Using default flags: $OPT_FLAGS"
     echo "================================================================================="
