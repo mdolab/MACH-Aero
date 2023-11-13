@@ -52,8 +52,9 @@ The FFD box can now be set up.
 
 
 ``nffd`` signifies the number of chordwise slices.
-we pre-allocate an array of generic size (a,b,c,3) to set up an empty FFD box. In this example, a=nffd (number of chordwise sections), b=c=2 (number of spanwise and thickness-wise sections respectively) and the final 3 is "fixed" as we are using 3D coordinates for each point
- An empty FFD box is created.
+We pre-allocate an array of generic size (a,b,c,3) to set up an empty FFD box.
+In this example, a=nffd (number of chordwise sections), b=c=2 (number of spanwise and thickness-wise sections respectively) and the final 3 is "fixed" as we are using 3D coordinates for each point.
+An empty FFD box is created.
 ``xmargin`` and ``ymargin`` specify the closest distance from the airfoil to place the FFD box.
 ``xslice``, ``yupper``, and ``ylower`` store the x- and y- coordinates of the control points for each slice along the chord, taking into account the margins from the airfoil. 
 

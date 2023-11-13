@@ -146,7 +146,7 @@ Now we can generate the farfield:
    :start-after: # rst far_field (beg)
    :end-before: # rst far_field (end)
 
-The arguments are explained in the pyHyp docs for :meth:`simpleOCart <pyhyp:pyhyp.utils.simpleOCart>`.
+The arguments are explained in the pyHyp docs for :func:`~pyhyp:pyhyp.utils.simpleOCart`.
 
 
 Combine everything
