@@ -111,12 +111,17 @@ We can set up constraints on the geometry with the DVConstraints class, also fou
 There are several built-in constraint functions within the DVConstraints class, including thickness, surface area, volume, location, and general linear constraints.
 The majority of the constraints are defined based on a triangulated-surface representation of the wing obtained from ADflow.
 
-.. note:: The triangulated surface is created by ADflow (or DAfoam) using the wall surfaces defined in the CFD volume mesh. The resolution is similar to the CFD surface mesh, and users do not need to provide this triangulated mesh themselves. Optionally, this can also be defined with an external file, see the docstrings for :meth:`setSurface() <pygeo:pygeo.DVConstraints.setSurface>`. This is useful if users want to have a different resolution on the triangulated surface (finer or coarser) compared to the CFD mesh, or if DVConstraints is being used without ADflow (or DAfoam).
+.. note:: The triangulated surface is created by ADflow (or DAfoam) using the wall surfaces defined in the CFD volume mesh. The resolution is similar to the CFD surface mesh, and users do not need to provide this triangulated mesh themselves.
+    Optionally, this can also be defined with an external file, see the docstrings for :meth:`~pygeo:pygeo.constraints.DVCon.DVConstraints.setSurface`.
+    This is useful if users want to have a different resolution on the triangulated surface (finer or coarser) compared to the CFD mesh, or if DVConstraints is being used without ADflow (or DAfoam).
 
 The volume and thickness constraints are set up by creating a uniformly spaced 2D grid of points, which is then projected onto the upper and lower surface of a triangulated-surface representation of the wing.
 The grid is defined by providing four corner points (using ``leList`` and ``teList``) and by specifying the number of spanwise and chordwise points (using ``nSpan`` and ``nChord``).
 
-.. note:: These grid points are projected onto the triangulated surface along the normals of the ruled surface formed by these grid points. Typically, ``leList`` and ``teList`` are given such that the two curves lie in a plane. This ensures that the projection vectors are always exactly normal to this plane. If the surface formed by ``leList`` and ``teList`` is not planar, issues can arise near the end of an open surface (i.e., the root of a wing) which can result in failing intersections.
+.. note:: These grid points are projected onto the triangulated surface along the normals of the ruled surface formed by these grid points.
+    Typically, ``leList`` and ``teList`` are given such that the two curves lie in a plane.
+    This ensures that the projection vectors are always exactly normal to this plane.
+    If the surface formed by ``leList`` and ``teList`` is not planar, issues can arise near the end of an open surface (i.e., the root of a wing) which can result in failing intersections.
 
 By default, ``scaled=True`` for ``addVolumeConstraint()`` and ``addThicknessConstraints2D()``, which means that the volume and thicknesses calculated will be scaled by the initial values (i.e., they will be normalized).
 Therefore, ``lower=1.0`` in this example means that the lower limits for these constraints are the initial values (i.e., if ``lower=0.5`` then the lower limits would be half the initial volume and thicknesses).
