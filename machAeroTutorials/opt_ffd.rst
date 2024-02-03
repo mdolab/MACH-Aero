@@ -169,7 +169,7 @@ Dihedral
     :end-before: # rst Twist
 
 For every callback function, the required inputs are ``val``, which contains the design variable array, and ``geo``, which will contain the DVGeo object.
-In this example, we first extract the coordinates of the reference axis control points with the function ``extractCoef``.
+In this example, we first extract the coordinates of the reference axis control points with the function :meth:`~pygeo.parameterization.DVGeo.DVGeometry.extractCoef`.
 Then we loop through the control points, starting with the 2nd station, and add a displacement in the y-direction (which in this case creates dihedral).
 We start at the 2nd control point because the position of the root of the wing should remain fixed.
 Finally, we restore the new control point coordinates to DVGeo with the call ``restoreCoef``.
@@ -204,7 +204,7 @@ Additional scaling dictionaries include ``scale_y``, ``scale_z``, and ``scale``,
 
     Be aware that ``scale_x``, ``scale_y``, ``scale_z``, and ``scale`` are sectional attributes and only work on scaling planes perpendicular to the reference axis, i.e. do not have any effect along the spanwise axis of your FFD grid. In this example, if you use ``scale`` you will see that the wing gets `inflated` along the x and y axis, but the wing span remains identical.
 
-    Planform variables such as span, and sweep should only ever be done by moving the ref axis control points. This can be done using the :meth:`.extractCoef() <pygeo:pygeo.DVGeometry.extractCoef>` and :meth:`.restoreCoef() <pygeo:pygeo.DVGeometry.restoreCoef>` (as done here for dihedral angle) and possibly normalizing the section / control points displacement w.r.t. the baseline FFD grid.
+    Planform variables such as span, and sweep should only ever be done by moving the ref axis control points. This can be done using the :meth:`~pygeo.parameterization.DVGeo.DVGeometry.extractCoef` and :meth:`~pygeo.parameterization.DVGeo.DVGeometry.restoreCoef` (as done here for dihedral angle) and possibly normalizing the section / control points displacement w.r.t. the baseline FFD grid.
 
 .. image:: images/ffd_designvars.png
    :scale: 60

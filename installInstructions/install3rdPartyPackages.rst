@@ -27,11 +27,11 @@ Versions  stable  latest
 ========= ======= =======
 OpenMPI   3.1.*   4.1.*
 mpi4py    3.1.4   3.1.4
-PETSc     3.15.*  3.18.*
-CGNS      4.2.0   4.3.0
-Python    3.9.*   3.10.*
-NumPy     1.21.*  1.24.3+
-SciPy     1.7.*   1.10.*
+PETSc     3.15.*  3.19.*
+CGNS      4.2.0   4.4.0
+Python    3.9.*   3.11.*
+NumPy     1.21.*  1.25.*
+SciPy     1.7.*   1.11.*
 ========= ======= =======
 
 The supported operating systems are Ubuntu 20.04 and 22.04 together with GNU compiler versions 9 and 11, respectively.
@@ -281,6 +281,10 @@ After build, follow the command provided at the end of the print out to test the
    #. Add ``--with-mpi-dir=$MPI_INSTALL_DIR`` when you configure PETSc
    #. Check your ``LD_LIBRARY_PATH`` order. If you have PyTecplot, try moving the entry for PyTecplot in the ``LD_LIBRARY_PATH`` to the end, by modifying your ``.bashrc``.
 
+The shell script below will configure and build all 4 combinations of real/complex and debug/optimized PETSc architectures. The script should be placed in the same directory as the PETSc directory, **not in the PETSc directory itself**
+
+.. literalinclude:: buildPETSc.sh
+   :language: bash
 
 .. _install_cgns:
 
@@ -356,7 +360,10 @@ Finally, build and install:
 
    make install
 
+Similar to the PETSc build script above, the shell script below will configure and build CGNS a given version of CGNS using the configuration options just described. Again, the script should be placed in the same directory as the CGNS directory, **not in the CGNS directory itself**
 
+.. literalinclude:: buildCGNS.sh
+   :language: bash
 
 Installing CGNS Tools (Optional)
 ********************************

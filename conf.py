@@ -19,6 +19,5 @@ intersphinx_mapping = {r: (f"https://mdolab-{r}.readthedocs-hosted.com/en/latest
 
 # bibtex
 bibtex_bibfiles = [
-    "machFramework/references.bib",
     "machAeroTutorials/overset.bib",
 ]
