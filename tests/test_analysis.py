@@ -99,6 +99,7 @@ class TestWingOpt(unittest.TestCase):
         cmd = ["python", "aero_opt.py", "--output", "output_IPOPT"]
         subprocess.check_call(mpiCmd + cmd + gridFlag + IPOPT)
 
+    @unittest.skipIf(ocsm is None, "pyOCSM is required for this test")
     def test_wing_opt_ESP_SLSQP(self):
         # first copy files
         os.chdir("aero")
