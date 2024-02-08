@@ -109,8 +109,8 @@ class TestAirfoilOpt(unittest.TestCase):
         subprocess.check_call(["python", "genFFD.py"])
         os.chdir("../")
 
-    def _prepareDirAndFiles(self, dir):
-        os.chdir(dir)
+    def _prepareDirAndFiles(self, runDir):
+        os.chdir(runDir)
         shutil.copy("../ffd/ffd.xyz", ".")
         shutil.copy("../mesh/n0012.cgns", ".")
         shutil.rmtree("output", ignore_errors=True)
