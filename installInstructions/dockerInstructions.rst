@@ -83,3 +83,15 @@ Run ``exec`` to enter the container:
 .. note::
     Running system commands or installing system software inside the container, e.g. using ``apt-get`` requires running ``sudo``, followed by a password.
     The following password can be used in all images, ``temppass``.
+
+
+Using Docker in a Devcontainer
+==============================
+
+Install (all steps are [here](https://code.visualstudio.com/docs/devcontainers/containers))
+- docker (you should have this installed from the previous step)
+- vscode
+- devcontainer extension
+
+After this, just open the repository in vscode, click open in devcontainer.
+You should be able to just open a new terminal in vscode, and it should open inside the docker automatically
