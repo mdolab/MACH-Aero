@@ -13,15 +13,18 @@ The commands used in this guide may differ depending on your operating system, s
 Pull MDO Lab Docker Image
 -------------------------
 
-Pull one of the MDO Lab Docker images.
-The available images are listed in the table below:
+Pull one of the `MDO Lab Docker images from Docker Hub <https://hub.docker.com/r/mdolab/public/tags>`_.
+The available maintained images are listed in the table below:
 
 ======================== ================
 Tag                      Operating System
 ======================== ================
-c7-intel-impi-latest     CentOS 7
 u20-gcc-ompi-latest      Ubuntu 20.04
 u20-gcc-ompi-stable      Ubuntu 20.04
+u22-gcc-ompi-latest      Ubuntu 22.04
+u22-gcc-ompi-stable      Ubuntu 22.04
+u20-intel-impi-latest    Ubuntu 20.04
+u22-intel-impi-stable    Ubuntu 22.04
 tacc-u18-gcc-impi-stable Ubuntu 18.04
 ======================== ================
 
@@ -76,3 +79,7 @@ Run ``exec`` to enter the container:
 .. prompt:: bash
 
     docker exec -it <NAME> /bin/bash
+
+.. note::
+    Running system commands or installing system software inside the container, e.g. using ``apt-get`` requires running ``sudo``, followed by a password.
+    The following password can be used in all images, ``temppass``.

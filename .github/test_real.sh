@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-# all tests should pass on private
-if [[ $IMAGE == "private" ]] && [[ $OS == "ubuntu" ]]; then
+# All tests should pass on private images with non-Intel MPI
+if [[ $IMAGE == "private" ]] && [[ -z $I_MPI_ROOT ]]; then
     EXTRA_FLAGS='--disallow_skipped'
 fi
 

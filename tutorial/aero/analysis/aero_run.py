@@ -69,7 +69,6 @@ elif args.task == "polar":
     # rst Start loop
     # Loop over the alpha values and evaluate the polar
     for alpha in alphaList:
-
         # rst update AP
         # Update the name in the AeroProblem. This allows us to modify the
         # output file names with the current alpha.
@@ -97,5 +96,5 @@ elif args.task == "polar":
     if comm.rank == 0:
         print("{:>6} {:>8} {:>8}".format("Alpha", "CL", "CD"))
         print("=" * 24)
-        for (alpha, cl, cd) in zip(alphaList, CLList, CDList):
+        for alpha, cl, cd in zip(alphaList, CLList, CDList):
             print(f"{alpha:6.1f} {cl:8.4f} {cd:8.4f}")

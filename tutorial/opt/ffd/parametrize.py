@@ -10,6 +10,7 @@ DVGeo = DVGeometry(FFDFile)
 # rst Create reference axis
 nRefAxPts = DVGeo.addRefAxis("wing", xFraction=0.25, alignIndex="k")
 
+
 # rst Dihedral
 def dihedral(val, geo):
     C = geo.extractCoef("wing")

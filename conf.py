@@ -12,6 +12,5 @@ codeautolink_warn_on_failed_resolve = True
 
 # bibtex
 bibtex_bibfiles = [
-    "machFramework/references.bib",
     "machAeroTutorials/overset.bib",
 ]
