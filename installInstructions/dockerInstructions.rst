@@ -97,5 +97,5 @@ Finally, you can use the same docker file to create a singularity image that can
 To get started, follow `this tutorial <https://code.visualstudio.com/docs/remote/containers-tutorial>`__.
 
 .. warning::
-    Make sure you use a package manager to install docker, not the ``snap`` install.
+    If installing on an Ubuntu distro, make sure you use a package manager to install docker, not the ``snap`` install.
     The latter will cause issues with the VS Code extension.
