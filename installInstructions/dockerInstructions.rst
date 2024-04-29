@@ -83,3 +83,19 @@ Run ``exec`` to enter the container:
 .. note::
     Running system commands or installing system software inside the container, e.g. using ``apt-get`` requires running ``sudo``, followed by a password.
     The following password can be used in all images, ``temppass``.
+
+Developing in Docker with VS Code
+---------------------------------
+
+The VS Code extension ``Remote - Containers`` provides a way for you to spin up a docker container for your projects with the click of a button.
+The extension automatically mounts the project folder to the container, so all the changes to the project will persist outside of the container.
+Because the containers that are created are based on a configuration file local to your project you will have everything you need for a project defined in one place.
+Furthermore, you can share the project with others and they will have an easy way of running your project.
+You could also save the image to ensure you can run your project in the future.
+Finally, you can use the same docker file to create a singularity image that can be used to run your project on an HPC, how neat is that!
+
+To get started, follow `this tutorial <https://code.visualstudio.com/docs/remote/containers-tutorial>`__.
+
+.. warning::
+    If installing on an Ubuntu distro, make sure you use a package manager to install docker, not the ``snap`` install.
+    The latter will cause issues with the VS Code extension.
