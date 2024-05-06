@@ -35,7 +35,6 @@ Import libraries
 ----------------
 Numpy is used for scientific computing such as matrix/vector operations.
 We need to import the pyGeo library in order to use its functions.
-The pyGeo library, along with all other MACH libraries, should be importable because its code is located in a directory which is exposed to the system environment variable PYTHON_PATH.
 
 .. literalinclude:: ../tutorial/aero/geometry/generate_wing.py
     :start-after: # rst Imports
