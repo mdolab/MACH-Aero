@@ -3,6 +3,7 @@ import argparse
 import matplotlib.pyplot as plt
 from pyoptsparse import History
 
+
 def main():
 
     plt.rcParams["text.usetex"] = True  # Comment out if latex installation is not present
@@ -21,7 +22,7 @@ def main():
     try:
         if not os.path.isfile(args.histFile):
             raise FileNotFoundError(f"History file '{args.histFile}' not found.")
-        
+
         optHist = History(args.histFile)
         histValues = optHist.getValues()
 
@@ -83,10 +84,11 @@ def main():
             ax.spines["bottom"].set_position(("outward", 12))
 
         plt.show()
-        plt.savefig(os.path.join(args.outputDir, "aero_wing_opt_hist.jpg"), bbox_inches = 'tight')
-    
+        plt.savefig(os.path.join(args.outputDir, "aero_wing_opt_hist.jpg"), bbox_inches="tight")
+
     except FileNotFoundError as fnf_error:
         print(fnf_error)
+
 
 if __name__ == "__main__":
     main()
