@@ -11,7 +11,7 @@ def main(args):
     opt_hist = History(args.histFile)
     hist_values = opt_hist.getValues()
 
-    if opt_hist.getMetadata()['optimizer'] == "SNOPT":
+    if opt_hist.getMetadata()["optimizer"] == "SNOPT":
         _, axes = plt.subplots(nrows=5, sharex=True, figsize=(10, 14))
 
         # Objective Optimality and Feasibility
@@ -41,7 +41,7 @@ def main(args):
     # Lift Constraint
     axes[3].plot("iter", "cl_con_wing", data=hist_values, label="Lift Constraint")
     axes[3].set_ylabel("Lift Constraint", rotation="horizontal", ha="right", fontsize=24)
-    
+
     # Adjust subplot aesthetics
     for ax in axes:
         ax.spines["right"].set_visible(False)
