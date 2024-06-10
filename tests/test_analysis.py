@@ -91,6 +91,9 @@ class TestWingOpt(unittest.TestCase):
     @parameterized.expand(["SLSQP", "SNOPT", "IPOPT"])
     @unittest.skipIf(ocsm is None, "pyOCSM is required for this test")
     def test_wing_opt_ESP(self, optName):
+        # Check if anything needs to be skipped based on available optimizers and modules
+        if optName == "SNOPT" and not has_SNOPT:
+            raise unittest.SkipTest("SNOPT is required for this test")
         self._prepareDirAndFiles()
         shutil.rmtree("output_ESP", ignore_errors=True)
         cmd = ["python", "aero_opt_esp.py", "--output", "output_ESP"]
