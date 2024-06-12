@@ -58,12 +58,14 @@ Setup the Script
 First we have to import ``adflow_util``:
 
 .. literalinclude:: ../tutorial/overset/analysis/run_adflow_L3.py
+   :language: py
    :start-after: # rst Imports (beg)
    :end-before: # rst Imports (end)
 
 Then we define a variable for the level we want to use. This makes it easier to switch, if we want to:
 
 .. literalinclude:: ../tutorial/overset/analysis/run_adflow_L3.py
+   :language: py
    :start-after: # rst Level (beg)
    :end-before: # rst Level (end)
 
@@ -72,6 +74,7 @@ one sets the boundary conditions, as ``AeroProblem`` would and the last one is t
 Lets set the ``adflow_util`` options first:
 
 .. literalinclude:: ../tutorial/overset/analysis/run_adflow_L3.py
+   :language: py
    :start-after: # rst Options (beg)
    :end-before: # rst Options (end)
 
@@ -87,6 +90,7 @@ All adflow_util options can be found `here <https://github.com/DavidAnderegg/adf
 Now we define the ``AeroProblem`` options:
 
 .. literalinclude:: ../tutorial/overset/analysis/run_adflow_L3.py
+   :language: py
    :start-after: # rst AeroOptions (beg)
    :end-before: # rst AeroOptions (end)
 
@@ -97,6 +101,7 @@ for us.
 Now, let's set the ``ADflow`` options:
 
 .. literalinclude:: ../tutorial/overset/analysis/run_adflow_L3.py
+   :language: py
    :start-after: # rst SolverOptions (beg)
    :end-before: # rst SolverOptions (end)
 
@@ -119,6 +124,7 @@ surfacevariables & volumevariables
 And lastly, we plug everything into ``adflow_util``:
 
 .. literalinclude:: ../tutorial/overset/analysis/run_adflow_L3.py
+   :language: py
    :start-after: # rst Run (beg)
    :end-before: # rst Run (end)
 

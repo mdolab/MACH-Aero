@@ -25,18 +25,21 @@ Create the following empty runscript in the current directory.
 Import Packages
 ===============
 .. literalinclude:: ../tutorial/airfoilopt/ffd/genFFD.py
+    :language: py
     :start-after: # rst Import
     :end-before: # rst Load
 
 Load Airfoil
 ============
 .. literalinclude:: ../tutorial/airfoilopt/ffd/genFFD.py
+    :language: py
     :start-after: # rst Load
     :end-before: # rst UpperLower
 
 The following two functions are used to get the upper and lower points of the airfoil. 
 
 .. literalinclude:: ../tutorial/airfoilopt/ffd/genFFD.py
+    :language: py
     :start-after: # rst UpperLower
     :end-before: # rst FFDBox1
 
@@ -47,6 +50,7 @@ FFD Box Creation
 The FFD box can now be set up. 
 
 .. literalinclude:: ../tutorial/airfoilopt/ffd/genFFD.py
+    :language: py
     :start-after: # rst FFDBox1
     :end-before: # rst FFDBox2
 
@@ -61,6 +65,7 @@ An empty FFD box is created.
 
 
 .. literalinclude:: ../tutorial/airfoilopt/ffd/genFFD.py
+    :language: py
     :start-after: # rst FFDBox2
     :end-before: # rst WriteFile
 
@@ -74,6 +79,7 @@ Writing to File
 ===============
 
 .. literalinclude:: ../tutorial/airfoilopt/ffd/genFFD.py
+    :language: py
     :start-after: # rst WriteFile
 
 Run it yourself!
