@@ -555,14 +555,16 @@ Tapenade AD tool
 ----------------
 The `Tapenade Automatic Differentiation <https://team.inria.fr/ecuador/en/tapenade/>`__ (AD) tool is used to generate the adjoint code for the MDO Lab code base.
 To ensure stability and generate a consistent code base, we use the same version of Tapenade across all repositories.
-The version of Tapenade that is currently used is ``3.16-v2-723-ge8da61555``, and can be downloaded directly from the `Tapenade package registry <https://gitlab.inria.fr/tapenade/tapenade/-/packages/894>`__.
+The version of Tapenade that is currently used is ``3.16-v2-723-ge8da61555``.
+It can be downloaded directly `here <https://umich.edu/~mdolaboratory/misc/tapenade_3.16-v2-723-ge8da61555.tar>`__ or from the `Tapenade package registry <https://gitlab.inria.fr/tapenade/tapenade/-/packages/894>`__.
 
 To install simply download the tarball and extract it to the desired location.
 The Tapenade binary is located in the ``bin`` directory of the extracted tarball.
 To use Tapenade, add the ``bin`` directory to your ``PATH`` in your ``.bashrc``.
 For example:
 
-.. code-block:: bash
+.. prompt:: bash
+
    export TAPENADE_HOME=$HOME/packages/tapenade_3.16-v2-723-ge8da61555
    export PATH=$TAPENADE_HOME/bin:$PATH
 
