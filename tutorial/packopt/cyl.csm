@@ -1,0 +1,17 @@
+despmtr height 7.0
+despmtr radius 0.19
+
+cylinder 0  0  0  0  height  0  radius
+rotatex 90 0 0
+rotatey 24 0 0
+translate 1.8 0.0 0.1
+
+# dimension tparams 1 3 0
+# set tparams 10.0 0.5 45
+# store tessBody
+# restore tessBody
+# attribute .tParams tparams
+
+dump $/"cyl.stl"
+
+END
