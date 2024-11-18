@@ -13,6 +13,7 @@ from pygeo import DVGeometry, DVConstraints
 from pyoptsparse import Optimization, OPT
 from idwarp import USMesh
 from multipoint import multiPointSparse
+from stl import mesh
 
 # rst Imports (end)
 # rst args (beg)
@@ -115,7 +116,7 @@ DVCon = DVConstraints()
 DVCon.setDVGeo(DVGeo)
 
 # Only ADflow has the getTriangulatedSurface Function
-DVCon.setSurface(CFDSolver.getTriangulatedMeshSurface())
+DVCon.setSurface(CFDSolver.getTriangulatedMeshSurface(), addToDVGeo=True)
 
 # Volume constraints
 leList = [[0.01, 0, 0.001], [7.51, 0, 13.99]]
@@ -138,14 +139,27 @@ if comm.rank == 0:
     DVCon.writeTecplot(os.path.join(args.output, "constraints.dat"))
 # rst dvconLeTe (end)
 # ======================================================================
+#         DVConstraint Setup, and Packaging Constraint
+# ======================================================================
+# rst dvconTriSurf (beg)
+object_mesh = mesh.Mesh.from_file("stl/cyl.stl")
+
+p0 = object_mesh.vectors[:, 0, :]
+v1 = object_mesh.vectors[:, 1, :] - p0
+v2 = object_mesh.vectors[:, 2, :] - p0
+
+DVCon.setSurface([p0, v1, v2], name="guy", addToDVGeo=False)
+DVCon.addTriangulatedSurfaceConstraint(
+    comm, "default", "default", "guy", None, rho=1200.0, scale=10.0, max_perim=0.0, perim_scale=1.0
+)
+# rst dvconTriSurf (end)
+# ======================================================================
 #         Mesh Warping Set-up
 # ======================================================================
 # rst warp (beg)
 meshOptions = {"gridFile": args.gridFile}
 mesh = USMesh(options=meshOptions, comm=comm)
 CFDSolver.setMesh(mesh)
-
-
 # rst warp (end)
 # ======================================================================
 #         Functions:
@@ -184,7 +198,6 @@ def objCon(funcs, printOK):
     if printOK:
         print("funcs in obj:", funcs)
     return funcs
-
 
 # rst funcs (end)
 # ======================================================================
