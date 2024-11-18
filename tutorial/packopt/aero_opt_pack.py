@@ -148,9 +148,17 @@ p0 = object_mesh.vectors[:, 0, :]
 v1 = object_mesh.vectors[:, 1, :] - p0
 v2 = object_mesh.vectors[:, 2, :] - p0
 
-DVCon.setSurface([p0, v1, v2], name="guy", addToDVGeo=False)
+DVCon.setSurface([p0, v1, v2], name="cylinder", addToDVGeo=False)
 DVCon.addTriangulatedSurfaceConstraint(
-    comm, "default", "default", "guy", None, rho=1200.0, scale=10.0, max_perim=0.0, perim_scale=1.0
+    comm,
+    surface_1_name="default",
+    DVGeo_1_name="default",
+    surface_2_name="cylinder",
+    DVGeo_2_name=None,
+    rho=1200.0,
+    scale=10.0,
+    max_perim=0.0,
+    perim_scale=1.0,
 )
 # rst dvconTriSurf (end)
 # ======================================================================
@@ -160,6 +168,8 @@ DVCon.addTriangulatedSurfaceConstraint(
 meshOptions = {"gridFile": args.gridFile}
 mesh = USMesh(options=meshOptions, comm=comm)
 CFDSolver.setMesh(mesh)
+
+
 # rst warp (end)
 # ======================================================================
 #         Functions:
@@ -198,6 +208,7 @@ def objCon(funcs, printOK):
     if printOK:
         print("funcs in obj:", funcs)
     return funcs
+
 
 # rst funcs (end)
 # ======================================================================
