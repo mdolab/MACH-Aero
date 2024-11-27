@@ -27,6 +27,18 @@ Before getting started, download the input files by running:
 
     ./get-input-files.sh
 
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Table of Contents
+
+   intersection_surface_collar
+   intersection_volume_collar
+   intersection_analysis
+   intersection_geo
+   intersection_opt
+
+
 Directory Structure
 -------------------
 ::
@@ -61,14 +73,3 @@ Directory Structure
     |   |-- volume
     |       |-- collar_surf.cgns
     |       |-- run_pyhyp.py
-
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Table of Contents
-
-   intersection_surface_collar
-   intersection_volume_collar
-   intersection_analysis
-   intersection_geo
-   intersection_opt
