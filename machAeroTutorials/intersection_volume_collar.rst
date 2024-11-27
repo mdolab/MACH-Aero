@@ -3,7 +3,7 @@
 Volume Collar Meshing
 =====================
 
-Collar meshes are one of the most challenging cases to extrude with hyperbolic meshing methods like pyHyp.
+Collar meshes are one of the most challenging cases to extrude with hyperbolic meshing methods like :doc:`pyHyp <pyHyp:index>`.
 Getting the extrusion to work with no negative quality cells or negative volumes may require extensive tuning of options.
 The most common issue is grid lines crossing at the concave corner of the collar mesh.
 

@@ -4,6 +4,11 @@ Optimization with Component Intersections
 =========================================
 
 
+.. important::
+    This tutorial is provided as a reference only.
+    DVGeoMulti, the underlying code, is a research code.
+    As such, it is highly experimental and support for it is not guaranteed.
+
 Overview
 --------
 This is a tutorial for generating collar meshes and performing aerodynamic shape optimization with component intersections.
@@ -15,7 +20,7 @@ We use the DLR-F6 configuration as the example case.
 
     DLR-F6 configuration
 
-This tutorial requires pySurf in addition to the standard MACH-Aero modules.
+This tutorial requires :doc:`pySurf <pysurf:index>` in addition to the standard MACH-Aero modules.
 Before getting started, download the input files by running:
 
 .. prompt:: bash

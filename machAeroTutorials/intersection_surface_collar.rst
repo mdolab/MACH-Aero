@@ -5,7 +5,7 @@ Surface Collar Meshing
 
 .. note::
 
-    For this tutorial, we assume that you have completed the :ref:`MACH-Aero ICEM tutorial <mach-aero:aero_icem>` and that the component meshes are ready.
+    For this tutorial, we assume that you have an understanding of your meshing tool and that the component meshes are ready, either from the input files or your own.
 
 #. ``.tin`` files for the wing and fuselage geometries are located in ``meshing/surface``.
    Load both geometry files into a project.
@@ -29,7 +29,7 @@ Surface Collar Meshing
     .. note::
 
         Do not consider off-wall spacing when creating the surface collar mesh.
-        This will be handled by pyHyp when generating the volume mesh.
+        This will be handled by :doc:`pyHyp <pyHyp:index>` when generating the volume mesh.
 
 #. Link the upper and lower surface blocking with the leading and trailing edges to get a smooth transition.
 #. Split the edges of the fuselage blocks to improve quality.
