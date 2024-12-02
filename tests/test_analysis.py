@@ -170,5 +170,6 @@ class TestIntersect(unittest.TestCase):
         cmd = ["python", "aero_run.py"]
         subprocess.check_call(mpiCmd + cmd)
 
+
 if __name__ == "__main__":
     unittest.main()
