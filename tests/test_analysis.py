@@ -155,5 +155,20 @@ class TestOverset(unittest.TestCase):
         subprocess.check_call(mpiCmd + cmd)
 
 
+class TestIntersect(unittest.TestCase):
+    def setUp(self):
+        os.chdir(os.path.join(tutorialDir, "intersection"))
+
+    def test_pyhyp(self):
+        os.chdir("meshing/volume")
+        cmd = ["python", "run_pyhyp.py", "--level", "L3"]
+        subprocess.check_call(mpiCmd + cmd)
+
+        self.assertTrue(os.path.isfile("collar_vol.cgns"))
+
+    def test_analysis(self):
+        cmd = ["python", "aero_run.py"]
+        subprocess.check_call(mpiCmd + cmd)
+
 if __name__ == "__main__":
     unittest.main()
