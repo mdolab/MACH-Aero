@@ -160,7 +160,11 @@ class TestIntersect(unittest.TestCase):
         os.chdir(os.path.join(tutorialDir, "intersection"))
 
     def test_pyhyp(self):
+        cmd = ["./get-input-files.sh"]
+        subprocess.check_call(cmd)
+
         os.chdir("meshing/volume")
+        
         cmd = ["python", "run_pyhyp.py", "--level", "L3"]
         subprocess.check_call(mpiCmd + cmd)
 
