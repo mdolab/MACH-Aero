@@ -163,8 +163,11 @@ class TestIntersect(unittest.TestCase):
         cmd = ["./get-input-files.sh"]
         subprocess.check_call(cmd)
 
+        cmd = ["tar", "-xvaf", "intersection_input_files.tar.gz"]
+        subprocess.check_call(cmd)
+
         os.chdir("meshing/volume")
-        
+
         cmd = ["python", "run_pyhyp.py", "--level", "L3"]
         subprocess.check_call(mpiCmd + cmd)
 
