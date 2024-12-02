@@ -3,7 +3,7 @@
 
 DIR=$(dirname $0)
 INPUT_TAR="input_files.tar.gz"
-wget -O $DIR/$INPUT_TAR http://umich.edu/~mdolaboratory/repo_files/MACH-aero/intersection_input_files.tar.gz
+wget -O $DIR/$INPUT_TAR http://umich.edu/~mdolaboratory/repo_files/MACH-Aero/intersection_input_files.tar.gz
 tar -xzf $DIR/$INPUT_TAR -C $DIR
 mkdir -p $DIR/meshing/surface
 mv $DIR/INPUT/dlr-f6* $DIR/meshing/surface
