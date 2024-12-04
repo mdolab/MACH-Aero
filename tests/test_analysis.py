@@ -156,13 +156,14 @@ class TestOverset(unittest.TestCase):
 
 
 class TestIntersect(unittest.TestCase):
-    def setUp(self):
+    @classmethod
+    def setUpClass(cls):
         os.chdir(os.path.join(tutorialDir, "intersection"))
 
-    def test_pyhyp(self):
         cmd = ["./get-input-files.sh"]
         subprocess.check_call(cmd)
 
+    def test_pyhyp(self):
         os.chdir("meshing/volume")
 
         cmd = ["python", "run_pyhyp.py", "--level", "L3"]
