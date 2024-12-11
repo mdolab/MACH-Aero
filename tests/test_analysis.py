@@ -173,7 +173,7 @@ class TestIntersect(unittest.TestCase):
 
     def test_analysis(self):
         cmd = ["ulimit", "-s", "65536"]
-        subprocess.check_call(mpiCmd + cmd)
+        subprocess.check_call(cmd)
 
         cmd = ["python", "aero_run.py"]
         subprocess.check_call(mpiCmd + cmd)
