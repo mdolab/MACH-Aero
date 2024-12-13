@@ -163,9 +163,6 @@ class TestIntersect(unittest.TestCase):
         cmd = ["./get-input-files.sh"]
         subprocess.check_call(cmd)
 
-        cmd = ["ulimit", "-s", "65536"]
-        subprocess.check_call(cmd)
-
     def test_pyhyp(self):
         os.chdir("meshing/volume")
 
@@ -175,8 +172,12 @@ class TestIntersect(unittest.TestCase):
         self.assertTrue(os.path.isfile("collar_vol.cgns"))
 
     def test_analysis(self):
-        cmd = ["python", "aero_run.py"]
-        subprocess.check_call(mpiCmd + cmd)
+        # Note: The ulimit command is necessary to prevent segmentation faults due to a small stack
+        # when using Intel compiler (see https://github.com/mdolab/MACH-Aero/pull/169)
+
+        mpiCmdStr = " ".join(mpiCmd)
+        cmd = f"ulimit -s 65536 && {mpiCmdStr} python aero_run.py"
+        subprocess.check_call(cmd, shell=True)
 
 
 if __name__ == "__main__":
