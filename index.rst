@@ -48,4 +48,5 @@ If you use any of our codes, please :ref:`cite us <cite-us>`.
    machAeroTutorials/opt_overview
    machAeroTutorials/airfoilopt_overview
    machAeroTutorials/overset_overview
+   machAeroTutorials/intersection_overview
    machAeroTutorials/faq

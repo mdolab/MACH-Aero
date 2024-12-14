@@ -155,5 +155,30 @@ class TestOverset(unittest.TestCase):
         subprocess.check_call(mpiCmd + cmd)
 
 
+class TestIntersect(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        os.chdir(os.path.join(tutorialDir, "intersection"))
+
+        cmd = ["./get-input-files.sh"]
+        subprocess.check_call(cmd)
+
+    def test_pyhyp(self):
+        os.chdir("meshing/volume")
+
+        cmd = ["python", "run_pyhyp.py", "--level", "L3"]
+        subprocess.check_call(mpiCmd + cmd)
+
+        self.assertTrue(os.path.isfile("collar_vol.cgns"))
+
+    def test_analysis(self):
+        # Note: The ulimit command is necessary to prevent segmentation faults due to a small stack
+        # when using Intel compiler (see https://github.com/mdolab/MACH-Aero/pull/169)
+
+        mpiCmdStr = " ".join(mpiCmd)
+        cmd = f"ulimit -s 65536 && {mpiCmdStr} python aero_run.py"
+        subprocess.check_call(cmd, shell=True)
+
+
 if __name__ == "__main__":
     unittest.main()

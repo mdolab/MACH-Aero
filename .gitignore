@@ -4,3 +4,7 @@ _build
 .vscode/*
 make.bat
 my_tutorial/
+*.pyc
+tutorial/intersection/INPUT/
+tutorial/intersection/meshing/surface/
+output/
