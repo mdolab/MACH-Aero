@@ -25,13 +25,13 @@ This section lists out the dependency versions that have been verified to work w
 ========= ======= =======
 Versions  stable  latest
 ========= ======= =======
-OpenMPI   3.1.*   4.1.*
-mpi4py    3.1.4   3.1.4
-PETSc     3.15.*  3.19.*
-CGNS      4.2.0   4.4.0
+OpenMPI   4.1.*   5.0.*
+mpi4py    3.1.5   3.1.6
+PETSc     3.15.*  3.21.*
+CGNS      4.2.0   4.5.0
 Python    3.9.*   3.11.*
-NumPy     1.21.*  1.25.*
-SciPy     1.7.*   1.11.*
+NumPy     1.21.*  1.26.*
+SciPy     1.7.*   1.15.*
 ========= ======= =======
 
 The supported operating systems are Ubuntu 20.04 and 22.04 together with GNU compiler versions 9 and 11, respectively.
