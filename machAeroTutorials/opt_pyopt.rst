@@ -42,6 +42,7 @@ Then copy the code from each of the following sections into this file.
 Import libraries
 ----------------
 .. literalinclude:: ../tutorial/opt/pyoptsparse/rosenbrock.py
+    :language: py
     :start-after: # rst Imports
     :end-before: # rst Command line arguments
 
@@ -51,6 +52,7 @@ Additionally we import ``argparse`` to enable the use of command line arguments.
 Command line arguments
 ----------------------
 .. literalinclude:: ../tutorial/opt/pyoptsparse/rosenbrock.py
+    :language: py
     :start-after: # rst Command line arguments
     :end-before: # rst Callback function
 
@@ -60,6 +62,7 @@ In this case we set up a single command line argument to choose the optimizer th
 Define the callback function
 -----------------------------
 .. literalinclude:: ../tutorial/opt/pyoptsparse/rosenbrock.py
+    :language: py
     :start-after: # rst Callback function
     :end-before: # rst Sensitivity function
 
@@ -71,6 +74,7 @@ The names of the design variables (``xvars``) and functions of interest (``obj``
 Define the sensitivity function
 -------------------------------
 .. literalinclude:: ../tutorial/opt/pyoptsparse/rosenbrock.py
+    :language: py
     :start-after: # rst Sensitivity function
     :end-before: # rst Optimization problem
 
@@ -83,6 +87,7 @@ For a vector variable (like ``xvars``), the sensitivity is provided as a Jacobia
 Instantiate the optimization problem
 ------------------------------------
 .. literalinclude:: ../tutorial/opt/pyoptsparse/rosenbrock.py
+    :language: py
     :start-after: # rst Optimization problem
     :end-before: # rst Add objective
 
@@ -92,6 +97,7 @@ We create an instance of this class by providing the name of the problem and the
 Indicate the objective function
 -------------------------------
 .. literalinclude:: ../tutorial/opt/pyoptsparse/rosenbrock.py
+    :language: py
     :start-after: # rst Add objective
     :end-before: # rst Add design variables
 
@@ -102,6 +108,7 @@ This should correspond with one of the keys in the ``funcs`` dictionary that is 
 Add design variables
 --------------------
 .. literalinclude:: ../tutorial/opt/pyoptsparse/rosenbrock.py
+    :language: py
     :start-after: # rst Add design variables
     :end-before: # rst Add constraints
 
@@ -110,6 +117,7 @@ Now we need to add the design variables to the problem, which is done with a cal
 Add constraints
 ---------------
 .. literalinclude:: ../tutorial/opt/pyoptsparse/rosenbrock.py
+    :language: py
     :start-after: # rst Add constraints
     :end-before: # rst Instantiate optimizer
 
@@ -122,6 +130,7 @@ The optimizer is set up with the following lines of code.
 The options dictionary can be modified to fine-tune the optimizer, but if it is left empty, default values will be used.
 
 .. literalinclude:: ../tutorial/opt/pyoptsparse/rosenbrock.py
+    :language: py
     :start-after: # rst Instantiate optimizer
     :end-before: # rst Solve
 
@@ -132,6 +141,7 @@ We give the optimizer the optimization problem, the sensitivity function, and op
 The ``sens`` keyword also accepts ``'FD'`` to indicate that the user wants to use finite difference for derivative computations.
 
 .. literalinclude:: ../tutorial/opt/pyoptsparse/rosenbrock.py
+    :language: py
     :start-after: # rst Solve
     :end-before: # rst Plot
 
@@ -195,6 +205,7 @@ You can run it with the command
 You can also load the history file in python to make your own plots, such as the one below, showing the path the optimiser took to the solution:
 
 .. literalinclude:: ../tutorial/opt/pyoptsparse/rosenbrock.py
+    :language: py
     :start-after: # rst Plot
 
 .. figure:: images/opt_optpath.png

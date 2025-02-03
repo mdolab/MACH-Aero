@@ -56,6 +56,7 @@ Specifying parameters for the optimization
 For multipoint optimization, the parameters have to be specified in lists of the same size.
 
 .. literalinclude:: ../tutorial/airfoilopt/multipoint/airfoil_multiopt.py
+    :language: py
     :start-after: # rst parameters (beg)
     :end-before: # rst parameters (end)
 
@@ -65,6 +66,7 @@ This is largely unchanged from the single-point case, since we use a very simila
 The only difference is in defining the variable ``nGroup`` which is used later on to distinguish between the two AeroProblems.
 
 .. literalinclude:: ../tutorial/airfoilopt/multipoint/airfoil_multiopt.py
+    :language: py
     :start-after: # rst multipoint (beg)
     :end-before: # rst multipoint (end)
 
@@ -75,6 +77,7 @@ For more than one AeroProblem, a list needs to be created.
 Each AeroProblem is created with the respective optimization point and appended to the list.
 
 .. literalinclude:: ../tutorial/airfoilopt/multipoint/airfoil_multiopt.py
+    :language: py
     :start-after: # rst aeroproblem (beg)
     :end-before: # rst aeroproblem (end)
 
@@ -86,6 +89,7 @@ The lines that require a call to the an AeroProblem is now put into a for-loop t
 
 
 .. literalinclude:: ../tutorial/airfoilopt/multipoint/airfoil_multiopt.py
+    :language: py
     :start-after: # rst funcs (beg)
     :end-before: # rst funcs (end)
 
@@ -99,6 +103,7 @@ In addition, we use the ``wrt`` keyword to specify the variables that affect eac
 In this case, the ``alpha`` from the other flight conditions do not impact the lift constraint, so they are set to zero.
 
 .. literalinclude:: ../tutorial/airfoilopt/multipoint/airfoil_multiopt.py
+    :language: py
     :start-after: # rst optprob (beg)
     :end-before: # rst optprob (end)
 
