@@ -325,6 +325,10 @@ Next, configure your environment for CGNS by adding the following lines to your 
    export PATH=$PATH:$CGNS_HOME/bin
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CGNS_HOME/lib
 
+.. NOTE::
+   Make sure that your ``.bashrc`` is updated and pointing at the intended CGNS installation, configured with the options listed below.
+   Some of the MACH-Aero packages depending on CGNS (e.g. ADflow, IDwarp) might fail to compile if linked to a CGNS build with different settings.
+
 After saving the file, source ``$HOME/.bashrc``:
 
 .. prompt:: bash
@@ -341,7 +345,7 @@ To configure the package, run:
 
 .. prompt:: bash
 
-   cmake -D CGNS_ENABLE_FORTRAN=ON -D CMAKE_INSTALL_PREFIX=$CGNS_HOME -D CGNS_ENABLE_64BIT=OFF -D CGNS_ENABLE_HDF5=OFF -D CGNS_BUILD_CGNSTOOLS=OFF -D CMAKE_C_FLAGS="-fPIC" -D CMAKE_Fortran_FLAGS="-fPIC" .
+   cmake -D CGNS_ENABLE_FORTRAN=ON -D CGNS_ENABLE_SCOPING=OFF -D CMAKE_INSTALL_PREFIX=$CGNS_HOME -D CGNS_ENABLE_64BIT=OFF -D CGNS_ENABLE_HDF5=OFF -D CGNS_BUILD_CGNSTOOLS=OFF -D CMAKE_C_FLAGS="-fPIC" -D CMAKE_Fortran_FLAGS="-fPIC" .
 
 If your compilers are not located at ``/usr/bin/gcc``, either because you are on an HPC system or using Intel compilers, you must adjust the configure command.
 This is done by passing additional variables to ``cmake``:
