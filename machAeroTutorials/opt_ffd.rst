@@ -7,20 +7,20 @@ Geometric Parametrization
 Introduction
 ================================================================================
 In order to optimize the shape of a geometry such as an airfoil or a wing, we need some way to translate design variables into actual changes in the shape.
-We use the Free-form deformation (FFD) technique, popularized by Tom Sederberg in the world of computer-aided graphic design, as our parametrization method.
+We use the free-form deformation (FFD) technique, popularized by Tom Sederberg in the world of computer-aided graphic design, as our parametrization method.
 The FFD is a mapping of a region in 2D or 3D that is bounded by a set of B-splines.
 Every point with the region is mapped to a new location based on the deformation of the bounding B-spline curves.
 The B-splines themselves are defined by control points, so by adjusting the positions of these control points, we can have a great deal of control over any points embedded in the FFD volume (as shown in the figure below).
 Since both our CFD meshes and finite element models are point-based, we can embed them in the FFD and give the optimizer control over their shape.
-For more detail on the mathematical principles and implementation, refer to the following article: https://dafoam.github.io/docs/FFD/main.pdf
+For more detail on the mathematical principles and implementation, refer to `this article <https://dafoam.github.io/docs/FFD/main.pdf>`_.
 
 .. image:: images/ffd_demo.png
    :scale: 50
    :align: center
 
-The actual implementation of the FFD method is housed in the pyGeo repository, which we were already introduced to in the very beginning of the tutorial.
+The actual implementation of the FFD method is housed in the :doc:`pyGeo <pygeo:index>` repository, which we were already introduced to in the very beginning of the tutorial.
 The specific class to look for is :doc:`DVGeometry <pygeo:DVGeometry>`.
-Navigate to the DVGeometry repository to explore its capabilities
+Navigate to the DVGeometry class to explore its capabilities.
 Before diving into the parametrization, however, we need to generate an FFD, which is basically a 3D grid in the plot3d format.
 
 Files
@@ -96,7 +96,7 @@ Setting up a geometric parametrization with DVGeometry
 ======================================================
 Open the file ``parametrize.py`` in your favorite text editor.
 Then copy the code from each of the following sections into this file.
-The DVGeo functions used in the following sections are defined in ``pygeo/pygeo/parameterization/DVGeo.py``.
+The DVGeo functions used in the following sections are defined in :doc:`DVGeometry <pygeo:DVGeometry>`.
 
 Import libraries
 ----------------
@@ -149,7 +149,7 @@ For a wing, we can generate this reference axis simply by stating the fraction o
 
 In this example, the reference axis is placed at the quarter-chord along the spanwise direction with control points defined at each section of FFD control points.
 The name of the reference axis is ``"wing"``.
-The call to ``addRefAxis()`` returns the number of control points in the reference axis B-spline.
+The call to :meth:`~pygeo.parameterization.DVGeo.DVGeometry.addRefAxis` returns the number of control points in the reference axis B-spline.
 The reference axis can also be defined explicitly by giving a pySpline curve object to DVGeometry.
 
 .. image:: images/ffd_refaxis.png
@@ -173,7 +173,7 @@ For every callback function, the required inputs are ``val``, which contains the
 In this example, we first extract the coordinates of the reference axis control points with the function :meth:`~pygeo.parameterization.DVGeo.DVGeometry.extractCoef`.
 Then we loop through the control points, starting with the 2nd station, and add a displacement in the y-direction (which in this case creates dihedral).
 We start at the 2nd control point because the position of the root of the wing should remain fixed.
-Finally, we restore the new control point coordinates to DVGeo with the call ``restoreCoef()``.
+Finally, we restore the new control point coordinates to DVGeo with the call :meth:`~pygeo.parameterization.DVGeo.DVGeometry.restoreCoef`.
 
 Twist
 ~~~~~
@@ -194,7 +194,7 @@ Taper
     :end-before: # rst Add global dvs
 
 Here we define a taper variable, which controls the chord length of the root and tip airfoils and does a linear interpolation for the chords in between.
-First, we extract the normalized position of the reference axis control points with the call ``extractS()``.
+First, we extract the normalized position of the reference axis control points with the call :meth:`~pygeo.parameterization.DVGeo.DVGeometry.extractS`.
 This gives a vector from 0 to 1 with the relative positions of the control points.
 Then we compute the slope of the chord function between the root and tip airfoils.
 Finally, we loop through all of the control points and set a scaling factor in the ``scale_x`` dictionary progressing linearly from ``val[0]`` at the root to ``val[1]`` at the tip.
@@ -214,7 +214,7 @@ Additional scaling dictionaries include ``scale_y``, ``scale_z``, and ``scale``,
 Adding global variables
 ~~~~~~~~~~~~~~~~~~~~~~~
 We have now defined the callback functions for the global design variables, but we have yet to add the variables themselves.
-This is done with the call ``addGlobalDV``.
+This is done with the call :meth:`~pygeo.parameterization.DVGeo.DVGeometry.addGlobalDV`.
 
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
     :start-after: # rst Add global dvs
@@ -233,22 +233,22 @@ Only one of these should be used at one time.
     :start-after: # rst Add local dvs
     :end-before: # rst Embed points
 
-The first, ``addLocalDV()``, allows displacement along one of the global coordinate axes (x, y, or z).
-The other options, ``addLocalSectionDV()``, defines the displacement direction based on the plane of the FFD section to which the given control point belongs.
-On a wing with a winglet, the latter option is more useful because it allow control of the airfoil sections along the axis of the winglet, which has a different orientation than the main wing.
+The first, :meth:`~pygeo.parameterization.DVGeo.DVGeometry.addLocalDV`, allows displacement along one of the global coordinate axes (x, y, or z).
+The other option, :meth:`~pygeo.parameterization.DVGeo.DVGeometry.addLocalSectionDV`, defines the displacement direction based on the plane of the FFD section to which the given control point belongs.
+On a wing with a winglet, the latter option is more useful because it allows control of the airfoil sections along the axis of the winglet, which has a different orientation than the main wing.
 This function requires the input ``secIndex`` which gives the FFD index along which the section planes should be computed (in this case, that is the same as the direction of the reference axis).
 The user can also choose the axis of the section's local coordinate system along which the points will be translated (``axis=1`` chooses the direction perpendicular to the wing surface).
 
 Test the design variables
 -------------------------
-In a normal optimization script, the foregoing code is sufficient to set up the geometric parametrization.
+In a normal optimization script, the previous code is sufficient to set up the geometric parametrization.
 However, in this script we want to test the behavior of the variables we have defined.
 The following snippets of code allow us to manually change the design variables and view the results.
 
 Embed points
 ~~~~~~~~~~~~
 First we have to embed at least one point set in the FFD.
-Normally, ADflow automatically embeds the surface mesh nodes in the FFD, but here we will embed surface coordinates obtained using IDWarp's ``getSurfaceCoordinates()`` function (just for this example without ADflow).
+Normally, ADflow automatically embeds the surface mesh nodes in the FFD, but here we will embed surface coordinates obtained using IDWarp's :meth:`~idwarp.UnstructuredMesh.USMesh.getSurfaceCoordinates` function (just for this example without ADflow).
 
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
     :start-after: # rst Embed points
@@ -256,9 +256,9 @@ Normally, ADflow automatically embeds the surface mesh nodes in the FFD, but her
 
 Change the design variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-We can retrieve a dictionary with the current state of all of the variables with the call ``getValues()``.
+We can retrieve a dictionary with the current state of all of the variables with the call :meth:`~pygeo.parameterization.DVGeo.DVGeometry.getValues`.
 To adjust the variables, simply change the values in each variable array.
-Once this is done, you can return the new values with the call ``setDesignVars()``.
+Once this is done, you can return the new values with the call :meth:`~pygeo.parameterization.DVGeo.DVGeometry.setDesignVars`.
 
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
     :start-after: # rst Change dvs
@@ -266,9 +266,9 @@ Once this is done, you can return the new values with the call ``setDesignVars()
 
 Write deformed FFD to file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
-The ``update`` function actually computes the new shape of the FFD and the new locations of the embedded points.
-We can view the current shape of the FFD by calling ``writePlot3d()``.
-We can also view the updated surface coordinates by calling ``writePointSet()``.
+The :meth:`~pygeo.parameterization.DVGeo.DVGeometry.update` function actually computes the new shape of the FFD and the new locations of the embedded points.
+We can view the current shape of the FFD by calling :meth:`~pygeo.parameterization.DVGeo.DVGeometry.writePlot3d`.
+We can also view the updated surface coordinates by calling :meth:`~pygeo.parameterization.DVGeo.DVGeometry.writePointSet`.
 
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
     :start-after: # rst Update
