@@ -46,6 +46,7 @@ Then copy the code from each of the following sections into this file.
 Import libraries
 ----------------
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
+    :language: py
     :start-after: # rst Imports (beg)
     :end-before: # rst Imports (end)
 
@@ -60,6 +61,7 @@ Four options are provided:
 -  Optimizer options
 
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
+    :language: py
     :start-after: # rst args (beg)
     :end-before: # rst args (end)
 
@@ -69,6 +71,7 @@ Several conditions for the optimization are specified at the beginning of the sc
 These include the coefficient of lift constraint value, Mach number, and altitude to indicate flow conditions. 
 
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
+    :language: py
     :start-after: # rst parameters (beg)
     :end-before: # rst parameters (end)
 
@@ -80,6 +83,7 @@ Creating processor sets
 Allocating sets of processors for different analyses can be helpful for multiple design points, but this is a single-point optimization, so only one point is added. 
 
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
+    :language: py
     :start-after: # rst multipoint (beg)
     :end-before: # rst multipoint (end)
 
@@ -90,6 +94,7 @@ ADflow set-up
 The ADflow set-up looks similar to the aerodynamic analysis script.
  
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
+    :language: py
     :start-after: # rst adflow (beg)
     :end-before: # rst adflow (end)
 
@@ -117,6 +122,7 @@ Set the AeroProblem
 We add angle of attack as a design variable and set up the AeroProblem using given flow conditions.
 
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
+    :language: py
     :start-after: # rst aeroproblem (beg)
     :end-before: # rst aeroproblem (end)
 
@@ -131,6 +137,7 @@ Note that since we have to work with a 3D problem, this in fact has twice as man
 This is addressed by adding linear constraints in the following section.
 
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
+    :language: py
     :start-after: # rst dvgeo (beg)
     :end-before: # rst dvgeo (end)
 
@@ -144,6 +151,7 @@ This is accomplished with a call to ``addLinearConstraintsShape``.
 
 
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
+    :language: py
     :start-after: # rst dvcon (beg)
     :end-before: # rst dvcon (end)
 
@@ -152,6 +160,7 @@ Mesh warping set-up
 -------------------
 
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
+    :language: py
     :start-after: # rst warp (beg)
     :end-before: # rst warp (end)
 
@@ -160,6 +169,7 @@ Optimization callback functions
 This section is also the same as the corresponding section in aircraft optimization.
 
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
+    :language: py
     :start-after: # rst funcs (beg)
     :end-before: # rst funcs (end)
 
@@ -168,6 +178,7 @@ Optimization problem
 This section is also the same as the corresponding section in aircraft optimization.
 
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
+    :language: py
     :start-after: # rst optprob (beg)
     :end-before: # rst optprob (end)
 
@@ -175,6 +186,7 @@ This section is also the same as the corresponding section in aircraft optimizat
 Run optimization
 ----------------
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
+    :language: py
     :start-after: # rst optimizer
 
 Run it yourself!
