@@ -102,15 +102,19 @@ outputFile
     We also want different output names. This way we can inspect the generated mesh separately
 BC
     Here we apply the boundary conditions (BC). The integer defines the Domain (starting at 1). The dict key defines
-    which side of the domain the BC applies to. The dict value defines the type of the BC.
+    which side of the domain the BC applies to and the dict value defines the type of the BC (see below).
 
-    As it has been mentioned in the previous tutorial, there is not a reliable way to get this integer, which defines
-    the domain, out of Pointwise. So it is recommended to rotate all domains in such a way, that the BC can be applied on
-    the same side of all domains. Then they are deleted one by one until no
-    more error messages pop up in pyHyp.
 families
     Here we give a unique name to a surface. This lets ADflow calculate the forces seperately and would allow you, for example,
     to get the lift and drag forces for your wing and tail individually
+
+
+.. note::
+    To understand what domain the index in ``BC`` refers to, you need to sort the domains alphabetically in ascending order 
+    (just click on ``Name`` in the domain list in Pointwise). The domain at the top will be index 1.
+    Please note, Pointwise uses numerical ordering where as pyHyp uses 
+    `lexicographical <https://stackoverflow.com/questions/45950646/what-is-lexicographical-order>`_\  ordering. 
+    If you pad all numbers with leading zeros, this is not an issue.
 
 
 Extrude the nearfield
