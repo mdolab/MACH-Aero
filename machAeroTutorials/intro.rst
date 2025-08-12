@@ -29,7 +29,7 @@ The directory structures for each section of the tutorial, including all files, 
 Throughout the tutorial, we will refer to the location of your developing tutorial as ``my_tutorial``, so if you chose a different name make sure to adjust your commands accordingly.
 
 Before continuing with the tutorial, make sure that the MDOLab framework is already installed on your machine.
-If you set up your machine using an MDOLab iso, then the required packages should already be installed.
+If you set up your machine using an MDOLab Docker image, then the required packages should already be installed.
 If not, follow the instructions for installing the MDOLab framework from :ref:`scratch <installFromScratch>`.
 
 This tutorial requires the following software.
@@ -40,7 +40,7 @@ This tutorial requires the following software.
 - `cgnsUtilities <https://github.com/mdolab/cgnsutilities>`_
 - `baseclasses <https://github.com/mdolab/baseclasses>`_
 - `pySpline <https://github.com/mdolab/pyspline>`_
-- `pyGeo <https://github.com/mdolab/pygeo>`_
+- `pygeo <https://github.com/mdolab/pygeo>`_
 - `IDWarp <https://github.com/mdolab/idwarp>`_
 - `ADflow <https://github.com/mdolab/adflow>`_
 - `pyOptSparse <https://github.com/mdolab/pyoptsparse>`_
@@ -53,8 +53,11 @@ This tutorial requires the following software.
 
 **External Software**
 
-- ICEM CFD (for surface mesh generation)
+- ICEM CFD or Fidelity Pointwise (for surface mesh generation)
 - Tecplot (for flow visualization)
+
+.. note:: The airfoil analysis and optimziation tutorials do not require these external software packages.
+
 
 Documentation strategy
 ======================
