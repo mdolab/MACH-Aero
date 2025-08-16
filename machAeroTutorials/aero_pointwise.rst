@@ -24,7 +24,7 @@ If you want to learn more about structured or unstructured meshing theory, refer
 
 Files
 =====
-Navigate to the directory ``aero/meshing/surface`` in your tutorial folder. Use the ``.igs`` file you generated with pyGeo and copy it from the ``aero/geometry`` folder.
+Navigate to the directory ``aero/meshing/surface`` in your tutorial folder. Find the ``.igs`` file you generated with pyGeo and copy it from the ``aero/geometry`` folder.
 
 .. prompt:: bash
 
@@ -41,7 +41,7 @@ Navigate to the directory ``aero/meshing/surface`` in your tutorial folder. Use 
 
 Basic Pointwise Usage
 ===============
-
+Please refer to your Pointwise provider for installation instructions and how to start Pointwise.
 Once you start Pointwise, it should look something like in the following picture.
 
 .. figure:: images/aero_pointwise_overview.png
@@ -50,18 +50,19 @@ Once you start Pointwise, it should look something like in the following picture
 
     Pointwise Overview.
 
-1. Object, Layer and Default control - main view for managing all the objects in your project, which layers they are on, and default parameters.
-2. Solver information - tells you the current solvers you have selected(i.e 2D, Stuctured, CGNS, etc.)
+1. Object, Layer and Default control - main view for managing all the objects in your project, which layers they are on, and default parameters
+2. Solver information - tells you the current solvers you have selected (i.e 2D, Stuctured, CGNS, etc.)
 3. View and Selection - allows you to control your view and some special selection controls
-4. Masks - Applies filters that limit what you can select based on the object types you chosen, useful to avoid accidentally selecting things you don't want to select.
-5. Discretization and Solvers - Select how the object at had is being descretized and apply solvers to it
+4. Masks - Applies filters that limit what you can select based on the object types you chosen. 
+Useful to avoid accidentally selecting things you don't want to select.
+5. Discretization and Solvers - Select how the object at hand is being discretized and apply solvers to it
 6. Create - Buttons to create various kinds of objects
-7. Attributes and Basics - Controls attributes of the object selects (like colors) and allows you save your project or undo/redo actions.
+7. Attributes and Basics - Controls attributes of the object selected (like colors) and allows you to save your project or undo/redo actions.
 8. Main View - what your objects currently look like
 
 
 It is highly recommend that you turn off mouse glide which is on by default in Pointwise sometimes.
-To turn that off click on ``Edit``, ``Preferences``, ``Mouse Style``, and then uncheck ``Glide``.
+To turn that off, click on ``Edit``, ``Preferences``, ``Mouse Style``, and then uncheck ``Glide``.
 Then click ``Close``.
 
 
@@ -87,7 +88,7 @@ orbit
 
 move rotation axes
   Press ``ctrl``, ``shift``, and press your ``right mouse button`` when you're hovering over the position you want to move your axes to.
-  This is an extremely handy funtion.
+  This is an extremely handy function.
 
 right mouse menu
   Press your ``right mouse button`` to a bring up a handy menu that gives you quick access to many functions.
@@ -100,8 +101,8 @@ Before we actually begin meshing, we have to set some standard values and import
 tolerances for Pointwise
 
 1. Click on ``File`` -> ``Properties``
-2. The ``Model Size`` should be around ``1000``. (It is enough, if the order of magnitude is similar)
-3. The ``Node`` should be ``1e-4``. The value of ``Connector`` should automatically be ``1e-4`` as well
+2. The ``Model Size`` should be around ``1000``. (it is enough, if the order of magnitude is similar)
+3. The ``Node`` property should be ``1e-4``. The value of ``Connector`` should automatically be ``1e-4`` as well
 4. ``OK``
 
 .. note:: The defaults seen here should be fine for this project and Pointwise usually automatically selects the correct Model Size and tolerances based on the geometery you import. 
@@ -178,12 +179,12 @@ picture to help guide you).
     Geometry clean-up #1.
 
 
-Now we will join some surfaces together into ``Quilts`` and ``Models`` to simplify our geometry.
-We will first assemble our wing into a watertight model composed of several quilts, one for each surface.
-We will then combine the two quilt composing the tip cap into a single quilt to make meshing easier.
+Now we will join some surfaces together into Quilts and Models to simplify our geometry.
+We will first assemble our wing into a watertight model composed of several Quilts, one for each surface.
+We will then combine the two Quilts composing the tip cap into a single quilt to make meshing easier.
 
-1. Rotate your view as necessary to get a good view of each surface of the wing then click and drag to select all the database entities.
-2. Click on the ``Rainbow Colors`` button with the the whole ``database`` selected to make each database surface a unique color. 
+1. Rotate your view as necessary to get a good view of each surface of the wing, then click and drag to select all the database entities.
+2. Click on the ``Rainbow Colors`` button with the the whole database selected to make each database surface a unique color. 
 Note that this button assigns colors randomly so your wing will probably look different than the one shown here.
 3. With the whole database selected, click on ``Create``, ``Assemble``, and then ``Models``.
 
@@ -203,14 +204,13 @@ Note that this button assigns colors randomly so your wing will probably look di
     :align: center
 
 
-
-You should be able to see that the tip cap is comprised of two B-spline surface, BSurf-7-quilt and BSurf-9-quilt in this case.
-We are now going to assemble these two surfaces into a single quilt.
+You should be able to see that the tip cap is comprised of two Quilts, BSurf-7-quilt and BSurf-9-quilt in this case.
+We are now going to assemble these two surfaces into a single Quilt.
 
 1. Click on an empty space in the main view to unselect any selected database entities.
 2. Rotate your view with pressing ``ctrl`` and your ``right mouse button`` while moving your mouse until you have a good view of the tip of the wing (or use the view presets)
 3. Select the two surfaces comprising the tip cap by clicking on each of them while holding ``ctrl``. 
-You may need to use the spacebar while hovering over to change your select to the quilts instead of the model. 
+You may need to use the spacebar while hovering over the tip cap to change your select to the quilts instead of the model. 
 Alternatively you can just select the quilts from the list.
 4. With the tip cap quilts selected, click on ``Create``, ``Assemble``, and then ``Quilts``.
 5. In the side panel that comes up you can select ``Use Defaults`` for both the ``Angle`` and ``Boudary Angle``.
@@ -238,8 +238,11 @@ What was shown here is only one way to do it.
 As a rule of thumb you should always try and create one quilt for each domain you plan on making in your surface mesh.
 
 
-Meshing Strategy
+Meshing
 ===============
+
+Meshing strategy
+-------------------------------------
 Before we start meshing, we will first discuss what our overall strategy is and what our mesh will look like.
 Our plan is to create a multi-domain structured surface mesh with each quilt in our geometry being used to define a domain.
 For the upper surface, lower surface, and trailing edge we will generate ``connectors`` on the boundaries of each associated quilt and then dimension the each connector  with the number of nodes we want along it.
@@ -661,7 +664,7 @@ We will now assemble all five domains on the tip cap.
     :align: center
 
 1. Create the remaining domains for the tip in a similar fashion.
-There should be four more.
+There should be five tip cap domains total after you're done.
 
 You should now have a poor quality surface mesh for your tip cap as shown below.
 
@@ -676,7 +679,7 @@ We will now use the solver in Pointwise to smooth out the mesh in the tip cap to
 3. Select all five domains composing the tip cap mesh
 4. Click on ``Grid`` and then ``Solve``
 5. In the panel that opens click on the ``Edge Attributes`` tab.
-6. Changed ``Boundary Conditions`` to ``floating``.
+6. Change ``Boundary Conditions`` type to ``floating``.
 7. Click ``Apply``.
 
 
@@ -699,7 +702,7 @@ Getting this right may require several attempts.
 
     Bad tip cap mesh
 
-Here is what is should look like for it to be acceptable.
+Here is what a tip cap leading edge with acceptable mesh quality will look like.
 The tip cap mesh should be approximately symmetrical.
 
 .. figure:: images/aero_pointwise_dat38.png
@@ -714,8 +717,8 @@ The tip cap mesh is now finished.
 Our last steps will be orient normals and inspect mesh quality.
 
 
-Orienting the mesh
-+++++++++++++++++++++++++++++++++
+Orienting the Mesh
+===============
 Orienting the surface normals in Pointwise is easy.
 
 1. Select all 8 of your domains.
@@ -743,7 +746,7 @@ You should now save your project.
 
 
 Inspecting Mesh Quality
-+++++++++++++++++++++++++++++++++++
+==============
 
 1. Select all 8 domains
 2. Click on ``Examine`` and then ``Area Ratio``
@@ -761,7 +764,7 @@ As long as your maximum area ratio is below 5 you should be okay for the rest of
 
 
 Exporting the Mesh
-++++++++++++++++++++++++++++++++++
+================
 We will now export the mesh as a ``.cgns`` file that can be read by ``pyHyp`` for extrusion.
 
 
