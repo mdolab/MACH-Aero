@@ -1,9 +1,15 @@
-.. _airfoilopt_mesh:
+.. _airfoilanalysis_mesh:
 
 
 ***************
 Mesh Generation
 ***************
+
+Introduction
+============
+Now that we have a airfoil geometry and have preprocessed it we can generate a mesh.
+Our end goal is to generate a structured volume mesh around the airfoil that can be used by ADflow.
+For an airfoil this is a straightforward automated process where we simply extrude the coordinates we generated using pyHyp.
 
 .. note::
     Remember that ADflow is a 3D finite volume solver.
@@ -11,66 +17,47 @@ Mesh Generation
     To do this, we generate a 3D mesh which is one cell wide, and apply symmetry boundary conditions on those two faces.
 
 In this tutorial, we will use pyHyp to generate a 3D mesh in CGNS format.
-The coordinates for the NACA0012 airfoil are in the file ``n0012.dat``.
-Coordinates for most airfoils can be obtained from the `UIUC Data site <http://m-selig.ae.illinois.edu/ads/coord_database.html>`_.
 
-The initial mesh (``n0012.dat``) can be visualized in Tecplot.
 
-.. figure::
-    images/airfoil_surface_mesh.png
-    :width: 500
-    :align: center
-
-Navigate to the directory ``airfoilopt/mesh`` in your tutorial folder. Copy the airfoil data from the ``tutorial`` directory:
+Files
+============
+Navigate to the directory ``airfoil/meshing`` in your tutorial folder. Find the ``.xyz`` file you generated with preFoil and copy it from the ``airfoil/geometry`` folder.
 
 .. prompt:: bash
 
-    cp ../../../tutorial/airfoilopt/mesh/n0012.dat .
+    cp ../geometry/n0012_processed.xyz .
+
 
 Create the following empty runscript in the current directory.
 
-- ``genMesh.py``
+- ``run_pyhyp.py``
+
+
+Dissecting the pyHyp runscript
+================================
+Open the file run_pyhyp.py in your favorite text editor. Then copy the code from each of the following sections into this file.
 
 
 pyHyp runscript
-===============
-
+++++++++++++++++++++++++++++++++
 Import the pyHyp libraries and numpy.
 
-.. literalinclude:: ../tutorial/airfoilopt/mesh/genMesh.py
+.. literalinclude:: ../tutorial/airfoil/meshing/run_pyhyp.py
     :start-after: # rst Import
-    :end-before: # rst SurfMesh
-
-
-Surface Mesh Generation
-=======================
-
-.. literalinclude:: ../tutorial/airfoilopt/mesh/genMesh.py
-    :start-after: # rst SurfMesh
     :end-before: # rst GenOptions
 
-pyHyp requires a surface mesh input before it can create a 3D mesh.
-An "extruded" surface mesh can be created using the code above, which produces a PLOT3D file with extension ``.xyz``.
-This meshes only the airfoil surface, and is used as the input file for pyHyp, which marches the existing mesh to the farfield.
-By performing this intermediate step, the volume mesh generation is faster and higher-quality.
-
-The intermediate mesh (``new.xyz``) can be visualized in Tecplot.
-
-.. figure::
-    images/airfoil_p3d_mesh.png
-    :width: 500
-    :align: center
 
 Options
-=======
-
-.. literalinclude:: ../tutorial/airfoilopt/mesh/genMesh.py
-    :start-after: # rst GenOptions
-    :end-before: # rst GridOptions
+++++++++++++++++++++++++++++++++
+We will now apply several options for pyHyp in our options dictionary.
 
 
 General Options
 ---------------
+
+.. literalinclude:: ../tutorial/airfoil/meshing/run_pyhyp.py
+    :start-after: # rst GenOptions
+    :end-before: # rst GridOptions
 
 ``inputFile``
     Name of the surface mesh file.
@@ -86,12 +73,12 @@ General Options
     This can help the user to apply certain operations to specific wall patches in ADflow.
 
 
-.. literalinclude:: ../tutorial/airfoilopt/mesh/genMesh.py
-    :start-after: # rst GridOptions
-    :end-before: # rst Run
-
 Grid Parameters
 ---------------
+
+.. literalinclude:: ../tutorial/airfoil/meshing/run_pyhyp.py
+    :start-after: # rst GridOptions
+    :end-before: # rst Run
 
 ``N``
     Number of nodes in off-wall direction.
@@ -100,23 +87,31 @@ Grid Parameters
     Thickness of first off-wall cell layer.
 ``marchDist``
     Distance of the far-field.
+``nConstantStart``
+    Number of constant off-wall layers before beginning stretch.
 
 
 Running pyHyp and Writing to File
-=================================
+++++++++++++++++++++++++++++++++
 
 The following three lines of code extrude the surface mesh and write the resulting volume mesh to a ``.cgns`` file.
 
-.. literalinclude:: ../tutorial/airfoilopt/mesh/genMesh.py
+.. literalinclude:: ../tutorial/airfoilopt/mesh/run_pyhyp.py
     :start-after: # rst Run
 
 Run it yourself!
-================
+++++++++++++++++++++++++++++++++
 You can now run the python file with the command:
 
 .. prompt:: bash
 
-    python genMesh.py
+    python run_pyhyp.py
+
+To run pyHyp on multiple processors use:
+
+.. prompt:: bash
+
+    mpirun -np 4 python run_pyhyp.py
 
 The generated airfoil mesh should look like the following.
 

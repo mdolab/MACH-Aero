@@ -19,7 +19,7 @@ Here are a few of the items we will cover in the following pages:
    :maxdepth: 1
    :caption: Table of Contents
 
-   airfoilopt_mesh
+   airfoilopt_pyopt
    airfoilopt_ffd
    airfoilopt_singlepoint
    airfoilopt_multipoint
