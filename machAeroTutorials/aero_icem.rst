@@ -8,7 +8,14 @@ Surface Meshing with ICEM
 
 Introduction
 ============
-The objective of this section is to familiarize the user with the ICEM CFD software and to create a surface mesh.
+Now that we have a geometry definition, we can start meshing it.
+Our end goal is to generate a structured volume mesh around the geometry that can be used by ADflow.
+Unlike the airfoil, this is a two step process for 3D geometries.
+
+1. We generate a surface mesh, a structured grid of points on the B-spline surfaces defining the geometry that create a watertight surface.
+2. We *extrude* that surface mesh, using a hyperbolic or elliptic mesh extrusion algorithm, into a volume mesh that we can use with ADflow.
+
+This page describes how to accomplish the **first** step using ICEM as the meshing tool of choice.
 ICEM CFD is a meshing software with advanced CAD/geometry readers and repairs tools.
 It allows the user to produce volume or surface meshes.
 At times ICEM may test your patience, however, it offers a lot of functionality and is quite handy once you get to know its quirks.

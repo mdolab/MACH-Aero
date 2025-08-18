@@ -1,4 +1,4 @@
-.. _overset_surface_mesh:
+.. _aero_pointwise:
 
 *********************************
 Surface Meshing with Pointwise
