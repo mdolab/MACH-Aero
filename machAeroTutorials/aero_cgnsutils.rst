@@ -7,6 +7,7 @@ Mesh Manipulation Tools
 
 Introduction
 ================================================================================
+This section is not necessary to complete the tutorial but it does familiarize you with mesh manipulation tools that you may need to conduct grid refinement studies and other operations.
 There are several simple meshing operations that can be done easily enough from the command line.
 For example, creating a 3D cartesian block of a given size with a specified uniform cell size only requires 4 parameters.
 We have developed a suite of functions called `cgnsUtilities <https://github.com/mdolab/cgnsutilities>`_ that can be called from the command line to perform simple, repeatable tasks like this.
@@ -53,6 +54,3 @@ CGNS Viewer can be run from the terminal with the command
 .. prompt:: bash
 
     cgnsview
-
-More details to come later.
-

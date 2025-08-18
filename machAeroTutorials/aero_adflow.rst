@@ -6,6 +6,7 @@ Analysis with ADflow
 
 Introduction
 ============
+Now that we have a valid structured volume mesh, we can start our aerodynamics analysis with ADflow.
 There is no graphical user interface for ADflow.
 The cases are prepared with python scripts and run from the command line.
 In this section of the tutorial, we will explain the nuts and bolts of a basic ADflow runscript.

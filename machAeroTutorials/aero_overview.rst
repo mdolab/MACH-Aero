@@ -31,6 +31,6 @@ In order to analyze a wing geometry with ADflow, we need to take the following s
    aero_pointwise
    aero_icem
    aero_pyhyp
-   aero_cgnsutils
    aero_adflow
    aero_gridRefinementStudy
+   aero_cgnsutils
