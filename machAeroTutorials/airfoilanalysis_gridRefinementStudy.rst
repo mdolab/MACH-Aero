@@ -5,7 +5,8 @@
 
 Grid Refinement Study
 =====================
-This section isn't part of the main tutorial but describes how to do a grid refinement study which is something you'll typically want to do with an aerodyanmics analysis.
+This section isn't part of the main tutorial but describes how to do a grid refinement study which is something you'll typically want to do with an aerodyanmic analysis.
+We would recommend giving it a shot with the airfoil example shown in this tutorial.
 
 
 .. _theory:

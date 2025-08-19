@@ -48,7 +48,7 @@ ap = AeroProblem(name="airfoil", mach=0.75, altitude=10000, alpha=1.5, areaRef=1
 if args.task == "analysis":
     # Solve
     CFDSolver(ap)
-    # rst Evaluate and print
+    # rst Evaluate and printan
     funcs = {}
     CFDSolver.evalFunctions(ap, funcs)
     # Print the evaluated functions

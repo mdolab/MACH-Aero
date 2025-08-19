@@ -32,3 +32,4 @@ In order to analyze an airfoil geometry with ADflow, we need to take the followi
    airfoilanalysis_prefoil
    airfoilanalysis_mesh
    airfoilanalysis_adflow
+   airfoilanalysis_gridRefinementStudy

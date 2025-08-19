@@ -106,12 +106,15 @@ You can now run the python file with the command:
 
     python run_pyhyp.py
 
-To run pyHyp on multiple processors use:
+For larger meshes, you will want to run pyHyp as a parallel process.
+This can be done with the command:
 
 .. prompt:: bash
 
     mpirun -np 4 python run_pyhyp.py
 
+where the number of processors is given after ``-np``.
+You can open ``n0012.cgns`` in Tecplot to view the volume mesh.
 The generated airfoil mesh should look like the following.
 
 .. figure::

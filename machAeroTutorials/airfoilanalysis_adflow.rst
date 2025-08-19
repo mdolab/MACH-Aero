@@ -52,7 +52,7 @@ Adding command line arguments
     :end-before: # rst ADflow options
 
 This is a convenience feature that allows the user to pass in command line arguments to the script.
-Four options are provided:
+Three options are provided:
 
 -  Output directory
 -  Grid file to be used

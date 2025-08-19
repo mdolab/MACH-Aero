@@ -4,7 +4,7 @@
 import numpy as np
 
 # rst Load
-airfoil = np.loadtxt("n0012.dat")
+airfoil = np.loadtxt("n0012_processed.dat")
 npts = airfoil.shape[0]
 nmid = (npts + 1) // 2
 

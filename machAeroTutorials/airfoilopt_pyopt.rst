@@ -14,6 +14,7 @@ pyOptSparse allows the user to switch between several algorithms by changing a s
 This facilitates comparison between different techniques and allows the user to focus on the other aspects of building an optimization problem.
 
 In this section, we will go over the basic pyOptSparse optimization script and try our hand at the familiar `Rosenbrock problem <https://en.wikipedia.org/wiki/Rosenbrock_function>`_.
+The overview will cover the essentials so if you want to see the full functionality of pyOptSparse please refer to its documentation.
 
 
 Files
@@ -192,7 +193,7 @@ You can run it with the command
     :width: 500
     :align: center
 
-You can also load the history file in python to make your own plots, such as the one below, showing the path the optimiser took to the solution:
+You can also load the history file in python to make your own plots, such as the one below or the associated capability in `NicePlots <https://mdolab-niceplots.readthedocs-hosted.com/en/latest/auto_examples/plot_style_demo.html>`_ , showing the path the optimiser took to the solution:
 
 .. literalinclude:: ../tutorial/opt/pyoptsparse/rosenbrock.py
     :start-after: # rst Plot

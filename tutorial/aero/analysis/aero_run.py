@@ -6,6 +6,7 @@ from adflow import ADFLOW
 from baseclasses import AeroProblem
 from mpi4py import MPI
 
+# rst Args
 parser = argparse.ArgumentParser()
 parser.add_argument("--output", type=str, default="output")
 parser.add_argument("--gridFile", type=str, default="wing_vol.cgns")
@@ -28,6 +29,7 @@ aeroOptions = {
     "equationType": "RANS",
     # Solver Parameters
     "MGCycle": "sg",
+    "nSubiterTurb": 10,
     # ANK Solver Parameters
     "useANKSolver": True,
     # NK Solver Parameters

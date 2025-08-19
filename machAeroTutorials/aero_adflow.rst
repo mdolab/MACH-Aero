@@ -37,16 +37,21 @@ Import libraries
    :start-after: # rst Imports
    :end-before: # rst ADflow options
 
-First we import ADflow.
-We also need to import ``baseclasses``, which is a library of problem and solver classes used to encourage a common API within the MACH suite.
-In this case we will be using the AeroProblem, which is a container for the flow conditions that we want to analyze.
-Finally, it is convenient to import the mpi4py library to prevent printing multiple times if we are running on multiple processors.
-Importing mpi4py is not entirely necessary in the runscript because ADflow does it internally if necessary.
+This section is identical to the one shown in :ref:`the airfoil analysis tutorial <airfoilanalysis_adflow>`.
+We import ADflow and baseclasses among several other things.
 
-We also set up some command line arguments to easily specify certain parameters without having to modify the script.
-These include options for specifying the output directory, the grid file used, and a ``task`` option that will be used to switch between several pre-defined tasks.
-The ``analysis`` option here will simply run a single ADflow analysis, and the ``polar`` option will sweep through a range of angles of attack, and produce a table of :math:`C_L` and :math:`C_D` values.
+Adding command line arguments
+-----------------------------
+.. literalinclude:: ../tutorial/airfoil/analysis/airfoil_run.py
+    :start-after: # rst Args
+    :end-before: # rst ADflow options
 
+This is a convenience feature that allows the user to pass in command line arguments to the script.
+Three options are provided:
+
+-  Output directory
+-  Grid file to be used
+-  Task to execute
 
 ADflow options
 --------------
@@ -54,13 +59,30 @@ ADflow options
    :start-after: # rst ADflow options
    :end-before: # rst Start ADflow
 
-An exhaustive list of the ADflow options and their descriptions can be found in the docs.
-For our purposes here, I will go over them briefly.
-The `I/O Parameters` include the mesh file, the output directory, and the variables that will be printed as the solver runs.
-Under `Solver Parameters`, you can choose a basic solver (DADI or Runge Kutta) and set the CFL and multigrid parameters.
-Additionally, the Approximate Newton-Krylov (ANK) and Newton-Krylov (NK) solvers can be used to speed up convergence of the solver.
-Finally, we can terminate the solver based on relative convergence of the norm of the residuals or maximum number of iterations.
+We will use the same ADflow solver settings that we used in the :ref:`the airfoil analysis tutorial <airfoilanalysis_adflow>`.
+An exhaustive list of the ADflow options and their descriptions can be found `in the docs <https://mdolab-adflow.readthedocs-hosted.com/en/latest/options.html>`_.
 We strongly recommend going over the descriptions and tips on solvers and solver options in the ADflow :doc:`solvers docs <adflow:solvers>`.
+A basic overview of the options used in this example are provided here.
+
+`I/O Parameters`
+    We include the mesh file, the output directory, and the variables that will be printed as the solver runs.
+
+`Physics Parameters` 
+    We set the equation type that ADflow will solve which in this case will be RANS.
+
+`Solver Parameters`
+    We typically select the smoother (RK or DADI) and multigrid settings for the explicit solver.
+    However we will be using the implicit solver in this example so we just set the number of turburlence sub-iterations to 10 and turn off multigrid.
+    For most practical problems we use the Approximate Newton-Krylov (ANK) and Newton-Krylov (NK) solvers to speed up convergence and increase the robustness of the solver.
+
+`ANK Solver Parameters`
+    We will simply turn on the ANK solver
+
+`NK Solver Parameters`
+    We will turn on the NK solver and request that ADflow switch to it from ANK at a specific relative tolerance.
+
+`Termination Criteria`
+    We set the termination criteria of the solver based on relative convergence of the norm of the residuals or maximum number of iterations.
 
 Create solver
 -------------
@@ -91,11 +113,8 @@ Single analysis
     :start-after: # rst Run ADflow
     :end-before: # rst Create polar arrays
 
-Running the solver is very simple, it only requires an AeroProblem to run.
-The function evaluation is done separately from the solution.
-We pass a dictionary to ADflow and it will populate it with the prescribed functions.
-We can request additional functions with the ``evalFuncs`` parameter.
-Finally we print out the requested functions on the root proc.
+The solver is run the same way it was for the airfoil analysis.
+We print out the requested functions on the root proc.
 
 Generating Drag Polars
 ----------------------

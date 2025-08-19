@@ -59,20 +59,32 @@ aeroOptions = {
     # Common Parameters
     "gridFile": args.gridFile,
     "outputDirectory": args.output,
+    "monitorvariables": ["resrho", "cl", "cd"],
+    "writeSurfaceSolution": False,
+    "writeVolumeSolution": False,
     # Physics Parameters
     "equationType": "RANS",
+    # Solver Parameters
     "smoother": "DADI",
     "MGCycle": "sg",
-    "nCycles": 20000,
-    "monitorvariables": ["resrho", "cl", "cd"],
-    "useNKSolver": True,
-    "useanksolver": True,
-    "nsubiterturb": 10,
+    "nSubiterTurb": 10,
     "liftIndex": 2,
-    "infchangecorrection": True,
+    "infChangeCorrection": True,
+    # ANK Solver Parameters
+    "useANKSolver": True,
+    # NK Solver Parameters
+    "useNKSolver": True,
+    "NKSubSpaceSize": 400,
+    "NKASMOverlap": 4,
+    "NKPCILUFill": 4,
+    "NKJacobianLag": 5,
+    "NKSwitchTol": 1e-6,
+    "NKOuterPreConIts": 3,
+    "NKInnerPreConIts": 3,
     # Convergence Parameters
     "L2Convergence": 1e-15,
     "L2ConvergenceCoarse": 1e-4,
+    "nCycles": 20000,
     # Adjoint Parameters
     "adjointSolver": "GMRES",
     "adjointL2Convergence": 1e-12,
@@ -82,21 +94,18 @@ aeroOptions = {
     "ILUFill": 3,
     "ASMOverlap": 3,
     "outerPreconIts": 3,
-    "NKSubSpaceSize": 400,
-    "NKASMOverlap": 4,
-    "NKPCILUFill": 4,
-    "NKJacobianLag": 5,
-    "nkswitchtol": 1e-6,
-    "nkouterpreconits": 3,
-    "NKInnerPreConIts": 3,
-    "writeSurfaceSolution": False,
-    "writeVolumeSolution": False,
     "frozenTurbulence": False,
     "restartADjoint": False,
 }
 
 # Create solver
 CFDSolver = ADFLOW(options=aeroOptions, comm=comm)
+
+# Create slice
+span = 1.0
+pos = np.array([0.5]) * span
+CFDSolver.addSlices("z", pos, sliceType="absolute")
+
 # rst adflow (end)
 # ======================================================================
 #         Set up flow conditions with AeroProblem
@@ -115,10 +124,6 @@ FFDFile = "ffd.xyz"
 
 DVGeo = DVGeometry(FFDFile)
 DVGeo.addLocalDV("shape", lower=-0.05, upper=0.05, axis="y", scale=1.0)
-
-span = 1.0
-pos = np.array([0.5]) * span
-CFDSolver.addSlices("z", pos, sliceType="absolute")
 
 # Add DVGeo object to CFD solver
 CFDSolver.setDVGeo(DVGeo)

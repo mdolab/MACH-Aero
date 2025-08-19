@@ -7,6 +7,8 @@ Volume Meshing
 Introduction
 ============
 The objective of this section is to create a volume mesh using pyHyp.
+We previously used pyHyp to extrude our airfoil coordinates into a volume mesh.
+However, this time we will use it to extrude our surface mesh coordinates into a volume mesh.
 The surface mesh serves as the seed for hyperbolically marching the mesh to the farfield.
 Generating the volume mesh in this way is fast, repeatable, and results in a high-quality mesh.
 More details on pyHyp can be found in the :doc:`pyHyp documentation <pyhyp:index>` or in the code itself.
@@ -39,14 +41,14 @@ This is the standard way of importing the pyHyp library.
 
 Options
 -------
-For each module in MACH, we generally pass in options using a dictionary.
-A complete list of definitions of the pyHyp options can be found in the :doc:`pyHyp documentation <pyhyp:options>`.
-Here we will point a few of the more basic options.
-For pyHyp, the options can be organized like so:
-
 .. literalinclude:: ../tutorial/aero/meshing/volume/run_pyhyp.py
     :start-after: # rst general
     :end-before: # rst grid
+
+Just like before we need to pass a dictionary of options to pyHyp for mesh extrusion.
+Note that this time the options we use are a little different and that we need to take advantage for a few more options for the wing mesh.
+A complete list of definitions of the pyHyp options can be found in the :doc:`pyHyp documentation <pyhyp:options>`.
+Here we will point a few more of the options.
 
 General options:
 

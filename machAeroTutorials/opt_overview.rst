@@ -4,11 +4,24 @@
 Wing Aerodynamic Optimization
 ########################
 After completing the wing analysis tutorial, you'll be ready to start optimizing the wing.
-This tutorial assumes you have completed the previous one one :re
+This tutorial assumes you have completed the previous one.
+
+The wing optimization process is very similar to the airfoil optimziation processess except that the FFD parameterization will be a bit more complicated.
+An optimizer is used via `pyOptSparse` to select the design variables for a candidate design. 
+`pyGeo` warps the surface mesh according to the geometric design variables. 
+`idwarp` propagates the deformation of the surface mesh into the volume mesh.
+ADflow then solves for the performance of the design using that volume mesh. The variables used to define the aerodynamic analysis can also be modified by the optimizer (e.g. Mach number, AoA, etc.).
+Based on the outputs of the aerodynamic analysis and the setup of the optimization problem, the optimizer will continue to generate a new candidate designs until it converges.
+
+Here are a few of the items we will cover in the following pages:
+
+    - Set up an optimization script using pyOptSparse
+    - Parametrize a 3D geometry using the Free-form Deformation method
+    - Run single-point and multi-point aerodynamic shape optimizations
 
 
 In this tutorial, we will demonstrate how to optimize the design of an aircraft with gradient-based optimization algorithms.
-One of the singular attributes of the AeroOpt framework is that it was specifically designed for the purpose of conducting gradient-based optimization studies.
+One of the singular attributes of the MACH framework is that it was specifically designed for the purpose of conducting gradient-based optimization studies.
 (For a simple demonstration of why we use gradient-based optimization, check out `this optimization game <http://mdolab.engin.umich.edu/assets/optimizationGame/>`_.)
 Each module was developed from the beginning with gradient-based optimization in mind to ensure that accurate gradients could be obtained efficiently.
 The naive approach to gradient-based optimization is generally to use finite difference approximations for derivatives of the functions of interest with respect to the design variables.
@@ -24,16 +37,3 @@ We have spent a great deal of effort to make optimization a fairly straightforwa
    opt_aero
 
 
-Overview of framework
----------------------
-An optimizer is used via `pyOptSparse` to select the design variables for a candidate design. 
-`pyGeo` warps the surface mesh according to the geometric design variables. 
-`idwarp` propagates the deformation of the surface mesh into the volume mesh.
-ADflow then solves for the performance of the design using that volume mesh. The variables used to define the aerodynamic analysis can also be modified by the optimizer (e.g. Mach number, AoA, etc.).
-Based on the outputs of the aerodynamic analysis and the setup of the optimization problem, the optimizer will continue to generate a new candidate designs until it converges.
-
-Here are a few of the items we will cover in the following pages:
-
-    - Set up an optimization script using pyOptSparse
-    - Parametrize a 3D geometry using the Free-form Deformation method
-    - Run single-point and multi-point aerodynamic shape optimizations
