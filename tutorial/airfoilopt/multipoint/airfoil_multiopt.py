@@ -17,7 +17,7 @@ from multipoint import multiPointSparse
 # rst Imports (end)
 parser = argparse.ArgumentParser()
 parser.add_argument("--output", type=str, default="output")
-parser.add_argument("--opt", type=str, default="SNOPT", choices=["SLSQP", "SNOPT"])
+parser.add_argument("--opt", type=str, default="SLSQP", choices=["SLSQP", "SNOPT"])
 parser.add_argument("--gridFile", type=str, default="../../airfoil/meshing/n0012.cgns")
 parser.add_argument("--optOptions", type=ast.literal_eval, default={}, help="additional optimizer options to be added")
 args = parser.parse_args()
