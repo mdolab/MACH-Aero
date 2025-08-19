@@ -19,7 +19,7 @@ The overview will cover the essentials so if you want to see the full functional
 
 Files
 =====
-Navigate to the directory ``opt/pyoptsparse`` in your tutorial folder.
+Navigate to the directory ``airfoilopt/pyoptsparse`` in your tutorial folder.
 Create the following empty runscript in the current directory:
 
 - ``rosenbrock.py``
@@ -195,7 +195,7 @@ You can run it with the command
 
 You can also load the history file in python to make your own plots, such as the one below or the associated capability in `NicePlots <https://mdolab-niceplots.readthedocs-hosted.com/en/latest/auto_examples/plot_style_demo.html>`_ , showing the path the optimiser took to the solution:
 
-.. literalinclude:: ../tutorial/opt/pyoptsparse/rosenbrock.py
+.. literalinclude:: ../tutorial/airfoilopt/pyoptsparse/rosenbrock.py
     :start-after: # rst Plot
 
 .. figure:: images/opt_optpath.png
