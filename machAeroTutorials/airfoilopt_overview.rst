@@ -9,7 +9,15 @@ In fact, we will be reusing the same initial processed geometry and mesh that we
 This tutorial will be a high-fidelity RANS optimization of a NACA 0012 so we will be using ADflow again.
 However, this time we will introducing a few more tools including pygeo, IDwarp, and pyOptSparse.
 
-In order to optimize an airfoil geometry with MACH, we need to take the following steps:
+One of the singular attributes of the MACH-Aero framework is that it was specifically designed for the purpose of conducting gradient-based optimization studies.
+(For a simple demonstration of why we use gradient-based optimization, check out `this optimization game <http://mdolab.engin.umich.edu/assets/optimizationGame/>`_.)
+Each module was developed from the beginning with gradient-based optimization in mind to ensure that accurate gradients could be obtained efficiently.
+The naive approach to gradient-based optimization is generally to use finite difference approximations for derivatives of the functions of interest with respect to the design variables.
+There are many problems with this approach, including prohibitive computational expense and rampant inaccuracy, so as a rule, we don't touch finite difference with a ten foot pole.
+Instead, we use a combination of analytic gradients, automatic differentiation, and the complex-step method to compute accurate gradients for our optimizations.
+We have spent a great deal of effort to make optimization a fairly straightforward and seamless process for the end user, so we hope you enjoy learning to use our tools!
+
+In order to optimize an airfoil geometry with MACH-Aero, we need to take the following steps:
 
 **Learn how to use pyOptSparse to solve an optimziation problem with a gradient-based algorithm**
     The primary optimiation package/wrapper of choice for MACH-Aero is pyOptSparse.

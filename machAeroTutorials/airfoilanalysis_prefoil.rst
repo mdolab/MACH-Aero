@@ -16,6 +16,7 @@ Files
 ============
 Navigate to the directory ``airfoil/geometry`` in your tutorial folder.
 Download a copy of the NACA 0012 coordinates to this folder from the UIUC Data site linked above.
+You'll need to deleted the header (first line in the file) using a text editor.
 
 Create the following empty runscript in the current directory:
 

@@ -4,30 +4,20 @@
 Wing Aerodynamic Optimization
 ########################
 After completing the wing analysis tutorial, you'll be ready to start optimizing the wing.
-This tutorial assumes you have completed the previous one.
-
+This tutorial will heavily build on the previous one and it is highly recommended that you go through it first if you have not.
+In fact, we will be reusing the same initial geometry, surface mesh, and volume mesh that we created in the previous tutorial in this one.
 The wing optimization process is very similar to the airfoil optimziation processess except that the FFD parameterization will be a bit more complicated.
-An optimizer is used via `pyOptSparse` to select the design variables for a candidate design. 
-`pyGeo` warps the surface mesh according to the geometric design variables. 
-`idwarp` propagates the deformation of the surface mesh into the volume mesh.
-ADflow then solves for the performance of the design using that volume mesh. The variables used to define the aerodynamic analysis can also be modified by the optimizer (e.g. Mach number, AoA, etc.).
-Based on the outputs of the aerodynamic analysis and the setup of the optimization problem, the optimizer will continue to generate a new candidate designs until it converges.
 
-Here are a few of the items we will cover in the following pages:
+In order to optimize a wing geometry with MACH-Aero, we need to take the following steps:
 
-    - Set up an optimization script using pyOptSparse
-    - Parametrize a 3D geometry using the Free-form Deformation method
-    - Run single-point and multi-point aerodynamic shape optimizations
+**Parametrize the 3D wing using the Free-form Deformation method**
+    To conduct wing optimization, the optimizer has to be able to control the wing's geometry.
+    We use the Free-form Defomation method to do this which is provided by the pygeo package.
+    In the airfoil example we only used local FFD design variables.
+    In this example we will need to cover global FFD design variables to control typical wing parameters like twist, dihedral, and sweep.
 
-
-In this tutorial, we will demonstrate how to optimize the design of an aircraft with gradient-based optimization algorithms.
-One of the singular attributes of the MACH framework is that it was specifically designed for the purpose of conducting gradient-based optimization studies.
-(For a simple demonstration of why we use gradient-based optimization, check out `this optimization game <http://mdolab.engin.umich.edu/assets/optimizationGame/>`_.)
-Each module was developed from the beginning with gradient-based optimization in mind to ensure that accurate gradients could be obtained efficiently.
-The naive approach to gradient-based optimization is generally to use finite difference approximations for derivatives of the functions of interest with respect to the design variables.
-There are many problems with this approach, including prohibitive computational expense and rampant inaccuracy, so as a rule, we don't touch finite difference with a ten foot pole.
-Instead, we use a combination of analytic gradients, automatic differentiation, and the complex-step method to compute accurate gradients for our optimizations.
-We have spent a great deal of effort to make optimization a fairly straightforward and seamless process for the end user, so we hope you enjoy learning to use our tools!
+**Run the aerodynamic shape optimzation on the wing**
+    Here is where we put it all together to optimize our wing for a single flight condition.
 
 .. toctree::
    :maxdepth: 1

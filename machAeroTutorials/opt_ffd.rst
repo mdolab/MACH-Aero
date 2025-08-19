@@ -4,24 +4,12 @@
 Geometric Parametrization
 *************************
 
+.. warning:: The following sections assume you have completed all the sections related to geometry and meshing in :ref:`the wing aerodynamic analysis tutorial <aero_overview>`.
+    Be sure to complete those first before continuing.
+
 Introduction
 ================================================================================
-In order to optimize the shape of a geometry such as an airfoil or a wing, we need some way to translate design variables into actual changes in the shape.
-We use the Free-form deformation (FFD) technique, popularized by Tom Sederberg in the world of computer-aided graphic design, as our parametrization method.
-The FFD is a mapping of a region in 2D or 3D that is bounded by a set of B-splines.
-Every point with the region is mapped to a new location based on the deformation of the bounding B-spline curves.
-The B-splines themselves are defined by control points, so by adjusting the positions of these control points, we can have a great deal of control over any points embedded in the FFD volume (as shown in the figure below).
-Since both our CFD meshes and finite element models are point-based, we can embed them in the FFD and give the optimizer control over their shape.
-For more detail on the mathematical principles and implementation, refer to the following article: https://dafoam.github.io/docs/FFD/main.pdf
-
-.. image:: images/ffd_demo.png
-   :scale: 50
-   :align: center
-
-The actual implementation of the FFD method is housed in the pyGeo repository, which we were already introduced to in the very beginning of the tutorial.
-The specific class to look for is :doc:`DVGeometry <pygeo:DVGeometry>`.
-Navigate to the DVGeometry repository to explore its capabilities
-Before diving into the parametrization, however, we need to generate an FFD, which is basically a 3D grid in the plot3d format.
+In this tutorial we will reuse the Boeing 717 wing geometry and mesh that we created in the previous tutorial.
 
 Files
 ================================================================================

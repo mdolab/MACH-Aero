@@ -21,7 +21,7 @@ Copy the CGNS mesh file, ``n0012.cgns``, generated previously, into the director
 
 .. prompt:: bash
 
-    cp ../mesh/n0012.cgns . 
+    cp ../meshing/n0012.cgns . 
 
 Create the following empty runscript in the current directory:
 
