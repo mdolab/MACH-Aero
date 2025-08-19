@@ -83,6 +83,7 @@ ADflow set-up
     :end-before: # rst adflow (end)
 
 The set-up for adflow should look the same as for the wing aerodynamic analysis script.
+However, note that we have added a tolerance setting for the adjoint and the ``infchangecorrection`` to update the angle-of-attack throughout the flow field when the optimzier updates it.
 Unlike the airfoil optimzation example, these settings are not tuned for this particular wing optimziation problem.
 We add a single lift distribution with 200 sampling points.
 
