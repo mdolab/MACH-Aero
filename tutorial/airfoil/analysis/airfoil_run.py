@@ -29,22 +29,14 @@ aeroOptions = {
     # Solver Parameters
     "MGCycle": "sg",
     "nSubiterTurb": 10,
-    "liftIndex": 2,
     # ANK Solver Parameters
     "useANKSolver": True,
     # NK Solver Parameters
     "useNKSolver": True,
     "NKSwitchTol": 1e-4,
-    "NKSubSpaceSize": 400,
-    "NKASMOverlap": 4,
-    "NKPCILUFill": 4,
-    "NKJacobianLag": 5,
-    "NKouterPreConIts": 3,
-    "NKInnerPreConIts": 3,
-    "ADPC": True,
     # Termination Criteria
     "L2Convergence": 1e-15,
-    "nCycles": 20000,
+    "nCycles": 1000,
 }
 # rst Start ADflow
 # Create solver

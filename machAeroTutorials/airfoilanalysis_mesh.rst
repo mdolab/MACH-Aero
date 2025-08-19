@@ -2,7 +2,7 @@
 
 
 ***************
-Mesh Generation
+Meshing
 ***************
 
 Introduction
@@ -40,12 +40,11 @@ Open the file run_pyhyp.py in your favorite text editor. Then copy the code from
 
 pyHyp runscript
 ++++++++++++++++++++++++++++++++
-Import the pyHyp libraries and numpy.
-
 .. literalinclude:: ../tutorial/airfoil/meshing/run_pyhyp.py
     :start-after: # rst Import
     :end-before: # rst GenOptions
 
+Import the pyHyp libraries and numpy.
 
 Options
 ++++++++++++++++++++++++++++++++
@@ -96,7 +95,7 @@ Running pyHyp and Writing to File
 
 The following three lines of code extrude the surface mesh and write the resulting volume mesh to a ``.cgns`` file.
 
-.. literalinclude:: ../tutorial/airfoilopt/mesh/run_pyhyp.py
+.. literalinclude:: ../tutorial/airfoil/meshing/run_pyhyp.py
     :start-after: # rst Run
 
 Run it yourself!

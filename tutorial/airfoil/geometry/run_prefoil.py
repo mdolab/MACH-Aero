@@ -1,8 +1,6 @@
 # rst Import
 import numpy as np
 from prefoil import airfoil, sampling, utils
-import niceplots
-import matplotlib.pyplot as plt
 
 # rst ReadCoords
 X = utils.readCoordFile("n0012.dat")  # load coords
