@@ -10,6 +10,10 @@ Geometric Parametrization
 Introduction
 ================================================================================
 In this tutorial we will reuse the Boeing 717 wing geometry and mesh that we created in the previous tutorial.
+We will parametrize its geometry using the FFD approach with the pygeo package.
+Like the airfoil optimzation tutorial, we will also create local design variables by allowing each FFD point to move up and down.
+However, we would also like to make the twist distribution (which is a traditional wing design parameter) a design variable as well.
+To do this, we will need to use the global design variable capability in ``DVGeo`` to move many FFD points at the same time.
 
 Files
 ================================================================================

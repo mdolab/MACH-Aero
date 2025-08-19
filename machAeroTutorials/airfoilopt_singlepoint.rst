@@ -30,7 +30,7 @@ Copy the FFD file, ``ffd.xyz``, and the CGNS mesh file, ``n0012.cgns``, generate
 
 .. prompt:: bash
 
-    cp ../../meshing/n0012.cgns . 
+    cp ../../airfoil/meshing/n0012.cgns . 
     cp ../ffd/ffd.xyz . 
 
 Create the following empty runscript in the current directory:
