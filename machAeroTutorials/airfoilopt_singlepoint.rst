@@ -82,7 +82,7 @@ Creating processor sets
 Allocating sets of processors for different analyses can be helpful for multiple design points, but this is a single-point optimization, so only one point is added. 
 
 ADflow options
-------------- 
+----------------------- 
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
     :start-after: # rst adflow (beg)
     :end-before: # rst adflow (end)
@@ -241,7 +241,7 @@ To run the script, use the ``mpirun`` and place the total number of processors a
     mpirun -np 4 python airfoil_opt.py | tee output.txt
 
 The command ``tee`` saves the text outputs of the optimization to the specified text file.
-You can follow the progress of the optimization using OptView, as explained in :ref:`pyOptSparse <opt_pyopt>`.
+You can follow the progress of the optimization using OptView, as explained in :ref:`pyOptSparse <airfoilopt_pyopt>`.
 For postprocessing, refer to the corresponding section the previous tutorial.
 Using the settings given in this example, ADflow should automatically output the surface, volume, and slice solutions at each optimizer iteration.
 Be sure to use the most recent output files to view the optimum airfoil solution.
