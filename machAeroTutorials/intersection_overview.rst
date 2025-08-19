@@ -9,8 +9,6 @@ Optimization with Component Intersections
     DVGeoMulti, the underlying code, is a research code.
     As such, it is highly experimental and support for it is not guaranteed.
 
-Overview
---------
 This is a tutorial for generating collar meshes and performing aerodynamic shape optimization with component intersections.
 We use the DLR-F6 configuration as the example case.
 

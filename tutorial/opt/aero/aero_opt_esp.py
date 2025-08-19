@@ -64,6 +64,7 @@ aeroOptions = {
     "nCycles": 10000,
     # Adjoint Parameters
     "adjointL2Convergence": 1e-10,
+    "ADPC": True,
 }
 
 # Create solver
