@@ -52,6 +52,7 @@ aeroOptions = {
     # Solver Parameters
     "smoother": "DADI",
     "MGCycle": "sg",
+    "nSubiterTurb": 10,
     "infchangecorrection": True,
     # ANK Solver Parameters
     "useANKSolver": True,
