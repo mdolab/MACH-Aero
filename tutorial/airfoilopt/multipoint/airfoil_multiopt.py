@@ -18,7 +18,7 @@ from multipoint import multiPointSparse
 parser = argparse.ArgumentParser()
 parser.add_argument("--output", type=str, default="output")
 parser.add_argument("--opt", type=str, default="SLSQP", choices=["SLSQP", "SNOPT"])
-parser.add_argument("--gridFile", type=str, default="n0012.cgns")
+parser.add_argument("--gridFile", type=str, default="../../airfoil/meshing/n0012.cgns")
 parser.add_argument("--optOptions", type=ast.literal_eval, default={}, help="additional optimizer options to be added")
 args = parser.parse_args()
 # ======================================================================
@@ -56,6 +56,8 @@ aeroOptions = {
     # Common Parameters
     "gridFile": args.gridFile,
     "outputDirectory": args.output,
+    # Output files
+    "writeTecplotSurfaceSolution": True,
     # Physics Parameters
     "equationType": "RANS",
     "smoother": "DADI",
@@ -119,7 +121,7 @@ for i in range(nFlowCases):
 # ======================================================================
 # rst dvgeo (beg)
 # Create DVGeometry object
-FFDFile = "ffd.xyz"
+FFDFile = "../ffd/ffd.xyz"
 
 DVGeo = DVGeometry(FFDFile)
 DVGeo.addLocalDV("shape", lower=-0.05, upper=0.05, axis="y", scale=1.0)
@@ -277,6 +279,7 @@ elif args.opt == "SNOPT":
         "Major optimality tolerance": 1e-4,
         "Hessian full memory": None,
         "Function precision": 1e-8,
+        "Nonderivative linesearch": None,
         "Print file": os.path.join(args.output, "SNOPT_print.out"),
         "Summary file": os.path.join(args.output, "SNOPT_summary.out"),
     }
