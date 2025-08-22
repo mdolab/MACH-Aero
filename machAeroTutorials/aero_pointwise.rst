@@ -779,7 +779,7 @@ We will now export the mesh as a ``.cgns`` file that can be read by ``pyHyp`` fo
 
 
 1. Select all 8 domains.
-2. Click on ``File``, ``Export``, and then ``Grid``.
+2. Click on ``File``, ``Export``, and then ``CAE``.
 3. Save your file as ``wing.cgns``.
 4. In the panel that pops up leave all settings as their defaults.
 5. Click ``OK``.
