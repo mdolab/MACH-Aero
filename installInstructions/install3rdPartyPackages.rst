@@ -325,10 +325,6 @@ Next, configure your environment for CGNS by adding the following lines to your 
    export PATH=$PATH:$CGNS_HOME/bin
    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CGNS_HOME/lib
 
-.. NOTE::
-   Make sure that your ``.bashrc`` is updated and pointing at the intended CGNS installation, configured with the options listed below.
-   Some of the MACH-Aero packages depending on CGNS (e.g. ADflow, IDwarp) might fail to compile if linked to a CGNS build with different settings.
-
 After saving the file, source ``$HOME/.bashrc``:
 
 .. prompt:: bash
