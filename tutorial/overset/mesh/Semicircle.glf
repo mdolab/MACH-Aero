@@ -12,20 +12,20 @@
 ## SemiCircle.glf
 ##
 ## CREATE STRUCTURED TOPOLOGY FROM TWO SELECTED CONNECTORS
-## 
-## This script automates the creation of six structured domains from two 
-## user-specified connectors. In addition to creating the new topology when 
+##
+## This script automates the creation of six structured domains from two
+## user-specified connectors. In addition to creating the new topology when
 ## possible (edge dimensions must both be odd), the elliptic solver is run
 ## for 10 iterations, allowing the newly generated domains to relax to an
 ## optimal configuration. Note that an initial dimension can be even and used,
 ## but the dimension will be changed when input(AutoDim) is set to 1 before
 ## proceeding.
-## 
-## For maximum productivity, a GUI is included, but can easily be disabled. 
+##
+## For maximum productivity, a GUI is included, but can easily be disabled.
 ## Set input(GUI) to 1 on line 39 to enable control over internal dimension.
 ## Otherwise, simply select three connectors and run the script. The internal
 ## dimension will be automatically set to an optimal value.
-## 
+##
 #############################################################################
 
 package require PWI_Glyph 2.3
@@ -38,7 +38,7 @@ set input(AutoDim) 1
 ## Enable (1)/Disable (0) GUI
 set input(GUI) 0
 
-## Switch that interpolates gridline angles on outer edges, should remain 
+## Switch that interpolates gridline angles on outer edges, should remain
 ## set to 1 for most applications.
 set interpAngles 1
 
@@ -51,7 +51,7 @@ proc isLoop { conList } {
     }
     return 0
   }
-  
+
   set chkVal [$e isClosed]
   $e delete
 
@@ -62,14 +62,14 @@ proc isLoop { conList } {
 proc getAdjCons { node cons } {
     set list1 [$node getConnectors]
     set list2 $cons
-    
+
     set relCons [list]
     foreach ll $list1 {
         if {[lsearch -exact $list2 $ll]!=-1} {
             lappend relCons [list $ll]
         }
     }
-    
+
     return $relCons
 }
 
@@ -91,11 +91,11 @@ proc splitTri { conList } {
     set c1 [lindex $conList 0]
     set c2 [lindex $conList 1]
     set c3 [lindex $conList 2]
-    
+
     set L1 [expr [$c1 getDimension] - 1 ]
     set L2 [expr [$c2 getDimension] - 1 ]
     set L3 [expr [$c3 getDimension] - 1 ]
-    
+
     if { $L1 < [expr $L2 + $L3] } {
         set cond1 1
     } else { set cond1 0 }
@@ -105,13 +105,13 @@ proc splitTri { conList } {
     if { $L3 < [expr $L1 + $L2] } {
         set cond3 1
     } else { set cond3 0 }
-    
-    
+
+
     if { $cond1 && $cond2 && $cond3 } {
         set a [expr {($L1+$L3-$L2)/2. + 1}]
         set b [expr {($L1+$L2-$L3)/2. + 1}]
         set c [expr {($L2+$L3-$L1)/2. + 1}]
-    
+
         if { $a == [expr int($a)] } {
             set cc1 1
             set a [expr int($a)]
@@ -124,18 +124,18 @@ proc splitTri { conList } {
             set cc3 1
             set c [expr int($c)]
         } else { set cc3 0 }
-        
+
         if { $cc1 && $cc2 && $cc3 } {
             set pt1 [$c1 getXYZ -grid $b]
             set pt2 [$c2 getXYZ -grid $c]
             set pt3 [$c3 getXYZ -grid $a]
-            
+
             lappend splCon [$c1 split -I $b]
             lappend splCon [$c2 split -I $c]
             lappend splCon [$c3 split -I $a]
-            
+
             return [list [list $a $b $c] [list $pt1 $pt2 $pt3] $splCon]
-        } else { 
+        } else {
             ## dimensions not even
             return -1
         }
@@ -152,38 +152,38 @@ proc createTopo { pts dims outerCons } {
     set pt0 [lindex $pts 0]
     set pt1 [lindex $pts 1]
     set pt2 [lindex $pts 2]
-    
+
     set temp1 [pwu::Vector3 add $pt0 $pt1]
     set temp2 [pwu::Vector3 add $temp1 $pt2]
     set cntr [pwu::Vector3 divide $temp2 3.0]
-    
+
     set nc1 [createTwoPt $pt0 $cntr [lindex $dims 2]]
     set nc2 [createTwoPt $pt1 $cntr [lindex $dims 0]]
     set nc3 [createTwoPt $pt2 $cntr [lindex $dims 1]]
-    
+
     set conList [list $nc1 $nc2 $nc3]
     foreach oc $outerCons {
         foreach c $oc {
             lappend conList $c
         }
     }
-    
+
     set doms [pw::DomainStructured createFromConnectors $conList]
-    
+
     if $input(Solve) {
         solve_Grid $cntr $doms 10
     } else {
         solve_Grid $cntr $doms 0
     }
-    
+
     return $doms
 }
 
-## Run elliptic solver for 10 interations with floating BC on interior lines to 
+## Run elliptic solver for 10 interations with floating BC on interior lines to
 ## smooth grid
 proc solve_Grid { cntr doms num } {
     global interpAngles
-    
+
     set solver_mode [pw::Application begin EllipticSolver $doms]
         if {$interpAngles == 1} {
             foreach ent $doms {
@@ -193,7 +193,7 @@ proc solve_Grid { cntr doms num } {
                 }
             }
         }
-        
+
         for {set ii 0} {$ii<3} {incr ii} {
             set tempDom [lindex $doms $ii]
             set inds [list]
@@ -218,28 +218,28 @@ proc solve_Grid { cntr doms num } {
                     EdgeAngleCalculation Orthogonal
             }
         }
-        
+
         $solver_mode run $num
     $solver_mode end
-    
+
     return
 }
 
-## Since final grid is actually two TriQuad grids, can run smoother on all 
+## Since final grid is actually two TriQuad grids, can run smoother on all
 ## domains at very end.
 proc solve_All { doms num } {
     set solver_mode [pw::Application begin EllipticSolver $doms]
-    
+
         foreach ent $doms {
             foreach bc [list 1 2 3 4] {
                 $ent setEllipticSolverAttribute -edge $bc \
                     EdgeConstraint Floating
             }
         }
-        
+
         $solver_mode run $num
     $solver_mode end
-    
+
     return
 }
 
@@ -249,28 +249,28 @@ proc splitSemiCircle { cons } {
 
     set con(1) [lindex $cons 0]
     set con(2) [lindex $cons 1]
-    
+
     set L1 [$con(1) getLength -arc 1.0]
     set L2 [$con(2) getLength -arc 1.0]
 
-    if {$L2 > $L1} { 
+    if {$L2 > $L1} {
         set sE 1
         set lE 2
-    } else { 
-        set sE 2 
+    } else {
+        set sE 2
         set lE 1
     }
-    
+
     set N1 [$con($sE) getDimension]
     set N2 [$con($lE) getDimension]
-    
-    ## Check parity. If both are odd, no problem, otherwise, connectors must 
+
+    ## Check parity. If both are odd, no problem, otherwise, connectors must
     ## be split. Even-dimensioned connectors pose problems. Either re-dimension
     ## or exclude. input(AutoDim) will automatically increase their dimension.
     if {[expr $N1%2]==0 || [expr $N2%2] == 0 } {
         puts "Inconsistent Dimension."
         if { !$input(AutoDim) } { exit }
-        
+
         set dimMode [pw::Application begin Dimension]
         if {[expr $N1%2] == 0} {
             incr N1
@@ -279,7 +279,7 @@ proc splitSemiCircle { cons } {
             $dimMode balance -resetGeneralDistributions
             puts "Re-dimensioned [$con($sE) getName]."
         }
-        
+
         if {[expr $N2%2] == 0} {
             incr N2
             $con($lE) resetGeneralDistributions
@@ -289,52 +289,52 @@ proc splitSemiCircle { cons } {
         }
         $dimMode end
     }
-    
+
     ## Exit if dimensions are too small to support split operations
-    if { $N1 < 5 || $N2 < 5 } { 
+    if { $N1 < 5 || $N2 < 5 } {
         puts "Dimension too small."
-        exit 
+        exit
     }
-    
+
     set N1_split [expr ($N1-1)/2+1]
     set N2_split [expr ($N2-1)/2+1]
-  
+
     set lowerBound [expr abs($N2_split-$N1_split)+2]
     set upperBound [expr $N1_split+$N2_split-3]
     set w(Message) [list $lowerBound $upperBound]
-    
+
     set N3 [expr $lowerBound+$upperBound]
     if { [expr $N3%2] != 0 } { incr N3 }
     set input(sDim) [expr $N3/2]
-    
+
     set node1 [$con($sE) getNode Begin]
     set node2 [$con($sE) getNode End]
-    
+
     set param1 [$con($sE) getParameter -closest [pw::Application getXYZ [$con($sE) getXYZ -arc 0.5]]]
     set tmp_cons1 [$con($sE) split $param1]
-    
+
     set param2 [$con($lE) getParameter -closest [pw::Application getXYZ [$con($lE) getXYZ -arc 0.5]]]
     set tmp_cons2 [$con($lE) split $param2]
-    
+
     set pt1 [[lindex $tmp_cons2 0] getXYZ -arc 1.0]
     set pt2 [[lindex $tmp_cons1 0] getXYZ -arc 1.0]
-    
+
     ## Enable GUI if desired
     if $input(GUI) {
         makeWindow
         tkwait window .top
     }
-    
+
     ## Retrieve calculated/specified value for the splitting connector dimension
     set midDim $input(sDim)
-    
+
     if {[expr (($N1+1)/2+($N2+1)/2+$midDim)%2]==0} {incr midDim}
     set midCon1 [createTwoPt $pt1 $pt2 $midDim]
-    
+
     set list1 [getAdjCons $node1 [concat $tmp_cons1 $tmp_cons2]]
     $midCon1 alignOrientation $list1
     lappend list1 [list $midCon1]
-    
+
     ## Attempt splitting operation
     set temp [splitTri $list1]
 
@@ -343,23 +343,23 @@ proc splitSemiCircle { cons } {
         set dims [lindex $temp 0]
         set pts [lindex $temp 1]
         set splCons [lindex $temp 2]
-        
+
         set doms1 [createTopo $pts $dims $splCons]
-    } elseif {$temp == -1} { 
+    } elseif {$temp == -1} {
         puts "Unable to match dimensions, check edge dimensions."
         puts "Sum of three connector dimensions must be odd."
-        exit 
+        exit
     } else {
         puts "Unable to match dimensions, check edge dimensions."
         puts "No edge may have a dimension longer than the sum of the other two."
     }
-    
+
     set midCon2 [createTwoPt $pt1 $pt2 $midDim]
-    
+
     set list2 [getAdjCons $node2  [concat $tmp_cons1 $tmp_cons2]]
     $midCon2 alignOrientation $list2
     lappend list2 [list $midCon2]
-    
+
     ## Attempt splitting operation
     set temp2 [splitTri $list2]
 
@@ -368,30 +368,30 @@ proc splitSemiCircle { cons } {
         set dims [lindex $temp2 0]
         set pts [lindex $temp2 1]
         set splCons [lindex $temp2 2]
-        
+
         set doms2 [createTopo $pts $dims $splCons]
-    } elseif {$temp2 == -1} { 
+    } elseif {$temp2 == -1} {
         puts "Unable to match dimensions, check edge dimensions."
         puts "Sum of three connector dimensions must be odd."
-        exit 
+        exit
     } else {
         puts "Unable to match dimensions, check edge dimensions."
         puts "No edge may have a dimension longer than the sum of the other two."
     }
-    
+
     set newDoms [concat $doms1 $doms2]
-    
-    if $input(Solve) { 
-        solve_All $newDoms 5 
-    } else { 
-        solve_All $newDoms 0 
+
+    if $input(Solve) {
+        solve_All $newDoms 5
+    } else {
+        solve_All $newDoms 0
     }
-    
+
     return
 }
 
 ###########################################################################
-## GUI 
+## GUI
 ###########################################################################
 ## Load TK
 if {$input(GUI)} {
@@ -419,7 +419,7 @@ if {$input(GUI)} {
     # dimension field validation
     proc validateDim { dim widget } {
       global w color input lowerBound upperBound
-      
+
       if { [string is integer -strict $dim] && $dim >= $lowerBound && $dim <= $upperBound } {
         $w($widget) configure -background $color(Valid)
       } else {
@@ -510,7 +510,7 @@ if {$input(GUI)} {
     # Build the user interface
     proc makeWindow { } {
       global w input cons
-      
+
       wm withdraw .
 
       # Ceate the widgets
@@ -526,7 +526,7 @@ if {$input(GUI)} {
       label $w(LabelSolve) -text "Run solver?" -padx 2 -anchor e
       checkbutton $w(EntrySolve) -variable input(Solve)
       $w(EntrySolve) configure -state disabled
-      
+
       button $w(ButtoncOH) -text "Create Topo" -command { destroy .top }
       $w(ButtoncOH) configure -state disabled
 
@@ -571,11 +571,11 @@ if {$input(GUI)} {
       # move keyboard focus to the first entry
       focus $w(ButtoncOH)
       raise .top
-      
+
       $w(EntryDimension) configure -state normal
       $w(EntrySolve) configure -state normal
       updateButtons
-      
+
     }
 }
 
@@ -590,7 +590,7 @@ set mask [pw::Display createSelectionMask -requireDomain {Unstructured} -require
 if { [catch {pw::Display getSelectedEntities -selectionmask $mask curSelection}] } {
     set picked [pw::Display selectEntities -description $text1 \
         -selectionmask $mask curSelection]
-    
+
     if {!$picked} {
         puts "Script aborted."
         exit
@@ -610,39 +610,39 @@ if {[llength $curSelection(Domains)]==1} {
         puts "Domain has multiple edges."
         exit
     }
-    
+
     set temp [$tempDom getEdge 1]
     set conCount [$temp getConnectorCount]
     if { $conCount != 2 } {
         puts "Domain edge has more than 2 connectors."
         exit
     }
-    
+
     set cons [list [$temp getConnector 1] [$temp getConnector 2]]
-    
+
     set domStatus [list [$tempDom getRenderAttribute LineMode]\
         [$tempDom getRenderAttribute FillMode]]
-    
+
     set newDoms [splitSemiCircle $cons]
-    
+
     pw::Entity delete $tempDom
     foreach dd $newDoms {
         $dd setRenderAttribute LineMode [lindex $domStatus 0]
         $dd setRenderAttribute FillMode [lindex $domStatus 1]
     }
-    
+
     exit
-    
+
 } elseif {[llength $curSelection(Connectors)]==2} {
     set bool [isLoop $curSelection(Connectors)]
-    
+
     if $bool {
         set cons $curSelection(Connectors)
         set newDoms [splitSemiCircle $curSelection(Connectors)]
     } else {
         puts "Connectors do not form closed loop."
     }
-    
+
     exit
 } else {
     puts "Please select either one unstructured domain or two connectors."
@@ -663,4 +663,3 @@ if {[llength $curSelection(Domains)]==1} {
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGES AND REGARDLESS OF THE
 # FAULT OR NEGLIGENCE OF POINTWISE.
 #
-
