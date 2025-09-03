@@ -45,14 +45,7 @@ class TestWingAnalysis(unittest.TestCase):
         cmd = ["python", "aero_run.py"]
         subprocess.check_call(mpiCmd + cmd + gridFlag)
         # drag polar
-        cmd = [
-            "python",
-            "aero_run.py",
-            "--task",
-            "polar",
-            "--output",
-            "output_drag_polar",
-        ]
+        cmd = ["python", "aero_run.py", "--task", "polar", "--output", "output_drag_polar"]
         subprocess.check_call(mpiCmd + cmd + gridFlag)
 
 

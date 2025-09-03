@@ -9,13 +9,7 @@ from mpi4py import MPI
 from pyoptsparse import Optimization, OPT
 from multipoint import multiPointSparse
 from pprint import pprint
-from SETUP import (
-    setup_aeroproblem,
-    setup_adflow,
-    setup_dvgeo,
-    setup_dvcon,
-    setup_idwarp,
-)
+from SETUP import setup_aeroproblem, setup_adflow, setup_dvgeo, setup_dvcon, setup_idwarp
 
 # ======================================================================
 # Set up I/O

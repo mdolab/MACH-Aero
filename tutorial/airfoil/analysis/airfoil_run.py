@@ -43,15 +43,7 @@ aeroOptions = {
 CFDSolver = ADFLOW(options=aeroOptions)
 
 # rst Create AeroProblem
-ap = AeroProblem(
-    name="airfoil",
-    mach=0.75,
-    altitude=10000,
-    alpha=1.5,
-    areaRef=1.0,
-    chordRef=1.0,
-    evalFuncs=["cl", "cd"],
-)
+ap = AeroProblem(name="airfoil", mach=0.75, altitude=10000, alpha=1.5, areaRef=1.0, chordRef=1.0, evalFuncs=["cl", "cd"])
 # rst Run ADflow
 if args.task == "analysis":
     # Solve

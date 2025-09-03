@@ -13,7 +13,7 @@ nmid = (npts + 1) // 2 + offsetTEindex
 # rst UpperLower
 def getupper(xtemp):
     myairfoil = np.ones(npts)
-    for i in range(offsetTEindex, nmid):
+    for i in range(offsetTEindex,nmid):
         myairfoil[i] = abs(airfoil[i, 0] - xtemp)
     myi = np.argmin(myairfoil)
     return airfoil[myi, 1]

@@ -15,8 +15,8 @@ In order to analyze a wing geometry with ADflow, we need to take the following s
     This can be done with any commercial CAD package, but it can also be done by lofting airfoil sections using the geometry surfacing engine built into *pygeo*, called **pyGeo**.
 
 **Generate a valid multiblock or overset mesh**
-    ADflow uses the CGNS mesh format. In practice, we create a surface mesh using Pointwise or ICEM and then extrude a volume mesh using pyHyp.
-    However, the volume mesh could also be created in Pointwise, ICEM, or any other meshing software.
+    ADflow uses the CGNS mesh format. In practice, we create a surface mesh using Pointwise or ICEM and then extrude a volume mesh using pyHyp. 
+    However, the volume mesh could also be created in Pointwise, ICEM, or any other meshing software. 
     Component volume meshes can be combined using cgnsUtilities.
 
 **Analyze the flow with ADflow**

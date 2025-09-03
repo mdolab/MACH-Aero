@@ -22,12 +22,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--output", type=str, default="output")
 parser.add_argument("--opt", type=str, default="SLSQP", choices=["SLSQP", "SNOPT"])
 parser.add_argument("--gridFile", type=str, default="n0012.cgns")
-parser.add_argument(
-    "--optOptions",
-    type=ast.literal_eval,
-    default={},
-    help="additional optimizer options to be added",
-)
+parser.add_argument("--optOptions", type=ast.literal_eval, default={}, help="additional optimizer options to be added")
 args = parser.parse_args()
 # rst args (end)
 
@@ -116,15 +111,7 @@ CFDSolver.addSlices("z", pos, sliceType="absolute")
 #         Set up flow conditions with AeroProblem
 # ======================================================================
 # rst aeroproblem (beg)
-ap = AeroProblem(
-    name="fc",
-    alpha=alpha,
-    mach=mach,
-    altitude=alt,
-    areaRef=1.0,
-    chordRef=1.0,
-    evalFuncs=["cl", "cd"],
-)
+ap = AeroProblem(name="fc", alpha=alpha, mach=mach, altitude=alt, areaRef=1.0, chordRef=1.0, evalFuncs=["cl", "cd"])
 # Add angle of attack variable
 ap.addDV("alpha", value=alpha, lower=0, upper=10.0, scale=1.0)
 # rst aeroproblem (end)

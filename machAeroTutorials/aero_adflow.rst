@@ -67,7 +67,7 @@ A basic overview of the options used in this example are provided here.
 `I/O Parameters`
     We include the mesh file, the output directory, and the variables that will be printed as the solver runs.
 
-`Physics Parameters`
+`Physics Parameters` 
     We set the equation type that ADflow will solve which in this case will be RANS.
 
 `Solver Parameters`
@@ -128,7 +128,7 @@ The only difference is that the analysis is now done within a loop.
 
 We start by creating a list of the angle of attack values that we wish to analyze.
 In this case we use the ``numpy.linspace`` function to create a uniformly-spaced array with six whole number entries from 0 -- 5.
-We also create the empty lists for storing the lift and drag coefficients.
+We also create the empty lists for storing the lift and drag coefficients. 
 The lift and drag data will be appended to these lists as the flow solutions are completed.
 
 
@@ -154,7 +154,7 @@ We also update the alpha parameter, which is the attribute of the AeroProblem th
     :start-after: # rst Run ADflow polar
     :end-before: # rst Print polar
 
-Running the solver is identical to the simple single point example.
+Running the solver is identical to the simple single point example. 
 We simply call the ``CFDSolver`` instance with the current AeroProblem.
 This causes the CFD solver to be updated with the values of that AeroProblem prior to solving the flow.
 We then use the same ``EvalFunctions`` call to integrate the surface forces to get the lift and drag coefficients.

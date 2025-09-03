@@ -2,7 +2,7 @@ How to Contribute to MACH-Aero
 ==============================
 The codes in the MACH-Aero framework are open-source tools, so we welcome users to submit additions or fixes to improve them for everyone.
 This page contains general information on how to contribute to MACH-Aero codes.
-If a repo has additional instructions they will be in that repo's documentation, which can be found from its GitHub page.
+If a repo has additional instructions they will be in that repo's documentation, which can be found from its GitHub page. 
 
 Issues
 ------
@@ -12,7 +12,7 @@ If you are comfortable fixing the issue, please do so and submit a pull request 
 
 Coding style
 ------------
-We use formatters specific to different programming languages to increase readability and standardization of code.
+We use formatters specific to different programming languages to increase readability and standardization of code. 
 We run continuous integration with these tools on all pull requests submitted.
 For an easier workflow, we recommend integrating these tools with your code editor.
 
@@ -54,10 +54,10 @@ If there are any PEP-8 violations, ``flake8`` will print out the nature of the v
 Fortran
 ^^^^^^^
 
-We use `fprettify <https://github.com/pseewald/fprettify>`_ for formatting Fortran codes.
+We use `fprettify <https://github.com/pseewald/fprettify>`_ for formatting Fortran codes. 
 The version we use can be installed with:
 
-.. prompt:: bash
+.. prompt:: bash 
 
     pip install fprettify==0.3.7
 
@@ -72,7 +72,7 @@ If there isn't a repo-specific config, `this global fprettify config <https://gi
 C/C++
 ^^^^^
 
-We use `clang-format <https://clang.llvm.org/>`_ to format C/C++ codes.
+We use `clang-format <https://clang.llvm.org/>`_ to format C/C++ codes. 
 Please install **version 10** following its documentation.
 
 The configuration file for ``clang-format`` is at the root of the respective repository.
@@ -100,7 +100,7 @@ To install the MDO Lab theme and its dependencies, type:
 
     pip install sphinx-mdolab-theme
 
-To build documentation locally, go to the ``doc`` folder and type:
+To build documentation locally, go to the ``doc`` folder and type: 
 
 .. prompt:: bash
 
@@ -116,12 +116,12 @@ All the existing tests can be found under the ``tests`` folder.
 Running tests requires additional packages in some repos.
 To install these, go to the root of that repo and type:
 
-.. prompt:: bash
+.. prompt:: bash 
 
     pip install .[testing]
 
-We use `Codecov <https://about.codecov.io/>`_ to monitor the percentage of the code covered by tests.
-Coverage can be difficult to determine locally, so it is recommended to look for the check automatically run in the pull request.
+We use `Codecov <https://about.codecov.io/>`_ to monitor the percentage of the code covered by tests. 
+Coverage can be difficult to determine locally, so it is recommended to look for the check automatically run in the pull request. 
 
 .. warning::
     For a PR to be accepted, all existing tests must pass and new code should meet coverage requirements.

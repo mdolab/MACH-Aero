@@ -53,7 +53,7 @@ mark
 patbeg    i  wing_n_sections
     set cst_u_this cst_u[i,1];cst_u[i,2];cst_u[i,3];cst_u[i,4];cst_u[i,5];cst_u[i,6];cst_u[i,7]
     set cst_l_this cst_l[i,1];cst_l[i,2];cst_l[i,3];cst_l[i,4];cst_l[i,5];cst_l[i,6];cst_l[i,7]
-
+    
     set pct_along (i-1)/(wing_n_sections-1)
     set local_chord wing_chord_root*(1-pct_along*(1-wing_taper))
     set cst_ztail_this cst_te_clip/2/local_chord;-cst_te_clip/2/local_chord
@@ -61,13 +61,13 @@ patbeg    i  wing_n_sections
     set local_bl half_span*pct_along+wing_root_z
     set section_twist wing_inc+pct_along*wing_twist+twist_local[i]
     set le_x  wing_root_x+pct_along*half_span*tand(wing_sweep)
-    set le_y  wing_root_y+pct_along*half_span*tand(wing_dihedral)+sind(section_twist)*local_chord/4
+    set le_y  wing_root_y+pct_along*half_span*tand(wing_dihedral)+sind(section_twist)*local_chord/4 
 
     udparg    kulfan    class     class
     udparg    kulfan    ztail     cst_ztail_this
     udparg    kulfan    aupper  cst_u_this
     udprim    kulfan    alower   cst_l_this
-    rotatez -(section_twist) 0 0
+    rotatez -(section_twist) 0 0 
     scale     local_chord
     translate le_x le_y local_bl
 patend

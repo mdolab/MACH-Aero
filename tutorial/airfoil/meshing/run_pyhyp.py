@@ -1,4 +1,5 @@
 # rst Import
+import numpy as np
 from pyhyp import pyHyp
 
 # rst GenOptions

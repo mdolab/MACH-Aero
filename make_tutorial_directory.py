@@ -5,7 +5,6 @@ the tutorial, creating each python script from scratch as recommended in the
 introduction to the tutorial. Basically, this script saves you some time making
 a bunch of directories.
 """
-
 import os
 import argparse
 

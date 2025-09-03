@@ -98,8 +98,8 @@ tolerances for Pointwise
 3. The ``Node`` property should be ``1e-4``. The value of ``Connector`` should automatically be ``1e-4`` as well
 4. ``OK``
 
-.. note:: The defaults seen here should be fine for this project and Pointwise usually automatically selects the correct Model Size and tolerances based on the geometery you import.
-    It may however be necessary to edit these in case Pointwise isn't interpreting the CAD geometry defintion correctly.
+.. note:: The defaults seen here should be fine for this project and Pointwise usually automatically selects the correct Model Size and tolerances based on the geometery you import. 
+    It may however be necessary to edit these in case Pointwise isn't interpreting the CAD geometry defintion correctly. 
 
 Now we have to choose the proper solver. In my case it is ``CGNS`` with ``adf`` support. If you have compiled the
 MACH-Framework with ``hdf5`` support, you can skip the last step.
@@ -117,12 +117,12 @@ Now we can import the ``.igs`` file we created in the previous step.
 1. Click ``File`` -> ``Import`` -> ``Database``
 2. Select your ``.igs`` File -> ``open``
 3. Make sure ``Units`` and ``From File`` is selected
-4. Also make sure that ``Import Layer`` and ``Use Specified Layer`` are selected
+4. Also make sure that ``Import Layer`` and ``Use Specified Layer`` are selected 
 5. Make sure that the ``Layer Number`` is 0
 6. Click ``OK``
 7. You may receive a warning that some entities could not be converted. Just ignore it and click ``YES``
 
-.. warning:: In Pointwise, some check boxes like ``Import Layer`` in the above step are only there to hide and show further options.
+.. warning:: In Pointwise, some check boxes like ``Import Layer`` in the above step are only there to hide and show further options. 
     Unchecking them will not uncheck the check boxes the hide/show so be very careful.
 
 After those steps, the window should look like this (you should probably save at this point):
@@ -150,7 +150,7 @@ Quilt
     Comes below Model in the heirarchy.
     See `this video <https://www.youtube.com/watch?v=tcgCRyC9-90>`_  for more details.
 Spacing Constraint
-    This controls how ``nodes`` lay on a ``Connector``.
+    This controls how ``nodes`` lay on a ``Connector``. 
     Further down the line, the ``Connector`` controls how the ``nodes`` lay in a ``Domain`` or ``Block``
 
 
@@ -176,7 +176,7 @@ We will first assemble our wing into a watertight model composed of several quil
 We will then combine the two quilts composing the tip cap into a single quilt to make meshing easier.
 
 1. Rotate your view as necessary to get a good view of each surface of the wing, then click and drag to select all the database entities.
-2. Click on the ``Rainbow Colors`` button with the the whole database selected to make each database surface a unique color.
+2. Click on the ``Rainbow Colors`` button with the the whole database selected to make each database surface a unique color. 
    Note that this button assigns colors randomly so your wing will probably look different than the one shown here.
 3. With the whole database selected, click on ``Create``, ``Assemble``, and then ``models``.
 
@@ -201,8 +201,8 @@ We are now going to assemble these two surfaces into a single quilt.
 
 1. Click on an empty space in the main view to unselect any selected database entities.
 2. Rotate your view with pressing ``ctrl`` and your ``right mouse button`` while moving your mouse until you have a good view of the tip of the wing (or use the view presets)
-3. Select the two surfaces comprising the tip cap by clicking on each of them while holding ``ctrl``.
-   You may need to use the spacebar while hovering over the tip cap to change your select to the quilts instead of the model.
+3. Select the two surfaces comprising the tip cap by clicking on each of them while holding ``ctrl``. 
+   You may need to use the spacebar while hovering over the tip cap to change your select to the quilts instead of the model. 
    Alternatively you can just select the quilts from the list.
 4. With the tip cap quilts selected, click on ``Create``, ``Assemble``, and then ``quilts``.
 5. In the side panel that comes up you can select ``Use Defaults`` for both the ``Angle`` and ``Boudary Angle``.
@@ -256,19 +256,19 @@ These connectors are indicated as such in the mesh plan.
 .. figure:: images/aero_pointwise_mesh_root.svg
     :width: 1000
     :align: center
-
+    
     Root view
 
 .. figure:: images/aero_pointwise_mesh_te.svg
     :width: 1000
     :align: center
-
+    
     Trailing-edge view
 
 .. figure:: images/aero_pointwise_mesh_tip.svg
     :width: 1000
     :align: center
-
+    
     Tip cap view (note the O-grid topology)
 
 
@@ -465,10 +465,10 @@ First, according to our meshing plan, we will need to split the upper and lower 
     :align: center
 
 
-Now we are ready to create our domains.
+Now we are ready to create our domains. 
 Carefully examine the mesh plan for the tip cap again and make sure you understand the *O-grid* topology we will be using.
 
-1. Click on ``Layers`` and then click the check box next to the ``Geo`` layer to show it.
+1. Click on ``Layers`` and then click the check box next to the ``Geo`` layer to show it. 
 Be careful not to accidentally make it active.
 2. Make sure ``Show Database`` is checked in the View panel to see the geometery as shown below.
 
@@ -598,7 +598,7 @@ If the approach above is giving you trouble (will become apparent down the road 
 
 
 
-Meshing the tip cap - Both approaches continued
+Meshing the tip cap - Both approaches continued 
 +++++++++++++++++++++++++++++
 .. note:: This section continues from the end of either Approach 1 or 2
 We are now going to connect the two topologies at the leading and trailing edges to create the *O-grid* on the tip cap.

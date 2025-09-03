@@ -19,88 +19,88 @@
 	% Use a matrix to line up all the nodes
 	\matrix[MatrixSetup]{
 		% row 1
-		&
-		\node [DataIO] (Input) {2: Baseline design};
-		&
-		&
-		&
+		& 
+		\node [DataIO] (Input) {2: Baseline design}; 
+		& 
 		&
 		&
+		& 
+		& 
 		&
 		\\
 		% row 2
-		\node [Function] (preProcess) {1: Pre-processing};
+		\node [Function] (preProcess) {1: Pre-processing}; 
+		& 
+		&
+		\node [DataIO] (preProcess-pyGeo) {\FixedWidthText{3.cm}{3: FFD points}};  
 		&
 		&
-		\node [DataIO] (preProcess-pyGeo) {\FixedWidthText{3.cm}{3: FFD points}};
-		&
-		&
-		\node [DataIO] (preProcess-IDWarp) {4: Volume mesh};
-		&
-		&
+		\node [DataIO] (preProcess-IDWarp) {4: Volume mesh}; 
+		& 
+		& 
 		&
 		\\
 		% row 3
-		\node [DataIO] (Output) {8: Optimized design};
+		\node [DataIO] (Output) {8: Optimized design}; 
+		& 
+		\node [Optimization] (Opt) {\MultilineComponent{2.0cm}{2, 7$\rightarrow$3:}{Optimizer}}; 
 		&
-		\node [Optimization] (Opt) {\MultilineComponent{2.0cm}{2, 7$\rightarrow$3:}{Optimizer}};
-		&
-		\node [DataIO] (Opt-pyGeo) {\FixedWidthText{3.cm}{3: Updated FFD displacement}};
-		&
-		&
+		\node [DataIO] (Opt-pyGeo) {\FixedWidthText{3.cm}{3: Updated FFD displacement}}; 
 		&
 		&
+		& 
 		&
-		\\
+		&
+		\\ 
 		% row 4
+		& 
+		\node [DataIO] (pyGeo-Opt) {\FixedWidthText{2.5cm}{7: Geometric constraints \& their derivatives}}; 
+		&  
+		\node [Function] (pyGeo) {\FixedWidthText{3.cm}{3: Geometry parameterization}}; 
 		&
-		\node [DataIO] (pyGeo-Opt) {\FixedWidthText{2.5cm}{7: Geometric constraints \& their derivatives}};
 		&
-		\node [Function] (pyGeo) {\FixedWidthText{3.cm}{3: Geometry parameterization}};
-		&
-		&
-		\node [DataIO] (pyGeo-IDWarp) {\FixedWidthText{3.cm}{4: Updated design surface coordinates}};
-		&
+		\node [DataIO] (pyGeo-IDWarp) {\FixedWidthText{3.cm}{4: Updated design surface coordinates}}; 
+		& 
 		&
 		&
 		\\
 		% row 5
+		& 
+		& 
+		& 
 		&
+		\node [Function] (IDWarp) {\FixedWidthText{3.cm}{4: Volume mesh deformation}}; 
+		& 
 		&
-		&
-		&
-		\node [Function] (IDWarp) {\FixedWidthText{3.cm}{4: Volume mesh deformation}};
-		&
-		&
-		\node [DataIO] (IDWarp-flowSolver) {5: Updated mesh};
+		\node [DataIO] (IDWarp-flowSolver) {5: Updated mesh}; 
 		&
 
-		\\
+		\\ 
 		% row 6
+		& 
+		\node [DataIO] (flowSolver-Opt) {\FixedWidthText{2.5cm}{7: Values of objectives \& constraints}}; 
+		& 
+		& 
 		&
-		\node [DataIO] (flowSolver-Opt) {\FixedWidthText{2.5cm}{7: Values of objectives \& constraints}};
+		& 
+		& 
+		\node [Function_i] (flowSolver) {5: Flow solvers}; 
 		&
-		&
-		&
-		&
-		&
-		\node [Function_i] (flowSolver) {5: Flow solvers};
-		&
-		\node [DataIO] (flowSolver-adjointSolver) {6: State variables};
+		\node [DataIO] (flowSolver-adjointSolver) {6: State variables}; 
 		\\
 		% row 7
+		& 
+		\node [DataIO] (adjointSolver-Opt) {\FixedWidthText{2.5cm}{7: Derivatives of objectives \& constraints}}; 
+		& 
 		&
-		\node [DataIO] (adjointSolver-Opt) {\FixedWidthText{2.5cm}{7: Derivatives of objectives \& constraints}};
+		& 
+		& 
+		& 
 		&
-		&
-		&
-		&
-		&
-		&
-		\node [Function_i] (adjointSolver) {6: Adjoint solvers};
+		\node [Function_i] (adjointSolver) {6: Adjoint solvers}; 
 		\\
 	};
-
+	
 	% Create a chain to outline process
 	{ [start chain=process]
 		\begin{pgfonlayer}{process}
@@ -121,10 +121,10 @@
 		\chainin (Output)	  [join=by ProcessTipA];
 		\end{pgfonlayer}
 	}
-
+	
 	\begin{pgfonlayer}{data}
 		% Vertical Edges
-		\path
+		\path 
 		(Input)        edge [DataLine] (adjointSolver-Opt)
 		(preProcess-pyGeo)    edge [DataLine] (pyGeo)
 		(preProcess-IDWarp) edge [DataLine] (IDWarp)
@@ -138,7 +138,7 @@
         (flowSolver-Opt)        edge [DataLine] (flowSolver-adjointSolver)
 		(adjointSolver)        edge [DataLine] (adjointSolver-Opt);
 	\end{pgfonlayer}
-
+		
 \end{tikzpicture}
 
 \end{document}

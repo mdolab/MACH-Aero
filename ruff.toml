@@ -1,2 +1,0 @@
-extend = "~/.config/ruff/ruff.toml"
-extend-exclude = [ "conf.py" ]
