@@ -70,7 +70,7 @@ Since our blunt trailing edge is 17 points long we will split at an offset of in
 
 .. figure::
     images/airfoil_ffd_split.png
-    :width: 400
+    :width: 600
     :align: center
 
     Clarification on why we split at an offset for the blunt TE airfoil
