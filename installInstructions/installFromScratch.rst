@@ -1,4 +1,4 @@
-.. Instructions on how to set up a computer from scratch and be able to 
+.. Instructions on how to set up a computer from scratch and be able to
    run the aero_runs/aero_opt/as_runs/as_opt
 
 .. _installFromScratch:
@@ -17,7 +17,7 @@ The following list what steps are needed. The instructions are divided into thre
 - `MDO Lab packages`_
 - `Standard MDO Lab Build Procedure`_
 
-Since MDO Lab packages depend heavily on third party tools and packages, it is generally good to start by compiling and testing them. 
+Since MDO Lab packages depend heavily on third party tools and packages, it is generally good to start by compiling and testing them.
 Finally, an example ``.bashrc`` file is shown.
 
 - `Example .bashrc`_
@@ -46,7 +46,7 @@ Optional packages are:
 
 #. `pyHyp <https://github.com/mdolab/pyhyp>`_
 #. `multipoint <https://github.com/mdolab/multipoint>`_
-#. `cgnsUtilities <https://github.com/mdolab/cgnsutilities>`_ 
+#. `cgnsUtilities <https://github.com/mdolab/cgnsutilities>`_
 #. `DAFoam <https://github.com/mdolab/dafoam>`_
 
 Standard MDO Lab Build Procedure
@@ -58,7 +58,7 @@ Compilation
 ~~~~~~~~~~~
 To start, find a configuration file close to your current setup in
 
-:: 
+::
 
     config/defaults
 
@@ -73,8 +73,8 @@ The ``config.LINUX_INTEL.mk`` versions are usually used on HPC systems, in conju
 Our codes can be successfully compiled on Linux with either ``ifort`` or ``gfortran``.
 
 .. note::
-   For Intel builds, the ``config.mk`` files are potentially out of date. 
-   With new intel compilers, the actual mpi-wrapped compilers changed names. 
+   For Intel builds, the ``config.mk`` files are potentially out of date.
+   With new intel compilers, the actual mpi-wrapped compilers changed names.
    Check out the compilers_, and modify the ``FF90`` and ``CC`` options in ``config.mk`` files as needed.
 
 .. _compilers: https://software.intel.com/en-us/mpi-developer-reference-linux-compilation-commands

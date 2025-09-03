@@ -14,11 +14,11 @@ To start, we will go through an example of how to perform an aerodynamic analysi
 In order to analyze an airfoil geometry with ADflow, we need to take the following steps:
 
 **Obtain a set of airfoil coordinates and preprocess them for meshing**
-    The MACH-Aero framework provides the necessary tools to process and manipulate airfoil coordinates. 
+    The MACH-Aero framework provides the necessary tools to process and manipulate airfoil coordinates.
     However, the coordinates themselves will need to be sourced, provided, or generated.
 
 **Generate a valid structured mesh**
-    ADflow uses the CGNS mesh format. 
+    ADflow uses the CGNS mesh format.
     For airfoils, we can simply extrude airfoil coodinates using **pyHyp** to obtain a structured volume mesh.
 
 **Analyze the flow with ADflow**

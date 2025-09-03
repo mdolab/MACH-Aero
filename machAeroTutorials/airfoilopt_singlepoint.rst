@@ -25,13 +25,13 @@ The shape variables are controlled by the FFD points specified in the FFD file.
 Files
 =====
 
-Navigate to the directory ``airfoilopt/singlepoint`` in your tutorial folder. 
+Navigate to the directory ``airfoilopt/singlepoint`` in your tutorial folder.
 Copy the FFD file, ``ffd.xyz``, and the CGNS mesh file, ``n0012.cgns``, generated in the previous tutorial, into the directory:
 
 .. prompt:: bash
 
-    cp ../../airfoil/meshing/n0012.cgns . 
-    cp ../ffd/ffd.xyz . 
+    cp ../../airfoil/meshing/n0012.cgns .
+    cp ../ffd/ffd.xyz .
 
 Create the following empty runscript in the current directory:
 
@@ -69,8 +69,8 @@ Specifying parameters for the optimization
     :start-after: # rst parameters (beg)
     :end-before: # rst parameters (end)
 
-Several conditions for the optimization are specified at the beginning of the script. 
-These include the coefficient of lift constraint value, Mach number, and altitude to indicate flow conditions. 
+Several conditions for the optimization are specified at the beginning of the script.
+These include the coefficient of lift constraint value, Mach number, and altitude to indicate flow conditions.
 The angle of attack serves as the initial value for the optimization and should not affect the optimized result.
 
 Creating processor sets
@@ -79,17 +79,17 @@ Creating processor sets
     :start-after: # rst multipoint (beg)
     :end-before: # rst multipoint (end)
 
-Allocating sets of processors for different analyses can be helpful for multiple design points, but this is a single-point optimization, so only one point is added. 
+Allocating sets of processors for different analyses can be helpful for multiple design points, but this is a single-point optimization, so only one point is added.
 
 ADflow options
------------------------ 
+-----------------------
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
     :start-after: # rst adflow (beg)
     :end-before: # rst adflow (end)
 
 In this example, we have configured far more options for ADflow than we did in the previous example.
 For optimziation problems, the solver needs to be tuned for high performance and robustness.
-As it is, the options specified above allow for a good convergence of NACA0012 airfoil analysis, but may not converge for other airfoils. 
+As it is, the options specified above allow for a good convergence of NACA0012 airfoil analysis, but may not converge for other airfoils.
 We won't go over all the options and why we selected them here but will refer you to the ADflow documentation.
 However some useful options to adjust are:
 
