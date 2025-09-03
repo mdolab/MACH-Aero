@@ -6,13 +6,14 @@ import numpy as np
 # rst Load
 airfoil = np.loadtxt("n0012_processed.dat")
 npts = airfoil.shape[0]
-nmid = (npts + 1) // 2
+offsetTEindex = -8
+nmid = (npts + 1) // 2 + offsetTEindex
 
 
 # rst UpperLower
 def getupper(xtemp):
     myairfoil = np.ones(npts)
-    for i in range(nmid):
+    for i in range(offsetTEindex,nmid):
         myairfoil[i] = abs(airfoil[i, 0] - xtemp)
     myi = np.argmin(myairfoil)
     return airfoil[myi, 1]
@@ -20,7 +21,7 @@ def getupper(xtemp):
 
 def getlower(xtemp):
     myairfoil = np.ones(npts)
-    for i in range(nmid, npts):
+    for i in range(nmid, npts + offsetTEindex):
         myairfoil[i] = abs(airfoil[i, 0] - xtemp)
     myi = np.argmin(myairfoil)
     return airfoil[myi, 1]

@@ -59,10 +59,21 @@ Load Airfoil
     :end-before: # rst UpperLower
 
 The following two functions are used to get the upper and lower points of the airfoil. 
+It should be noted that in airfoil geometry processing step in the previous tutorial we created a blunt trailing for the NACA0012.
+As result, we can't just simply divide the airfoil's point set down the middle to get the upper and lower surfaces.
+Index 0 starts on the upper surface trailing edge however we also want the upper half of the blunt trailing edge to be included in our upper surface.
+Since our blunt trailing edge is 17 points long we will split at an offset of index -8.
 
 .. literalinclude:: ../tutorial/airfoilopt/ffd/run_ffd.py
     :start-after: # rst UpperLower
     :end-before: # rst FFDBox1
+
+.. figure::
+    images/airfoil_ffd_split.png
+    :width: 400
+    :align: center
+
+    Clarification on why we split at an offset for the blunt TE airfoil
 
 
 FFD Box Creation
