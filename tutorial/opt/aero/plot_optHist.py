@@ -19,7 +19,14 @@ def main(args):
         axes[4].plot("nMajor", "feasibility", data=hist_values, label="Feasibility")
         axes[4].set_yscale("log")
         axes[4].axhline(1e-4, linestyle="--", color="gray")
-        axes[4].annotate("Convergence Criteria", xy=(3, 9e-5), ha="left", va="top", fontsize=24, color="gray")
+        axes[4].annotate(
+            "Convergence Criteria",
+            xy=(3, 9e-5),
+            ha="left",
+            va="top",
+            fontsize=24,
+            color="gray",
+        )
         axes[4].legend(fontsize=20, labelcolor="linecolor", loc="upper right", frameon=False)
         axes[4].autoscale(enable=True, tight=True)
 

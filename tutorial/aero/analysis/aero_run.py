@@ -48,7 +48,15 @@ CFDSolver.addLiftDistribution(150, "z")
 CFDSolver.addSlices("z", np.linspace(0.1, 14, 10))
 
 # rst Create AeroProblem
-ap = AeroProblem(name="wing", mach=0.8, altitude=10000, alpha=1.5, areaRef=45.5, chordRef=3.25, evalFuncs=["cl", "cd"])
+ap = AeroProblem(
+    name="wing",
+    mach=0.8,
+    altitude=10000,
+    alpha=1.5,
+    areaRef=45.5,
+    chordRef=3.25,
+    evalFuncs=["cl", "cd"],
+)
 # rst Run ADflow
 if args.task == "analysis":
     # Solve

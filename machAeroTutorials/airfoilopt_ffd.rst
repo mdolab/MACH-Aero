@@ -27,22 +27,22 @@ The actual implementation of the FFD method is housed in the pygeo repository.
 The specific class to look for is :doc:`DVGeometry <pygeo:DVGeometry>`.
 Navigate to the DVGeometry repository to explore its capabilities
 Before diving into the parametrization, however, we need to generate an FFD, which is basically a 3D grid in the PLOT3D format.
-This file contains the coordinates of the FFD points around the airfoil. 
-These are control points that are fitted to the airfoil using B-splines, which are used to deform the airfoil. 
+This file contains the coordinates of the FFD points around the airfoil.
+These are control points that are fitted to the airfoil using B-splines, which are used to deform the airfoil.
 
 Files
 ======================
 
-The coordinates for the NACA0012 airfoil that we processed in the last tutorial are in the file ``n0012_processed.dat``. 
+The coordinates for the NACA0012 airfoil that we processed in the last tutorial are in the file ``n0012_processed.dat``.
 
-Navigate to the directory ``airfoilopt/ffd`` in your tutorial folder. 
+Navigate to the directory ``airfoilopt/ffd`` in your tutorial folder.
 Copy the airfoil data from ``airfoil/geometry``:
 
 .. prompt:: bash
 
-    cp ../../airfoil/geometry/n0012_processed.dat . 
+    cp ../../airfoil/geometry/n0012_processed.dat .
 
-Create the following empty runscript in the current directory. 
+Create the following empty runscript in the current directory.
 
 - ``run_ffd.py``
 
@@ -58,7 +58,7 @@ Load Airfoil
     :start-after: # rst Load
     :end-before: # rst UpperLower
 
-The following two functions are used to get the upper and lower points of the airfoil. 
+The following two functions are used to get the upper and lower points of the airfoil.
 It should be noted that in airfoil geometry processing step in the previous tutorial we created a blunt trailing for the NACA0012.
 As result, we can't just simply divide the airfoil's point set down the middle to get the upper and lower surfaces.
 Index 0 starts on the upper surface trailing edge however we also want the upper half of the blunt trailing edge to be included in our upper surface.
@@ -79,7 +79,7 @@ Since our blunt trailing edge is 17 points long we will split at an offset of in
 FFD Box Creation
 ================
 
-The FFD box can now be set up. 
+The FFD box can now be set up.
 
 .. literalinclude:: ../tutorial/airfoilopt/ffd/run_ffd.py
     :start-after: # rst FFDBox1
@@ -91,7 +91,7 @@ We pre-allocate an array of generic size (a,b,c,3) to set up an empty FFD box.
 In this example, a=nffd (number of chordwise sections), b=c=2 (number of spanwise and thickness-wise sections respectively) and the final 3 is "fixed" as we are using 3D coordinates for each point.
 An empty FFD box is created.
 ``xmargin`` and ``ymargin`` specify the closest distance from the airfoil to place the FFD box.
-``xslice``, ``yupper``, and ``ylower`` store the x- and y- coordinates of the control points for each slice along the chord, taking into account the margins from the airfoil. 
+``xslice``, ``yupper``, and ``ylower`` store the x- and y- coordinates of the control points for each slice along the chord, taking into account the margins from the airfoil.
 
 
 
@@ -101,7 +101,7 @@ An empty FFD box is created.
 
 
 The x- and y- coordinates are transferred to the ``FFDbox`` variable.
-Since the airfoil slices are the same along the z-direction, the x- and y- coordinates are copied over. 
+Since the airfoil slices are the same along the z-direction, the x- and y- coordinates are copied over.
 The z-coordinates are updated to 0 and 1.
 
 

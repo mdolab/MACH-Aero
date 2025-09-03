@@ -19,7 +19,10 @@ level = "L3"
 #         adflow_util options
 # ======================================================================
 # rst Options (beg)
-options = {"name": "ONERA_M6_%s" % (level), "surfaceFamilyGroups": {"wall": ["near_wing", "near_tip"]}}
+options = {
+    "name": "ONERA_M6_%s" % (level),
+    "surfaceFamilyGroups": {"wall": ["near_wing", "near_tip"]},
+}
 # rst Options (end)
 
 

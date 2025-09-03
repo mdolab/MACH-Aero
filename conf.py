@@ -15,7 +15,9 @@ repos = [
     "multipoint",
     "pyspline",
 ]
-intersphinx_mapping = {r: (f"https://mdolab-{r}.readthedocs-hosted.com/en/latest", None) for r in repos}
+intersphinx_mapping = {
+    r: (f"https://mdolab-{r}.readthedocs-hosted.com/en/latest", None) for r in repos
+}
 
 # bibtex
 bibtex_bibfiles = [

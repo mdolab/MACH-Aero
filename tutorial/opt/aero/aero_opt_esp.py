@@ -21,7 +21,12 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--output", type=str, default="output")
 parser.add_argument("--opt", type=str, default="IPOPT", choices=["SLSQP", "IPOPT", "SNOPT"])
 parser.add_argument("--gridFile", type=str, default="wing_vol.cgns")
-parser.add_argument("--optOptions", type=ast.literal_eval, default={}, help="additional optimizer options to be added")
+parser.add_argument(
+    "--optOptions",
+    type=ast.literal_eval,
+    default={},
+    help="additional optimizer options to be added",
+)
 args = parser.parse_args()
 # rst args (end)
 # ======================================================================
@@ -75,7 +80,15 @@ CFDSolver.addLiftDistribution(200, "z")
 #         Set up flow conditions with AeroProblem
 # ======================================================================
 # rst aeroproblem (beg)
-ap = AeroProblem(name="fc", alpha=1.5, mach=0.8, altitude=10000, areaRef=45.5, chordRef=3.25, evalFuncs=["cl", "cd"])
+ap = AeroProblem(
+    name="fc",
+    alpha=1.5,
+    mach=0.8,
+    altitude=10000,
+    areaRef=45.5,
+    chordRef=3.25,
+    evalFuncs=["cl", "cd"],
+)
 
 # Add angle of attack variable
 ap.addDV("alpha", value=1.5, lower=0, upper=10.0, scale=0.1)
@@ -87,10 +100,27 @@ ap.addDV("alpha", value=1.5, lower=0, upper=10.0, scale=0.1)
 # Create DVGeometry object
 DVGeo = DVGeometryESP("wing.csm", suppress_stdout=True, exclude_edge_projections=True)
 DVGeo.addVariable(
-    "twist_local", cols=[2, 3, 4, 5, 6, 7, 8], lower=-10 * np.ones(7), upper=10 * np.ones(7), scale=0.1, dh=0.0001
+    "twist_local",
+    cols=[2, 3, 4, 5, 6, 7, 8],
+    lower=-10 * np.ones(7),
+    upper=10 * np.ones(7),
+    scale=0.1,
+    dh=0.0001,
 )
-DVGeo.addVariable("cst_u", lower=0.0 * np.ones(8 * 7), upper=1.0 * np.ones(8 * 7), scale=1.0, dh=0.0001)
-DVGeo.addVariable("cst_l", lower=-1.0 * np.ones(8 * 7), upper=0.2 * np.ones(8 * 7), scale=1.0, dh=0.0001)
+DVGeo.addVariable(
+    "cst_u",
+    lower=0.0 * np.ones(8 * 7),
+    upper=1.0 * np.ones(8 * 7),
+    scale=1.0,
+    dh=0.0001,
+)
+DVGeo.addVariable(
+    "cst_l",
+    lower=-1.0 * np.ones(8 * 7),
+    upper=0.2 * np.ones(8 * 7),
+    scale=1.0,
+    dh=0.0001,
+)
 
 
 # Add DVGeo object to CFD solver

@@ -208,6 +208,3 @@ ADflow lies right in the middle:
     :align: center
 
     Grid Convergence of ADflow in comparison to various other solvers.
-
-
-

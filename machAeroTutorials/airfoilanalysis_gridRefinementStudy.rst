@@ -59,7 +59,7 @@ Approaches to Grid Refinement
 
 There are two methods we use for performing grid refinement:
 
-#. coarsening the volume mesh or 
+#. coarsening the volume mesh or
 #. coarsening the surface mesh and extruding the family of surface meshes.
 
 We discuss the pros and cons of each method and underlying theory;

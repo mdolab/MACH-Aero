@@ -19,7 +19,12 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--output", type=str, default="output")
 parser.add_argument("--opt", type=str, default="SLSQP", choices=["SLSQP", "SNOPT"])
 parser.add_argument("--gridFile", type=str, default="../../airfoil/meshing/n0012.cgns")
-parser.add_argument("--optOptions", type=ast.literal_eval, default={}, help="additional optimizer options to be added")
+parser.add_argument(
+    "--optOptions",
+    type=ast.literal_eval,
+    default={},
+    help="additional optimizer options to be added",
+)
 args = parser.parse_args()
 # ======================================================================
 #         Specify parameters for optimization
@@ -259,7 +264,13 @@ DVGeo.addVariablesPyOpt(optProb)
 # Add constraints
 DVCon.addConstraintsPyOpt(optProb)
 for ap in aeroProblems:
-    optProb.addCon(f"cl_con_{ap.name}", lower=0.0, upper=0.0, scale=1.0, wrt=[f"alpha_{ap.name}", "shape"])
+    optProb.addCon(
+        f"cl_con_{ap.name}",
+        lower=0.0,
+        upper=0.0,
+        scale=1.0,
+        wrt=[f"alpha_{ap.name}", "shape"],
+    )
 
 # The MP object needs the 'obj' and 'sens' function for each proc set,
 # the optimization problem and what the objcon function is:
