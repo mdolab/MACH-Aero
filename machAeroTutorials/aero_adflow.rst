@@ -11,6 +11,8 @@ There is no graphical user interface for ADflow.
 The cases are prepared with python scripts and run from the command line.
 In this section of the tutorial, we will explain the nuts and bolts of a basic ADflow runscript.
 You will find a complete introduction to ADflow in the :doc:`docs <adflow:introduction>`.
+For this tutorial we will use the L1 mesh that we generated in the previous step.
+L1 meshes are what is typically used for analysis.
 
 Files
 =====
@@ -19,7 +21,7 @@ Copy the following file from the volume meshing directory:
 
 .. prompt:: bash
 
-    cp ../meshing/volume/wing_vol.cgns .
+    cp ../meshing/volume/wing_vol_L1.cgns .
 
 Create the following empty runscript in the current directory:
 

@@ -81,6 +81,7 @@ Option 1: Coarsening volume meshes
 
 #. Generate a fine grid (L0) with :math:`N=(2^n) (m) + 1` nodes along each edge.
 #. Coarsen the L0 grid :math:`n-1` times using ``cgns_utils coarsen``.
+   See :ref:`airfoilanalysis_cgnsutils` for more details.
 #. Compute the Richardson extrapolation using the L0 and L1 grid solutions.
 #. Plot :math:`h^p` vs :math:`C_D`.
    For ADflow, start by assuming :math:`p=2`.
@@ -139,7 +140,7 @@ When we coarsen with ``cgns_utils``, the distance between each layer is higher a
 
 .. TODO: add mesh refinement plot using this method that's similar to the RAE one
 
-For 3D, you will have to modify the surface mesh discretization in your meshing software (e.g., ICEM/Pointwise).
+For 3D, you will have to modify the surface mesh discretization in your meshing software (e.g., ICEM/Pointwise) or uses the surface mesh coarsening option in pyHyp.
 
 Pros:
     - It is more practical for 3D meshes because you can use a less aggressive refinement ratio compared to ``Option 1`` (i.e., :math:`r < 2`).

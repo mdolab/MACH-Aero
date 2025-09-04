@@ -17,6 +17,7 @@ For an airfoil this is a straightforward automated process where we simply extru
     To do this, we generate a 3D mesh which is one cell wide, and apply symmetry boundary conditions on those two faces.
 
 In this tutorial, we will use pyHyp to generate a 3D mesh in CGNS format.
+More details on pyHyp can be found in the :doc:`pyHyp documentation <pyhyp:index>` or in the code itself.
 
 
 Files

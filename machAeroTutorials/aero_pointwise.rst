@@ -20,6 +20,8 @@ This page describes how to accomplish the **first** step using Pointwise as the 
 This is not a full blown tutorial of Pointwise, more a step-by-step walk through on how to create a surface mesh for this particular wing geometry.
 If you want to learn more about using Pointwise, their `Youtube channel <https://www.youtube.com/user/CFDMeshing>`_ is highly recommended.
 If you want to learn more about structured or unstructured meshing theory, refer to "Thompson, et.al. Handbook of grid generation. CRC press, 1998."
+In this step we will focus on generating the L1 surface mesh.
+Generating the remaining members of the mesh family will be covered in the next step.
 
 
 Files
@@ -780,7 +782,7 @@ We will now export the mesh as a ``.cgns`` file that can be read by ``pyHyp`` fo
 
 1. Select all 8 domains.
 2. Click on ``File``, ``Export``, and then ``CAE``.
-3. Save your file as ``wing.cgns``.
+3. Save your file as ``wing_surf_L1.cgns``.
 4. In the panel that pops up leave all settings as their defaults.
 5. Click ``OK``.
 

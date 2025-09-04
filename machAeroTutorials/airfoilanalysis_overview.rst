@@ -18,8 +18,9 @@ In order to analyze an airfoil geometry with ADflow, we need to take the followi
     However, the coordinates themselves will need to be sourced, provided, or generated.
 
 **Generate a valid structured mesh**
-    ADflow uses the CGNS mesh format.
+    A finite-volume CFD solver like ADflow requires a valid structured volume mesh.
     For airfoils, we can simply extrude airfoil coodinates using **pyHyp** to obtain a structured volume mesh.
+    ADflow uses the CGNS mesh format.
 
 **Analyze the flow with ADflow**
     Since ADflow is a script-based software, it is important to understand the elements of an ADflow runscript.
@@ -33,3 +34,4 @@ In order to analyze an airfoil geometry with ADflow, we need to take the followi
    airfoilanalysis_mesh
    airfoilanalysis_adflow
    airfoilanalysis_gridRefinementStudy
+   airfoilanalysis_cgnsutils
