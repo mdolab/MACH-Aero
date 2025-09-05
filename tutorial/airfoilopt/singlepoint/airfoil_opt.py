@@ -59,20 +59,32 @@ aeroOptions = {
     # Common Parameters
     "gridFile": args.gridFile,
     "outputDirectory": args.output,
+    "monitorvariables": ["resrho", "cl", "cd"],
+    "writeSurfaceSolution": False,
+    "writeVolumeSolution": False,
     # Physics Parameters
     "equationType": "RANS",
+    # Solver Parameters
     "smoother": "DADI",
     "MGCycle": "sg",
-    "nCycles": 20000,
-    "monitorvariables": ["resrho", "cl", "cd"],
-    "useNKSolver": True,
-    "useanksolver": True,
-    "nsubiterturb": 10,
+    "nSubiterTurb": 10,
     "liftIndex": 2,
-    "infchangecorrection": True,
+    "infChangeCorrection": True,
+    # ANK Solver Parameters
+    "useANKSolver": True,
+    # NK Solver Parameters
+    "useNKSolver": True,
+    "NKSubSpaceSize": 400,
+    "NKASMOverlap": 4,
+    "NKPCILUFill": 4,
+    "NKJacobianLag": 5,
+    "NKSwitchTol": 1e-6,
+    "NKOuterPreConIts": 3,
+    "NKInnerPreConIts": 3,
     # Convergence Parameters
     "L2Convergence": 1e-15,
     "L2ConvergenceCoarse": 1e-4,
+    "nCycles": 20000,
     # Adjoint Parameters
     "adjointSolver": "GMRES",
     "adjointL2Convergence": 1e-12,
@@ -82,21 +94,18 @@ aeroOptions = {
     "ILUFill": 3,
     "ASMOverlap": 3,
     "outerPreconIts": 3,
-    "NKSubSpaceSize": 400,
-    "NKASMOverlap": 4,
-    "NKPCILUFill": 4,
-    "NKJacobianLag": 5,
-    "nkswitchtol": 1e-6,
-    "nkouterpreconits": 3,
-    "NKInnerPreConIts": 3,
-    "writeSurfaceSolution": False,
-    "writeVolumeSolution": False,
     "frozenTurbulence": False,
     "restartADjoint": False,
 }
 
 # Create solver
 CFDSolver = ADFLOW(options=aeroOptions, comm=comm)
+
+# Create slice
+span = 1.0
+pos = np.array([0.5]) * span
+CFDSolver.addSlices("z", pos, sliceType="absolute")
+
 # rst adflow (end)
 # ======================================================================
 #         Set up flow conditions with AeroProblem
@@ -116,10 +125,6 @@ FFDFile = "ffd.xyz"
 DVGeo = DVGeometry(FFDFile)
 DVGeo.addLocalDV("shape", lower=-0.05, upper=0.05, axis="y", scale=1.0)
 
-span = 1.0
-pos = np.array([0.5]) * span
-CFDSolver.addSlices("z", pos, sliceType="absolute")
-
 # Add DVGeo object to CFD solver
 CFDSolver.setDVGeo(DVGeo)
 # rst dvgeo (end)
@@ -134,6 +139,14 @@ DVCon.setDVGeo(DVGeo)
 # Only ADflow has the getTriangulatedSurface Function
 DVCon.setSurface(CFDSolver.getTriangulatedMeshSurface())
 
+le = 0.0001
+leList = [[le, 0, le], [le, 0, 1.0 - le]]
+teList = [[1.0 - le, 0, le], [1.0 - le, 0, 1.0 - le]]
+
+DVCon.addVolumeConstraint(leList, teList, 2, 100, lower=1, scaled=True)
+DVCon.addThicknessConstraints2D(leList, teList, 2, 100, lower=0.1, upper=3.0)
+
+# rst dvcon (middle)
 # Le/Te constraints
 lIndex = DVGeo.getLocalIndex(0)
 indSetA = []
@@ -157,13 +170,6 @@ for i in range(lIndex.shape[0]):
     indSetA.append(lIndex[i, 1, 0])
     indSetB.append(lIndex[i, 1, 1])
 DVCon.addLinearConstraintsShape(indSetA, indSetB, factorA=1.0, factorB=-1.0, lower=0, upper=0)
-
-le = 0.0001
-leList = [[le, 0, le], [le, 0, 1.0 - le]]
-teList = [[1.0 - le, 0, le], [1.0 - le, 0, 1.0 - le]]
-
-DVCon.addVolumeConstraint(leList, teList, 2, 100, lower=1, scaled=True)
-DVCon.addThicknessConstraints2D(leList, teList, 2, 100, lower=0.1, upper=3.0)
 
 if comm.rank == 0:
     fileName = os.path.join(args.output, "constraints.dat")
@@ -260,6 +266,7 @@ elif args.opt == "SNOPT":
         "Major optimality tolerance": 1e-4,
         "Hessian full memory": None,
         "Function precision": 1e-8,
+        "Nonderivative linesearch": None,
         "Print file": os.path.join(args.output, "SNOPT_print.out"),
         "Summary file": os.path.join(args.output, "SNOPT_summary.out"),
     }

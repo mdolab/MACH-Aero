@@ -64,6 +64,7 @@ aeroOptions = {
     "nCycles": 10000,
     # Adjoint Parameters
     "adjointL2Convergence": 1e-10,
+    "ADPC": True,
 }
 
 # Create solver
@@ -212,6 +213,7 @@ elif args.opt == "SNOPT":
         "Major optimality tolerance": 1e-4,
         "Hessian full memory": None,
         "Function precision": 1e-8,
+        "Nonderivative linesearch": None,
         "Print file": os.path.join(args.output, "SNOPT_print.out"),
         "Summary file": os.path.join(args.output, "SNOPT_summary.out"),
         "Major iterations limit": 1000,

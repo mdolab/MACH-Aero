@@ -4,24 +4,31 @@
 Geometric Parametrization
 *************************
 
+.. warning:: The following sections assume you have completed all the sections related to geometry and meshing in :ref:`the wing aerodynamic analysis tutorial <aero_overview>`.
+    Be sure to complete those first before continuing.
+
 Introduction
 ================================================================================
-In order to optimize the shape of a geometry such as an airfoil or a wing, we need some way to translate design variables into actual changes in the shape.
-We use the Free-form deformation (FFD) technique, popularized by Tom Sederberg in the world of computer-aided graphic design, as our parametrization method.
-The FFD is a mapping of a region in 2D or 3D that is bounded by a set of B-splines.
-Every point with the region is mapped to a new location based on the deformation of the bounding B-spline curves.
-The B-splines themselves are defined by control points, so by adjusting the positions of these control points, we can have a great deal of control over any points embedded in the FFD volume (as shown in the figure below).
-Since both our CFD meshes and finite element models are point-based, we can embed them in the FFD and give the optimizer control over their shape.
-For more detail on the mathematical principles and implementation, refer to the following article: https://dafoam.github.io/docs/FFD/main.pdf
+In this tutorial we will reuse the Boeing 717 wing geometry and mesh that we created in the previous tutorial.
+We will parametrize its geometry using the FFD approach with the pygeo package.
+Like the airfoil optimzation tutorial, we will also create local design variables by allowing each FFD point to move up and down.
+However, we would also like to make the twist distribution (which is a traditional wing design parameter) a design variable as well.
+To do this, we will need to use the global design variable capability in ``DVGeo`` to move many FFD points at the same time.
+We will generate an FFD for and parameterize the geometry for the L3 refinement level of the mesh we created in the analysis tutorial.
+We normally conduct optimziation with the L2 mesh but for the sake of reducing computational time in this tutorial we use the L3 mesh.
 
-.. image:: images/ffd_demo.png
-   :scale: 50
-   :align: center
+Unlike the previous section on setting up FFDs, this section will be divided into two parts.
 
-The actual implementation of the FFD method is housed in the pyGeo repository, which we were already introduced to in the very beginning of the tutorial.
-The specific class to look for is :doc:`DVGeometry <pygeo:DVGeometry>`.
-Navigate to the DVGeometry repository to explore its capabilities
-Before diving into the parametrization, however, we need to generate an FFD, which is basically a 3D grid in the plot3d format.
+**Creating the FFD volume**
+    In this part we create the FFD volume for our wing.
+    It is the only part that's technically needed to complete the optimziation in the next section.
+
+**Parameterizing the wing**
+    In this part we explain how to set-up a reference axis for the FFD we just created and apply various types of global design variables to it.
+    These include taper, sweep, and twist.
+    We also explain how the FFD classes in pygeo work in greater detail.
+    It is highly recommended that you follow along with this section even though it's not part of the main tutorial sequence.
+
 
 Files
 ================================================================================
@@ -30,49 +37,52 @@ Copy the following files from the ``tutorial`` directory:
 
 .. prompt:: bash
 
-    cp ../../../tutorial/opt/ffd/simple_ffd.py .
-    cp ../../../tutorial/aero/analysis/wing_vol.cgns .
+    cp ../../../tutorial/aero/meshing/volume/wing_vol_L3.cgns .
 
-Create the following empty runscript in the current directory:
+Create the following empty runscripts in the current directory:
 
+- ``simple_ffd.py``
 - ``parametrize.py``
 
 Creating an FFD volume
 ======================
-As mentioned above, the actual definition of an FFD volume is simply a 3D grid of points.
-We can create this by hand in a meshing software like ICEM, or for very simple cases, we can generate it with a script.
+As mentioned in the previous optimization tutorial, the actual definition of an FFD volume is simply a 3D grid of points.
+For 3D geometries, we can create this by hand in a meshing software like Pointwise, or for very simple cases, we can generate it with a script.
 There is also a function in pyGeo, :doc:`write_wing_FFD_file <pygeo:geo_utils>`, that can be used to generate a simple FFD by specifying slices and point distributions.
 For this tutorial, we are dealing with a relatively simple wing geometry - straight edges, no kink, no dihedral - so we will just use the script approach.
-This script is not very generalizable though, so it is not part of the MACH library.
-I will explain briefly how it works, but I won't give it the same attention as the other scripts we use in this tutorial.
+This script is not very generalizable though, so it is not part of the MACH-Aero library.
 
 Open the script ``simple_ffd.py`` in your favorite text editor.
+Then copy the code from each of the following sections into this file.
 
 Specify bounds of FFD volume
 ----------------------------
-We need to define the dimensions of the grid at the root and the tip, and the script will interpolate between them to obtain the full 3D grid.
-We also need to specify the number of control points we want along each dimension of the FFD grid.
-
 .. literalinclude:: ../tutorial/opt/ffd/simple_ffd.py
     :start-after: # rst Dimensions
     :end-before: # rst Compute
 
+We need to define the dimensions of the grid at the root and the tip, and the script will interpolate between them to obtain the full 3D grid.
+We also need to specify the number of control points we want along each dimension of the FFD grid.
+
+
 Compute FFD nodes
 -----------------
-This next section just computes the nodes of the FFD grid based on the information we have provided.
-The vector ``span_dist`` gives the spanwise distribution of the FFD sections, which can be varied based by the user.
-Here we use a distribution that varies from wider spacing at the root to narrower spacing at the tip.
-
 .. literalinclude:: ../tutorial/opt/ffd/simple_ffd.py
     :start-after: # rst Compute
     :end-before: # rst Write
 
+This next section just computes the nodes of the FFD grid based on the information we have provided.
+The vector ``span_dist`` gives the spanwise distribution of the FFD sections, which can be varied based by the user.
+Here we use a distribution that varies from wider spacing at the root to narrower spacing at the tip.
+
+
 Write to file
 -------------
-Finally we write to file using the plot3d format.
-
 .. literalinclude:: ../tutorial/opt/ffd/simple_ffd.py
     :start-after: # rst Write
+
+Finally we write to file using the plot3d format.
+This nested loop should be familiar from the airfoil optimization tutorial.
 
 Generate the FFD
 ----------------
@@ -109,12 +119,12 @@ We also import IDWarp so that we can use one of its functions to obtain surface 
 
 Instantiate DVGeometry
 ----------------------
-All that is needed to create an instance of the DVGeometry class is an FFD file in the plot3d format.
-Usually we call the DVGeometry instance ``DVGeo``.
-
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
     :start-after: # rst Create DVGeometry object
     :end-before: # rst Create reference axis
+
+All that is needed to create an instance of the DVGeometry class is an FFD file in the plot3d format.
+Usually we call the DVGeometry instance ``DVGeo``.
 
 Define geometric design variables
 ---------------------------------
@@ -138,13 +148,13 @@ First we will explain the global variables and then the local variables.
 
 Reference Axis
 ~~~~~~~~~~~~~~
-The first step in defining the global design variables is to set up a reference axis.
-The reference axis is a B-spline embedded in the FFD volume.
-For a wing, we can generate this reference axis simply by stating the fraction of the chord length at which it should be placed and the index of the FFD volume along which it should extend.
-
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
     :start-after: # rst Create reference axis
     :end-before: # rst Dihedral
+
+The first step in defining the global design variables is to set up a reference axis.
+The reference axis is a B-spline embedded in the FFD volume.
+For a wing, we can generate this reference axis simply by stating the fraction of the chord length at which it should be placed and the index of the FFD volume along which it should extend.
 
 In this example, the reference axis is placed at the quarter-chord along the spanwise direction with control points defined at each section of FFD control points.
 The name of the reference axis is "wing".
@@ -200,7 +210,7 @@ Finally, we loop through all of the control points and set a scaling factor in t
 The ``scale_x`` dictionary is used in another built-in function which will scale the FFD volume in the x-direction.
 Additional scaling dictionaries include ``scale_y``, ``scale_z``, and ``scale``, of which the latter scales uniformly in all directions.
 
-.. note:: 
+.. note::
 
     Be aware that ``scale_x``, ``scale_y``, ``scale_z``, and ``scale`` are sectional attributes and only work on scaling planes perpendicular to the reference axis, i.e. do not have any effect along the spanwise axis of your FFD grid. In this example, if you use ``scale`` you will see that the wing gets `inflated` along the x and y axis, but the wing span remains identical.
 
@@ -212,25 +222,25 @@ Additional scaling dictionaries include ``scale_y``, ``scale_z``, and ``scale``,
 
 Adding global variables
 ~~~~~~~~~~~~~~~~~~~~~~~
-We have now defined the callback functions for the global design variables, but we have yet to add the variables themselves.
-This is done with the call ``addGlobalDV``.
-
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
     :start-after: # rst Add global dvs
     :end-before: # rst Add local dvs
+
+We have now defined the callback functions for the global design variables, but we have yet to add the variables themselves.
+This is done with the call ``addGlobalDV``.
 
 We must provide a variable name, initial value, callback function, bounds, and scaling factor.
 The ``value`` input must be the size of the design variable vector, but the bounds and scaling factor can be scalars if they are to be applied uniformly to the entire design variable group.
 
 Adding local variables
 ~~~~~~~~~~~~~~~~~~~~~~
-Local variables are not nearly as complicated because they are simply displacements of the FFD control points in a given direction.
-There are two options for defining local design variables.
-Only one of these should be used at one time.
-
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
     :start-after: # rst Add local dvs
     :end-before: # rst Embed points
+
+Local variables are not nearly as complicated because they are simply displacements of the FFD control points in a given direction.
+There are two options for defining local design variables.
+Only one of these should be used at one time.
 
 The first, ``addLocalDV``, allows displacement along one of the global coordinate axes (x, y, or z).
 The other options, ``addLocalSectionDV``, defines the displacement direction based on the plane of the FFD section to which the given control point belongs.
@@ -246,31 +256,31 @@ The following snippets of code allow us to manually change the design variables 
 
 Embed points
 ~~~~~~~~~~~~
-First we have to embed at least one point set in the FFD.
-Normally, ADflow automatically embeds the surface mesh nodes in the FFD, but here we will embed surface coordinates obtained using IDWarp's ``getSurfaceCoordinates`` function (just for this example without ADflow).
-
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
     :start-after: # rst Embed points
     :end-before: # rst Change dvs
 
+First we have to embed at least one point set in the FFD.
+Normally, ADflow automatically embeds the surface mesh nodes in the FFD, but here we will embed surface coordinates obtained using IDWarp's ``getSurfaceCoordinates`` function (just for this example without ADflow).
+
 Change the design variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-We can retrieve a dictionary with the current state of all of the variables with the call ``getValues()``.
-To adjust the variables, simply change the values in each variable array.
-Once this is done, you can return the new values with the call ``setDesignVars``.
-
 .. literalinclude:: ../tutorial/opt/ffd/parametrize.py
     :start-after: # rst Change dvs
     :end-before: # rst Update
 
+We can retrieve a dictionary with the current state of all of the variables with the call ``getValues()``.
+To adjust the variables, simply change the values in each variable array.
+Once this is done, you can return the new values with the call ``setDesignVars``.
+
 Write deformed FFD to file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+    :start-after: # rst Update
+
 The ``update`` function actually computes the new shape of the FFD and the new locations of the embedded points.
 We can view the current shape of the FFD by calling ``writePlot3d``.
 We can also view the updated surface coordinates by calling ``writePointSet``.
-
-.. literalinclude:: ../tutorial/opt/ffd/parametrize.py
-    :start-after: # rst Update
 
 Run it yourself!
 ================

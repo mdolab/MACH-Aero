@@ -7,8 +7,7 @@ Aerodynamic Optimization
 Introduction
 ============
 We will now demonstrate how to optimize the aerodynamic shape of a wing.
-We will be combining aspects of all of the following sections: :ref:`aero_adflow`, :ref:`opt_pyopt`, and :ref:`opt_ffd`.
-Again reference a high level explanation of how these fit together - aero problem, optimization problem, geometry.
+We will be combining aspects of all of the following sections: :ref:`aero_adflow`, :ref:`airfoilopt_pyopt`, and :ref:`opt_ffd`.
 The optimization problem is defined as
 
 | *minimize*
@@ -52,25 +51,25 @@ The multipoint library is the only new library to include in this script.
 
 Adding command line arguments
 -----------------------------
+.. literalinclude:: ../tutorial/opt/aero/aero_opt.py
+    :start-after: # rst args (beg)
+    :end-before: # rst args (end)
+
 This is a convenience feature that allows the user to pass in command line arguments to the script.
 Two options are provided:
 
 -  specifying the output directory
 -  specifying the optimizer to be used
 
-.. literalinclude:: ../tutorial/opt/aero/aero_opt.py
-    :start-after: # rst args (beg)
-    :end-before: # rst args (end)
-
 Creating processor sets
 -----------------------
-The multiPointSparse class allows us to allocate sets of processors for different analyses.
-This can be helpful if we want to consider multiple design points, each with a different set of flow conditions.
-In this case, we create a processor set for cruise cases, but we only add one point.
-
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
     :start-after: # rst multipoint (beg)
     :end-before: # rst multipoint (end)
+
+The multiPointSparse class allows us to allocate sets of processors for different analyses.
+This can be helpful if we want to consider multiple design points, each with a different set of flow conditions.
+In this case, we create a processor set for cruise cases, but we only add one point.
 
 If we want to add more points, we can increase the quantity ``nMembers``.
 We can choose the number of processors per point with the argument ``memberSizes``.
@@ -79,12 +78,15 @@ The call ``createCommunicators`` returns information about the current processor
 
 ADflow set-up
 -------------
-The set-up for adflow should look the same as for the aerodynamic analysis script.
-We add a single lift distribution with 200 sampling points.
-
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
     :start-after: # rst adflow (beg)
     :end-before: # rst adflow (end)
+
+The set-up for adflow should look the same as for the wing aerodynamic analysis script.
+However, note that we have added a tolerance setting for the adjoint and the ``infchangecorrection`` to update the angle-of-attack throughout the flow field when the optimzier updates it.
+Unlike the airfoil optimzation example, these settings are not tuned for this particular wing optimziation problem.
+We add a single lift distribution with 150 sampling points.
+
 
 Set the AeroProblem
 -------------------
@@ -97,13 +99,13 @@ Any of the quantities included in the initialization of the AeroProblem can be a
 
 Geometric parametrization
 -------------------------
-The set-up for DVGeometry should look very familiar (if not, see :ref:`opt_ffd`).
-We include twist and local variables in the optimization.
-After setting up the DVGeometry instance we have to provide it to ADflow with the call ``setDVGeo``.
-
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
     :start-after: # rst dvgeo (beg)
     :end-before: # rst dvgeo (end)
+
+The set-up for DVGeometry should look very familiar (if not, see :ref:`opt_ffd`).
+We include twist and local variables in the optimization.
+After setting up the DVGeometry instance we have to provide it to ADflow with the call ``setDVGeo``.
 
 Geometric constraints
 ---------------------
@@ -165,62 +167,23 @@ Mesh warping set-up
     :start-after: # rst warp (beg)
     :end-before: # rst warp (end)
 
+This is as straightforward as it was in the airfoil optimziation tutorial.
+
 Optimization callback functions
 -------------------------------
-First we must set up a callback function and a sensitivity function for each processor set.
-In this case ``cruiseFuncs`` and ``cruiseFuncsSens`` belong to the ``cruise`` processor set.
-Then we need to set up an objCon function, which is used to create abstract functions of other functions.
-
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
     :start-after: # rst funcs (beg)
     :end-before: # rst funcs (end)
 
-Now we will explain each of these callback functions.
-
-cruiseFuncs
-~~~~~~~~~~~
-The input to ``cruiseFuncs`` is the dictionary of design variables.
-First, we pass this dictionary to DVGeometry and AeroProblem to set their respective design variables.
-Then we solve the flow solution given by the AeroProblem with ADflow.
-Finally, we fill the ``funcs`` dictionary with the function values computed by DVConstraints and ADflow.
-The call ``checkSolutionFailure`` checks ADflow to see if there was a failure in the solution (could be due to negative volumes or something more sinister).
-If there was a failure it changes the ``fail`` flag in ``funcs`` to ``True``.
-The ``funcs`` dictionary is the required return.
-
-cruiseFuncsSens
-~~~~~~~~~~~~~~~
-The inputs to ``cruiseFuncsSens`` are the design variable and function dictionaries.
-Inside ``cruiseFuncsSens`` we populate the ``funcsSens`` dictionary with the derivatives of each of the functions in ``cruiseFuncs`` with respect to all of its dependence variables.
-
-objCon
-~~~~~~
-The main input to the ``objCon`` callback function is the dictionary of functions (which is a compilation of all the ``funcs`` dictionaries from each of the design points).
-Inside ``objCon``, the user can define functionals (or functions of other functions).
-For instance, to maximize L/D, you could define the objective function as::
-
-    funcs['obj'] = funcs['cl'] / funcs['cd']
-
-The ``objCon`` function is processed within the multipoint module and the partial derivatives of any functionals with respect to the input functions are automatically computed with the complex-step method.
-This means that the user doesn't have to worry about computing analytic derivatives for the simple functionals defined in ``objCon``.
-The ``printOK`` input is a boolean that is False when the complex-step is in process.
+This section is identical to the one in the airfoil optimization tutorial.
 
 Optimization problem
 --------------------
-Setting up the optimization problem follows the same format as before, only now we incorporate multiPointSparse.
-When creating the instance of the Optimization problem, ``MP.obj`` is given as the objective function.
-multiPointSparse will take care of calling both ``cruiseFuncs`` and ``objCon`` to provide the full ``funcs`` dictionary to pyOptSparse.
-
-Both AeroProblem and DVGeometry have built-in functions to add all of their respective design variables to the optimization problem.
-DVConstraints also has a built-in function to add all constraints to the optimization problem.
-The user must manually add any constraints that were defined in ``objCon``.
-
-Finally, we need to tell multiPointSparse which callback functions belong to which processor set.
-We also need to provide it with the objCon and the optProb.
-The call ``optProb.printSparsity()`` prints out the constraint Jacobian at the beginning of the optimization.
-
 .. literalinclude:: ../tutorial/opt/aero/aero_opt.py
     :start-after: # rst optprob (beg)
     :end-before: # rst optprob (end)
+
+This section is identical to the one in the airfoil optimization tutorial.
 
 Run optimization
 ----------------
@@ -245,7 +208,7 @@ To run the script, use the ``mpirun`` and place the total number of processors a
 
     mpirun -np 4 python aero_opt.py
 
-You can follow the progress of the optimization using OptView, as explained in :ref:`opt_pyopt`.
+You can follow the progress of the optimization using OptView, as explained in :ref:`airfoilopt_pyopt`.
 
 
 Terminal output

@@ -7,8 +7,8 @@ Multipoint Optimization
 
 Introduction
 ============
-Optimization does not have to be limited to a single flight condition. 
-This section goes through the same optimization as the single point case, except with one more flight condition. 
+Optimization does not have to be limited to a single flight condition.
+This section goes through the same optimization as the single point case, except with one more flight condition.
 Instead of rewriting the code from scratch, the differences in code will be pointed out.
 
 .. note::
@@ -31,13 +31,13 @@ The optimization problem is defined as:
 
 Files
 =====
-Navigate to the directory ``airfoilopt/multipoint`` in your tutorial folder. 
+Navigate to the directory ``airfoilopt/multipoint`` in your tutorial folder.
 Copy the FFD file, ``ffd.xyz``, and the CGNS mesh file, ``n0012.cgns``, generated previously, into the directory:
 
 .. prompt:: bash
 
-    cp ../mesh/n0012.cgns . 
-    cp ../ffd/ffd.xyz . 
+    cp ../../meshing/n0012.cgns .
+    cp ../ffd/ffd.xyz .
 
 Copy the singlepoint script from the previous section to a new file in this directory:
 
@@ -53,54 +53,52 @@ Change the following sections for multipoint optimization.
 
 Specifying parameters for the optimization
 ------------------------------------------
-For multipoint optimization, the parameters have to be specified in lists of the same size.
-
 .. literalinclude:: ../tutorial/airfoilopt/multipoint/airfoil_multiopt.py
     :start-after: # rst parameters (beg)
     :end-before: # rst parameters (end)
 
+For multipoint optimization, the parameters have to be specified in lists of the same size.
+
+
 Creating processor sets
 -----------------------
-This is largely unchanged from the single-point case, since we use a very similar parallelization scheme.
-The only difference is in defining the variable ``nGroup`` which is used later on to distinguish between the two AeroProblems.
-
 .. literalinclude:: ../tutorial/airfoilopt/multipoint/airfoil_multiopt.py
     :start-after: # rst multipoint (beg)
     :end-before: # rst multipoint (end)
 
+This is largely unchanged from the single-point case, since we use a very similar parallelization scheme.
+The only difference is in defining the variable ``nGroup`` which is used later on to distinguish between the two AeroProblems.
 
 Set the AeroProblem
 -------------------
-For more than one AeroProblem, a list needs to be created. 
-Each AeroProblem is created with the respective optimization point and appended to the list.
-
 .. literalinclude:: ../tutorial/airfoilopt/multipoint/airfoil_multiopt.py
     :start-after: # rst aeroproblem (beg)
     :end-before: # rst aeroproblem (end)
 
+For more than one AeroProblem, a list needs to be created.
+Each AeroProblem is created with the respective optimization point and appended to the list.
+
 
 Optimization callback functions
 -------------------------------
-The same for-loop needs to be added to the callback functions. 
-The lines that require a call to the an AeroProblem is now put into a for-loop to iterate through all of them.
-
-
 .. literalinclude:: ../tutorial/airfoilopt/multipoint/airfoil_multiopt.py
     :start-after: # rst funcs (beg)
     :end-before: # rst funcs (end)
 
+The same for-loop needs to be added to the callback functions.
+The lines that require a call to the an AeroProblem is now put into a for-loop to iterate through all of them.
 In the ``objCon`` function, the :math:`c_l` constraint is also placed into the for-loop.
 
 Optimization problem
 --------------------
+.. literalinclude:: ../tutorial/airfoilopt/multipoint/airfoil_multiopt.py
+    :start-after: # rst optprob (beg)
+    :end-before: # rst optprob (end)
+
 The only difference here is that we now have two different :math:`c_l` constraints, one for each point.
 These are added in a loop.
 In addition, we use the ``wrt`` keyword to specify the variables that affect each lift constraint.
 In this case, the ``alpha`` from the other flight conditions do not impact the lift constraint, so they are set to zero.
-
-.. literalinclude:: ../tutorial/airfoilopt/multipoint/airfoil_multiopt.py
-    :start-after: # rst optprob (beg)
-    :end-before: # rst optprob (end)
 
 
 Run it yourself!

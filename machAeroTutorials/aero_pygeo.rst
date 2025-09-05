@@ -7,10 +7,11 @@ Geometry Generation
 Introduction
 ============
 The geometry definition is a necessary precursor to generate a mesh, so it comes first in this tutorial.
-The native geometry file type for ICEM (our meshing software of choice) is a ".tin" file, but there are many ways to get it.
+Fidelity Pointwise (our meshing software of choice) supports a variety of CAD file types but we primary use the ".igs" or ".iges" file type with it.
+The native geometry file type for ICEM CFD is a ".tin" file, but there are many ways to get it.
 You can use any CAD software to generate an ".igs" file and then convert the ".igs" file to a ".tin" file with ICEM or pyGeo.
-However, this tutorial will teach you how to generate a wing surface from airfoil data using pyGeo.
-pyGeo is set up to loft a surface between a set of airfoils distributed along the span of the wing.
+This tutorial will teach you how to generate a wing surface from airfoil data using pyGeo.
+pyGeo can loft a surface between a set of airfoils distributed along the span of the wing.
 For more details on the options in pyGeo see the :doc:`docs <pygeo:index>`.
 
 Files
@@ -62,7 +63,7 @@ A visualization of the airfoil geometry is given on Figure 1.
 The coordinates of the airfoil are contained in the file ``rae2822.dat``.
 
 .. figure:: images/RAE2822.png
-    :scale: 30
+    :scale: 15
     :align: center
     :alt: RAE 2822 Transonic Airfoil
     :figclass: align-center
@@ -92,8 +93,8 @@ Write output files
 There are three options for writing the geometry surface definition to file.
 
     1. Write a dat file to view wing in Tecplot.
-    2. Write an IGES file. This can be converted to a TIN file in ICEM.
-    3. Write a TIN file directly from pyGeo.
+    2. Write an IGES file for with Pointwise (or for conversion to a TIN file in ICEM).
+    3. Write a TIN file directly from pyGeo for use with ICEM.
 
 .. literalinclude:: ../tutorial/aero/geometry/generate_wing.py
    :start-after: # rst Write output files

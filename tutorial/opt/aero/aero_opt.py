@@ -20,7 +20,7 @@ from multipoint import multiPointSparse
 parser = argparse.ArgumentParser()
 parser.add_argument("--output", type=str, default="output")
 parser.add_argument("--opt", type=str, default="SLSQP", choices=["IPOPT", "SLSQP", "SNOPT"])
-parser.add_argument("--gridFile", type=str, default="wing_vol.cgns")
+parser.add_argument("--gridFile", type=str, default="wing_vol_L3.cgns")
 parser.add_argument("--optOptions", type=ast.literal_eval, default={}, help="additional optimizer options to be added")
 args = parser.parse_args()
 # rst args (end)
@@ -52,6 +52,7 @@ aeroOptions = {
     # Solver Parameters
     "smoother": "DADI",
     "MGCycle": "sg",
+    "nSubiterTurb": 10,
     "infchangecorrection": True,
     # ANK Solver Parameters
     "useANKSolver": True,
@@ -64,6 +65,7 @@ aeroOptions = {
     "nCycles": 10000,
     # Adjoint Parameters
     "adjointL2Convergence": 1e-10,
+    "ADPC": True,
 }
 
 # Create solver
@@ -225,6 +227,7 @@ elif args.opt == "SNOPT":
         "Major optimality tolerance": 1e-4,
         "Hessian full memory": None,
         "Function precision": 1e-8,
+        "Nonderivative linesearch": None,
         "Print file": os.path.join(args.output, "SNOPT_print.out"),
         "Summary file": os.path.join(args.output, "SNOPT_summary.out"),
         "Major iterations limit": 1000,

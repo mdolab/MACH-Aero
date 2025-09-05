@@ -1,23 +1,31 @@
 .. _aero_overview:
 
 ####################
-Aerodynamic Analysis
+Wing Aerodynamic Analysis
 ####################
-High-fidelity aerodynamic analysis in the MDOlab is done using :doc:`ADflow <adflow:index>`.
-ADflow is a finite-volume CFD solver for cell-centered multiblock and overset meshes.
-ADflow solves the compressible Euler, laminar Navier--Stokes, and RANS equations with a second-order accurate spatial discretization.
-More information on ADflow can be found somewhere (needs link).
+Once you have mastered analysing and optimizing airfoils with MACH-Aero, you can try performing these operations on finite wings.
+We will start with the aerodynamic analysis of a Boeing 717 wing.
 
-In order to analyze a geometry with ADflow, we need to take the following steps:
+.. note:: This process builds on the skills learned in the previous tutorials but is overall more complicated.
+    Make sure you've completed the airfoil tutorials first before attempting this one.
 
-- **Obtain a CAD representation of the geometry**
+In order to analyze a wing geometry with ADflow, we need to take the following steps:
+
+**Obtain a CAD representation of the geometry**
+    With complex 3D geometries like wings we can't just easily obtain our geometry as a set of points like we did for the airfoil.
+    As a result, we will need to define our wing's geometry using CAD.
     In practice, we want an IGES file that contains the geometry description.
-    This can be done with any commercial CAD package, but it can also be done by lofting airfoil sections using pyGeo.
+    This can be done with any commercial CAD package, but it can also be done by lofting airfoil sections using the geometry surfacing engine built into *pygeo*, called **pyGeo**.
 
-- **Generate a valid multiblock or overset mesh**
-    ADflow uses the CGNS mesh format. In practice, we create a surface mesh using ICEM and then extrude a volume mesh using pyHyp. However, the volume mesh could be created in ICEM or any other meshing software. Component volume meshes can be combined using cgnsUtilities.
+**Generate a family of valid multiblock meshes**
+    Like the airfoil, the wing will also need a valid structured volume mesh.
+    However, since our geometry is composed of surfaces generated in CAD and not a set of points we will need to do this in two steps.
+    We create a surface mesh using the Pointwise or ICEM meshing utilities and then extrude the volume mesh using pyHyp.
+    However, the volume mesh could also be created in Pointwise, ICEM, or any other meshing software.
+    Additionally, we won't just generate one mesh in this step.
+    Instead we generate a family of meshes with varying degrees of grid refinement.
 
-- **Analyze the flow with ADflow**
+**Analyze the flow with ADflow**
     Since ADflow is a script-based software, it is important to understand the elements of an ADflow runscript.
     Additionally, there are many settings that can be adjusted to make ADflow perform better for a given case.
 
@@ -26,8 +34,7 @@ In order to analyze a geometry with ADflow, we need to take the following steps:
    :caption: Table of Contents
 
    aero_pygeo
+   aero_pointwise
    aero_icem
    aero_pyhyp
-   aero_cgnsutils
    aero_adflow
-   aero_gridRefinementStudy
