@@ -20,7 +20,7 @@ from multipoint import multiPointSparse
 parser = argparse.ArgumentParser()
 parser.add_argument("--output", type=str, default="output")
 parser.add_argument("--opt", type=str, default="SLSQP", choices=["IPOPT", "SLSQP", "SNOPT"])
-parser.add_argument("--gridFile", type=str, default="wing_vol.cgns")
+parser.add_argument("--gridFile", type=str, default="wing_vol_L3.cgns")
 parser.add_argument("--optOptions", type=ast.literal_eval, default={}, help="additional optimizer options to be added")
 args = parser.parse_args()
 # rst args (end)
