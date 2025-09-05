@@ -90,10 +90,10 @@ General options:
 
 Grid parameters:
     ``coarsen``
-        Automatically coarsen the surface mesh before starting extrusion. 
-        ``1`` gives the same surface mesh. 
-        ``2`` coarsens by a factor of 2 in each direction. 
-        ``3`` coarsens by a factor of 4 in each direction, and so on. 
+        Automatically coarsen the surface mesh before starting extrusion.
+        ``1`` gives the same surface mesh.
+        ``2`` coarsens by a factor of 2 in each direction.
+        ``3`` coarsens by a factor of 4 in each direction, and so on.
         Here will will pass in the value we selected from the list above for our specific mesh refinement level.
 
     ``N``

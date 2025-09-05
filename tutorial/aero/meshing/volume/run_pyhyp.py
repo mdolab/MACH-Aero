@@ -17,7 +17,7 @@ coarsen_levels = {
     "L1": 1,
     "L1.5": 2,
     "L2": 2,
-    "L3": 3, # debug only level
+    "L3": 3,  # debug only level
 }
 coarsen = coarsen_levels[args.level]
 
@@ -71,7 +71,6 @@ options = {
     # ---------------------------
     #   Smoothing parameters
     # ---------------------------
-    #"kspreltol": 1e-8,
     "theta": 3.0,
     "volCoef": 0.25,
     # apply scheduling to all grids

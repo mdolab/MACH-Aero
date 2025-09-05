@@ -141,7 +141,7 @@ There are several built-in constraint functions within the DVConstraints class, 
 The majority of the constraints are defined based on a triangulated-surface representation of the airfoil obtained from ADflow.
 
 The two primary geometric constraints of interest in our optimization problem are the thickness and area of the airfoil.
-We can address both these constraints by using the ``addThicknessConstraints2D`` function for the thickness constraints and the ``addVolumeConstraint`` for area (remember the airfoil is a one cell thick 3D object). 
+We can address both these constraints by using the ``addThicknessConstraints2D`` function for the thickness constraints and the ``addVolumeConstraint`` for area (remember the airfoil is a one cell thick 3D object).
 The volume and thickness constraints are set up by creating a uniformly spaced 2D grid of points, which is then projected onto the upper and lower surface of a triangulated-surface representation of the airfoil.
 The grid is defined by providing four corner points (using ``leList`` and ``teList``) and by specifying the number of spanwise and chordwise points (using ``nSpan`` and ``nChord``).
 Remember that we are treating the airfoil as the one cell deep 3D object so it technically has a "span".

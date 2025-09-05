@@ -509,7 +509,7 @@ The L1 surface mesh is now ready for use in pyHyp.
 .. warning:: The size of the L1 mesh generated in the ICEM version of the tutorial is slightly coarser than the one generated in the Pointwise version of the tutorial.
     This shouldn't dramatically impact your results but is something to keep in mind.
     This discrepancy is primarily because the ICEM version of the tutorial is from an older version of the MACH-Aero tutorial from when ICEM CFD was the meshing software of choice in the MDO Lab
-    
+
 .. note:: An older version of the MACH-Aero tutorial would now instruct users to coarsen their mesh in ICEM itself by reducing the number of nodes specified for the edges so far from 17 to 5 and 161 to 41.
     This step is now obsolete with the introduction of mesh family generation in the mesh extrusion step.
     However, the resulting surface and volume meshes, ``wing.cgns`` and ``wing_vol.cgns`` respectively, from this coarsening operation were included in the tutorial repo for reference or use in the tutorial itself.

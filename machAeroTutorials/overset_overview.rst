@@ -36,11 +36,11 @@ Here are a few of the items we will cover in the following pages:
    :caption: Table of Contents
 
    overset_theory
-   overset_tips
    overset_vsp
    overset_surface_mesh
    overset_volume_mesh
    overset_analysis
+   overset_tips
 
 
 About this tutorial
