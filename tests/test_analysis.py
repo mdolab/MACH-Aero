@@ -87,6 +87,7 @@ class TestWingOpt(unittest.TestCase):
         cmd = ["python", "aero_opt_esp.py", "--output", "output_ESP"]
         subprocess.check_call(mpiCmd + cmd + gridFlagOpt + optimizer[optName])
 
+
 class TestAirfoil(unittest.TestCase):
     def setUp(self):
         os.chdir(os.path.join(tutorialDir, "airfoil"))
@@ -114,6 +115,7 @@ class TestAirfoil(unittest.TestCase):
         # drag polar
         cmd = ["python", "aero_run.py", "--task", "polar", "--output", "output_drag_polar"]
         subprocess.check_call(mpiCmd + cmd)
+
 
 class TestAirfoilOpt(unittest.TestCase):
     def setUp(self):
