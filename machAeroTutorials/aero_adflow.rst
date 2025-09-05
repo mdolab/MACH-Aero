@@ -21,7 +21,7 @@ Copy the following file from the volume meshing directory:
 
 .. prompt:: bash
 
-    cp ../meshing/volume/wing_vol_L1.cgns .
+    cp ../meshing/volume/wing_vol_L2.cgns .
 
 Create the following empty runscript in the current directory:
 

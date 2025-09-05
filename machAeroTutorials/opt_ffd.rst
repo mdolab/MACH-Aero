@@ -14,6 +14,8 @@ We will parametrize its geometry using the FFD approach with the pygeo package.
 Like the airfoil optimzation tutorial, we will also create local design variables by allowing each FFD point to move up and down.
 However, we would also like to make the twist distribution (which is a traditional wing design parameter) a design variable as well.
 To do this, we will need to use the global design variable capability in ``DVGeo`` to move many FFD points at the same time.
+We will generate an FFD for and parameterize the geometry for the L3 refinement level of the mesh we created in the analysis tutorial.
+We normally conduct optimziation with the L2 mesh but for the sake of reducing computational time in this tutorial we use the L3 mesh.
 
 Unlike the previous section on setting up FFDs, this section will be divided into two parts.
 
@@ -35,7 +37,7 @@ Copy the following files from the ``tutorial`` directory:
 
 .. prompt:: bash
 
-    cp ../../../tutorial/aero/analysis/wing_vol.cgns .
+    cp ../../../tutorial/aero/meshing/volume/wing_vol_L3.cgns .
 
 Create the following empty runscripts in the current directory:
 
@@ -45,7 +47,7 @@ Create the following empty runscripts in the current directory:
 Creating an FFD volume
 ======================
 As mentioned in the previous optimization tutorial, the actual definition of an FFD volume is simply a 3D grid of points.
-For 3D geometries, we can create this by hand in a meshing software like ICEM, or for very simple cases, we can generate it with a script.
+For 3D geometries, we can create this by hand in a meshing software like Pointwise, or for very simple cases, we can generate it with a script.
 There is also a function in pyGeo, :doc:`write_wing_FFD_file <pygeo:geo_utils>`, that can be used to generate a simple FFD by specifying slices and point distributions.
 For this tutorial, we are dealing with a relatively simple wing geometry - straight edges, no kink, no dihedral - so we will just use the script approach.
 This script is not very generalizable though, so it is not part of the MACH-Aero library.

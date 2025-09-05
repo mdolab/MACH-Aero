@@ -134,17 +134,50 @@ Geometric constraints
 ---------------------
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
     :start-after: # rst dvcon (beg)
-    :end-before: # rst dvcon (end)
+    :end-before: # rst dvcon (middle)
 
 ``DVConstraints`` is the class in pygeo responsible for handling geometric constriants.
+There are several built-in constraint functions within the DVConstraints class, including thickness, surface area, volume, location, and general linear constraints.
+The majority of the constraints are defined based on a triangulated-surface representation of the airfoil obtained from ADflow.
+
+The two primary geometric constraints of interest in our optimization problem are the thickness and area of the airfoil.
+We can address both these constraints by using the ``addThicknessConstraints2D`` function for the thickness constraints and the ``addVolumeConstraint`` for area (remember the airfoil is a one cell thick 3D object). 
+The volume and thickness constraints are set up by creating a uniformly spaced 2D grid of points, which is then projected onto the upper and lower surface of a triangulated-surface representation of the airfoil.
+The grid is defined by providing four corner points (using ``leList`` and ``teList``) and by specifying the number of spanwise and chordwise points (using ``nSpan`` and ``nChord``).
+Remember that we are treating the airfoil as the one cell deep 3D object so it technically has a "span".
+By default, ``scaled=True`` for ``addVolumeConstraint()`` and ``addThicknessConstraints2D()``, which means that the volume and thicknesses calculated will be scaled by the initial values (i.e., they will be normalized).
+Therefore, ``lower=1.0`` in this example means that the lower limits for these constraints are the initial values (i.e., if ``lower=0.5`` then the lower limits would be half the initial volume and thicknesses).
+
+For the volume constraint, the volume is computed by adding up the volumes of the prisms that make up the projected grid as illustrated in the following image.
+For the thickness constraints, the distances between the upper and lower projected points are used, as illustrated in the following image.
+During optimization, these projected points are also moved by the FFD, just like the airfoil surface, and are used again to calculate the thicknesses and volume for the new designs.
+More information on the options can be found in the :doc:`pyGeo docs <pygeo:index>` or by looking at the pyGeo source code.
+
+.. image:: images/opt_thickness_and_vol_diagram.png
+   :scale: 40
+   :align: center
+
+.. warning:: The ``leList`` and ``teList`` points must lie completely inside the airfoiil.
+
+.. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
+    :start-after: # rst dvcon (middle)
+    :end-before: # rst dvcon (end)
+
 In order to meet our coefficient of lift constraint, the optimizer will have to change the angle-of-attack.
 Since we have given it :math:`\alpha` as a design variable, it should be able to do that.
 However, optimizers have a strong tendancy to exploit any flaws in a problem formulation and there is a major one that we have to address with a constraint.
 Instead of changing :math:`\alpha` to meet the :math:`C_l` constraint, the optimizer could instead twist the airfoil shape itself to achieve the same effect.
-This effect is undesirable and we can prevent it by constraining the leading and trailing edge to only move in the same direction with a call to ``addLeTeConstraints``.
+This effect is undesirable and we can prevent it by constraining the leading and trailing edge to not create any shearing twist with a call to ``addLeTeConstraints``.
+This function constrains the upper and lower FFD control points on the leading and trailing edges to move in opposite directions .
+Note that the LeTe constraint is not related to the ``leList`` and ``teList`` points discussed above.
+
 Additionally since we are treating the airfoil as a 3D problem we must add a set of linear constraints such that the shape deformations on one side of the airfoil mirrors that of the other.
 This is accomplished with a call to ``addLinearConstraintsShape``.
-Lastly, we can add the thickness and volume constraints defined in our optimization problem with calls to ``addThicknessConstraints2D`` and ``addVolumeConstraint``.
+
+In this script ``DVCon.writeTecplot`` will save a file named ``constraints.dat`` which can be opened with Tecplot to visualize and check these constraints.
+Since this is added here, before the commands that run the optimization, the file will correspond to the initial geometry.
+This command can also be added at the end of the script to visualize the final constraints.
+
 
 
 Mesh warping set-up

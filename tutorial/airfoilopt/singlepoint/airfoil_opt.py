@@ -139,6 +139,14 @@ DVCon.setDVGeo(DVGeo)
 # Only ADflow has the getTriangulatedSurface Function
 DVCon.setSurface(CFDSolver.getTriangulatedMeshSurface())
 
+le = 0.0001
+leList = [[le, 0, le], [le, 0, 1.0 - le]]
+teList = [[1.0 - le, 0, le], [1.0 - le, 0, 1.0 - le]]
+
+DVCon.addVolumeConstraint(leList, teList, 2, 100, lower=1, scaled=True)
+DVCon.addThicknessConstraints2D(leList, teList, 2, 100, lower=0.1, upper=3.0)
+
+# rst dvcon (middle)
 # Le/Te constraints
 lIndex = DVGeo.getLocalIndex(0)
 indSetA = []
@@ -162,13 +170,6 @@ for i in range(lIndex.shape[0]):
     indSetA.append(lIndex[i, 1, 0])
     indSetB.append(lIndex[i, 1, 1])
 DVCon.addLinearConstraintsShape(indSetA, indSetB, factorA=1.0, factorB=-1.0, lower=0, upper=0)
-
-le = 0.0001
-leList = [[le, 0, le], [le, 0, 1.0 - le]]
-teList = [[1.0 - le, 0, le], [1.0 - le, 0, 1.0 - le]]
-
-DVCon.addVolumeConstraint(leList, teList, 2, 100, lower=1, scaled=True)
-DVCon.addThicknessConstraints2D(leList, teList, 2, 100, lower=0.1, upper=3.0)
 
 if comm.rank == 0:
     fileName = os.path.join(args.output, "constraints.dat")
