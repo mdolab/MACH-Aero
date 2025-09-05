@@ -6,7 +6,8 @@ Wing Aerodynamic Analysis
 Once you have mastered analysing and optimizing airfoils with MACH-Aero, you can try performing these operations on finite wings.
 We will start with the aerodynamic analysis of a Boeing 717 wing.
 
-.. note:: This process builds on the skills learned in the previous tutorials but is overall more complicated to make sure you've completed the airfoil tutorials first before attempting this one.
+.. note:: This process builds on the skills learned in the previous tutorials but is overall more complicated.
+    Make sure you've completed the airfoil tutorials first before attempting this one.
 
 In order to analyze a wing geometry with ADflow, we need to take the following steps:
 
@@ -21,7 +22,8 @@ In order to analyze a wing geometry with ADflow, we need to take the following s
     However, since our geometry is composed of surfaces generated in CAD and not a set of points we will need to do this in two steps.
     We create a surface mesh using the Pointwise or ICEM meshing utilities and then extrude the volume mesh using pyHyp.
     However, the volume mesh could also be created in Pointwise, ICEM, or any other meshing software.
-    Additionally, we won't just generate one mesh in this step instead generating a family of meshes with varying degrees of grid refinement.
+    Additionally, we won't just generate one mesh in this step.
+    Instead we generate a family of meshes with varying degrees of grid refinement.
 
 **Analyze the flow with ADflow**
     Since ADflow is a script-based software, it is important to understand the elements of an ADflow runscript.
