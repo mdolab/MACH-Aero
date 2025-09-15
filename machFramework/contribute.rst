@@ -1,3 +1,5 @@
+.. _contribute:
+
 How to Contribute to MACH-Aero
 ==============================
 The codes in the MACH-Aero framework are open-source tools, so we welcome users to submit additions or fixes to improve them for everyone.
