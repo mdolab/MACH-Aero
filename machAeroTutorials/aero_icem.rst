@@ -41,7 +41,7 @@ The output should look like the following, where <your-version> is the version y
 
     /usr/ansys_inc/<your-version>/icemcfd/linux64_amd/bin/icemcfd
 
-Then run the executable with superuser privileges, replacing the path with the results of the previous command.  
+Then run the executable with superuser privileges, replacing the path with the results of the previous command.
 
 .. prompt:: bash
 
@@ -66,13 +66,13 @@ Navigating in ICEM
 ------------------
 To adjust your view of the geometry in ICEM the following functions are possible with the mouse:
 
-- Hold down left button while dragging mouse: 
+- Hold down left button while dragging mouse:
     - Rotate the view in 3D space
-- Hold down middle button while dragging mouse: 
+- Hold down middle button while dragging mouse:
     - Translate view in viewing plane
 - Hold down right button while dragging mouse:
     - Planar rotation of the viewing plane
-- Scroll middle button: 
+- Scroll middle button:
     - Slow zoom in/out
 - Hold down right button
     - Drag mouse up/down: Fast zoom
@@ -445,7 +445,7 @@ For this case, we will define properties for the edges of the blocks which will 
         :scale: 80
 
 
-    .. note:: To improve the mesh quality further, the vertical edge of the wing tip at the leading edge can also be disassociated from its curve and associated with a surface instead using ``Disassociate from Geometry`` and ``Associate edge to Surface`` like the other edges. 
+    .. note:: To improve the mesh quality further, the vertical edge of the wing tip at the leading edge can also be disassociated from its curve and associated with a surface instead using ``Disassociate from Geometry`` and ``Associate edge to Surface`` like the other edges.
 
 10. Ensure correct block orientation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -7,8 +7,8 @@ Multipoint Optimization
 
 Introduction
 ============
-Optimization does not have to be limited to a single flight condition. 
-This section goes through the same optimization as the single point case, except with one more flight condition. 
+Optimization does not have to be limited to a single flight condition.
+This section goes through the same optimization as the single point case, except with one more flight condition.
 Instead of rewriting the code from scratch, the differences in code will be pointed out.
 
 .. note::
@@ -31,13 +31,13 @@ The optimization problem is defined as:
 
 Files
 =====
-Navigate to the directory ``airfoilopt/multipoint`` in your tutorial folder. 
+Navigate to the directory ``airfoilopt/multipoint`` in your tutorial folder.
 Copy the FFD file, ``ffd.xyz``, and the CGNS mesh file, ``n0012.cgns``, generated previously, into the directory:
 
 .. prompt:: bash
 
-    cp ../mesh/n0012.cgns . 
-    cp ../ffd/ffd.xyz . 
+    cp ../mesh/n0012.cgns .
+    cp ../ffd/ffd.xyz .
 
 Copy the singlepoint script from the previous section to a new file in this directory:
 
@@ -71,7 +71,7 @@ The only difference is in defining the variable ``nGroup`` which is used later o
 
 Set the AeroProblem
 -------------------
-For more than one AeroProblem, a list needs to be created. 
+For more than one AeroProblem, a list needs to be created.
 Each AeroProblem is created with the respective optimization point and appended to the list.
 
 .. literalinclude:: ../tutorial/airfoilopt/multipoint/airfoil_multiopt.py
@@ -81,7 +81,7 @@ Each AeroProblem is created with the respective optimization point and appended 
 
 Optimization callback functions
 -------------------------------
-The same for-loop needs to be added to the callback functions. 
+The same for-loop needs to be added to the callback functions.
 The lines that require a call to the an AeroProblem is now put into a for-loop to iterate through all of them.
 
 

@@ -55,4 +55,3 @@ CGNS Viewer can be run from the terminal with the command
     cgnsview
 
 More details to come later.
-
