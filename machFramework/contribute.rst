@@ -2,7 +2,7 @@ How to Contribute to MACH-Aero
 ==============================
 The codes in the MACH-Aero framework are open-source tools, so we welcome users to submit additions or fixes to improve them for everyone.
 This page contains general information on how to contribute to MACH-Aero codes.
-If a repo has additional instructions they will be in that repo's documentation, which can be found from its GitHub page. 
+If a repo has additional instructions they will be in that repo's documentation, which can be found from its GitHub page.
 
 Issues
 ------
@@ -12,52 +12,69 @@ If you are comfortable fixing the issue, please do so and submit a pull request 
 
 Coding style
 ------------
-We use formatters specific to different programming languages to increase readability and standardization of code. 
+We use formatters specific to different programming languages to increase readability and standardization of code.
 We run continuous integration with these tools on all pull requests submitted.
 For an easier workflow, we recommend integrating these tools with your code editor.
 
 Python
 ^^^^^^
 
-We use `black <https://github.com/psf/black>`_ for formatting Python codes.
-The version we use can be installed with:
+We use `ruff <https://github.com/astral-sh/ruff>`_ and `pre-commit <https://github.com/pre-commit/pre-commit/>`_ for linting and formatting out Python codes.
+Only pre-commit is required to run these checks locally:
 
 .. prompt:: bash
 
-    pip install black==23.1.0
+    pip install pre-commit
 
-``black`` can then be run at the project root with:
-
-.. prompt:: bash
-
-    black . -l 120
-
-This will automatically format all Python files.
-
-We use `flake8 <https://flake8.pycqa.org/en/latest/>`_ for linting in Python.
-The recommended version and any necessary dependencies are in `this file <https://github.com/mdolab/.github/blob/main/flake8-requirements.txt>`_.
-You can install them by calling ``pip install`` for each individually or copying the contents of that file into one on your machine and typing:
+If you want to run ruff as a standalone tool, you can install it with:
 
 .. prompt:: bash
 
-    pip install -r flake8-requirements.txt
+    pip install ruff==0.12.10
 
-The configuration file we use for ``flake8`` is a combination of `this .flake8 file <https://github.com/mdolab/.github/blob/main/.flake8>`__ and the one at the root of the respective repository.
-``flake8`` can then be run at the project root with:
+To match the checks we run in our CI pipelines, you will need to download our configuration files.
+Download our pre-commit configuration file from `here <https://raw.githubusercontent.com/mdolab/.github/main/.pre-commit-config.yaml>`_ and place it in the root of the respective repository, or place it somewhere central (e.g ``$HOME/.config/pre-commit``) and soft-link to it in the repository:
 
 .. prompt:: bash
 
-    flake8 .
+    mkdir -p $HOME/.config/pre-commit
+    cd $HOME/.config/pre-commit
+    wget https://raw.githubusercontent.com/mdolab/.github/main/.pre-commit-config.yaml
+    cd <path to the root of the repo>
+    ln -s $HOME/.config/pre-commit/.pre-commit-config.yaml .pre-commit-config.yaml
 
-If there are any PEP-8 violations, ``flake8`` will print out the nature of the violation.
+Follow a similar process for the ruff configuration file, which can be found `here <https://raw.githubusercontent.com/mdolab/.github/main/ruff.toml>`_.
+Save the file to ``$HOME/.config/ruff/ruff.toml``.
+Ruff will automatically look for the config file in this location.
+Some of our repositories may already have a ``ruff.toml`` file in their root, these local config files extend the global one.
+
+.. prompt:: bash
+
+    mkdir -p $HOME/.config/ruff
+    cd $HOME/.config/ruff
+    wget https://raw.githubusercontent.com/mdolab/.github/main/ruff.toml
+
+Once the config files are in place, you can run the pre-commit and ruff checks with:
+
+.. prompt:: bash
+
+    pre-commit run --all-files
+
+Pre-commit and ruff will fix all automatically fixable issues and print out any remaining ones that need to be fixed manually.
+To have these pre-commit checks run automatically on every commit, run:
+
+.. prompt:: bash
+
+    pre-commit install
+
 
 Fortran
 ^^^^^^^
 
-We use `fprettify <https://github.com/pseewald/fprettify>`_ for formatting Fortran codes. 
+We use `fprettify <https://github.com/pseewald/fprettify>`_ for formatting Fortran codes.
 The version we use can be installed with:
 
-.. prompt:: bash 
+.. prompt:: bash
 
     pip install fprettify==0.3.7
 
@@ -72,7 +89,7 @@ If there isn't a repo-specific config, `this global fprettify config <https://gi
 C/C++
 ^^^^^
 
-We use `clang-format <https://clang.llvm.org/>`_ to format C/C++ codes. 
+We use `clang-format <https://clang.llvm.org/>`_ to format C/C++ codes.
 Please install **version 10** following its documentation.
 
 The configuration file for ``clang-format`` is at the root of the respective repository.
@@ -100,7 +117,7 @@ To install the MDO Lab theme and its dependencies, type:
 
     pip install sphinx-mdolab-theme
 
-To build documentation locally, go to the ``doc`` folder and type: 
+To build documentation locally, go to the ``doc`` folder and type:
 
 .. prompt:: bash
 
@@ -116,12 +133,12 @@ All the existing tests can be found under the ``tests`` folder.
 Running tests requires additional packages in some repos.
 To install these, go to the root of that repo and type:
 
-.. prompt:: bash 
+.. prompt:: bash
 
     pip install .[testing]
 
-We use `Codecov <https://about.codecov.io/>`_ to monitor the percentage of the code covered by tests. 
-Coverage can be difficult to determine locally, so it is recommended to look for the check automatically run in the pull request. 
+We use `Codecov <https://about.codecov.io/>`_ to monitor the percentage of the code covered by tests.
+Coverage can be difficult to determine locally, so it is recommended to look for the check automatically run in the pull request.
 
 .. warning::
     For a PR to be accepted, all existing tests must pass and new code should meet coverage requirements.
