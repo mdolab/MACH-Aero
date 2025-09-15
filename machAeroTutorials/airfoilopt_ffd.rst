@@ -5,20 +5,20 @@
 Geometric Parametrization
 *************************
 
-Next, the FFD (Free-Form Deformation) file has to be generated in PLOT3D format. 
-This file contains the coordinates of the FFD points around the airfoil. 
-These are control points that are fitted to the airfoil using B-splines, which are used to deform the airfoil. 
+Next, the FFD (Free-Form Deformation) file has to be generated in PLOT3D format.
+This file contains the coordinates of the FFD points around the airfoil.
+These are control points that are fitted to the airfoil using B-splines, which are used to deform the airfoil.
 
-The coordinates for the NACA0012 airfoil are in the file ``n0012.dat``. 
+The coordinates for the NACA0012 airfoil are in the file ``n0012.dat``.
 
-Navigate to the directory ``airfoilopt/ffd`` in your tutorial folder. 
+Navigate to the directory ``airfoilopt/ffd`` in your tutorial folder.
 Copy the airfoil data from ``airfoilopt/mesh``:
 
 .. prompt:: bash
 
-    cp ../mesh/n0012.dat . 
+    cp ../mesh/n0012.dat .
 
-Create the following empty runscript in the current directory. 
+Create the following empty runscript in the current directory.
 
 - ``genFFD.py``
 
@@ -34,7 +34,7 @@ Load Airfoil
     :start-after: # rst Load
     :end-before: # rst UpperLower
 
-The following two functions are used to get the upper and lower points of the airfoil. 
+The following two functions are used to get the upper and lower points of the airfoil.
 
 .. literalinclude:: ../tutorial/airfoilopt/ffd/genFFD.py
     :start-after: # rst UpperLower
@@ -44,7 +44,7 @@ The following two functions are used to get the upper and lower points of the ai
 FFD Box Creation
 ================
 
-The FFD box can now be set up. 
+The FFD box can now be set up.
 
 .. literalinclude:: ../tutorial/airfoilopt/ffd/genFFD.py
     :start-after: # rst FFDBox1
@@ -56,7 +56,7 @@ We pre-allocate an array of generic size (a,b,c,3) to set up an empty FFD box.
 In this example, a=nffd (number of chordwise sections), b=c=2 (number of spanwise and thickness-wise sections respectively) and the final 3 is "fixed" as we are using 3D coordinates for each point.
 An empty FFD box is created.
 ``xmargin`` and ``ymargin`` specify the closest distance from the airfoil to place the FFD box.
-``xslice``, ``yupper``, and ``ylower`` store the x- and y- coordinates of the control points for each slice along the chord, taking into account the margins from the airfoil. 
+``xslice``, ``yupper``, and ``ylower`` store the x- and y- coordinates of the control points for each slice along the chord, taking into account the margins from the airfoil.
 
 
 
@@ -66,7 +66,7 @@ An empty FFD box is created.
 
 
 The x- and y- coordinates are transferred to the ``FFDbox`` variable.
-Since the airfoil slices are the same along the z-direction, the x- and y- coordinates are copied over. 
+Since the airfoil slices are the same along the z-direction, the x- and y- coordinates are copied over.
 The z-coordinates are updated to 0 and 1.
 
 

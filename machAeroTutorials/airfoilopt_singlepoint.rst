@@ -25,13 +25,13 @@ The shape variables are controlled by the FFD points specified in the FFD file.
 Files
 =====
 
-Navigate to the directory ``airfoilopt/singlepoint`` in your tutorial folder. 
+Navigate to the directory ``airfoilopt/singlepoint`` in your tutorial folder.
 Copy the FFD file, ``ffd.xyz``, and the CGNS mesh file, ``n0012.cgns``, generated previously, into the directory:
 
 .. prompt:: bash
 
-    cp ../mesh/n0012.cgns . 
-    cp ../ffd/ffd.xyz . 
+    cp ../mesh/n0012.cgns .
+    cp ../ffd/ffd.xyz .
 
 Create the following empty runscript in the current directory:
 
@@ -65,8 +65,8 @@ Four options are provided:
 
 Specifying parameters for the optimization
 ------------------------------------------
-Several conditions for the optimization are specified at the beginning of the script. 
-These include the coefficient of lift constraint value, Mach number, and altitude to indicate flow conditions. 
+Several conditions for the optimization are specified at the beginning of the script.
+These include the coefficient of lift constraint value, Mach number, and altitude to indicate flow conditions.
 
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
     :start-after: # rst parameters (beg)
@@ -77,7 +77,7 @@ The angle of attack serves as the initial value for the optimization and should 
 Creating processor sets
 -----------------------
 
-Allocating sets of processors for different analyses can be helpful for multiple design points, but this is a single-point optimization, so only one point is added. 
+Allocating sets of processors for different analyses can be helpful for multiple design points, but this is a single-point optimization, so only one point is added.
 
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
     :start-after: # rst multipoint (beg)
@@ -88,12 +88,12 @@ ADflow set-up
 -------------
 
 The ADflow set-up looks similar to the aerodynamic analysis script.
- 
+
 .. literalinclude:: ../tutorial/airfoilopt/singlepoint/airfoil_opt.py
     :start-after: # rst adflow (beg)
     :end-before: # rst adflow (end)
 
-As it is, the options specified above allow for a good convergence of NACA0012 airfoil analysis, but may not converge for other airfoils. 
+As it is, the options specified above allow for a good convergence of NACA0012 airfoil analysis, but may not converge for other airfoils.
 Some useful options to adjust are:
 
 ``nCycles``
