@@ -21,6 +21,7 @@ And the following optional modules:
 
 More detail for the framework can be found in :ref:`mach-aero`.
 If you use any of our codes, please :ref:`cite us <cite-us>`.
+If you would like to contribute to the development of any of these packages, please see our :ref:`contribution guide <contribute>`.
 
 .. toctree::
    :caption: Overview

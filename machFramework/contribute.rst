@@ -1,3 +1,5 @@
+.. _contribute:
+
 How to Contribute to MACH-Aero
 ==============================
 The codes in the MACH-Aero framework are open-source tools, so we welcome users to submit additions or fixes to improve them for everyone.
@@ -19,37 +21,54 @@ For an easier workflow, we recommend integrating these tools with your code edit
 Python
 ^^^^^^
 
-We use `black <https://github.com/psf/black>`_ for formatting Python codes.
-The version we use can be installed with:
+We use `ruff <https://github.com/astral-sh/ruff>`_ and `pre-commit <https://github.com/pre-commit/pre-commit/>`_ for linting and formatting out Python codes.
+Only pre-commit is required to run these checks locally:
 
 .. prompt:: bash
 
-    pip install black==23.1.0
+    pip install pre-commit
 
-``black`` can then be run at the project root with:
-
-.. prompt:: bash
-
-    black . -l 120
-
-This will automatically format all Python files.
-
-We use `flake8 <https://flake8.pycqa.org/en/latest/>`_ for linting in Python.
-The recommended version and any necessary dependencies are in `this file <https://github.com/mdolab/.github/blob/main/flake8-requirements.txt>`_.
-You can install them by calling ``pip install`` for each individually or copying the contents of that file into one on your machine and typing:
+If you want to run ruff as a standalone tool, you can install it with:
 
 .. prompt:: bash
 
-    pip install -r flake8-requirements.txt
+    pip install ruff==0.12.10
 
-The configuration file we use for ``flake8`` is a combination of `this .flake8 file <https://github.com/mdolab/.github/blob/main/.flake8>`__ and the one at the root of the respective repository.
-``flake8`` can then be run at the project root with:
+To match the checks we run in our CI pipelines, you will need to download our configuration files.
+Download our pre-commit configuration file from `here <https://raw.githubusercontent.com/mdolab/.github/main/.pre-commit-config.yaml>`_ and place it in the root of the respective repository, or place it somewhere central (e.g ``$HOME/.config/pre-commit``) and soft-link to it in the repository:
 
 .. prompt:: bash
 
-    flake8 .
+    mkdir -p $HOME/.config/pre-commit
+    cd $HOME/.config/pre-commit
+    wget https://raw.githubusercontent.com/mdolab/.github/main/.pre-commit-config.yaml
+    cd <path to the root of the repo>
+    ln -s $HOME/.config/pre-commit/.pre-commit-config.yaml .pre-commit-config.yaml
 
-If there are any PEP-8 violations, ``flake8`` will print out the nature of the violation.
+Follow a similar process for the ruff configuration file, which can be found `here <https://raw.githubusercontent.com/mdolab/.github/main/ruff.toml>`_.
+Save the file to ``$HOME/.config/ruff/ruff.toml``.
+Ruff will automatically look for the config file in this location.
+Some of our repositories may already have a ``ruff.toml`` file in their root, these local config files extend the global one.
+
+.. prompt:: bash
+
+    mkdir -p $HOME/.config/ruff
+    cd $HOME/.config/ruff
+    wget https://raw.githubusercontent.com/mdolab/.github/main/ruff.toml
+
+Once the config files are in place, you can run the pre-commit and ruff checks with:
+
+.. prompt:: bash
+
+    pre-commit run --all-files
+
+Pre-commit and ruff will fix all automatically fixable issues and print out any remaining ones that need to be fixed manually.
+To have these pre-commit checks run automatically on every commit, run:
+
+.. prompt:: bash
+
+    pre-commit install
+
 
 Fortran
 ^^^^^^^
