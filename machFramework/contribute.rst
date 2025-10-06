@@ -21,7 +21,7 @@ For an easier workflow, we recommend integrating these tools with your code edit
 Python
 ^^^^^^
 
-We use `ruff <https://github.com/astral-sh/ruff>`_ and `pre-commit <https://github.com/pre-commit/pre-commit/>`_ for linting and formatting out Python codes.
+We use `ruff <https://github.com/astral-sh/ruff>`_ and `pre-commit <https://github.com/pre-commit/pre-commit/>`_ for linting and formatting our Python codes.
 Only pre-commit is required to run these checks locally:
 
 .. prompt:: bash
@@ -47,8 +47,8 @@ Download our pre-commit configuration file from `here <https://raw.githubusercon
 
 Follow a similar process for the ruff configuration file, which can be found `here <https://raw.githubusercontent.com/mdolab/.github/main/ruff.toml>`_.
 Save the file to ``$HOME/.config/ruff/ruff.toml``.
-Ruff will automatically look for the config file in this location.
-Some of our repositories may already have a ``ruff.toml`` file in their root, these local config files extend the global one.
+No soft linking is required since ruff will automatically look for the config file in this location.
+Some of our repositories may already have a ``ruff.toml`` file in their root, these local config files should automatically extend the global one.
 
 .. prompt:: bash
 
