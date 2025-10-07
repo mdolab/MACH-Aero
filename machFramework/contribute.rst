@@ -46,9 +46,16 @@ Download our pre-commit configuration file from `here <https://raw.githubusercon
     ln -s $HOME/.config/pre-commit/.pre-commit-config.yaml .pre-commit-config.yaml
 
 Follow a similar process for the ruff configuration file, which can be found `here <https://raw.githubusercontent.com/mdolab/.github/main/ruff.toml>`_.
-Save the file to ``$HOME/.config/ruff/ruff.toml``.
-No soft linking is required since ruff will automatically look for the config file in this location.
-Some of our repositories may already have a ``ruff.toml`` file in their root, these local config files should automatically extend the global one.
+There are a few options for where to place this file.
+The preferred option is save the file to ``$HOME/.config/ruff/ruff.toml``.
+If you already have a global ruff configuration file in this location that you want to keep, you can also save our config file in one of the following locations that ruff will automatically find
+
+1. The root of the repository you're working on.
+2. The parent directory of the repository you're working on.
+
+.. note::
+
+    Some of our repositories already have a local ``ruff.toml`` config file in their root. These local config files are setup to automatically extend the global config file stored at ``$HOME/.config/ruff/ruff.toml``. If you have chosen to save our global ``ruff.toml`` file in a different location, you will need to edit the ``extend`` field in the local config file to point to the correct location of your global config file.
 
 .. prompt:: bash
 
