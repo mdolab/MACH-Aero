@@ -7,7 +7,7 @@ parser.add_argument("--level", default="L1")
 args = parser.parse_args()
 
 # rst SetLevels
-if args.level in ["L0.5", "L1.5", "L2", "L3"]:
+if args.level in ["L0.5", "L1.5", "L2", "L3", "L4"]:
     family = args.level
 else:
     family = "L1"
@@ -18,6 +18,7 @@ coarsen_levels = {
     "L1.5": 2,
     "L2": 2,
     "L3": 3,  # debug only level
+    "L4": 4, # debug only level
 }
 coarsen = coarsen_levels[args.level]
 
@@ -27,6 +28,7 @@ ngrid_levels = {
     "L1.5": 129,
     "L2": 97,
     "L3": 49,
+    "L4": 37,
 }
 ngrid = ngrid_levels[args.level]
 
@@ -36,6 +38,7 @@ level_fact = {
     "L1.5": 2.0 * 1.414,
     "L2": 2.0,
     "L3": 1.0,
+    "L4": 0.5,
 }
 s0 = 1e-5 / level_fact[args.level]
 

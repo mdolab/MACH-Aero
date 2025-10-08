@@ -14,8 +14,8 @@ We will parametrize its geometry using the FFD approach with the pygeo package.
 Like the airfoil optimzation tutorial, we will also create local design variables by allowing each FFD point to move up and down.
 However, we would also like to make the twist distribution (which is a traditional wing design parameter) a design variable as well.
 To do this, we will need to use the global design variable capability in ``DVGeo`` to move many FFD points at the same time.
-We will generate an FFD for and parameterize the geometry for the L3 refinement level of the mesh we created in the analysis tutorial.
-We normally conduct optimziation with the L2 mesh but for the sake of reducing computational time in this tutorial we use the L3 mesh.
+We will generate an FFD for and parameterize the geometry for the L4 refinement level of the mesh we created in the analysis tutorial.
+We normally conduct optimziation with the L2 mesh but for the sake of reducing computational time in this tutorial we use the L4 mesh.
 
 Unlike the previous section on setting up FFDs, this section will be divided into two parts.
 
@@ -37,7 +37,7 @@ Copy the following files from the ``tutorial`` directory:
 
 .. prompt:: bash
 
-    cp ../../../tutorial/aero/meshing/volume/wing_vol_L3.cgns .
+    cp ../../../tutorial/aero/meshing/volume/wing_vol_L4.cgns .
 
 Create the following empty runscripts in the current directory:
 
