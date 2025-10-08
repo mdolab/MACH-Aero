@@ -132,6 +132,13 @@ After the mesh extrusion is done, we can write the volume mesh with the ``writeC
 .. literalinclude:: ../tutorial/aero/meshing/volume/run_pyhyp.py
     :start-after: # rst run pyHyp
 
+.. note:: Be mindful of the growth ratio
+    When extruding the mesh the *growth ratio* is a key parameter to pay attention to.
+    It's defined as the the ratio of the length in offwall direction of the cells in a particular layer over the length in the offwall direction of the cells in the previous layer.
+    Changing the the number of layers without the changing the march distance or initial offwall cell size will change the growth ratio.
+    A growth ratio of 1.3 is recommended for these cases presented in these tutorials.
+    pyHyp does support a parameter for setting the growth ratio manually but this will ignore the set march distance so it's not often used.
+
 Run it yourself!
 ================
 When running you will need to specify which refinement level you want to generate.
