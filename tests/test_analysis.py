@@ -13,10 +13,10 @@ except ImportError:
 
 
 # note that this is NOT the testflo directive! We are explicitly calling mpirun ourselves
-NPROCS = 8
+NPROCS = 2
 mpiCmd = ["mpirun", "-n", f"{NPROCS}"]
-gridFlag = ["--gridFile", "wing_vol_L2.cgns"]
-gridFlagOpt = ["--gridFile", "wing_vol_L3.cgns"]
+gridFlag = ["--gridFile", "wing_vol_L3.cgns"]
+gridFlagOpt = ["--gridFile", "wing_vol_L4.cgns"]
 optimizer = {
     "SLSQP": ["--opt", "SLSQP", "--optOptions", "{'MAXIT': 0}"],
     "SNOPT": ["--opt", "SNOPT", "--optOptions", "{'Major iterations limit': 0}"],
