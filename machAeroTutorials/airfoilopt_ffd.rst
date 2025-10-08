@@ -43,6 +43,7 @@ Copy the airfoil data from ``airfoil/geometry``:
     cp ../../airfoil/geometry/n0012_processed.dat .
 
 Create the following empty runscript in the current directory.
+Create the following empty runscript in the current directory.
 
 - ``run_ffd.py``
 
@@ -80,6 +81,7 @@ FFD Box Creation
 ================
 
 The FFD box can now be set up.
+The FFD box can now be set up.
 
 .. literalinclude:: ../tutorial/airfoilopt/ffd/run_ffd.py
     :start-after: # rst FFDBox1
@@ -92,6 +94,7 @@ In this example, a=nffd (number of chordwise sections), b=c=2 (number of spanwis
 An empty FFD box is created.
 ``xmargin`` and ``ymargin`` specify the closest distance from the airfoil to place the FFD box.
 ``xslice``, ``yupper``, and ``ylower`` store the x- and y- coordinates of the control points for each slice along the chord, taking into account the margins from the airfoil.
+``xslice``, ``yupper``, and ``ylower`` store the x- and y- coordinates of the control points for each slice along the chord, taking into account the margins from the airfoil.
 
 
 
@@ -101,6 +104,7 @@ An empty FFD box is created.
 
 
 The x- and y- coordinates are transferred to the ``FFDbox`` variable.
+Since the airfoil slices are the same along the z-direction, the x- and y- coordinates are copied over.
 Since the airfoil slices are the same along the z-direction, the x- and y- coordinates are copied over.
 The z-coordinates are updated to 0 and 1.
 

@@ -1,3 +1,4 @@
+.pre-commit-config.yaml
 _build
 .DS_Store
 *.cgns
