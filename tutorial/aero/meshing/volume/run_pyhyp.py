@@ -18,7 +18,7 @@ coarsen_levels = {
     "L1.5": 2,
     "L2": 2,
     "L3": 3,  # debug only level
-    "L4": 4, # debug only level
+    "L4": 4,  # debug only level
 }
 coarsen = coarsen_levels[args.level]
 
