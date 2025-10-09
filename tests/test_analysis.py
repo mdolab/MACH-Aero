@@ -73,9 +73,11 @@ class TestWingOpt(unittest.TestCase):
         # Check if anything needs to be skipped based on available optimizers and modules
         if optName == "SNOPT" and not has_SNOPT:
             raise unittest.SkipTest("SNOPT is required for this test")
+        os.chdir("aero")
         shutil.rmtree("output", ignore_errors=True)
         cmd = ["python", "aero_opt.py"]
         subprocess.check_call(mpiCmd + cmd + gridFlagOpt + optimizer[optName])
+        os.chdir("../")
 
     @parameterized.expand(["SLSQP", "SNOPT", "IPOPT"])
     @unittest.skipIf(ocsm is None, "pyOCSM is required for this test")
@@ -83,9 +85,11 @@ class TestWingOpt(unittest.TestCase):
         # Check if anything needs to be skipped based on available optimizers and modules
         if optName == "SNOPT" and not has_SNOPT:
             raise unittest.SkipTest("SNOPT is required for this test")
+        os.chdir("aero")
         shutil.rmtree("output_ESP", ignore_errors=True)
         cmd = ["python", "aero_opt_esp.py", "--output", "output_ESP"]
         subprocess.check_call(mpiCmd + cmd + gridFlagOpt + optimizer[optName])
+        os.chdir("../")
 
 
 class TestAirfoil(unittest.TestCase):
@@ -110,10 +114,10 @@ class TestAirfoil(unittest.TestCase):
         os.chdir("analysis")
         shutil.rmtree("output", ignore_errors=True)
         shutil.rmtree("output_drag_polar", ignore_errors=True)
-        cmd = ["python", "aero_run.py"]
+        cmd = ["python", "airfoil_run.py"]
         subprocess.check_call(mpiCmd + cmd)
         # drag polar
-        cmd = ["python", "aero_run.py", "--task", "polar", "--output", "output_drag_polar"]
+        cmd = ["python", "airfoil_run.py", "--task", "polar", "--output", "output_drag_polar"]
         subprocess.check_call(mpiCmd + cmd)
 
 
