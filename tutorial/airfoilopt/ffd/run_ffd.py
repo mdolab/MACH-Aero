@@ -70,6 +70,5 @@ with open("ffd.xyz", "w") as f:
     for ell in range(3):
         for k in range(2):
             for j in range(2):
-                for i in range(nffd):
-                    f.write("%.15f " % (FFDbox[i, j, k, ell]))
+                f.write(" ".join(f"{x:.15f}" for x in FFDbox[:, j, k, ell]))
                 f.write("\n")
