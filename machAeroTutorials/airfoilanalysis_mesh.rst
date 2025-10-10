@@ -22,13 +22,7 @@ More details on pyHyp can be found in the :doc:`pyHyp documentation <pyhyp:index
 
 Files
 ============
-Navigate to the directory ``airfoil/meshing`` in your tutorial folder. Find the ``.xyz`` file you generated with preFoil and copy it from the ``airfoil/geometry`` folder.
-
-.. prompt:: bash
-
-    cp ../geometry/n0012_processed.xyz .
-
-
+Navigate to the directory ``airfoil/meshing`` in your tutorial folder.
 Create the following empty runscript in the current directory.
 
 - ``run_pyhyp.py``

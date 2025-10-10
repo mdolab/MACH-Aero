@@ -20,7 +20,7 @@ from multipoint import multiPointSparse
 parser = argparse.ArgumentParser()
 parser.add_argument("--output", type=str, default="output")
 parser.add_argument("--opt", type=str, default="SLSQP", choices=["IPOPT", "SLSQP", "SNOPT"])
-parser.add_argument("--gridFile", type=str, default="../../aero/analysis/wing_vol_L4.cgns")
+parser.add_argument("--gridFile", type=str, default="../../aero/meshing/volume/wing_vol_L4.cgns")
 parser.add_argument("--optOptions", type=ast.literal_eval, default={}, help="additional optimizer options to be added")
 args = parser.parse_args()
 # rst args (end)
@@ -87,7 +87,7 @@ ap.addDV("alpha", value=1.5, lower=0, upper=10.0, scale=0.1)
 # ======================================================================
 # rst dvgeo (beg)
 # Create DVGeometry object
-FFDFile = "ffd.xyz"
+FFDFile = "../ffd/ffd.xyz"
 DVGeo = DVGeometry(FFDFile)
 
 # Create reference axis

@@ -33,11 +33,6 @@ Unlike the previous section on setting up FFDs, this section will be divided int
 Files
 ================================================================================
 Navigate to the directory ``opt/ffd`` in your tutorial folder.
-Copy the following files from the ``tutorial`` directory:
-
-.. prompt:: bash
-
-    cp ../../../tutorial/aero/meshing/volume/wing_vol_L4.cgns .
 
 Create the following empty runscripts in the current directory:
 

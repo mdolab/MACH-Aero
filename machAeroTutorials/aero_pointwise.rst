@@ -26,11 +26,7 @@ Generating the remaining members of the mesh family will be covered in the next 
 
 Files
 =====
-Navigate to the directory ``aero/meshing/surface`` in your tutorial folder. Find the ``.igs`` file you generated with pyGeo and copy it from the ``aero/geometry`` folder.
-
-.. prompt:: bash
-
-    cp ../../geometry/wing.igs .
+Navigate to the directory ``aero/meshing/surface`` in your tutorial folder. This is where you will save your Pointwise project file and export the surface mesh to.
 
 
 Basic Pointwise Usage

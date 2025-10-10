@@ -9,7 +9,7 @@ from mpi4py import MPI
 # rst Args
 parser = argparse.ArgumentParser()
 parser.add_argument("--output", type=str, default="output")
-parser.add_argument("--gridFile", type=str, default="n0012.cgns")
+parser.add_argument("--gridFile", type=str, default="../meshing/n0012.cgns")
 parser.add_argument("--task", choices=["analysis", "polar"], default="analysis")
 args = parser.parse_args()
 

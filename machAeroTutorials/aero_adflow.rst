@@ -17,12 +17,6 @@ L1 meshes are what is typically used for analysis but we want to limit computati
 Files
 =====
 Navigate to the directory ``aero/analysis`` in your tutorial folder.
-Copy the following file from the volume meshing directory:
-
-.. prompt:: bash
-
-    cp ../meshing/volume/wing_vol_L3.cgns .
-
 Create the following empty runscript in the current directory:
 
 - ``aero_run.py``

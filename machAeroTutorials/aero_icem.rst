@@ -29,11 +29,6 @@ Generating the remaining members of the mesh family will be covered in the next 
 Files
 =====
 Navigate to the directory ``aero/meshing/surface`` in your tutorial folder.
-Copy the following file from the the ``geometry`` directory:
-
-.. prompt:: bash
-
-    cp ../../geometry/wing.tin .
 
 Basic ICEM Usage
 ================
@@ -110,7 +105,7 @@ Load the geometry
 -----------------
 In ICEM, select ``File`` → ``Geometry`` → ``Open Geometry``.
 
-Navigate to the surface meshing folder and open ``wing.tin``.
+Navigate to the geometry folder and open ``wing.tin``.
 
 ICEM will prompt you to create a project called ``wing.prj``. Select Yes.
 
@@ -188,7 +183,7 @@ All geometry creation and manipulation is done under the ``Geometry`` tab, outli
     .. image:: images/icem_TrailingEdgeCurves.png
        :scale: 30
 
-2. Create auxiliary curves
+1. Create auxiliary curves
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
     Now let's create some curves to help define the leading edge section of the surface mesh.
     First we need to create some points, so go back to the ``Create Point`` section.

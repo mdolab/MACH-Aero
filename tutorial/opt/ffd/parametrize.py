@@ -45,7 +45,7 @@ DVGeo.addLocalDV("local", lower=-0.5, upper=0.5, axis="y", scale=1)
 DVGeo.addLocalSectionDV("slocal", secIndex="k", axis=1, lower=-0.5, upper=0.5, scale=1)
 
 # rst Embed points
-gridFile = "../../aero/analysis/wing_vol_L4.cgns"
+gridFile = "../../aero/meshing/volume/wing_vol_L4.cgns"
 meshOptions = {"gridFile": gridFile}
 mesh = USMesh(options=meshOptions)
 coords = mesh.getSurfaceCoordinates()

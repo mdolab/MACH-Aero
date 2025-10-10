@@ -6,7 +6,7 @@ options = {
     # ---------------------------
     #        Input Parameters
     # ---------------------------
-    "inputFile": "n0012_processed.xyz",
+    "inputFile": "../geometry/n0012_processed.xyz",
     "unattachedEdgesAreSymmetry": False,
     "outerFaceBC": "farfield",
     "autoConnect": True,

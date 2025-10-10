@@ -4,7 +4,7 @@
 import numpy as np
 
 # rst Load
-airfoil = np.loadtxt("n0012_processed.dat")
+airfoil = np.loadtxt("../../airfoil/geometry/n0012_processed.dat")
 npts = airfoil.shape[0]
 offsetTEindex = -8
 nmid = (npts + 1) // 2 + offsetTEindex

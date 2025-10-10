@@ -17,12 +17,6 @@ Additionally, we will demonstrate a few additional settings in pyHyp compared to
 Files
 =====
 Navigate to the directory ``aero/meshing/volume`` in your tutorial folder.
-Copy the following file from the surface meshing directory:
-
-.. prompt:: bash
-
-    cp ../surface/wing_surf_L1.cgns .
-
 Create the following empty runscript in the current directory:
 
 - ``run_pyhyp.py``
@@ -47,7 +41,7 @@ Setup parameters for each member of the mesh family
    :start-after: # rst SetLevels
    :end-before: # rst general
 
-We want to create a family of meshes with the L3 mesh being the coarseset and the L0.5 mesh being the finest.
+We want to create a family of meshes with the L3 mesh being the coarsest and the L0.5 mesh being the finest.
 In between we want an L2, L1.5, and L1 mesh.
 Here we are goint to parse our input argument to determine which level of refinment we will generate on this run.
 We default to L1 if the argument is invalid or no argument is provided.

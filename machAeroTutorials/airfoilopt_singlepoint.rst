@@ -26,13 +26,6 @@ Files
 =====
 
 Navigate to the directory ``airfoilopt/singlepoint`` in your tutorial folder.
-Copy the FFD file, ``ffd.xyz``, and the CGNS mesh file, ``n0012.cgns``, generated in the previous tutorial, into the directory:
-
-.. prompt:: bash
-
-    cp ../../airfoil/meshing/n0012.cgns .
-    cp ../ffd/ffd.xyz .
-
 Create the following empty runscript in the current directory:
 
 - ``airfoil_opt.py``

@@ -32,13 +32,6 @@ The optimization problem is defined as:
 Files
 =====
 Navigate to the directory ``airfoilopt/multipoint`` in your tutorial folder.
-Copy the FFD file, ``ffd.xyz``, and the CGNS mesh file, ``n0012.cgns``, generated previously, into the directory:
-
-.. prompt:: bash
-
-    cp ../../meshing/n0012.cgns .
-    cp ../ffd/ffd.xyz .
-
 Copy the singlepoint script from the previous section to a new file in this directory:
 
 .. prompt:: bash

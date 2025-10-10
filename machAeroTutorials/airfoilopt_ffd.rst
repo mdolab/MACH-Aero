@@ -34,15 +34,7 @@ Files
 ======================
 
 The coordinates for the NACA0012 airfoil that we processed in the last tutorial are in the file ``n0012_processed.dat``.
-
 Navigate to the directory ``airfoilopt/ffd`` in your tutorial folder.
-Copy the airfoil data from ``airfoil/geometry``:
-
-.. prompt:: bash
-
-    cp ../../airfoil/geometry/n0012_processed.dat .
-
-Create the following empty runscript in the current directory.
 Create the following empty runscript in the current directory.
 
 - ``run_ffd.py``
@@ -80,7 +72,6 @@ Since our blunt trailing edge is 17 points long we will split at an offset of in
 FFD Box Creation
 ================
 
-The FFD box can now be set up.
 The FFD box can now be set up.
 
 .. literalinclude:: ../tutorial/airfoilopt/ffd/run_ffd.py

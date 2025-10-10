@@ -17,12 +17,6 @@ Files
 =====
 
 Navigate to the directory ``airfoil/analysis`` in your tutorial folder.
-Copy the CGNS mesh file, ``n0012.cgns``, generated previously, into the directory:
-
-.. prompt:: bash
-
-    cp ../meshing/n0012.cgns .
-
 Create the following empty runscript in the current directory:
 
 - ``airfoil_run.py``

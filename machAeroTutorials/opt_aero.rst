@@ -25,13 +25,6 @@ The optimization problem is defined as
 Files
 =====
 Navigate to the directory ``opt/aero`` in your tutorial folder.
-Copy the following files to this directory:
-
-.. prompt:: bash
-
-    cp ../ffd/ffd.xyz .
-    cp ../../aero/meshing/volume/wing_vol.cgns .
-
 Create the following empty runscript in the current directory:
 
 - ``aero_opt.py``

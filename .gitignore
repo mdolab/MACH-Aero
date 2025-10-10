@@ -1,7 +1,14 @@
+# Ignore all mesh files, except the few we want to keep
+*.cgns
+!tutorial/aero/meshing/surface/wing_surf_L1.cgns
+!tutorial/aero/meshing/volume/wing_vol_L3.cgns
+!tutorial/aero/meshing/volume/wing_vol_L4.cgns
+!tutorial/airfoil/meshing/n0012.cgns
+!tutorial/overset/mesh/ONERA_M6_L3.cgns
+
 .pre-commit-config.yaml
 _build
 .DS_Store
-*.cgns
 .vscode/*
 make.bat
 my_tutorial/

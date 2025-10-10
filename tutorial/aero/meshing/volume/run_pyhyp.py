@@ -48,7 +48,7 @@ options = {
     # ---------------------------
     #   General options
     # ---------------------------
-    "inputFile": "wing_surf_L1.cgns",
+    "inputFile": "../surface/wing_surf_L1.cgns",
     "fileType": "CGNS",
     "unattachedEdgesAreSymmetry": True,
     "outerFaceBC": "farfield",
