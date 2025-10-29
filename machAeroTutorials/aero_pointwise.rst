@@ -30,7 +30,7 @@ Navigate to the directory ``wing/meshing/surface`` in your tutorial folder. This
 
 
 Basic Pointwise Usage
-===============
+=====================
 Please refer to your Pointwise provider for installation instructions and how to start Pointwise.
 Once you start Pointwise, it should look something like in the following picture.
 
@@ -87,7 +87,7 @@ right mouse menu
 
 
 Loading the Geometry Definition
-===============
+================================
 Before we actually begin meshing, we have to set some standard values and import our geometry. First, we set some
 tolerances for Pointwise
 
@@ -153,7 +153,7 @@ Spacing Constraint
 
 
 Geometry Clean-up
-===============
+=================
 
 To make our life a bit easier in the coming mesh work, we first clean-up the geometry a bit.
 
@@ -229,10 +229,10 @@ As a rule of thumb you should always try and create one quilt for each domain yo
 
 
 Meshing
-===============
+=======
 
 Meshing strategy
--------------------------------------
+----------------
 Before we start meshing, we will first discuss what our overall strategy is and what our mesh will look like.
 Our plan is to create a multi-domain structured surface mesh with each quilt in our geometry being used to define a domain.
 For the upper surface, lower surface, and trailing edge we will generate ``connectors`` on the boundaries of each associated quilt and then dimension the each connector with the number of nodes we want along it.
@@ -271,7 +271,7 @@ These connectors are indicated as such in the mesh plan.
 
 
 Meshing the upper surface, lower surface, and trailing edge
--------------------------------------
+------------------------------------------------------------
 
 1. Start by selecting your upper surface, lower surface, and trailing edge quilts
 2. Then click ``Connectors on database entities`` to create your connectors.
@@ -443,7 +443,7 @@ Save your project at this point as we are now ready to move on to meshing the ti
 
 
 Meshing the tip cap
--------------------------------------
+-------------------
 Meshing the tip cap is the most difficult part of meshing the wing and may require several attempts to get right.
 We will subdivide the tip cap into five domains using a *O-grid* topology as shown in the mesh plan.
 First, according to our meshing plan, we will need to split the upper and lower tip airfoil connectors at 9 points from the leading edge.
@@ -486,7 +486,7 @@ You may wish to increase the number of undo levels as the default in Pointwise i
 
 
 Meshing the tip cap - Approach 1
-+++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++
 
 1. Select your tip cap quilt
 2. Click on ``Create``, ``Draw Curves``, ``Line on Database...``
@@ -539,7 +539,7 @@ The curvature of the tip cap that your connectors follow play major role in the 
     :align: center
 
 Meshing the tip cap - Approach 2
-+++++++++++++++++++++++++++++
++++++++++++++++++++++++++++++++++
 If the approach above is giving you trouble (will become apparent down the road later in the tutorial) then you might want to try this method.
 
 1. Select your tip cap quilt
@@ -597,8 +597,10 @@ If the approach above is giving you trouble (will become apparent down the road 
 
 
 Meshing the tip cap - Both approaches continued
-+++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++++++
+
 .. note:: This section continues from the end of either Approach 1 or 2
+
 We are now going to connect the two topologies at the leading and trailing edges to create the *O-grid* on the tip cap.
 
 1. Select your tip cap quilt
@@ -723,14 +725,14 @@ Our last steps will be orient normals and inspect mesh quality.
 
 
 Orienting the Mesh
-===============
+==================
 Orienting the surface normals in Pointwise is easy.
 
 1. Select all 8 of your domains.
 2. Click on ``Edit`` then ``Orient``
 3. In your main view you should see all the surface normal vectors for each domain appear.
 4. Click on a surface that has a **outward** facing normal vector.
-In this case we will choose the upper surface but in your case make sure you are choosing any **outward** facing normal vector.
+   In this case we will choose the upper surface but in your case make sure you are choosing any **outward** facing normal vector.
 5. Click on ``Set Master``
 
 .. figure:: images/aero_pointwise_dat39.png
@@ -753,7 +755,7 @@ You should now save your project.
 
 
 Inspecting Mesh Quality
-==============
+========================
 
 1. Select all 8 domains
 2. Click on ``Examine`` and then ``Area Ratio``
@@ -772,7 +774,7 @@ As long as your maximum area ratio is below five you should be okay for the rest
 
 
 Exporting the Mesh
-================
+==================
 We will now export the mesh as a ``.cgns`` file that can be read by ``pyHyp`` for extrusion.
 
 

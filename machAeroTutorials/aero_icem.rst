@@ -1,8 +1,8 @@
 .. _aero_icem:
 
-***************
+*************************
 Surface Meshing with ICEM
-***************
+*************************
 
 .. warning:: This page assumes you are using ICEM for surface meshing. For a version of this page that uses Pointwise see :ref:`here <aero_pointwise>`.
 

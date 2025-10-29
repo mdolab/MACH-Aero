@@ -1,8 +1,8 @@
 .. _opt_overview:
 
-########################
+##################################
 Wing Aerodynamic Optimization
-########################
+##################################
 After completing the wing analysis tutorial, you'll be ready to start optimizing the wing.
 This tutorial will heavily build on the previous one and it is highly recommended that you go through it first if you have not.
 In fact, we will be reusing the same initial geometry, surface mesh, and volume mesh that we created in the previous tutorial in this one.

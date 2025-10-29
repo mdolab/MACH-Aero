@@ -1,8 +1,8 @@
 .. _airfoilanalysis_prefoil:
 
-***************
+***********************
 Geometry Preprocessing
-***************
+***********************
 Before we can analyze an airfoil we need to define an airfoil geometry and preprocess it for meshing.
 Airfoil geometries are defined by a set of points or coordinates in 2D space that define a closed curve.
 Coordinates for many airfoils can be obtained from the `UIUC Data site <http://m-selig.ae.illinois.edu/ads/coord_database.html>`_.
@@ -96,7 +96,7 @@ The surface mesh (``n0012_processed.xyz``) can be visualized in Tecplot.
     :align: center
 
 Examining the processed NACA 0012
-++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++
 .. literalinclude:: ../tutorial/airfoil/geometry/run_prefoil.py
     :start-after: # rst PlotFinal
 

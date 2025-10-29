@@ -36,7 +36,7 @@ This is the standard way of importing the pyHyp library.
 We also import the argument parser and setup it up to allow us to specify which level of mesh we want to extrude.
 
 Setup parameters for each member of the mesh family
-----------------
+----------------------------------------------------
 .. literalinclude:: ../tutorial/wing/meshing/volume/run_pyhyp.py
    :start-after: # rst SetLevels
    :end-before: # rst general

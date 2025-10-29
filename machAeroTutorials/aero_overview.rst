@@ -1,8 +1,8 @@
 .. _aero_overview:
 
-####################
+##############################
 Wing Aerodynamic Analysis
-####################
+##############################
 Once you have mastered analysing and optimizing airfoils with MACH-Aero, you can try performing these operations on finite wings.
 We will start with the aerodynamic analysis of a Boeing 717 wing.
 

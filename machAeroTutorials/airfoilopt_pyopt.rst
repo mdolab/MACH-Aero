@@ -1,8 +1,8 @@
 .. _airfoilopt_pyopt:
 
-***********
+******************************
 Optimization with pyOptSparse
-***********
+******************************
 
 Introduction
 ============

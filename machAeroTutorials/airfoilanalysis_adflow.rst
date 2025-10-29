@@ -53,7 +53,7 @@ Three options are provided:
 -  Task to execute
 
 ADflow options
--------------
+--------------
 .. literalinclude:: ../tutorial/airfoil/analysis/airfoil_run.py
     :start-after: # rst ADflow options
     :end-before: # rst Start ADflow
@@ -96,7 +96,7 @@ When ADflow is instantiated, it reads in the mesh and then waits for the user to
 
 
 Set flow conditions
-------------------
+-------------------
 .. literalinclude:: ../tutorial/airfoil/analysis/airfoil_run.py
     :start-after: # rst Create AeroProblem
     :end-before: # rst Run ADflow

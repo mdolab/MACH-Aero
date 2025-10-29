@@ -1,9 +1,9 @@
 .. _airfoilanalysis_mesh:
 
 
-***************
+*******
 Meshing
-***************
+*******
 
 Introduction
 ============
@@ -21,7 +21,7 @@ More details on pyHyp can be found in the :doc:`pyHyp documentation <pyhyp:index
 
 
 Files
-============
+=====
 Navigate to the directory ``airfoil/meshing`` in your tutorial folder.
 Create the following empty runscript in the current directory.
 
@@ -29,12 +29,12 @@ Create the following empty runscript in the current directory.
 
 
 Dissecting the pyHyp runscript
-================================
+==============================
 Open the file run_pyhyp.py in your favorite text editor. Then copy the code from each of the following sections into this file.
 
 
 pyHyp runscript
-++++++++++++++++++++++++++++++++
++++++++++++++++
 .. literalinclude:: ../tutorial/airfoil/meshing/run_pyhyp.py
     :start-after: # rst Import
     :end-before: # rst GenOptions
@@ -42,7 +42,7 @@ pyHyp runscript
 Import the pyHyp libraries and numpy.
 
 Options
-++++++++++++++++++++++++++++++++
++++++++
 We will now apply several options for pyHyp in our options dictionary.
 
 
@@ -86,7 +86,7 @@ Grid Parameters
 
 
 Running pyHyp and Writing to File
-++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++
 
 The following three lines of code extrude the surface mesh and write the resulting volume mesh to a ``.cgns`` file.
 
