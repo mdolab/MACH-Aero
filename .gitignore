@@ -1,6 +1,8 @@
-*.pdf
-
-# Ignore all mesh files, except the few we want to keep
+# Ignore outputs from tutorials, except the few we want to keep
+tutorial/**/*.pdf
+tutorial/**/*.png
+tutorial/**/*.hst
+tutorial/**/*.out
 *.cgns
 !tutorial/wing/meshing/surface/wing_surf_L1.cgns
 !tutorial/wing/meshing/volume/wing_vol_L3.cgns
