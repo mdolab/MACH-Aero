@@ -16,7 +16,7 @@ L1 meshes are what is typically used for analysis but we want to limit computati
 
 Files
 =====
-Navigate to the directory ``aero/analysis`` in your tutorial folder.
+Navigate to the directory ``wing/analysis`` in your tutorial folder.
 Create the following empty runscript in the current directory:
 
 - ``aero_run.py``
@@ -29,7 +29,7 @@ Then copy the code from each of the following sections into this file.
 
 Import libraries
 ----------------
-.. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+.. literalinclude:: ../tutorial/wing/analysis/aero_run.py
    :start-after: # rst Imports
    :end-before: # rst ADflow options
 
@@ -51,7 +51,7 @@ Three options are provided:
 
 ADflow options
 --------------
-.. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+.. literalinclude:: ../tutorial/wing/analysis/aero_run.py
    :start-after: # rst ADflow options
    :end-before: # rst Start ADflow
 
@@ -82,7 +82,7 @@ A basic overview of the options used in this example are provided here.
 
 Create solver
 -------------
-.. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+.. literalinclude:: ../tutorial/wing/analysis/aero_run.py
    :start-after: # rst Start ADflow
    :end-before: # rst Create AeroProblem
 
@@ -93,7 +93,7 @@ Also, ADflow can write airfoil data for a given set of slices along the wing usi
 
 Set flow conditions
 -------------------
-.. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+.. literalinclude:: ../tutorial/wing/analysis/aero_run.py
     :start-after: # rst Create AeroProblem
     :end-before: # rst Run ADflow
 
@@ -105,7 +105,7 @@ Some available functions include ``'cl'``, ``'cd'``, ``'cmz'``, ``'lift'``, and 
 
 Single analysis
 ---------------
-.. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+.. literalinclude:: ../tutorial/wing/analysis/aero_run.py
     :start-after: # rst Run ADflow
     :end-before: # rst Create polar arrays
 
@@ -118,7 +118,7 @@ The other task is to generate a drag polar, which shares the same ADflow setup a
 The only difference is that the analysis is now done within a loop.
 
 
-.. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+.. literalinclude:: ../tutorial/wing/analysis/aero_run.py
     :start-after: # rst Create polar arrays
     :end-before: # rst Start loop
 
@@ -128,7 +128,7 @@ We also create the empty lists for storing the lift and drag coefficients.
 The lift and drag data will be appended to these lists as the flow solutions are completed.
 
 
-.. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+.. literalinclude:: ../tutorial/wing/analysis/aero_run.py
     :start-after: # rst Start loop
     :end-before: # rst update AP
 
@@ -136,7 +136,7 @@ Having created the input array and data storage lists, we can now loop over the 
 We accomplish this by using the builtin ``for`` loop structure in python.
 
 
-.. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+.. literalinclude:: ../tutorial/wing/analysis/aero_run.py
     :start-after: # rst update AP
     :end-before: # rst Run ADflow polar
 
@@ -146,7 +146,7 @@ This allow the filenames of the lift distribution, slices, volume solution and s
 We also update the alpha parameter, which is the attribute of the AeroProblem that represents the angle of attack.
 
 
-.. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+.. literalinclude:: ../tutorial/wing/analysis/aero_run.py
     :start-after: # rst Run ADflow polar
     :end-before: # rst Print polar
 
@@ -157,7 +157,7 @@ We then use the same ``EvalFunctions`` call to integrate the surface forces to g
 The difference is that here, we append the coefficients from ``funcs`` into the ``CLList`` and ``CDList`` variables, so that they can be used later.
 
 
-.. literalinclude:: ../tutorial/aero/analysis/aero_run.py
+.. literalinclude:: ../tutorial/wing/analysis/aero_run.py
     :start-after: # rst Print polar
 
 Once we complete the loop and evaluate all of the desired flow conditions, we can print the completed data set to the screen.

@@ -28,7 +28,7 @@ Generating the remaining members of the mesh family will be covered in the next 
 
 Files
 =====
-Navigate to the directory ``aero/meshing/surface`` in your tutorial folder.
+Navigate to the directory ``wing/meshing/surface`` in your tutorial folder.
 
 Basic ICEM Usage
 ================

@@ -20,7 +20,7 @@ import numpy as np
 parser = argparse.ArgumentParser()
 parser.add_argument("--output", type=str, default="output")
 parser.add_argument("--opt", type=str, default="IPOPT", choices=["SLSQP", "IPOPT", "SNOPT"])
-parser.add_argument("--gridFile", type=str, default="../../aero/meshing/volume/wing_vol_L4.cgns")
+parser.add_argument("--gridFile", type=str, default="../../wing/meshing/volume/wing_vol_L4.cgns")
 parser.add_argument("--optOptions", type=ast.literal_eval, default={}, help="additional optimizer options to be added")
 args = parser.parse_args()
 # rst args (end)

@@ -16,7 +16,7 @@ except ImportError:
 NPROCS = 2
 mpiCmd = ["mpirun", "-n", f"{NPROCS}"]
 gridFlag = ["--gridFile", "../meshing/volume/wing_vol_L4.cgns"]
-gridFlagOpt = ["--gridFile", "../../aero/meshing/volume/wing_vol_L4.cgns"]
+gridFlagOpt = ["--gridFile", "../../wing/meshing/volume/wing_vol_L4.cgns"]
 optimizer = {
     "SLSQP": ["--opt", "SLSQP", "--optOptions", "{'MAXIT': 0}"],
     "SNOPT": ["--opt", "SNOPT", "--optOptions", "{'Major iterations limit': 0}"],
@@ -29,13 +29,13 @@ class TestWingAnalysis(unittest.TestCase):
         os.chdir(os.path.join(tutorialDir, "aero"))
 
     def test_geo(self):
-        # aero/geometry
+        # wing/geometry
         os.chdir("geometry")
         subprocess.check_call(["python", "generate_wing.py"])
         os.chdir("../")
 
     def test_pyhyp(self):
-        # aero/meshing/volume
+        # wing/meshing/volume
         os.chdir("meshing/volume")
         cmd = ["python", "run_pyhyp.py"]
         subprocess.check_call(mpiCmd + cmd)
@@ -97,13 +97,13 @@ class TestAirfoil(unittest.TestCase):
         os.chdir(os.path.join(tutorialDir, "airfoil"))
 
     def test_prefoil(self):
-        # aero/geometry
+        # wing/geometry
         os.chdir("geometry")
         subprocess.check_call(["python", "run_prefoil.py"])
         os.chdir("../")
 
     def test_pyhyp(self):
-        # aero/meshing/volume
+        # wing/meshing/volume
         os.chdir("meshing")
         cmd = ["python", "run_pyhyp.py"]
         subprocess.check_call(mpiCmd + cmd)

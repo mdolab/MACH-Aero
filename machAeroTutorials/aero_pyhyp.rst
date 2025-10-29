@@ -16,7 +16,7 @@ Additionally, we will demonstrate a few additional settings in pyHyp compared to
 
 Files
 =====
-Navigate to the directory ``aero/meshing/volume`` in your tutorial folder.
+Navigate to the directory ``wing/meshing/volume`` in your tutorial folder.
 Create the following empty runscript in the current directory:
 
 - ``run_pyhyp.py``
@@ -28,7 +28,7 @@ Then copy the code from each of the following sections into this file.
 
 Import libraries
 ----------------
-.. literalinclude:: ../tutorial/aero/meshing/volume/run_pyhyp.py
+.. literalinclude:: ../tutorial/wing/meshing/volume/run_pyhyp.py
    :start-after: # rst Imports
    :end-before: # rst SetLevels
 
@@ -37,7 +37,7 @@ We also import the argument parser and setup it up to allow us to specify which 
 
 Setup parameters for each member of the mesh family
 ----------------
-.. literalinclude:: ../tutorial/aero/meshing/volume/run_pyhyp.py
+.. literalinclude:: ../tutorial/wing/meshing/volume/run_pyhyp.py
    :start-after: # rst SetLevels
    :end-before: # rst general
 
@@ -50,7 +50,7 @@ Using the specified level of refinement we select the amount of surface mesh coa
 
 Options
 -------
-.. literalinclude:: ../tutorial/aero/meshing/volume/run_pyhyp.py
+.. literalinclude:: ../tutorial/wing/meshing/volume/run_pyhyp.py
     :start-after: # rst general
     :end-before: # rst grid
 
@@ -78,7 +78,7 @@ General options:
     ``families``
         Name given to wall surfaces. If a dictionary is submitted, each wall patch can have a different name. This can help the user to apply certain operations to specific wall patches in ADflow.
 
-.. literalinclude:: ../tutorial/aero/meshing/volume/run_pyhyp.py
+.. literalinclude:: ../tutorial/wing/meshing/volume/run_pyhyp.py
     :start-after: # rst grid
     :end-before: # rst pseudo
 
@@ -108,22 +108,22 @@ For example, ``epsE`` may be of interest when dealing with concave corners.
 One thing to note there is that we have applied something called scheduleing to some of these parameters.
 This is when we don't just pass a single value but a list of value pairs where the second term is the value of the parameter and the first is the point (as a fraction) in the mesh extrusion process it should be applied.
 
-.. literalinclude:: ../tutorial/aero/meshing/volume/run_pyhyp.py
+.. literalinclude:: ../tutorial/wing/meshing/volume/run_pyhyp.py
     :start-after: # rst pseudo
     :end-before: # rst smoothing
 
-.. literalinclude:: ../tutorial/aero/meshing/volume/run_pyhyp.py
+.. literalinclude:: ../tutorial/wing/meshing/volume/run_pyhyp.py
     :start-after: # rst smoothing
     :end-before: # rst solution
 
-.. literalinclude:: ../tutorial/aero/meshing/volume/run_pyhyp.py
+.. literalinclude:: ../tutorial/wing/meshing/volume/run_pyhyp.py
     :start-after: # rst solution
     :end-before: # rst run pyHyp
 
 Running pyHyp is quite simple, as shown below.
 After the mesh extrusion is done, we can write the volume mesh with the ``writeCGNS`` function.
 
-.. literalinclude:: ../tutorial/aero/meshing/volume/run_pyhyp.py
+.. literalinclude:: ../tutorial/wing/meshing/volume/run_pyhyp.py
     :start-after: # rst run pyHyp
 
 .. note:: Be mindful of the growth ratio

@@ -1,7 +1,7 @@
 .. _airfoilanalysis_prefoil:
 
 ***************
-Preprocess Geometry
+Geometry Preprocessing
 ***************
 Before we can analyze an airfoil we need to define an airfoil geometry and preprocess it for meshing.
 Airfoil geometries are defined by a set of points or coordinates in 2D space that define a closed curve.

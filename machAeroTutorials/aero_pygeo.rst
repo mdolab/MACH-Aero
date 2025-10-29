@@ -16,12 +16,12 @@ For more details on the options in pyGeo see the :doc:`docs <pygeo:index>`.
 
 Files
 =====
-Navigate to the directory ``aero/geometry`` in your tutorial folder.
+Navigate to the directory ``wing/geometry`` in your tutorial folder.
 Copy the following file from the ``tutorial`` directory:
 
 .. prompt:: bash
 
-    cp ../../../tutorial/aero/geometry/rae2822.dat .
+    cp ../../../tutorial/wing/geometry/rae2822.dat .
 
 Create the following empty runscript in the current directory:
 
@@ -37,13 +37,13 @@ Import libraries
 Numpy is used for scientific computing such as matrix/vector operations.
 We need to import the pyGeo library in order to use its functions.
 
-.. literalinclude:: ../tutorial/aero/geometry/generate_wing.py
+.. literalinclude:: ../tutorial/wing/geometry/generate_wing.py
     :start-after: # rst Imports
     :end-before: # rst Airfoil file
 
 Wing Definition
 ---------------
-.. literalinclude:: ../tutorial/aero/geometry/generate_wing.py
+.. literalinclude:: ../tutorial/wing/geometry/generate_wing.py
     :start-after: # rst Airfoil file
     :end-before: # rst Wing definition
 
@@ -75,13 +75,13 @@ The leading edge of each airfoil is positioned in space based on the values in t
 An offset in the x-y plane can be added to this position with the ``offset`` array before chord scaling is applied.
 In this case, we don't want to apply any rotation (the rotation options shown below would be for rotation about the airfoil leading edge points and the units are degrees) or offset.
 
-.. literalinclude:: ../tutorial/aero/geometry/generate_wing.py
+.. literalinclude:: ../tutorial/wing/geometry/generate_wing.py
     :start-after: # rst Wing definition
     :end-before: # rst Run pyGeo
 
 Call pyGeo
 ----------
-.. literalinclude:: ../tutorial/aero/geometry/generate_wing.py
+.. literalinclude:: ../tutorial/wing/geometry/generate_wing.py
     :start-after: # rst Run pyGeo
     :end-before: # rst Write output files
 
@@ -96,12 +96,12 @@ There are three options for writing the geometry surface definition to file.
     2. Write an IGES file for with Pointwise (or for conversion to a TIN file in ICEM).
     3. Write a TIN file directly from pyGeo for use with ICEM.
 
-.. literalinclude:: ../tutorial/aero/geometry/generate_wing.py
+.. literalinclude:: ../tutorial/wing/geometry/generate_wing.py
    :start-after: # rst Write output files
 
 Run it yourself!
 ================
-After copying ``rae2822.dat`` to your ``aero/geometry`` folder and making the ``generate_wing.py`` script, you can now run the python file with the command
+After copying ``rae2822.dat`` to your ``wing/geometry`` folder and making the ``generate_wing.py`` script, you can now run the python file with the command
 
 .. prompt:: bash
 

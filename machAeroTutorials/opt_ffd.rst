@@ -52,7 +52,7 @@ Then copy the code from each of the following sections into this file.
 
 Specify bounds of FFD volume
 ----------------------------
-.. literalinclude:: ../tutorial/opt/ffd/simple_ffd.py
+.. literalinclude:: ../tutorial/wingopt/ffd/simple_ffd.py
     :start-after: # rst Dimensions
     :end-before: # rst Compute
 
@@ -62,7 +62,7 @@ We also need to specify the number of control points we want along each dimensio
 
 Compute FFD nodes
 -----------------
-.. literalinclude:: ../tutorial/opt/ffd/simple_ffd.py
+.. literalinclude:: ../tutorial/wingopt/ffd/simple_ffd.py
     :start-after: # rst Compute
     :end-before: # rst Write
 
@@ -73,7 +73,7 @@ Here we use a distribution that varies from wider spacing at the root to narrowe
 
 Write to file
 -------------
-.. literalinclude:: ../tutorial/opt/ffd/simple_ffd.py
+.. literalinclude:: ../tutorial/wingopt/ffd/simple_ffd.py
     :start-after: # rst Write
 
 Finally we write to file using the plot3d format.
@@ -104,7 +104,7 @@ The DVGeo functions used in the following sections are defined in pygeo/pygeo/pa
 
 Import libraries
 ----------------
-.. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+.. literalinclude:: ../tutorial/wingopt/ffd/parametrize.py
     :start-after: # rst Import libraries
     :end-before: # rst Create DVGeometry object
 
@@ -114,7 +114,7 @@ We also import IDWarp so that we can use one of its functions to obtain surface 
 
 Instantiate DVGeometry
 ----------------------
-.. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+.. literalinclude:: ../tutorial/wingopt/ffd/parametrize.py
     :start-after: # rst Create DVGeometry object
     :end-before: # rst Create reference axis
 
@@ -143,7 +143,7 @@ First we will explain the global variables and then the local variables.
 
 Reference Axis
 ~~~~~~~~~~~~~~
-.. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+.. literalinclude:: ../tutorial/wingopt/ffd/parametrize.py
     :start-after: # rst Create reference axis
     :end-before: # rst Dihedral
 
@@ -169,7 +169,7 @@ We will go through a few examples.
 
 Dihedral
 ~~~~~~~~
-.. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+.. literalinclude:: ../tutorial/wingopt/ffd/parametrize.py
     :start-after: # rst Dihedral
     :end-before: # rst Twist
 
@@ -181,7 +181,7 @@ Finally, we restore the new control point coordinates to DVGeo with the call ``r
 
 Twist
 ~~~~~
-.. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+.. literalinclude:: ../tutorial/wingopt/ffd/parametrize.py
     :start-after: # rst Twist
     :end-before: # rst Taper
 
@@ -193,7 +193,7 @@ Twisting about the x and y axes is provided through the ``rot_x`` and ``rot_y`` 
 
 Taper
 ~~~~~
-.. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+.. literalinclude:: ../tutorial/wingopt/ffd/parametrize.py
     :start-after: # rst Taper
     :end-before: # rst Add global dvs
 
@@ -217,7 +217,7 @@ Additional scaling dictionaries include ``scale_y``, ``scale_z``, and ``scale``,
 
 Adding global variables
 ~~~~~~~~~~~~~~~~~~~~~~~
-.. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+.. literalinclude:: ../tutorial/wingopt/ffd/parametrize.py
     :start-after: # rst Add global dvs
     :end-before: # rst Add local dvs
 
@@ -229,7 +229,7 @@ The ``value`` input must be the size of the design variable vector, but the boun
 
 Adding local variables
 ~~~~~~~~~~~~~~~~~~~~~~
-.. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+.. literalinclude:: ../tutorial/wingopt/ffd/parametrize.py
     :start-after: # rst Add local dvs
     :end-before: # rst Embed points
 
@@ -251,7 +251,7 @@ The following snippets of code allow us to manually change the design variables 
 
 Embed points
 ~~~~~~~~~~~~
-.. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+.. literalinclude:: ../tutorial/wingopt/ffd/parametrize.py
     :start-after: # rst Embed points
     :end-before: # rst Change dvs
 
@@ -260,7 +260,7 @@ Normally, ADflow automatically embeds the surface mesh nodes in the FFD, but her
 
 Change the design variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+.. literalinclude:: ../tutorial/wingopt/ffd/parametrize.py
     :start-after: # rst Change dvs
     :end-before: # rst Update
 
@@ -270,7 +270,7 @@ Once this is done, you can return the new values with the call ``setDesignVars``
 
 Write deformed FFD to file
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
-.. literalinclude:: ../tutorial/opt/ffd/parametrize.py
+.. literalinclude:: ../tutorial/wingopt/ffd/parametrize.py
     :start-after: # rst Update
 
 The ``update`` function actually computes the new shape of the FFD and the new locations of the embedded points.
