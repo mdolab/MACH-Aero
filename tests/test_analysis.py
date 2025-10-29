@@ -13,7 +13,7 @@ except ImportError:
 
 
 # note that this is NOT the testflo directive! We are explicitly calling mpirun ourselves
-NPROCS = 12
+NPROCS = 2
 mpiCmd = ["mpirun", "-n", f"{NPROCS}"]
 gridFlag = ["--gridFile", "../meshing/volume/wing_vol_L4.cgns"]
 gridFlagOpt = ["--gridFile", "../../wing/meshing/volume/wing_vol_L4.cgns"]
