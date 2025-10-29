@@ -36,7 +36,7 @@ Then copy the code from each of the following sections into this file.
 
 Import libraries
 ----------------
-.. literalinclude:: ../tutorial//wingopt/aero_opt.py
+.. literalinclude:: ../tutorial/wingopt/aero//aero_opt.py
     :start-after: # rst Imports (beg)
     :end-before: # rst Imports (end)
 
@@ -44,7 +44,7 @@ The multipoint library is the only new library to include in this script.
 
 Adding command line arguments
 -----------------------------
-.. literalinclude:: ../tutorial//wingopt/aero_opt.py
+.. literalinclude:: ../tutorial/wingopt/aero//aero_opt.py
     :start-after: # rst args (beg)
     :end-before: # rst args (end)
 
@@ -56,7 +56,7 @@ Two options are provided:
 
 Creating processor sets
 -----------------------
-.. literalinclude:: ../tutorial//wingopt/aero_opt.py
+.. literalinclude:: ../tutorial/wingopt/aero//aero_opt.py
     :start-after: # rst multipoint (beg)
     :end-before: # rst multipoint (end)
 
@@ -71,7 +71,7 @@ The call ``createCommunicators`` returns information about the current processor
 
 ADflow set-up
 -------------
-.. literalinclude:: ../tutorial//wingopt/aero_opt.py
+.. literalinclude:: ../tutorial/wingopt/aero//aero_opt.py
     :start-after: # rst adflow (beg)
     :end-before: # rst adflow (end)
 
@@ -83,7 +83,7 @@ We add a single lift distribution with 150 sampling points.
 
 Set the AeroProblem
 -------------------
-.. literalinclude:: ../tutorial//wingopt/aero_opt.py
+.. literalinclude:: ../tutorial/wingopt/aero//aero_opt.py
     :start-after: # rst aeroproblem (beg)
     :end-before: # rst aeroproblem (end)
 
@@ -92,7 +92,7 @@ Any of the quantities included in the initialization of the AeroProblem can be a
 
 Geometric parametrization
 -------------------------
-.. literalinclude:: ../tutorial//wingopt/aero_opt.py
+.. literalinclude:: ../tutorial/wingopt/aero//aero_opt.py
     :start-after: # rst dvgeo (beg)
     :end-before: # rst dvgeo (end)
 
@@ -123,7 +123,7 @@ Therefore, ``lower=1.0`` in this example means that the lower limits for these c
 
 .. warning:: The ``leList`` and ``teList`` points must lie completely inside the wing.
 
-.. literalinclude:: ../tutorial//wingopt/aero_opt.py
+.. literalinclude:: ../tutorial/wingopt/aero//aero_opt.py
     :start-after: # rst dvconVolThick (beg)
     :end-before: # rst dvconVolThick (end)
 
@@ -141,7 +141,7 @@ When we have both twist and local shape variables, we want to prevent the local 
 This is done by constraining the upper and lower FFD control points on the leading and trailing edges to move in opposite directions.
 Note that the LeTe constraint is not related to the ``leList`` and ``teList`` points discussed above.
 
-.. literalinclude:: ../tutorial//wingopt/aero_opt.py
+.. literalinclude:: ../tutorial/wingopt/aero//aero_opt.py
     :start-after: # rst dvconLeTe (beg)
     :end-before: # rst dvconLeTe (end)
 
@@ -156,7 +156,7 @@ This command can also be added at the end of the script to visualize the final c
 
 Mesh warping set-up
 -------------------
-.. literalinclude:: ../tutorial//wingopt/aero_opt.py
+.. literalinclude:: ../tutorial/wingopt/aero//aero_opt.py
     :start-after: # rst warp (beg)
     :end-before: # rst warp (end)
 
@@ -164,7 +164,7 @@ This is as straightforward as it was in the airfoil optimziation tutorial.
 
 Optimization callback functions
 -------------------------------
-.. literalinclude:: ../tutorial//wingopt/aero_opt.py
+.. literalinclude:: ../tutorial/wingopt/aero//aero_opt.py
     :start-after: # rst funcs (beg)
     :end-before: # rst funcs (end)
 
@@ -172,7 +172,7 @@ This section is identical to the one in the airfoil optimization tutorial.
 
 Optimization problem
 --------------------
-.. literalinclude:: ../tutorial//wingopt/aero_opt.py
+.. literalinclude:: ../tutorial/wingopt/aero//aero_opt.py
     :start-after: # rst optprob (beg)
     :end-before: # rst optprob (end)
 
@@ -182,7 +182,7 @@ Run optimization
 ----------------
 To finish up, we choose the optimizer and then run the optimization.
 
-.. literalinclude:: ../tutorial//wingopt/aero_opt.py
+.. literalinclude:: ../tutorial/wingopt/aero//aero_opt.py
     :start-after: # rst optimizer
 
 .. note::
