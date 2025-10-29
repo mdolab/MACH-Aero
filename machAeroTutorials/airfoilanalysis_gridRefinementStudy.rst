@@ -81,7 +81,7 @@ Option 1: Coarsening volume meshes
 
 #. Generate a fine grid (L0) with :math:`N=(2^n) (m) + 1` nodes along each edge.
 #. Coarsen the L0 grid :math:`n-1` times using ``cgns_utils coarsen``.
-   See :ref:`airfoilanalysis_cgnsutils` for more details.
+   See :ref:`aero_cgnsutils` for more details.
 #. Compute the Richardson extrapolation using the L0 and L1 grid solutions.
 #. Plot :math:`h^p` vs :math:`C_D`.
    For ADflow, start by assuming :math:`p=2`.
