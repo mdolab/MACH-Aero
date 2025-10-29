@@ -24,7 +24,7 @@ To get a list of all of the operations available with cgnsUtilities, run the com
 
     cgns_utils -h
 
-For any cgns_utils operation, you can add the argument ``-h`` to get information about the required and optional parameters (e.g. ``cgns_utils symmzero -h``).
+For any cgns_utils operation, you can add the argument ``-h`` to get information about the required and optional parameters (e.g. ``cgns_utils coarsen -h``).
 
 Coarsening a volume mesh
 ------------------------
@@ -35,7 +35,7 @@ To coarsen the mesh run the following from the terminal:
 
 .. prompt:: bash
 
-    cgns_utils coarsen wing_vol.cgns wing_vol_coarsened.cgns
+    cgns_utils coarsen wing_vol_L3.cgns wing_vol_L3_coarsened.cgns
 
 The original and the coarsened meshes are shown below.
 
