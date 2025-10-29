@@ -148,7 +148,7 @@ This can be done with the command:
 
 .. prompt:: bash
 
-    mpirun -np 4 python run_pyhyp.py --level {insert refinement level here}
+    mpiexec -n 4 python run_pyhyp.py --level {insert refinement level here}
 
 where the number of processors is given after ``-np``.
 You can open ``wing_vol_{refine level}.cgns`` in Tecplot to view the volume mesh.

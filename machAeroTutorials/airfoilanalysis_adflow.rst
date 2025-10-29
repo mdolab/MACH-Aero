@@ -177,7 +177,7 @@ First we run the analysis task, which is the default ``task``:
 
 .. prompt:: bash
 
-    mpirun -np 4 python airfoil_run.py
+    mpiexec -n 4 python airfoil_run.py
 
 
 ADflow will print to the terminal various information during the initialization stages before starting the solution process.
@@ -266,7 +266,7 @@ Next, run the ``polar`` task:
 
 .. prompt:: bash
 
-    mpirun -np 4 python aero_run.py --task polar --output polar
+    mpiexec -n 4 python aero_run.py --task polar --output polar
 
 
 The final table should look something like::

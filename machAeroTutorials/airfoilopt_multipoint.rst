@@ -100,7 +100,7 @@ The script can be run in the same way
 
 .. prompt:: bash
 
-    mpirun -np 4 python airfoil_multiopt.py | tee output.txt
+    mpiexec -n 4 python airfoil_multiopt.py | tee output.txt
 
 
 .. figure::

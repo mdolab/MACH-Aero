@@ -199,7 +199,7 @@ To run the script, use the ``mpirun`` and place the total number of processors a
 
 .. prompt:: bash
 
-    mpirun -np 4 python aero_opt.py
+    mpiexec -n 4 python aero_opt.py
 
 You can follow the progress of the optimization using OptView, as explained in :ref:`airfoilopt_pyopt`.
 
