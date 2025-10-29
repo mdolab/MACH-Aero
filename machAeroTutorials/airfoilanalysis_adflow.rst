@@ -266,19 +266,19 @@ Next, run the ``polar`` task:
 
 .. prompt:: bash
 
-    mpiexec -n 4 python aero_run.py --task polar --output polar
+    mpiexec -n 4 python airfoil_run.py --task polar --output polar
 
 
 The final table should look something like::
 
-     Alpha       CL       CD
+    Alpha       CL       CD
     ========================
-        0.0   0.0000   0.0088
-        1.0   0.1930   0.0103
-        2.0   0.3750   0.0179
-        3.0   0.5108   0.0310
-        4.0   0.5453   0.0443
-        5.0   0.5347   0.0568
+       0.0   0.0000   0.0088
+       1.0   0.1930   0.0103
+       2.0   0.3750   0.0179
+       3.0   0.5105   0.0310
+       4.0   0.5468   0.0444
+       5.0   0.5338   0.0567
 
 Postprocessing the solution output
 ==================================
