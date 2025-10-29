@@ -90,7 +90,7 @@ aeroOptions = {
     "adjointL2Convergence": 1e-12,
     "ADPC": True,
     "adjointMaxIter": 5000,
-    "adjointSubspaceSize": 400,
+    "adjointSubspaceSize": 100,
     "ILUFill": 3,
     "ASMOverlap": 3,
     "outerPreconIts": 3,
