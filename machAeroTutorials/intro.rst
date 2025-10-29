@@ -55,8 +55,8 @@ This tutorial requires the following software.
 
 **External Software**
 
-- ICEM CFD or Fidelity Pointwise (for surface mesh generation)
-- Tecplot (for flow visualization)
+- Fidelity Pointwise or ICEM (for surface mesh generation)
+- Tecplot or Paraview (for flow visualization)
 
 .. note:: The airfoil analysis and optimziation tutorials do not require these external software packages.
     However Tecplot is still required to postprocess the resulting flow field.
