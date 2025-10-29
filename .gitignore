@@ -4,6 +4,8 @@ tutorial/**/*.png
 tutorial/**/*.hst
 tutorial/**/*.out
 tutorial/**/*.txt
+tutorial/**/*.dat
+!tutorial/airfoil/geometry/n0012*.dat
 *.cgns
 !tutorial/wing/meshing/surface/wing_surf_L1.cgns
 !tutorial/wing/meshing/volume/wing_vol_L3.cgns
