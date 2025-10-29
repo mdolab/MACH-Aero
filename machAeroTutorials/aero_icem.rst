@@ -1,28 +1,34 @@
 .. _aero_icem:
 
-***************
-Surface Meshing
-***************
+*************************
+Surface Meshing with ICEM
+*************************
+
+.. warning:: This page assumes you are using ICEM for surface meshing. For a version of this page that uses Pointwise see :ref:`here <aero_pointwise>`.
 
 Introduction
 ============
-The objective of this section is to familiarize the user with the ICEM CFD software and to create a surface mesh.
+Now that we have a geometry definition, we can start meshing it.
+Our end goal is to generate a structured volume mesh around the geometry that can be used by ADflow.
+Unlike the airfoil, this is a two step process for 3D geometries.
+
+1. We generate a surface mesh, a structured grid of points on the B-spline surfaces defining the geometry that create a watertight surface.
+2. We *extrude* that surface mesh, using a hyperbolic or elliptic mesh extrusion algorithm, into a volume mesh that we can use with ADflow.
+
+This page describes how to accomplish the **first** step using ICEM as the meshing tool of choice.
 ICEM CFD is a meshing software with advanced CAD/geometry readers and repairs tools.
 It allows the user to produce volume or surface meshes.
 At times ICEM may test your patience, however, it offers a lot of functionality and is quite handy once you get to know its quirks.
 A full ICEM CFD tutorial can be found `here <https://engineering.purdue.edu/~scalo/menu/teaching/me608/tutorial.pdf>`_.
 For more theoretical background of mesh generation, refer to "Thompson, et.al. Handbook of grid generation. CRC press, 1998."
+In this step we will focus on generating the L1 surface mesh.
+Generating the remaining members of the mesh family will be covered in the next step.
 
 .. warning:: Make sure you save your work often when using ICEM. It is known to crash at the worst possible moments. We also recommend saving instances of a single project in different locations just in case you need to go back to a previous state.
 
 Files
 =====
-Navigate to the directory ``aero/meshing/surface`` in your tutorial folder.
-Copy the following file from the the ``geometry`` directory:
-
-.. prompt:: bash
-
-    cp ../../geometry/wing.tin .
+Navigate to the directory ``wing/meshing/surface`` in your tutorial folder.
 
 Basic ICEM Usage
 ================
@@ -99,7 +105,7 @@ Load the geometry
 -----------------
 In ICEM, select ``File`` → ``Geometry`` → ``Open Geometry``.
 
-Navigate to the surface meshing folder and open ``wing.tin``.
+Navigate to the geometry folder and open ``wing.tin``.
 
 ICEM will prompt you to create a project called ``wing.prj``. Select Yes.
 
@@ -177,7 +183,7 @@ All geometry creation and manipulation is done under the ``Geometry`` tab, outli
     .. image:: images/icem_TrailingEdgeCurves.png
        :scale: 30
 
-2. Create auxiliary curves
+1. Create auxiliary curves
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
     Now let's create some curves to help define the leading edge section of the surface mesh.
     First we need to create some points, so go back to the ``Create Point`` section.
@@ -492,7 +498,15 @@ The window is shown below.
 .. image:: images/icem_SaveCGNS.png
     :scale: 80
 
-The surface mesh is now ready for use in pyHyp.
-To proceed to the next tutorial (volume meshing with pyHyp), reduce the number of nodes specified for the edges so far (e.g., 17 to 5, and 161 to 41), and convert and export the mesh again.
-Or use the ``wing.cgns`` file provided in ``MACH-Aero/tutorial/aero/meshing/volume``.
-This should reduce computational time and the probability of pyHyp failing with the default options provided in the following tutorial and the mesh generated so far.
+Make sure to name your output file ``wing_surf_L1.cgns``.
+The L1 surface mesh is now ready for use in pyHyp.
+
+.. warning:: The size of the L1 mesh generated in the ICEM version of the tutorial is slightly coarser than the one generated in the Pointwise version of the tutorial.
+    This shouldn't dramatically impact your results but is something to keep in mind.
+    This discrepancy is primarily because the ICEM version of the tutorial is from an older version of the MACH-Aero tutorial from when ICEM CFD was the meshing software of choice in the MDO Lab
+
+.. note:: An older version of the MACH-Aero tutorial would now instruct users to coarsen their mesh in ICEM itself by reducing the number of nodes specified for the edges so far from 17 to 5 and 161 to 41.
+    This step is now obsolete with the introduction of mesh family generation in the mesh extrusion step.
+    However, the resulting surface and volume meshes, ``wing.cgns`` and ``wing_vol.cgns`` respectively, from this coarsening operation were included in the tutorial repo for reference or use in the tutorial itself.
+    As a result, these meshes ended up getting used in various training sessions, examples, classes, and other studies as they were readily available.
+    These files have now been replaced in this version of the MACH-Aero tutorial and the old files can only be obtained by downloading an older version of the MACH-Aero tutorial from GitHub.

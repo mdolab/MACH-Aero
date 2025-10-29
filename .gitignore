@@ -1,7 +1,24 @@
+# Ignore outputs from tutorials, except the few we want to keep
+tutorial/**/*.pdf
+tutorial/**/*.png
+tutorial/**/*.hst
+tutorial/**/*.out
+tutorial/**/*.txt
+tutorial/**/*.dat
+!tutorial/airfoil/geometry/n0012*.dat
+*.cgns
+!tutorial/wing/meshing/surface/wing_surf_L1.cgns
+!tutorial/wing/meshing/volume/wing_vol_L3.cgns
+!tutorial/wing/meshing/volume/wing_vol_L4.cgns
+!tutorial/airfoil/meshing/n0012.cgns
+!tutorial/overset/mesh/ONERA_M6_L3.cgns
+*.xyz
+!tutorial/airfoilopt/ffd/ffd.xyz
+!tutorial/wingopt/ffd/ffd.xyz
+
 .pre-commit-config.yaml
 _build
 .DS_Store
-*.cgns
 .vscode/*
 make.bat
 my_tutorial/

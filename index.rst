@@ -45,9 +45,10 @@ If you would like to contribute to the development of any of these packages, ple
    :maxdepth: 2
 
    machAeroTutorials/intro
+   machAeroTutorials/airfoilanalysis_overview
+   machAeroTutorials/airfoilopt_overview
    machAeroTutorials/aero_overview
    machAeroTutorials/opt_overview
-   machAeroTutorials/airfoilopt_overview
    machAeroTutorials/overset_overview
    machAeroTutorials/intersection_overview
    machAeroTutorials/faq
