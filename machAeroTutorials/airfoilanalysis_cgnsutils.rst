@@ -14,7 +14,7 @@ We have developed a suite of functions called `cgnsUtilities <https://github.com
 Files
 =====
 Navigate to the directory ``wing/meshing/volume`` in your tutorial folder.
-We will perform operations on the file ``wing_vol.cgns``.
+We will perform operations on the file ``wing_vol_L3.cgns``.
 
 cgnsUtilities Operations
 ========================
