@@ -3,7 +3,7 @@ import argparse
 from pyhyp import pyHyp
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--level", default="L1")
+parser.add_argument("--level", default="L3")
 args = parser.parse_args()
 
 # rst SetLevels
