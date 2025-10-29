@@ -13,7 +13,7 @@ except ImportError:
 
 
 # note that this is NOT the testflo directive! We are explicitly calling mpirun ourselves
-NPROCS = 2
+NPROCS = 12
 mpiCmd = ["mpirun", "-n", f"{NPROCS}"]
 gridFlag = ["--gridFile", "../meshing/volume/wing_vol_L4.cgns"]
 gridFlagOpt = ["--gridFile", "../../wing/meshing/volume/wing_vol_L4.cgns"]
@@ -26,7 +26,7 @@ optimizer = {
 
 class TestWingAnalysis(unittest.TestCase):
     def setUp(self):
-        os.chdir(os.path.join(tutorialDir, "aero"))
+        os.chdir(os.path.join(tutorialDir, "wing"))
 
     def test_geo(self):
         # wing/geometry
@@ -55,13 +55,13 @@ class TestWingAnalysis(unittest.TestCase):
 
 class TestWingOpt(unittest.TestCase):
     def setUp(self):
-        os.chdir(os.path.join(tutorialDir, "opt"))
+        os.chdir(os.path.join(tutorialDir, "wingopt"))
 
     def test_ffd(self):
         os.chdir("ffd")
         subprocess.check_call(["python", "simple_ffd.py"])
         # go back to opt dir
-        os.chdir(os.path.join(tutorialDir, "opt"))
+        os.chdir(os.path.join(tutorialDir, "wingopt"))
 
     def test_ffd_parameterize(self):
         os.chdir("ffd")
