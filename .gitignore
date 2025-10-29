@@ -1,3 +1,5 @@
+*.pdf
+
 # Ignore all mesh files, except the few we want to keep
 *.cgns
 !tutorial/wing/meshing/surface/wing_surf_L1.cgns
