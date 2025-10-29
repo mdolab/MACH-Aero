@@ -12,6 +12,9 @@ tutorial/**/*.dat
 !tutorial/wing/meshing/volume/wing_vol_L4.cgns
 !tutorial/airfoil/meshing/n0012.cgns
 !tutorial/overset/mesh/ONERA_M6_L3.cgns
+*.xyz
+!tutorial/airfoilopt/ffd/ffd.xyz
+!tutorial/wingopt/ffd/ffd.xyz
 
 .pre-commit-config.yaml
 _build
