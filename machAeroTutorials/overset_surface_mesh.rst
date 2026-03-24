@@ -557,13 +557,6 @@ Export all meshes for use in pyhyp
 The last step is to export the mesh. For pyHyp it is important, that the ``normals`` look in the outwards direction.
 We will set the boundaries manually in pyHyp.
 
-.. note::
-    As there has not been found an easy way to figure out which domain in Pointwise
-    corresponds to which domain in pyHyp, it is recommended to orient them all the same way. Then apply the BC for all domains and run the pyHyp script.
-    If an error pops up for one domain, the corresponding BC can be removed. This gets repeated until there are no errors left (This information is repeated
-    on the next page where it probably makes more sense).
-
-
 Lets start with orienting the ``near_tip`` mesh first.
 
 1. Make sure only the layer ``near_tip`` is visible
