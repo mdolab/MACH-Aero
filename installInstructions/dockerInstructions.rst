@@ -16,17 +16,16 @@ Pull MDO Lab Docker Image
 Pull one of the `MDO Lab Docker images from Docker Hub <https://hub.docker.com/r/mdolab/public/tags>`_.
 The available maintained images are listed in the table below:
 
-======================== ================
-Tag                      Operating System
-======================== ================
-u20-gcc-ompi-latest      Ubuntu 20.04
-u20-gcc-ompi-stable      Ubuntu 20.04
-u22-gcc-ompi-latest      Ubuntu 22.04
-u22-gcc-ompi-stable      Ubuntu 22.04
-u20-intel-impi-latest    Ubuntu 20.04
-u22-intel-impi-stable    Ubuntu 22.04
-tacc-u18-gcc-impi-stable Ubuntu 18.04
-======================== ================
+=========================  ============  ===================  =====================  ======  =======  ========  =======  =======  ==========
+Tag                        OS            Compiler             MPI                    CGNS    PETSc    Python    NumPy    SciPy    OpenMDAO
+=========================  ============  ===================  =====================  ======  =======  ========  =======  =======  ==========
+u22-gcc-ompi-latest        Ubuntu 22.04  gcc                  OpenMPI 5.0.9          4.5.0   3.21.6   3.12.12   2.3.5    1.17.1   3.42.0
+u22-gcc-ompi-stable        Ubuntu 22.04  gcc                  OpenMPI 4.1.6          4.3.0   3.18.5   3.11.14   1.25.2   1.11.2   3.37
+u22-intel-impi-latest      Ubuntu 22.04  intel 2024.2.1-1079  intel 2021.11.0-49493  4.5.0   3.21.6   3.12.12   2.3.5    1.17.1   3.42.0
+u24-gcc-ompi-latest        Ubuntu 24.04  gcc                  OpenMPI 5.0.9          4.5.0   3.21.6   3.12.12   2.3.5    1.17.1   3.42.0
+u24-gcc-ompi-stable        Ubuntu 24.04  gcc                  OpenMPI 4.1.6          4.3.0   3.18.5   3.11.14   1.25.2   1.11.2   3.37
+u24-intel-impi-latest      Ubuntu 24.04  intel 2024.2.1-1079  intel 2021.11.0-49493  4.5.0   3.21.6   3.12.12   2.3.5    1.17.1   3.42.0
+=========================  ============  ===================  =====================  ======  =======  ========  =======  =======  ==========
 
 To pull an image, use the ``docker pull`` command:
 
@@ -34,6 +33,8 @@ To pull an image, use the ``docker pull`` command:
 
     docker pull mdolab/public:<TAG>
 
+.. note::
+    If you have a Mac with an Apple Silicon CPU (M1, M2, etc.) you will need to pull an image specifically built for ARM architecture, currently the only image with an `arm64` tag is ``mdolab/public:u24-gcc-ompi-stable``.
 
 Check that the Docker image is pulled successfully by running:
 

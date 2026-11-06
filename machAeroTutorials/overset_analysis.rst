@@ -135,7 +135,7 @@ If you want to run in parallel, start it with MPI:
 
 .. prompt:: bash
 
-    mpirun -np 4 python run_adflow_L3.py
+    mpiexec -n 4 python run_adflow_L3.py
 
 
 Plot the Iterations in realtime
@@ -208,6 +208,3 @@ ADflow lies right in the middle:
     :align: center
 
     Grid Convergence of ADflow in comparison to various other solvers.
-
-
-

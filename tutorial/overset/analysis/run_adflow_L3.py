@@ -19,7 +19,7 @@ level = "L3"
 #         adflow_util options
 # ======================================================================
 # rst Options (beg)
-options = {"name": "ONERA_M6_%s" % (level), "surfaceFamilyGroups": {"wall": ["near_wing", "near_tip"]}}
+options = {"name": f"ONERA_M6_{level}", "surfaceFamilyGroups": {"wall": ["near_wing", "near_tip"]}}
 # rst Options (end)
 
 
@@ -47,7 +47,7 @@ aeroOptions = {
 # rst SolverOptions (beg)
 solverOptions = {
     # Common Parameters
-    "gridFile": "ONERA_M6_%s.cgns" % (level),
+    "gridFile": f"../mesh/ONERA_M6_{level}.cgns",
     "outputDirectory": "output",
     # Physics Parameters
     "equationType": "RANS",

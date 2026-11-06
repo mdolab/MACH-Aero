@@ -22,7 +22,6 @@ def setup(comm, gridFile, outputDirectory):
         "monitorVariables": ["resrho", "resturb", "cl", "cd", "cpu"],
         "surfaceVariables": ["vx", "vy", "vz", "rho", "P", "cp", "cf", "cfx", "cfy", "cfz", "blank"],
         "volumeVariables": ["resrho", "mach", "cp", "resturb", "blank"],
-        "writeTecplotSurfaceSolution": True,
         # Physics parameters
         "equationType": "RANS",
         "useQCR": True,
@@ -47,7 +46,7 @@ def setup(comm, gridFile, outputDirectory):
         "ANKSecondOrdSwitchTol": 1e-4,
         "ANKStepMin": 0.1,
         "ANKSwitchTol": 10.0,
-        "ASMOverlap": 2,
+        "ANKASMOverlap": 2,
         # Convergence criteria
         "nCycles": 8000,
         "L2Convergence": 1e-10,

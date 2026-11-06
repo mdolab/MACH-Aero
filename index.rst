@@ -21,6 +21,7 @@ And the following optional modules:
 
 More detail for the framework can be found in :ref:`mach-aero`.
 If you use any of our codes, please :ref:`cite us <cite-us>`.
+If you would like to contribute to the development of any of these packages, please see our :ref:`contribution guide <contribute>`.
 
 .. toctree::
    :caption: Overview
@@ -44,9 +45,10 @@ If you use any of our codes, please :ref:`cite us <cite-us>`.
    :maxdepth: 2
 
    machAeroTutorials/intro
+   machAeroTutorials/airfoilanalysis_overview
+   machAeroTutorials/airfoilopt_overview
    machAeroTutorials/aero_overview
    machAeroTutorials/opt_overview
-   machAeroTutorials/airfoilopt_overview
    machAeroTutorials/overset_overview
    machAeroTutorials/intersection_overview
    machAeroTutorials/faq

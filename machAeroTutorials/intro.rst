@@ -11,7 +11,9 @@ The user does not need to know Fortran to complete this tutorial, but if Python 
 
 .. warning:: Please view this tutorial as a *bare-minimum* tutorial and not as a comprehensive tutorial. To gain proficiency and flexibility with the MACH tools, it is necessary to explore the dedicated documentation, source code, docstrings, and code comments of each tool.
 
-This tutorial starts from scratch and leads the user through the steps necessary to conduct aerodynamic shape optimization of a B717 wing.
+This tutorial starts from scratch and slowly builds up the users capability in aerodynamic analysis and optimziation.
+The tutorials start with airfoil analysis and optimization followed by wing analysis and optimization.
+The later more advance tutorials cover overset meshes and intersections.
 The tutorial files are located on `GitHub <https://github.com/mdolab/MACH-Aero/>`__.
 The scripts referenced in the tutorial can be found in the tutorial directory, organized according to section.
 Although these scripts should be executable without any modifications, **we highly recommend that you create a separate directory and type out the lines of code by yourself.**
@@ -28,9 +30,9 @@ where ``my_tutorial`` is the name of the folder in which you will build your scr
 The directory structures for each section of the tutorial, including all files, are displayed at the beginning of each section.
 Throughout the tutorial, we will refer to the location of your developing tutorial as ``my_tutorial``, so if you chose a different name make sure to adjust your commands accordingly.
 
-Before continuing with the tutorial, make sure that the MDOLab framework is already installed on your machine.
-If you set up your machine using an MDOLab iso, then the required packages should already be installed.
-If not, follow the instructions for installing the MDOLab framework from :ref:`scratch <installFromScratch>`.
+Before continuing with the tutorial, make sure that the MACH-Aero framework is already installed on your machine.
+If you set up your machine using an MDOLab Docker image, then the required packages should already be installed.
+If not, follow the instructions for installing the MACH framework from :ref:`scratch <installFromScratch>`.
 
 This tutorial requires the following software.
 
@@ -40,7 +42,7 @@ This tutorial requires the following software.
 - `cgnsUtilities <https://github.com/mdolab/cgnsutilities>`_
 - `baseclasses <https://github.com/mdolab/baseclasses>`_
 - `pySpline <https://github.com/mdolab/pyspline>`_
-- `pyGeo <https://github.com/mdolab/pygeo>`_
+- `pygeo <https://github.com/mdolab/pygeo>`_
 - `IDWarp <https://github.com/mdolab/idwarp>`_
 - `ADflow <https://github.com/mdolab/adflow>`_
 - `pyOptSparse <https://github.com/mdolab/pyoptsparse>`_
@@ -53,13 +55,18 @@ This tutorial requires the following software.
 
 **External Software**
 
-- ICEM CFD (for surface mesh generation)
-- Tecplot (for flow visualization)
+- Fidelity Pointwise or ICEM (for surface mesh generation)
+- Tecplot or Paraview (for flow visualization)
+
+.. note:: The airfoil analysis and optimziation tutorials do not require these external software packages.
+    However Tecplot is still required to postprocess the resulting flow field.
+
 
 Documentation strategy
 ======================
 The tutorial resides on `GitHub <https://github.com/mdolab/MACH-Aero/>`__, but it is a living tutorial, which means that it is constantly updated with corrections and improvements.
-We invite you, especially as a new user, to take notes of the parts that you find confusing and bring them to the attention of an admin to the tutorial repository so that changes can be made.
+We invite you, especially as a new user, to take notes of the parts that you find confusing and bring them to the attention of the MACH-Aero maintainers by opening an issue on the GitHub repo.
+If you're feeling adventurous, you can even fork the repository, make the changes yourself, and submit a pull request for us to review.
 
 The rst files in the doc directory contain direct links to the python scripts in the tutorial directory to avoid code duplication.
 This is done using the ``start-after`` and ``end-before`` options of Sphinx's native ``literalinclude`` directive.

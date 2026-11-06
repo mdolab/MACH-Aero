@@ -175,7 +175,7 @@ If you have MPI installed and enough processors available, you can also run it i
 
 .. prompt:: bash
 
-    mpirun -np 4 python run_pyhyp.py --level L1
+    mpiexec -n 4 python run_pyhyp.py --level L1
 
 Since we want 3 meshes of different size, you will have to run this script 3 times with the appropriate
 ``--level`` argument.
@@ -188,4 +188,3 @@ Finally, we can use the ``ihc_check.py`` script to check the result of the impli
 .. literalinclude:: ../tutorial/overset/mesh/ihc_check.py
    :start-after: # rst start
    :end-before: # rst end
-
